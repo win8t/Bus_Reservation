@@ -75,6 +75,21 @@
 </div>
 </div>
 
+<div class="fixed-container">
+  <div class="col-12 content-container">
+      <p class="display-2"> About Us </p>
+    </div>
+
+    <div class="col-6 content-container1">
+      <p> About Us </p>
+    </div>
+    <div class="col-6 content-container1">
+      <p> About Us </p>
+    </div>
+</div>
+
+
+
 
 </body>
 </html>
