@@ -77,16 +77,32 @@
 
 <div class="fixed-container">
   <div class="col-12 content-container">
-      <p class="display-2"> About Us </p>
-    </div>
+      <p class="display-2 text-center border border-3 p-2 border-dark rounded"> About Us </p>
+  </div>
+  
 
     <div class="col-6 content-container1">
-      <p> About Us </p>
+        <div class="card border border-success">
+          <h5 class="card-header text-center bg-light">Vision</h5>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
     </div>
     <div class="col-6 content-container1">
-      <p> About Us </p>
-    </div>
+    <div class="card border border-success">
+          <h5 class="card-header text-center bg-light">Mission</h5>
+            <div class="card-body">
+              <h5 class="card-title">Special title treatment</h5>
+              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+              
+            </div>
+        </div>
+    </div> 
 </div>
+
+
 
 
 

@@ -68,7 +68,10 @@
 .nav-link:hover, .nav-link.active {
     color:#000;
     font-family:FontBold;
+    transition: 0.5s;
 }
+
+
 
     .nav-link::before {
         content:"";
@@ -128,9 +131,9 @@
         background-size: cover;
         background-color: #ACE2E1;
         background-attachment: fixed;
-
-        
       }
+
+      
 
       .content-container {
         position:relative;
@@ -139,20 +142,27 @@
           overflow-y: hidden;
         z-index: 5;
         background-image: url(About.png);
-        padding:5px;
+        
         width:100%;
         float:left;
         background-attachment: fixed;
         
       }
 
+      .content-container p{
+        font-family:FontBold;
+        margin: 2%; 
+        font-weight: bold;
+        color: #000000;
+        box-shadow: 0 2px 4px 0 rgba(0.1,0.1,0.1,.5);
+      }
+
       .content-container1 {
-        position:relative;
-        margin-top: 20px;
+        position:relative; 
         overflow-x: hidden;
           overflow-y: hidden;
         z-index: 5;
-        background-image: linear-gradient(to top, rgb(255, 255, 255), rgb(255, 255, 255));
+        background-color: #007025;
         padding:5px;
         width:100%;
         float:left;
@@ -164,18 +174,17 @@
         overflow-x: hidden;
           overflow-y: hidden;
         z-index: 5;
-        background-image: linear-gradient(to top, rgb(0, 0, 0), rgb(0, 0, 0));
+        background-image: linear-gradient(to top, rgb(255, 255, 255), rgb(255, 255, 255));
         padding:5px;
         width:100%;
         float:left;
       }
 
-      .content-container p {
+      .card-header {
         font-family:FontBold;
-        margin: 2%; 
-        font-weight: bold;
-        color: #000000;
       }
+
+      
 
 
       
