@@ -49,7 +49,7 @@
   </div>
 </nav>
 
-<div class="col h-75">
+<!-- <div class="col h-75">
   <div id="carouselExampleFade" class="carousel slide carousel-fade" >
   <div class="carousel-inner">
     <div class="carousel-item active">
@@ -77,7 +77,81 @@
   </div>
 </div>
 </div>
+</div> -->
+
+<div class="col h-75">
+  <div class="carousel slide carousel-fade carousel-dark" id ="carouselDemo" data-bs-wrap="true" data-bs-ride="carousel">
+      <div class="carousel-inner">
+
+            <div class="carousel-item active"
+            data-bs-interval="5000">
+              <img src="Alps1.jpg" class ="w-100 h-100 d-block">
+              <div class="carousel-caption">
+                <h5>Title Slide 0</h5>
+                <p>
+                  Welcome To Alps Bus
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item"
+            data-bs-interval="5000">
+              <img src="Alps2.jpg" class ="w-100 h-100 d-block">
+              <div class="carousel-caption">
+                <h5>Title Slide 1</h5>
+                <p>
+                  Welcome To Alps Bus
+                </p>
+              </div>
+            </div>
+            <div class="carousel-item"
+            data-bs-interval="5000">
+              <img src="Alps3.jpg" class ="w-100 h-100 d-block">
+              <div class="carousel-caption">
+                <h5>Title Slide 2</h5>
+                <p>
+                  Welcome To Alps Bus
+                </p>
+              </div>
+            </div>
+
+      </div>
+      <button class="carousel-control-prev" 
+      type="button" 
+      data-bs-target="#carouselDemo"
+      data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+
+      <button class="carousel-control-next" 
+      type="button" 
+      data-bs-target="#carouselDemo"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+
+      </button>
+
+      <div class="carousel-indicators">
+        <button type="button" class ="active mx-2" 
+            data-bs-target="#carouselDemo"
+            data-bs-slide-to="0" >
+            <img src="Alps1.jpg"/>
+        </button>
+
+        <button type="button" class ="mx-2" 
+            data-bs-target="#carouselDemo "
+            data-bs-slide-to="1">
+            <img src="Alps2.jpg"/>
+        </button>
+
+        <button type="button" class ="mx-2" 
+            data-bs-target="#carouselDemo"
+            data-bs-slide-to="2" >
+            <img src="Alps3.jpg"/>
+        </button>
+      </div>
+  </div>
 </div>
+
 
 <div class="fixed-container">
   <div class="col-12 content-container">

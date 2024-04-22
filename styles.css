@@ -132,6 +132,29 @@
         padding: 0;
       }
 
+      .carousel-indicators img{
+        width: 80px;
+        height: 50px;
+        display:block;
+        
+      }
+
+      .carousel-indicators button{
+        width: max-content !important;
+      }
+      
+      .carousel-indicators{
+        position: unset;
+      }
+
+      .carousel-indicators button.active img{
+        border: 2px solid rgb(9, 107, 0);
+      }
+
+      
+
+      
+
       .fixed-container {
         position:absolute;
         z-index: -1;
@@ -147,7 +170,7 @@
 
       .content-container {
         position:relative;
-        margin-top: 20px;
+        margin-top: 30px;
         overflow-x: hidden;
           overflow-y: hidden;
         z-index: 5;
