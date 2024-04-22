@@ -14,7 +14,7 @@
 <nav class="navbar navbar-expand-lg  fixed-top">
   <div class="container-fluid">
     <a class="navbar-brand me-auto ml-1" href="#">
-    <img src="AlpLogo.png" alt="" class="logo img-fluid">
+    <img src="Alps.png" alt="" class="logo img-fluid">
     
     </a>
     
