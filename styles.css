@@ -13,6 +13,13 @@
     src: url(Chopin-Trial-Regular.woff);
   }
 
+.logo {
+  float:left;
+  position:relative;
+  height:75%;
+  width:65%;
+}
+
 .navbar-brand {
   font-family:FontBold;
   margin-left:5px;
@@ -35,8 +42,8 @@
 .login-button {
     font-family:FontReg;
     
-    background-color: rgb(255, 255, 255);
-    color:#000000;
+    background-color: #29317C;
+    color:#ffffff;
     font-size: 14px;
     padding: 8px 20px;
     border-radius: 50px;
@@ -45,6 +52,7 @@
 
 }
 .login-button:hover {
+  color:#000;
     background-color: #c0f8f7;
     font-family:FontBold;
 }
@@ -59,10 +67,12 @@
 }
 
 .nav-link{
+    
     font-family:FontReg;
     color:rgb(8, 1, 68);
     font-weight:500;
     position: relative;
+    
 }
 
 .nav-link:hover, .nav-link.active {
@@ -184,14 +194,13 @@
         font-family:FontBold;
       }
 
-      .logo-image{
-        width: 46px;
-        height: 46px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-top: -6px;
-    }
-
+      .nav-item{
+          padding-left:10px;
+          padding-right:10px;
+          padding-inline-end: 55px;
+          
+        }
+      
       
 
 

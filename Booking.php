@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-<link href =style.css rel="stylesheet"/>
+<link href =styles.css rel="stylesheet"/>
 </head>
 <link href="bootstrap.min.css" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -13,7 +13,10 @@
 
 <nav class="navbar navbar-expand-lg  fixed-top">
   <div class="container-fluid">
-    <a class="navbar-brand me-auto" href="#">Alps</a>
+    <a class="navbar-brand me-auto ml-1" href="#">
+    <img src="AlpLogo.png" alt="" class="logo img-fluid">
+    
+    </a>
     
     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
@@ -22,24 +25,24 @@
       </div>
 
       <div class="offcanvas-body">
-        <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+        <ul class="navbar-nav justify-content-center flex-grow-1 pe-5 rw">
           <li class="nav-item">
-            <a class="nav-link active mx-lg-2" aria-current="page" href="#"><i class="bi bi-house-fill"></i> Home</a>
+            <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="#"><i class="bi bi-house-fill"></i> Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#"><i class="bi bi-journal-album"></i> Book</a>
+            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-journal-album"></i> Book</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#"><i class="bi bi-bus-front"></i> Route</a>
+            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-lg-2" href="#"><i class="bi bi-shop"></i> Transit</a>
+            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-shop"></i> Transit</a>
           </li>
         </ul>
     </div>
       
     </div>
-    <a href="#" class ="login-button"><i class="bi bi-person-circle"></i> Login</a>
+    <a href="#" class ="login-button"><i class="bi bi-person-circle"></i>  Login</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
