@@ -31,6 +31,7 @@
 }
 
 .navbar {
+    font-size:25px;
     background-color:#ACE2E1;
     box-shadow: 0 2px 4px 0 rgba(0,0,0.2,.5);
     height:80px;
@@ -44,7 +45,8 @@
     
     background-color: #29317C;
     color:#ffffff;
-    font-size: 14px;
+    
+    font-size: 20px;
     padding: 8px 20px;
     border-radius: 50px;
     text-decoration: none;
@@ -69,6 +71,7 @@
 .nav-link{
     
     font-family:FontReg;
+    
     color:rgb(8, 1, 68);
     font-weight:500;
     position: relative;
@@ -91,7 +94,7 @@
         transform: translateX(-50%);
         width:0;
         height:2px;
-        background-color:rgb(9, 0, 92);
+        background-color:rgb(0, 92, 12);
         visibility: hidden;
         transition: 0.3s ease-in-out;
     }
@@ -118,7 +121,7 @@
         left:0;
         right:0;
         /*set overlay of carousel */
-        background-image: linear-gradient(to top, rgba(255, 255, 255, 0.247), rgba(125, 181, 255, 0.24));
+        background-image: linear-gradient(to top, rgba(0, 0, 0, 0.247), rgba(3, 34, 75, 0.24));
       }
       
       .carousel {
@@ -164,6 +167,7 @@
         background-size: cover;
         background-color: #ACE2E1;
         background-attachment: fixed;
+        
       }
 
       
@@ -188,14 +192,19 @@
         font-weight: bold;
         color: #000000;
         box-shadow: 0 2px 4px 0 rgba(0.1,0.1,0.1,.5);
+        background: linear-gradient(to right, #023f00, #379624,#087386, #24b17b);
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+        
       }
 
       .content-container1 {
+        
         position:relative; 
         overflow-x: hidden;
           overflow-y: hidden;
         z-index: 5;
-        background-color: #007025;
+        background-color: #ffffff;
         padding:5px;
         width:100%;
         float:left;
@@ -203,17 +212,28 @@
 
       .content-container2 {
         position:relative;
-        margin-top: 20px;
         overflow-x: hidden;
           overflow-y: hidden;
         z-index: 5;
-        background-image: linear-gradient(to top, rgb(255, 255, 255), rgb(255, 255, 255));
+        background-color: #ffffff;
         padding:5px;
         width:100%;
         float:left;
       }
 
-      .card-header {
+      .content-container3 {
+        
+        position:relative; 
+        overflow-x: hidden;
+          overflow-y: hidden;
+        z-index: 5;
+        background-color: #ffffff;
+        padding:5px;
+        width:100%;
+        float:left;
+      }
+
+      .header {
         font-family:FontBold;
       }
 
@@ -223,7 +243,65 @@
           padding-inline-end: 55px;
           
         }
+
+.accordion {
+  box-shadow: 0 2px 25px 0 rgba(110,130,208,.18);
+  background:transparent;
+
+}
+
+.accordion-item {
+  margin-bottom: 10px;
+  background-color: #24b17b;
+  border: none;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -2px, 2px, 8px rgba(0,0,0,0.1);
+}
+.accordion-body {
+  background-color:#d8f7ef ;
+  font-family:FontReg;
+}
+
+.accordion-button {
+  font-family:FontBold;
+  background-color: #26a574 !important;
+  color:#fff !important;
+  font-size:0.8rem;
+  background:transparent;
+  outline:none;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+  position:relative;
+}
+
+.accordion-button:active, .accordion-button:focus{
+  border:none !important;
+  background:#19704f !important;
+}
+
+.accordion-button:hover{
+  background:#087386 !important;
+}
+
+svg {
+  fill:#ffffff;
+}
+
+.accordion-button::after {
+  background-image: url("plus.svg") !important;
+
+  transition: .5s !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: url("dash.svg") !important;
+
+  transition: .5s !important;
+}
+
+
       
+
+       
       
 
 
