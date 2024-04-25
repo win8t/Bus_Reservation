@@ -10,9 +10,9 @@
 const navLinkEls = document.querySelectorAll('.nav-link');
 
 navLinkEls.forEach(navLinkEl => {
-  navLinkEl.addEventListener('click', () => {
+  navLinkEl.addEventListener('click', function() {
   document.querySelector('.active')?.classList.remove('active');
-  navLinkEl.classList.add('active');
+  this.classList.add('active');
 });
 });
 

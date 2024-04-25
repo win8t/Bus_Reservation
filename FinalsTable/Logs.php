@@ -228,11 +228,12 @@
               $search = $_POST['search'];
               $selectsql = "Select * from tbl_user where 
     user_id LIKE '%" . $search . "%' 
-    full_name LIKE '%" . $search . "%' 
+    OR full_name LIKE '%" . $search . "%' 
     OR role LIKE'%" . $search . "%' 
     OR username LIKE'%" . $search . "%' 
     OR password LIKE'%" . $search . "%' 
     OR email LIKE'%" . $search . "%' ";
+
             } else {
               $selectsql = "Select * from tbl_user";
             }
@@ -286,7 +287,6 @@
 
 
 
-  </main>
 
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
