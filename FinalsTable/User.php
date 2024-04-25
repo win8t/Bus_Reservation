@@ -233,7 +233,6 @@
     OR username LIKE'%" . $search . "%' 
     OR password LIKE'%" . $search . "%' 
     OR email LIKE'%" . $search . "%' ";
-
             } else {
               $selectsql = "Select * from tbl_user";
             }

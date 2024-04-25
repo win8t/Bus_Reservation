@@ -57,9 +57,9 @@
         <div class="carousel-item active" data-bs-interval="5000">
           <img src="Alps1.jpg" class="w-100 h-100 d-block carousel-image">
           <div class="carousel-caption">
-            <h5 class=""> Title Slide 0</h5>
-            <p class="">
-              Welcome To Alps Bus
+            <h5 class=""> Welcome to Alps Bus Reservation</h5>
+            <p class="display-2">
+                  It is the family's vision to grow and grow in the service of the commuting public; the ALPS adopted family.
             </p>
           </div>
         </div>
@@ -119,13 +119,29 @@
     </div>
 
     <div class="row-12 align-items-center">
-    
+      <div class="col-4 content-container1  bg-primary-subtle shadow-lg p-4 rounded">
+        <h2 class="about-text text-center pb-3"> Vision </h2>
+          <div class="container rounded shadow about-content p-4">
+              <p class ="text-wrap text-justify about-para p-1">We want to be a dynamic, modern, reputable, and the safest transport company with an increasing share in the transport market, ensuring constant customer satisfaction and performance improvement with respect to our environment and safety while delivering our services. Our corporate vision is to become the best transportation company providing services of regional and domestic passenger road transport in the Philippines.</p>
+          </div>
+
+      </div>
+      <div class="col-4 content-container2  shadow-lg p-3">
+          <img src="alps-bus.jpg" alt="" class="img-fluid border  about-pics p-1 shadow-sm mb-1">
+      </div>
+      <div class="col-4 content-container1  bg-primary-subtle  shadow-lg p-4  rounded">
+      <h2 class="about-text text-center pb-3"> Mission </h2>
+      <div class="container rounded shadow about-content1 p-4">
+              <p class ="text-wrap text-justify about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to approach actively to the resolution of any customer needs, to face any challenges within bus and coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
+          </div>
+      </div>
+
     </div>
 
 
 
     <div class="row-12">
-      <div class="col-12 content-container3 py-5">
+      <div class="col-12 content-container3 py-5 shadow-lg">
         <h3 class="text-center">Frequently Asked Questions</h3>
         <div class="accordion" id="accordionExample">
           <div class="accordion-item">
