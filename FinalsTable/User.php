@@ -202,7 +202,7 @@
               <input type="submit" value="Search" name="searchbutton" class="btn btn-primary mx-2 button-font" class="form-control">
             </div>
           </div>
-          </form>
+        </form>
       </div>
 
       <div class="row bg-light border-top border-bottom border-2 mt-2">
@@ -210,11 +210,11 @@
           <h4 class="hd-font mx-2">User Details Form</h4>
           <form action="User.php" method="post">
 
-          
+
           </form>
         </div>
       </div>
-      
+
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
           <?php
@@ -228,11 +228,12 @@
               $search = $_POST['search'];
               $selectsql = "Select * from tbl_user where 
     user_id LIKE '%" . $search . "%' 
-    full_name LIKE '%" . $search . "%' 
+    OR full_name LIKE '%" . $search . "%' 
     OR role LIKE'%" . $search . "%' 
     OR username LIKE'%" . $search . "%' 
     OR password LIKE'%" . $search . "%' 
     OR email LIKE'%" . $search . "%' ";
+
             } else {
               $selectsql = "Select * from tbl_user";
             }
@@ -246,7 +247,7 @@
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
-            
+
             echo "<table class='table table-light table-striped my-2 border border-3'>";
             echo "<tr>";
             echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
@@ -286,7 +287,6 @@
 
 
 
-  </main>
 
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>

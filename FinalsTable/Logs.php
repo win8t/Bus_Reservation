@@ -163,7 +163,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="Schedule.php" class="nav-link link-dark">
+          <a href="Schedule.php" class="nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#calendar3" />
             </svg>
@@ -171,7 +171,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="Reservation.php" class="nav-link link-dark">
+          <a href="Reservation.php" class="nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#calendar-date" />
             </svg>
@@ -179,6 +179,9 @@
           </a>
         </li>
       </ul>
+
+
+
       <hr>
       <div class="dropdown">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
@@ -187,32 +190,109 @@
       </div>
     </div>
 
-    <div class="container-fluid border-">
-      <div class="row bg-light border border-2">
-        <form action="sidebar-white.php" method="post">
-          <div class="row m-4">
-            <div class="input-group w-50">
-              <div class="input-group-text bg-primary-subtle" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
-                  <input type="search" name="search" id="" class="form-control w-50" aria-label="Input group example" aria-describedby="btnGroupAddon2">
+    <div class="container-fluid">
+      <div class="row bg-light border-top border-bottom border-2">
+        <form action="User.php" method="post">
+          <div class="input-group w-50 py-2">
+            <div class="input-group-text bg-primary-subtle" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
+            <input type="search" name="search" id="" class="form-control w-50" aria-label="Input group example" aria-describedby="btnGroupAddon2">
 
 
-              <div class="col">
-                  <input type="submit" value="Search" name="searchbutton" class="btn btn-primary mx-2 button-font" class="form-control">
-              </div>
+            <div class="col">
+              <input type="submit" value="Search" name="searchbutton" class="btn btn-primary mx-2 button-font" class="form-control">
             </div>
           </div>
         </form>
       </div>
+
+      <div class="row bg-light border-top border-bottom border-2 mt-2">
+        <div class="col pb-5 mt-2">
+          <h4 class="hd-font mx-2">User Details Form</h4>
+          <form action="User.php" method="post">
+
+
+          </form>
+        </div>
+      </div>
+
+      <div class="row bg-light border-top border-bottom border-2 mt-2">
+        <div class="col container-fluid">
+          <?php
+          require_once "dbconnect.php";
+
+          //button function
+          if (isset($_POST['searchbutton'])) {
+
+            //to check the search box if empty or not 
+            if ($_POST['search'] != NULL) {
+              $search = $_POST['search'];
+              $selectsql = "Select * from tbl_user where 
+    user_id LIKE '%" . $search . "%' 
+    full_name LIKE '%" . $search . "%' 
+    OR role LIKE'%" . $search . "%' 
+    OR username LIKE'%" . $search . "%' 
+    OR password LIKE'%" . $search . "%' 
+    OR email LIKE'%" . $search . "%' ";
+            } else {
+              $selectsql = "Select * from tbl_user";
+            }
+          } else {
+            $selectsql = "Select * from tbl_user";
+          }
+
+
+          $result = $con->query($selectsql);
+
+          //check table if there is a record
+          //num_rows - will return the no of rows inside a table
+          if ($result->num_rows > 0) {
+
+            echo "<table class='table table-light table-striped my-2 border border-3'>";
+            echo "<tr>";
+            echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
+            echo "</tr>";
+            echo "<tr>";
+            echo "<th> User ID </th>";
+            echo "<th> Full Name </th>";
+            echo "<th> Role </th>";
+            echo "<th> Username </th>";
+            echo "<th> Password </th>";
+            echo "<th> Email </th>";
+            echo "</tr>";
+
+            while ($maltfielddata = $result->fetch_assoc()) {
+              echo "<tr>";
+              echo "<td>" . $maltfielddata['user_id'] . "</td>";
+              echo "<td>" . $maltfielddata['full_name'] . "</td>";
+              echo "<td>" . $maltfielddata['role'] . "</td>";
+              echo "<td>" . $maltfielddata['username'] . "</td>";
+              echo "<td>" . $maltfielddata['password'] . "</td>";
+              echo "<td>" . $maltfielddata['email'] . "</td>";
+            }
+            echo "</table>";
+          } else {
+            echo "<div class='row'>";
+            echo "<div class='col'>";
+            echo "<br>No record found!";
+            echo "</div>";
+            echo "</div>";
+          }
+
+          ?>
+
+        </div>
+      </div>
     </div>
 
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="sidebars.js"></script>
+
+  </main>
+
+
+  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script src="sidebars.js"></script>
+  </main>
 </body>
 
 </html>
-
-<?php
-require_once "dbconnect.php";
-
-?>
