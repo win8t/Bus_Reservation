@@ -51,11 +51,11 @@
   </nav>
 
   <div class="col h-75">
-    <div class="carousel slide carousel-fade carousel-dark" id="carouselDemo" data-bs-wrap="true" data-bs-ride="carousel">
+    <div class="carousel slide  carousel-dark" id="carouselDemo" data-bs-wrap="true" data-bs-ride="carousel">
       <div class="carousel-inner">
 
         <div class="carousel-item active" data-bs-interval="5000">
-          <img src="Alps1.jpg" class="w-100 h-100 d-block">
+          <img src="Alps1.jpg" class="w-100 h-100 d-block carousel-image">
           <div class="carousel-caption">
             <h5 class=""> Title Slide 0</h5>
             <p class="">
@@ -64,7 +64,7 @@
           </div>
         </div>
         <div class="carousel-item" data-bs-interval="5000">
-          <img src="Alps2.jpg" class="w-100 h-100 d-block">
+          <img src="Alps2.jpg" class="w-100 h-100 d-block carousel-image">
           <div class="carousel-caption">
             <h5 class="">Title Slide 1</h5>
             <p class="">
@@ -73,7 +73,7 @@
           </div>
         </div>
         <div class="carousel-item" data-bs-interval="5000">
-          <img src="Alps3.jpg" class="w-100 h-100 d-block">
+          <img src="Alps3.jpg" class="w-100 h-100 d-block carousel-image">
           <div class="carousel-caption">
             <h5 class="">Title Slide 2</h5>
             <p class="">
@@ -95,6 +95,7 @@
       <div class="carousel-indicators">
         <button type="button" class="active mx-2" data-bs-target="#carouselDemo" data-bs-slide-to="0">
           <img src="Alps1.jpg" />
+
         </button>
 
         <button type="button" class="mx-2" data-bs-target="#carouselDemo " data-bs-slide-to="1">
@@ -109,18 +110,31 @@
   </div>
 
 
-  <div class="fixed-container">
-    <div class="col-12 content-container">
-      <p class="display-2 text-center border border-3 p-2 border-dark rounded"> About Us </p>
-    </div>
 
-  
+
+  <div class="fixed-container pt-4">
+
     <div class="col-12 content-container">
-      <p class="display-2 text-center border border-3 p-2 border-dark rounded"> FAQs </p>
+      <p class="display-4 text-center border border-3 p-2 border-dark rounded"> About Us </p>
     </div>
 
     <div class="row-12">
-      <div class="col-12 content-container3 py-1">
+      <div class="col-6 content-container1 bg-info">
+
+
+      </div>
+
+      <div class="col-6 content-container1 bg-black">
+
+      </div>
+    </div>
+
+
+
+
+    <div class="row-12">
+      <div class="col-12 content-container3 py-5">
+        <h3 class="text-center">Frequently Asked Questions</h3>
         <div class="accordion" id="accordionExample">
           <div class="accordion-item">
             <h2 class="accordion-header">
@@ -161,8 +175,13 @@
         </div>
       </div>
     </div>
-    
 
+    <div class="col-12 content-container">
+      <p class="display-4 text-center border border-3 p-2 border-dark rounded"> Contact Us </p>
+    </div>
+    <div class="col-12 content-container2 bg-info">
+      <br>
+    </div>
   </div>
 
 
