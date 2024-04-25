@@ -118,17 +118,9 @@
       <p class="display-4 text-center border border-3 p-2 border-dark rounded"> About Us </p>
     </div>
 
-    <div class="row-12">
-      <div class="col-6 content-container1 bg-info">
-
-
-      </div>
-
-      <div class="col-6 content-container1 bg-black">
-
-      </div>
+    <div class="row-12 align-items-center">
+    
     </div>
-
 
 
 
@@ -180,6 +172,7 @@
       <p class="display-4 text-center border border-3 p-2 border-dark rounded"> Contact Us </p>
     </div>
     <div class="col-12 content-container2 bg-info">
+      <br>
       <br>
     </div>
   </div>

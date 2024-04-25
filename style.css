@@ -32,7 +32,7 @@
 
 .navbar {
   font-size: 25px;
-  background-color: #ACE2E1;
+  background-color: #EDE4FF;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0.2, .5);
   height: 80px;
   margin: 10px;
@@ -56,7 +56,7 @@
 
 .login-button:hover {
   color: #000;
-  background-color: #c0f8f7;
+  background-color: #EDE4FF;
   font-family: FontBold;
 }
 
@@ -126,7 +126,7 @@
   left: 0;
   right: 0;
   /*set overlay of carousel */
-  background-image: linear-gradient(to bottom, #ace2e12a 90%, #ace2e1);
+  background-image: linear-gradient(to bottom, #f9ffff05 90%, #EDE4FF);
 
 }
 
@@ -174,7 +174,7 @@
   height: 800px;
   background-position: center;
   background-size: cover;
-  background-color: #ACE2E1;
+  background-color: #EDE4FF;
   background-attachment: fixed;
 
 }
@@ -186,7 +186,7 @@
   overflow-y: hidden;
   z-index: 5;
   background-image: url(About.png);
-
+  
   width: 100%;
   float: left;
   background-attachment: fixed;
@@ -199,7 +199,7 @@
   font-weight: bold;
   color: #000000;
   box-shadow: 0 2px 4px 0 rgba(0.1, 0.1, 0.1, .5);
-  background: linear-gradient(to right, #023f00, #379624, #087386, #24b17b);
+  background: linear-gradient(to right, #ffb1e8, #912389, #5456eb, #df99ff);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
 
@@ -311,3 +311,9 @@ svg {
 
   transition: .5s !important;
 }
+
+.about-text {
+  font-family:FontBold;
+  font-size: 25px;
+}
+
