@@ -31,7 +31,7 @@
               <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="#"><i class="bi bi-house-fill"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-journal-album"></i> Book</a>
+              <a class="nav-link mx-lg-2 mx-auto" href="Home.php"><i class="bi bi-journal-album"></i> Book</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
