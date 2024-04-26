@@ -131,7 +131,7 @@
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="User.php" class="nav-link active" aria-current="page">
+          <a href="User.php" class="nav-link" aria-current="page">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle" />
             </svg>
@@ -147,7 +147,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="Bus.php" class="nav-link">
+          <a href="Bus.php" class="nav-link active">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#bus-front" />
             </svg>
@@ -226,19 +226,21 @@
             //to check the search box if empty or not 
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
-              $selectsql = "Select * from tbl_user where 
-    user_id LIKE '%" . $search . "%' 
-    OR full_name LIKE '%" . $search . "%' 
-    OR role LIKE'%" . $search . "%' 
-    OR username LIKE'%" . $search . "%' 
-    OR password LIKE'%" . $search . "%' 
-    OR email LIKE'%" . $search . "%' ";
+              $selectsql = "Select * from tbl_bus where 
+                bus_id LIKE '%" . $search . "%' 
+                OR bus_number LIKE '%" . $search . "%' 
+                OR seating_capacity LIKE'%" . $search . "%' 
+                OR driver_name LIKE'%" . $search . "%' 
+                OR departure_location LIKE'%" . $search . "%' 
+                OR destination LIKE'%" . $search . "%'
+                OR departure_time LIKE'%" . $search . "%'
+                OR arrival_time LIKE'%" . $search . "%' ";
 
             } else {
-              $selectsql = "Select * from tbl_user";
+              $selectsql = "Select * from tbl_bus";
             }
           } else {
-            $selectsql = "Select * from tbl_user";
+            $selectsql = "Select * from tbl_bus";
           }
 
 
