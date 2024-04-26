@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <body class="bg">
+  <script src="scripts.js">
+  </script>
   <script src="bootstrap.min.js"></script>
 
   <nav class="navbar navbar-expand-lg  fixed-top">
@@ -59,7 +61,7 @@
           <div class="carousel-caption">
             <h5 class=""> Welcome to Alps Bus Reservation</h5>
             <p class="display-2">
-                  It is the family's vision to grow and grow in the service of the commuting public; the ALPS adopted family.
+              It is the family's vision to grow and grow in the service of the commuting public; the ALPS adopted family.
             </p>
           </div>
         </div>
@@ -118,22 +120,79 @@
       <p class="display-4 text-center border border-3 p-2 border-dark rounded"> About Us </p>
     </div>
 
-    <div class="row-12 align-items-center">
-      <div class="col-4 content-container1  bg-primary-subtle shadow-lg p-4 rounded">
-        <h2 class="about-text text-center pb-3"> Vision </h2>
-          <div class="container rounded shadow about-content p-4">
-              <p class ="text-wrap text-justify about-para p-1">We want to be a dynamic, modern, reputable, and the safest transport company with an increasing share in the transport market, ensuring constant customer satisfaction and performance improvement with respect to our environment and safety while delivering our services. Our corporate vision is to become the best transportation company providing services of regional and domestic passenger road transport in the Philippines.</p>
-          </div>
 
+    <div class="d-flex flex-row content-container align-items-stretch">
+      <div class="col-6 content-container2 bg-info-subtle  p-4">
+        <h2 class="about-text text-center pb-3"> Vision </h2>
+        <div class="rounded about-content p-5">
+          <p class="text-wrap about-para p-1">We want to be a dynamic, modern, reputable, and the safest transport company with an increasing share in the transport market, ensuring constant customer satisfaction and performance improvement with respect to our environment and safety while delivering our services. Our corporate vision is to become the best transportation company providing services of regional and domestic passenger road transport in the Philippines.</p>
+        </div>
       </div>
-      <div class="col-4 content-container2  shadow-lg p-3">
-          <img src="alps-bus.jpg" alt="" class="img-fluid border  about-pics p-1 shadow-sm mb-1">
+
+
+      <div class="col-6 content-container2 bg-info-subtle p-4">
+        <h2 class="about-text text-center pb-3"> Mission </h2>
+        <div class="rounded about-content1 p-5 ">
+          <p class="text-wrap about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to approach actively to the resolution of any customer needs, to face any challenges within bus and coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
+        </div>
       </div>
-      <div class="col-4 content-container1  bg-primary-subtle  shadow-lg p-4  rounded">
-      <h2 class="about-text text-center pb-3"> Mission </h2>
-      <div class="container rounded shadow about-content1 p-4">
-              <p class ="text-wrap text-justify about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to approach actively to the resolution of any customer needs, to face any challenges within bus and coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
+
+    </div>
+
+    <div class="d-flex flex-row content-container align-items-stretch">
+      
+      <div class="container-fluid content-container3 bg-primary-subtle  p-4">
+        <div id="slider">
+          <input type="radio" name="slider" id="slide1" class ="form-check-input active">
+          <input type="radio" name="slider" id="slide2" class = "form-check-input">
+          <input type="radio" name="slider" id="slide3" class ="form-check-input">
+          <input type="radio" name="slider" id="slide4" class ="form-check-input">
+          <div id="slides">
+            <div id="overflow">
+              <div class="inner">
+                <div class="slide slide1">
+                  <div class="slide-content w-100">
+                    <h2>Slide 1</h2>
+                    <p>Content For test</p>
+                  </div>
+                </div>
+                <div class="slide slide2">
+                  <div class="slide-content w-100">
+                    <h2>Slide 2</h2>
+                    <p>Content For Slide1</p>
+                  </div>
+                </div>
+                <div class="slide slide3">
+                  <div class="slide-content w-100">
+                    <h2>Slide 3</h2>
+                    <p>Content For Slide1</p>
+                  </div>
+                </div>
+                <div class="slide slide4">
+                  <div class="slide-content w-100">
+                    <h2>Slide 4</h2>
+                    <p>Content For Slide1</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
+          <div id="controls">
+            <label for="slide1"></label>
+            <label for="slide2"></label>
+            <label for="slide3"></label>
+            <label for="slide4"></label>
+          </div>
+          <div id="bullets">
+            <label for="slide1" class="active" ></label>
+            <label for="slide2"  class="active"></label>
+            <label for="slide3"  class="active"></label>
+            <label for="slide4"  class="active"></label>
+          </div>
+        </div>
+
+
+        
       </div>
 
     </div>
