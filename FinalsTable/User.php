@@ -206,11 +206,72 @@
       </div>
 
       <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col pb-5 mt-2">
+        <div class="col pb-3 mt-2">
           <h4 class="hd-font mx-2">User Details Form</h4>
           <form action="User.php" method="post">
+            
+            <!-- User ID input -->
+            <div class="row form-outline">
+              <div class="col">
+                <input type="text" id="" name="user_id" class="form-control" />
+                <label class="form-label" for="">User ID</label>
+              </div>
 
+            <!-- Full Name input -->
+              <div class="col">
+                  <input type="text" name="full_name" id="" class="form-control" />
+                  <label class="form-label" for="">Fullname</label>
+                </div>
+            </div>
 
+            <!-- Role input -->
+            <div class="form-outline mb-2">
+            <span class="form-label">Role</span>
+                <div class="btn-group mx-5" id="btn-group-3" >
+                    <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Admin" />
+                        <label class="form-check-label" for="inlineRadio1">Admin</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Employee" />
+                        <label class="form-check-label" for="inlineRadio2">Employee</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="role" id="inlineRadio3" value="Customer"/>
+                        <label class="form-check-label" for="inlineRadio3">Customer</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Username input -->
+            <div class="row form-outline">
+              <div class="col">
+                <input type="text" id="" name="username" class="form-control" />
+                <label class="form-label" for="">Username</label>
+              </div>
+              
+            <!-- Password input -->
+              <div class="col">
+                <input type="password" name="password" id="" class="form-control" />
+                <label class="form-label" for="">Password</label>
+              </div>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline">
+                <input type="email" name="email" id="" class="form-control" />
+                <label class="form-label" for="">Email</label>
+            </div>
+
+            <!-- Save button -->
+            <div class="row text-center">
+              <div class="col ">
+                <input type="submit"  name="sub" class="btn btn-primary btn-block w-25" value="Login" id=sub>
+                <button type="reset" name="clear" class="btn btn-danger btn-block w-25" value="Cancel">Cancel</button>
+              </div>
+            </div>
           </form>
         </div>
       </div>
@@ -227,20 +288,62 @@
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
               $selectsql = "Select * from tbl_user where 
+<<<<<<< HEAD
+                user_id LIKE '%" . $search . "%' 
+                OR full_name LIKE '%" . $search . "%' 
+                OR role LIKE'%" . $search . "%' 
+                OR username LIKE'%" . $search . "%' 
+                OR password LIKE'%" . $search . "%' 
+                OR email LIKE'%" . $search . "%' ";
+
+=======
     user_id LIKE '%" . $search . "%' 
     OR full_name LIKE '%" . $search . "%' 
     OR role LIKE'%" . $search . "%' 
     OR username LIKE'%" . $search . "%' 
     OR password LIKE'%" . $search . "%' 
     OR email LIKE'%" . $search . "%' ";
+>>>>>>> 8dab1f1a031898ac2c232997dcca63369041189b
             } else {
               $selectsql = "Select * from tbl_user";
             }
           } else {
             $selectsql = "Select * from tbl_user";
           }
+          //button function
+          if(isset($_POST['sub'])){
+            $userID = $_POST['user_id'];
+            $name = $_POST['full_name'];
+            $role = $_POST['role'];
+            $username = $_POST['username'];
+            $password = $_POST['password'];
+            $email = $_POST['email'];
+            
+            $insertsql = "Insert into tbl_user (user_id,full_name,role,username,password,email)
+            values ('$userID','$name','$role','$username','$password','$email')
+            ";
 
-
+            $result = $con->query($insertsql);
+            
+            //check if successfully added
+            if ($result == True) {
+                ?>
+              <script> 
+                Swal.fire({
+                    position: "middle",
+                    icon: "success",
+                    title: "Your work has been saved!",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  </script>
+                  <?php
+            } else {
+                //if not inserted, check query error details
+                echo $con -> error;
+            }
+          }
+  
           $result = $con->query($selectsql);
 
           //check table if there is a record
