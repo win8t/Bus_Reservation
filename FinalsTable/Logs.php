@@ -131,7 +131,7 @@
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
-          <a href="User.php" class="nav-link active" aria-current="page">
+          <a href="User.php" class="nav-link" aria-current="page">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle" />
             </svg>
@@ -139,7 +139,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="Logs.php" class="nav-link">
+          <a href="Logs.php" class="nav-link active">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#card-list" />
             </svg>
@@ -197,80 +197,136 @@
             <div class="input-group-text bg-primary-subtle" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
             <input type="search" name="search" id="" class="form-control w-50" aria-label="Input group example" aria-describedby="btnGroupAddon2">
 
-
             <div class="col">
               <input type="submit" value="Search" name="searchbutton" class="btn btn-primary mx-2 button-font" class="form-control">
             </div>
           </div>
         </form>
-      </div>
+      </div>   
 
-      <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col pb-5 mt-2">
-          <h4 class="hd-font mx-2">User Details Form</h4>
-          <form action="User.php" method="post">
-
-
+      <!-- <div class="row bg-light border-top border-bottom border-2 mt-2">
+        <div class="col pb-3 mt-2">
+          <h4 class="hd-font mx-2">Login Form</h4>
+          <form action="Logs.php" method="post"> -->
+            
+            <!-- Log ID input -->
+            <!-- <div class="row form-outline">
+              <div class="col">
+                <input type="text" id="" name="log_id" class="form-control" />
+                <label class="form-label" for="">Log ID</label>
+              </div> -->
+            <!-- User ID input -->
+              <!-- <div class="col">
+                <input type="text" id="" name="user_id" class="form-control" />
+                <label class="form-label" for="">User ID</label>
+              </div>
+            </div> -->
+            <!-- Action input
+            <div class="row form-outline">
+              <div class="col">
+                <input type="text" id="" name="action" class="form-control" />
+                <label class="form-label" for="">Action</label>
+              </div>
+            </div> -->
+            <!-- Date Time input -->
+            <!-- <div class="row form-outline">
+              <div class="col">
+                <input type="datetime-local" name="datetime" id="" class="form-control" />
+                <label class="form-label" for="">Date/Time</label>
+              </div>
+            </div> -->
+            <!-- Save button -->
+            <!-- <div class="row text-center">
+              <div class="col ">
+                <input type="submit"  name="sub" class="btn btn-primary btn-block w-25" value="Login" id=sub>
+              </div>
+            </div>
           </form>
         </div>
-      </div>
+      </div> -->
 
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
           <?php
           require_once "dbconnect.php";
-
+          
           //button function
           if (isset($_POST['searchbutton'])) {
 
             //to check the search box if empty or not 
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
-              $selectsql = "Select * from tbl_user where 
-    user_id LIKE '%" . $search . "%' 
-    OR full_name LIKE '%" . $search . "%' 
-    OR role LIKE'%" . $search . "%' 
-    OR username LIKE'%" . $search . "%' 
-    OR password LIKE'%" . $search . "%' 
-    OR email LIKE'%" . $search . "%' ";
-
+              $selectsql = "Select * from tbl_logs where 
+                  log_id LIKE '%" . $search . "%' 
+                  OR user_id LIKE '%" . $search . "%' 
+                  OR action LIKE'%" . $search . "%' 
+                  OR DateTime LIKE'%" . $search . "%' ";
+                  
             } else {
-              $selectsql = "Select * from tbl_user";
+              $selectsql = "Select * from tbl_logs";
             }
           } else {
-            $selectsql = "Select * from tbl_user";
+            $selectsql = "Select * from tbl_logs";
           }
-
-
+          
           $result = $con->query($selectsql);
 
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
 
-            echo "<table class='table table-light table-striped my-2 border border-3'>";
-            echo "<tr>";
-            echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
-            echo "</tr>";
-            echo "<tr>";
-            echo "<th> User ID </th>";
-            echo "<th> Full Name </th>";
-            echo "<th> Role </th>";
-            echo "<th> Username </th>";
-            echo "<th> Password </th>";
-            echo "<th> Email </th>";
-            echo "</tr>";
+            echo "<div class='container'>";
+            echo "<div class='row'>";
+              foreach ($result as $index => $maltfielddata) {
+                ?>
+                <div class="col-3">
+                  <div class="container bg-light border border-black border-1 pb-2 text-left">
+                    <div class="row">
+                      <div class="col">
+                        <h3><?php echo $maltfielddata['log_id'] ?></h3>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <p class="small"><?php echo $maltfielddata['user_id'] ?></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <i class="small"><?php echo $maltfielddata['action'] ?></i>
+                      </div>
+                    </div>
+                    <div class="row pb-2">
+                      <div class="col">
+                        <p class="small"><?php echo $maltfielddata['DateTime'] ?></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <form action="User.php" method="post">
+                          <input type="submit" value="View" name="view" class="btn btn-primary mx-2">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                  <?php
+                  if (($index+1) % 4 == 0) {
+                    echo "</div><div class='row'>";
+                  }
+              }
+              echo "</div>";
+              echo "</div>";
 
-            while ($maltfielddata = $result->fetch_assoc()) {
-              echo "<tr>";
-              echo "<td>" . $maltfielddata['user_id'] . "</td>";
-              echo "<td>" . $maltfielddata['full_name'] . "</td>";
-              echo "<td>" . $maltfielddata['role'] . "</td>";
-              echo "<td>" . $maltfielddata['username'] . "</td>";
-              echo "<td>" . $maltfielddata['password'] . "</td>";
-              echo "<td>" . $maltfielddata['email'] . "</td>";
-            }
-            echo "</table>";
+              while ($maltfielddata = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $maltfielddata['log_id'] . "</td>";
+                echo "<td>" . $maltfielddata['user_id'] . "</td>";
+                echo "<td>" . $maltfielddata['action'] . "</td>";
+                echo "<td>" . $maltfielddata['DateTime'] . "</td>";
+                
+              }
+              echo "</table>";
           } else {
             echo "<div class='row'>";
             echo "<div class='col'>";
@@ -278,7 +334,6 @@
             echo "</div>";
             echo "</div>";
           }
-
           ?>
 
         </div>
