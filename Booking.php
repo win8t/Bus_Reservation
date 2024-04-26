@@ -120,30 +120,37 @@
       <p class="display-4 text-center border border-3 p-2 border-dark rounded"> About Us </p>
     </div>
 
+     <!-- blender -->
+    <div class="content-container1 py-3 bg-info-subtle"></div>
+
 
     <div class="d-flex flex-row content-container align-items-stretch">
-      <div class="col-6 content-container2 bg-info-subtle  p-4">
-        <h2 class="about-text text-center pb-3"> Vision </h2>
+      <div class="col-6 content-container2 bg-info-subtle  py-4">
+        <h2 class="about-text text-center pb-3 text-success"> Vision </h2>
+        <div class="line w-75 mb-4 mx-auto"></div>
         <div class="rounded about-content p-5">
           <p class="text-wrap about-para p-1">We want to be a dynamic, modern, reputable, and the safest transport company with an increasing share in the transport market, ensuring constant customer satisfaction and performance improvement with respect to our environment and safety while delivering our services. Our corporate vision is to become the best transportation company providing services of regional and domestic passenger road transport in the Philippines.</p>
         </div>
+      
       </div>
 
 
-      <div class="col-6 content-container2 bg-info-subtle p-4">
-        <h2 class="about-text text-center pb-3"> Mission </h2>
+      <div class="col-6 content-container2 bg-info-subtle py-4">
+        <h2 class="about-text text-center pb-3 text-success"> Mission </h2>
+        <div class="line w-75 mb-4 mx-auto"></div>
         <div class="rounded about-content1 p-5 ">
           <p class="text-wrap about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to approach actively to the resolution of any customer needs, to face any challenges within bus and coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
         </div>
+       
       </div>
 
     </div>
 
     <div class="d-flex flex-row content-container align-items-stretch">
-      
-      <div class="container-fluid content-container3 bg-primary-subtle  p-4">
-        <div id="slider">
-          <input type="radio" name="slider" id="slide1" class ="form-check-input active">
+
+      <div class="container-fluid content-container3 bg-info-subtle  p-4">
+        <!-- <div id="slider" data-bs-ride="false">
+          <input type="radio" name="slider" id="slide1" checked>
           <input type="radio" name="slider" id="slide2" class = "form-check-input">
           <input type="radio" name="slider" id="slide3" class ="form-check-input">
           <input type="radio" name="slider" id="slide4" class ="form-check-input">
@@ -151,25 +158,33 @@
             <div id="overflow">
               <div class="inner">
                 <div class="slide slide1">
-                  <div class="slide-content w-100">
+                  <div class="slide-content ">
                     <h2>Slide 1</h2>
-                    <p>Content For test</p>
+                      <p class=" p-2">
+                          We keep our customers well informed and work hard in order to keep them within reach.
+                          We listen to their comments and suggestions, dealing with them actively.
+                          We improve our quality standards. We invest in new vehicles, prepare a new central
+                          bus station and implement new products and services par excellent. 
+                      </p>
                   </div>
                 </div>
                 <div class="slide slide2">
-                  <div class="slide-content w-100">
+                  <div class="slide-content w-100 h-100">
                     <h2>Slide 2</h2>
-                    <p>Content For Slide1</p>
+                    <p>We keep our customers well informed and work hard in order to keep them within reach.
+                          We listen to their comments and suggestions, dealing with them actively.
+                          We improve our quality standards. We invest in new vehicles, prepare a new central
+                          bus station and implement new products and services par excellent. </p>
                   </div>
                 </div>
                 <div class="slide slide3">
-                  <div class="slide-content w-100">
+                  <div class="slide-content w-100 h-100">
                     <h2>Slide 3</h2>
                     <p>Content For Slide1</p>
                   </div>
                 </div>
                 <div class="slide slide4">
-                  <div class="slide-content w-100">
+                  <div class="slide-content w-100 h-100">
                     <h2>Slide 4</h2>
                     <p>Content For Slide1</p>
                   </div>
@@ -177,7 +192,7 @@
               </div>
             </div>
           </div>
-          <div id="controls">
+          <div id="controls" aria-hidden="true">
             <label for="slide1"></label>
             <label for="slide2"></label>
             <label for="slide3"></label>
@@ -190,19 +205,56 @@
             <label for="slide4"  class="active"></label>
           </div>
         </div>
-
-
-        
+--> 
+      <h2 class="text-center about-text pb-2 text-success">Corporate Values</h2>
+      <div class="line w-75 mb-4 mx-auto"></div>
+        <ul class="nav nav-fill  " id="myTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active link-dark" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Activities</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link link-dark" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Performance</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link link-dark" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Loyalty</button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link link-dark" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Services</button>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <div class="tab-pane fade show active about-para p-4 text-center text-wrap w-75 mx-auto" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+          We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions,
+           dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and
+            implement new products and services par excellent. 
+          </div>
+          <div class="tab-pane fade about-para p-4 text-center text-wrap w-75 mx-auto" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+          Our buses are operated by professional drivers to serve our customers. Annually, we carry around millions of passengers.
+           Our high performance affects the reduction of our transport costs and helps us keep a favorable fare level, thus,
+            in consonance also with our environment. We want to be efficient and effective because of you, our customers.
+          </div>
+          <div class="tab-pane fade about-para p-4 text-center text-wrap w-75 mx-auto" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+          The public's transport safety is our primary concern, by instilling them that our buses are operated by competent and 
+          responsible drivers, we can assure our customers that their travel with us will be safe and enjoyable. We co-exist with 
+          our customers; thus, to them, our loyalty will always dwell.
+          </div>
+          <div class="tab-pane fade about-para p-4 text-center text-wrap w-75 mx-auto" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
+          We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending
+           to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners
+            with our customers.
+          </div>
+        </div>
+       
       </div>
 
     </div>
-
-
+    
 
     <div class="row-12">
-      <div class="col-12 content-container3 py-5 shadow-lg">
-        <h3 class="text-center">Frequently Asked Questions</h3>
-        <div class="accordion" id="accordionExample">
+      <div class="col-12 content-container3 bg-info-subtle py-2">
+        <h2 class="text-center about-text py-2 text-success">Frequently Asked Questions</h2>
+        <div class="line w-75 mb-4 mx-auto"></div>
+        <div class="accordion " id="accordionExample">
           <div class="accordion-item">
             <h2 class="accordion-header">
               <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -240,13 +292,19 @@
             </div>
           </div>
         </div>
+        
       </div>
+      
     </div>
+
+    <!-- blender -->
+    <div class="content-container5 py-3"></div>
+
 
     <div class="col-12 content-container">
       <p class="display-4 text-center border border-3 p-2 border-dark rounded"> Contact Us </p>
     </div>
-    <div class="col-12 content-container2 bg-info">
+    <div class="col-12 content-container4">
       <br>
       <br>
     </div>
