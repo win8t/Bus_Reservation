@@ -143,10 +143,10 @@
       
       <div class="container-fluid content-container3 bg-primary-subtle  p-4">
         <div id="slider">
-          <input type="radio" name="slider" id="slide1" checked>
-          <input type="radio" name="slider" id="slide2">
-          <input type="radio" name="slider" id="slide3">
-          <input type="radio" name="slider" id="slide4">
+          <input type="radio" name="slider" id="slide1" class ="form-check-input active">
+          <input type="radio" name="slider" id="slide2" class = "form-check-input">
+          <input type="radio" name="slider" id="slide3" class ="form-check-input">
+          <input type="radio" name="slider" id="slide4" class ="form-check-input">
           <div id="slides">
             <div id="overflow">
               <div class="inner">
@@ -184,10 +184,10 @@
             <label for="slide4"></label>
           </div>
           <div id="bullets">
-            <label for="slide1"></label>
-            <label for="slide2"></label>
-            <label for="slide3"></label>
-            <label for="slide4"></label>
+            <label for="slide1" class="active" ></label>
+            <label for="slide2"  class="active"></label>
+            <label for="slide3"  class="active"></label>
+            <label for="slide4"  class="active"></label>
           </div>
         </div>
 

@@ -288,7 +288,6 @@
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
               $selectsql = "Select * from tbl_user where 
-<<<<<<< HEAD
                 user_id LIKE '%" . $search . "%' 
                 OR full_name LIKE '%" . $search . "%' 
                 OR role LIKE'%" . $search . "%' 
@@ -296,14 +295,6 @@
                 OR password LIKE'%" . $search . "%' 
                 OR email LIKE'%" . $search . "%' ";
 
-=======
-    user_id LIKE '%" . $search . "%' 
-    OR full_name LIKE '%" . $search . "%' 
-    OR role LIKE'%" . $search . "%' 
-    OR username LIKE'%" . $search . "%' 
-    OR password LIKE'%" . $search . "%' 
-    OR email LIKE'%" . $search . "%' ";
->>>>>>> 8dab1f1a031898ac2c232997dcca63369041189b
             } else {
               $selectsql = "Select * from tbl_user";
             }

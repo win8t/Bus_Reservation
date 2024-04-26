@@ -334,7 +334,7 @@ svg {
 
 #slider {
   margin:0 auto;
-  width:  800px;
+  width:  85%;
   max-width: 100%;
   text-align: center;
 }
@@ -429,7 +429,7 @@ svg {
    background: url("chevron-compact-right.svg") no-repeat;
    background-size: 50px;
    float:right;
-   margin: 0 -70px 0 0;
+   margin: -70px  35px 0 0;
    display: block;
    
 }
@@ -438,8 +438,9 @@ svg {
 #slide3:checked ~ #controls label:nth-last-child(3),
 #slide4:checked ~ #controls label:nth-last-child(2) {
    background: url("chevron-compact-left.svg") no-repeat;
+   
    float:left;
-   margin: 0 0 0 -40px;
+   margin: -65px 0 0 40px;
    background-size: 50px;
    display: block;
 }
