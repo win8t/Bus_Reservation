@@ -151,25 +151,25 @@
             <div id="overflow">
               <div class="inner">
                 <div class="slide slide1">
-                  <div class="slide-content">
+                  <div class="slide-content w-100">
                     <h2>Slide 1</h2>
-                    <p>Content For Slide1</p>
+                    <p>Content For test</p>
                   </div>
                 </div>
                 <div class="slide slide2">
-                  <div class="slide-content">
+                  <div class="slide-content w-100">
                     <h2>Slide 2</h2>
                     <p>Content For Slide1</p>
                   </div>
                 </div>
                 <div class="slide slide3">
-                  <div class="slide-content">
+                  <div class="slide-content w-100">
                     <h2>Slide 3</h2>
                     <p>Content For Slide1</p>
                   </div>
                 </div>
                 <div class="slide slide4">
-                  <div class="slide-content">
+                  <div class="slide-content w-100">
                     <h2>Slide 4</h2>
                     <p>Content For Slide1</p>
                   </div>

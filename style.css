@@ -402,9 +402,6 @@ svg {
 #slides .slide4 {
   background-color: #aef3d8;
 }
-.slide-content {
-  padding: 10px;
-}
 #controls {
   margin: -130px 0 0 0;
   width: 100%;
@@ -421,6 +418,7 @@ svg {
   opacity: .4;
 }
 #controls label:hover {
+  width:50px;
   opacity:1;
 }
 
@@ -429,9 +427,11 @@ svg {
 #slide3:checked ~ #controls label:nth-child(4),
 #slide4:checked ~ #controls label:nth-child(1) {
    background: url("chevron-compact-right.svg") no-repeat;
+   background-size: 50px;
    float:right;
    margin: 0 -70px 0 0;
    display: block;
+   
 }
 #slide1:checked ~ #controls label:nth-last-child(1),
 #slide2:checked ~ #controls label:nth-last-child(4),
@@ -440,6 +440,7 @@ svg {
    background: url("chevron-compact-left.svg") no-repeat;
    float:left;
    margin: 0 0 0 -40px;
+   background-size: 50px;
    display: block;
 }
 
