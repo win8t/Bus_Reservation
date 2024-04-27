@@ -9,7 +9,7 @@
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<body class = "">
+<body class="">
   <script src="scripts.js">
   </script>
   <script src="bootstrap.min.js"></script>
@@ -79,7 +79,7 @@
           <div class="carousel-caption">
             <h5 class="">Title Slide 2</h5>
             <p class="text-bg display-5 rounded">
-            ALPS' vision is SERVICE and the company will continue to serve with burning commitment.
+              ALPS' vision is SERVICE and the company will continue to serve with burning commitment.
             </p>
           </div>
         </div>
@@ -117,11 +117,11 @@
   <div class="fixed-container pt-4">
 
     <div class="col-12 content-container">
-      <p class="display-4 text-center border border-3 p-4 border-dark rounded"> About Us </p>
+      <p class="display-4 text-center border border-3 p-4 border-dark rounded"> ABOUT US </p>
     </div>
 
     <!-- blender -->
-     <div class="content-container1 py-3 bg-info-subtle"></div>
+    <div class="content-container1 py-3 bg-info-subtle"></div>
 
 
 
@@ -141,7 +141,7 @@
         <h2 class="about-text text-center pb-3 text-success"> Mission </h2>
         <div class="line w-50 mb-4 mx-auto"></div>
         <div class="rounded about-content1 p-5 ">
-          <p class="text-wrap about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to approach actively to the resolution of any customer needs, to face any challenges within bus and coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
+          <p class="text-wrap about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to be able to approach actively to the resolution of any customer needs, to face any challenges within the bus and the coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
         </div>
 
       </div>
@@ -208,7 +208,7 @@
           </div>
         </div>
 -->
-<!--
+        <!--
         <h2 class="text-center about-text pb-2 text-success">Corporate Values</h2>
         <div class="line w- mb-4 mx-auto"></div>
         <ul class="nav nav-fill w-75 mx-auto" id="myTab" role="tablist">
@@ -247,28 +247,48 @@
             with our customers.
           </div>
         </div>
--->
-      <h2 class ="text-wrap display-5 about-text">Corporate Values</h2>
+-->     
+        <h2 class="text-wrap  corp-text text-break ">Corporate Values</h2>
 
       </div>
 
-      <div class="content-container3 bg-warning-subtle px-2 col-2 mx-auto shadow-lg"  id="test">
-        
-      
+      <div class="content-container3 bg-warning-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
+        <div class="card border-0">
+          <div class="card-body text-wrap  about-para text-break">
+          <h5 class="card-title about-text text-center text-w">Activity</h5>
+          We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions, dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and implement new products and services par excellent. 
+          </div>
+        </div>
 
-
-      </div>
-      <div class="content-container3 bg-success-subtle px-2 col-2 mx-auto shadow-lg" id="test">
-
-
-      </div>
-
-      <div class="content-container3 bg-primary-subtle px-2 col-2 mx-auto shadow-lg" id="test">
 
 
       </div>
-      <div class="content-container3 bg-light-subtle px-2 col-2 mx-auto shadow-lg" id="test">
+      <div class="content-container3 bg-success-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
 
+        <div class="card border-0">
+          <div class="card-body text-wrap  about-para text-break">
+          <h5 class="card-title about-text text-center">Performance</h5>
+          Our buses are operated by professional drivers to serve our customers. Annually, we carry around millions of passengers. Our high performance affects the reduction of our transport costs and helps us keep a favorable fare level, thus, in consonance also with our environment. We want to be efficient and effective because of you, our customers.
+          </div>
+        </div>
+      </div>
+
+      <div class="content-container3 bg-primary-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
+        <div class="card border-0">
+          <div class="card-body text-wrap  about-para text-break">
+          <h5 class="card-title about-text text-center">Loyalty</h5>
+          The public's transport safety is our primary concern, by instilling them that our buses are operated by competent and responsible drivers, we can assure our customers that their travel with us will be safe and enjoyable. We co-exist with our customers; thus, to them, our loyalty will always dwell.
+          </div>
+        </div>
+
+      </div>
+      <div class="content-container3 bg-light-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
+        <div class="card border-0">
+          <div class="card-body text-wrap  about-para text-break">
+          <h5 class="card-title about-text text-center">Services</h5>
+          We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners with our customers.
+          </div>
+        </div>
 
       </div>
 
@@ -279,10 +299,10 @@
       <h2 class="text-center about-text py-2 text-success">Frequently Asked Questions</h2>
       <div class="line w-50 mb-4 mx-auto"></div>
       <div class="d-flex flex-row container bg bg-info-subtle py-5 w-75 ">
-        <div class="col-6 content-container3 p-5 rounded">
+        <div class="col-6 content-container8 p-5 rounded">
 
 
-          <div class="accordion " id="accordionExample">
+          <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
@@ -321,8 +341,8 @@
             </div>
           </div>
         </div>
-        <div class="col-6 content-container3 p-5 rounded">
-          <div class="accordion accordion-flush" id="accordionFlushExample">
+        <div class="col-6 content-container8 p-5 rounded">
+          <div class="accordion" id="accordionFlushExample">
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
@@ -367,17 +387,34 @@
     <!-- <div class="content-container5 py-3"></div> -->
 
 
-    <div class="row-12 content-container4 py-4">
-      <h2 class="text-center pt-5 "> Contact Us </h2>
-      <div class="col-4 content-container3 py-5">
-              <br>
+    <div class="row-12 content-container4 pt-4">
+      <h2 class="text-center pt-5 about-text pb-3 text-success "> Contact Us </h2>
+      <div class="col-4 content-container3">
+          <div class="row mx-auto text-center">
+       
+            <p>Email: Alps@gmail.com</p>
+           
+          </div>
       </div>
-      <div class="col-4 content-container3 py-5">
-              <br>
+      <div class="col-4 content-container3">
+      <div class="row mx-auto text-center">
+          
+            <p>Email: Alps@gmail.com</p>
+       
+          </div>
       </div>
-      <div class="col-4 content-container3 py-5">
-              <br>
+      <div class="col-4 content-container3">
+      <div class="row mx-auto text-center">
+         
+            <p>Email: Alps@gmail.com</p>
+          
+          </div>
       </div>
+    </div>
+    <div class="row-12 content-container7">
+          <div class="col py-4">
+            
+          </div>
     </div>
   </div>
 
