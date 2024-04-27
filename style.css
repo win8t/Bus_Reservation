@@ -148,6 +148,21 @@
   padding: 0;
 }
 
+/*Carousel Text Title*/
+.text-title {
+  font-size: 25px;
+  color:rgb(242, 255, 250);
+  font-family: FontBold;
+}
+/*Carousel Text Caption*/
+.text-bg {
+  color:rgb(226, 243, 239);
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.075),rgba(0, 0, 0, 0.164));
+  font-family: FontReg;
+  
+  border-radius: 20px;
+}
+
 .carousel-indicators img {
   width: 80px;
   height: 50px;
@@ -190,6 +205,7 @@
   width: 100%;
   float: left;
   background-attachment: fixed;
+  
 
 }
 
@@ -214,6 +230,19 @@
   width: 100%;
   float:left;
   box-shadow: 0 2px 4px 0 rgba(0.1, 0.1, 0.1, .5);
+  transform: rotate(180deg);
+  mask-image: linear-gradient(to top,black, transparent);
+  -webkit-mask-image: linear-gradient(black 20%, transparent);
+}
+.content-container5 {
+  
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  z-index: 5;
+  background-image: linear-gradient(#CFF4FC,#EDE4FF);
+  padding: 5px;
+  width: 100%;
 }
 
 .content-container2 {
@@ -235,7 +264,18 @@
   overflow-y: hidden;
   z-index: 5;
   background-color: white;
+  
+  width: 100%;
+  float: left;
+}
+.content-container4 {
 
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  z-index: 5;
+  background-color: #EDE4FF;
+  
   width: 100%;
   float: left;
 }
@@ -257,27 +297,26 @@
 }
 
 .accordion {
-  box-shadow: 0 2px 25px 0 rgba(110, 130, 208, .18);
   background: transparent;
 
 }
 
 .accordion-item {
   margin: 1%;
-  background-color: #24b17b;
+  background-color: #ffffff !important;
   border: none;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -2px, 2px, 8px rgba(0, 0, 0, 0.1);
 }
 
 .accordion-body {
-  background-color: #d8f7ef;
+  background-color: #f5faf9;
   font-family: FontReg;
 }
 
 .accordion-button {
   font-family: FontBold;
-  background-color: #26a574 !important;
-  color: #fff !important;
+  background-color: #d8f7ef !important;
+  color: #074134 !important;
   font-size: 0.8rem;
   background: transparent;
   outline: none;
@@ -289,11 +328,11 @@
 .accordion-button:active,
 .accordion-button:focus {
   border: none !important;
-  background: #19704f !important;
+  background: #d7edff !important;
 }
 
 .accordion-button:hover {
-  background: #087386 !important;
+  background: #e4f5f8 !important;
 }
 
 svg {
@@ -323,6 +362,7 @@ svg {
   text-align: justify;
   text-justify: inter-word;
 }
+
 .about-content {
   background-image: linear-gradient(to right, #d8f7ef0c,#d8f7ef);
   padding:10px;
@@ -332,6 +372,7 @@ svg {
   padding:23px;
 }
 
+/*
 #slider {
   margin:0 auto;
   width:  85%;
@@ -360,6 +401,7 @@ svg {
 
 #slide1:checked ~ #slides .inner {
   margin-left: 0;
+  padding: 10px;
   
 }
 #slide2:checked ~ #slides .inner {
@@ -406,7 +448,7 @@ svg {
   margin: -130px 0 0 0;
   width: 100%;
   height: 50px;
-  z-index: 3;
+  z-index: 5;
   position: relative;
 }
 
@@ -417,7 +459,7 @@ svg {
   height: 50px;
   opacity: .4;
 }
-#controls label:hover {
+#controls label:hover::before {
   width:50px;
   opacity:1;
 }
@@ -467,16 +509,58 @@ svg {
   background: #444;
 }
 
-@media  screen and (max-width: 900px) {
-  #slide1:checked ~ #bullets label:nth-child(1),
-#slide2:checked ~ #bullets label:nth-child(4)
-#slide3:checked ~ #bullets label:nth-child(3)
-#slide4:checked ~ #bullets label:nth-child(2)
-#slide1:checked ~ #controls label:nth-last-child(1),
-#slide2:checked ~ #controls label:nth-last-child(4),
-#slide3:checked ~ #controls label:nth-last-child(3),
-#slide4:checked ~ #controls label:nth-last-child(2) {
-  margin:0;
+@media screen and (max-width: 900px) {
+  #slide1:checked ~ #controls label:nth-child(2),
+  #slide2:checked ~ #controls label:nth-child(3),
+  #slide3:checked ~ #controls label:nth-child(4),
+  #slide4:checked ~ #controls label:nth-child(1),
+  #slide1:checked ~ #controls label:nth-last-child(2),
+  #slide2:checked ~ #controls label:nth-last-child(3),
+  #slide3:checked ~ #controls label:nth-last-child(4),
+  #slide4:checked ~ #controls label:nth-last-child(1) {
+     margin: 0;
+  }
+  #slides {
+     max-width: calc(100% - 140px);
+     margin: 0 auto;
+  }
 }
 
+*/
+
+.tab-content {
+  background-color: rgb(243, 255, 251);
+  padding:10px;
+  border-radius: 0 0 20px 20px; 
+  font-family: FontReg;
 }
+
+.nav {
+  padding:10px;
+  background-color: #d8f7ef;
+  border-radius:10px 10px 0 0;
+ 
+  
+}
+
+.nav-tabs {
+  background-color: rgb(236, 248, 255);
+  border-radius: 10px 10px 0 0;
+  font-family: FontReg;
+}
+
+.nav-item, .nav-item li{
+  background: none;
+  
+}
+
+#myTab {
+  font-family: FontReg;
+}
+
+.line {
+  height: 1px;
+  background: black;
+}
+
+
