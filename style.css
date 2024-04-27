@@ -624,3 +624,59 @@ svg {
 .content-container3:hover {
   transform: scale(1.02);
 }
+
+.banner-area {
+  height: 100vh;
+  animation: animate 10s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+ 
+}
+@keyframes animate {
+    0%{
+      background-color: #c5bef9 ;
+    }
+    20%{
+      background-color: #bdb4ff ;
+    }
+    40%{
+      background-color: 	#b7adff ;
+    }
+    60%{
+      background-color: #b4aaf9 ;
+    }
+    80%{
+      background-color: 	#ada2ff ;
+    }
+    100%{
+      background-color: #c5bef9 ;
+    }
+    
+}
+
+.container-login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+}
+
+.img-login {
+ 
+  width:40%;
+  height: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  
+
+}
+
+.about-login {
+ 
+  font-family: FontBold;
+}
+.link-text {
+
+  font-family: FontReg;
+}
+
