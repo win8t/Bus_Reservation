@@ -131,11 +131,19 @@
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
+          <a href="Overview.php" class="nav-link" aria-current="page">
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#table" />
+            </svg>
+            Overview
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="User.php" class="nav-link" aria-current="page">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle" />
             </svg>
-            Home
+            User
           </a>
         </li>
         <li class="nav-item">
@@ -204,7 +212,7 @@
           </div>
         </form>
       </div>
-
+<!--
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col pb-5 mt-2">
           <h4 class="hd-font mx-2">User Details Form</h4>
@@ -214,7 +222,7 @@
           </form>
         </div>
       </div>
-
+  -->
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
           <?php
@@ -255,22 +263,26 @@
             echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
             echo "</tr>";
             echo "<tr>";
-            echo "<th> User ID </th>";
-            echo "<th> Full Name </th>";
-            echo "<th> Role </th>";
-            echo "<th> Username </th>";
-            echo "<th> Password </th>";
-            echo "<th> Email </th>";
+            echo "<th> Bus ID </th>";
+            echo "<th> Bus Number </th>";
+            echo "<th> Seating Capacity </th>";
+            echo "<th> Driver Name </th>";
+            echo "<th> Departure Location </th>";
+            echo "<th> Destination </th>";
+            echo "<th> Departure Time </th>";
+            echo "<th> Arrival Time </th>";
             echo "</tr>";
 
             while ($maltfielddata = $result->fetch_assoc()) {
               echo "<tr>";
-              echo "<td>" . $maltfielddata['user_id'] . "</td>";
-              echo "<td>" . $maltfielddata['full_name'] . "</td>";
-              echo "<td>" . $maltfielddata['role'] . "</td>";
-              echo "<td>" . $maltfielddata['username'] . "</td>";
-              echo "<td>" . $maltfielddata['password'] . "</td>";
-              echo "<td>" . $maltfielddata['email'] . "</td>";
+              echo "<td>" . $maltfielddata['bus_id'] . "</td>";
+              echo "<td>" . $maltfielddata['bus_number'] . "</td>";
+              echo "<td>" . $maltfielddata['seating_capacity'] . "</td>";
+              echo "<td>" . $maltfielddata['driver_name'] . "</td>";
+              echo "<td>" . $maltfielddata['departure_location'] . "</td>";
+              echo "<td>" . $maltfielddata['destination'] . "</td>";
+              echo "<td>" . $maltfielddata['departure_time'] . "</td>";
+              echo "<td>" . $maltfielddata['arrival_time'] . "</td>";
             }
             echo "</table>";
           } else {

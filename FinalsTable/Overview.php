@@ -130,8 +130,8 @@
 
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
-      <li class="nav-item">
-          <a href="Overview.php" class="nav-link" aria-current="page">
+        <li class="nav-item">
+          <a href="Overview.php" class="nav-link active" aria-current="page">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#table" />
             </svg>
@@ -155,7 +155,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="Bus.php" class="nav-link">
+          <a href="Bus.php" class="nav-link ">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#bus-front" />
             </svg>
@@ -163,7 +163,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="Route.php" class="nav-link active">
+          <a href="Route.php" class="nav-link">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#sign-turn-right" />
             </svg>
@@ -217,75 +217,16 @@
         <div class="col pb-5 mt-2">
           <h4 class="hd-font mx-2">User Details Form</h4>
           <form action="User.php" method="post">
- 
+
 
           </form>
         </div>
       </div>
- -->
+  -->
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
           <?php
           require_once "dbconnect.php";
-
-          //button function
-          if (isset($_POST['searchbutton'])) {
-
-            //to check the search box if empty or not 
-            if ($_POST['search'] != NULL) {
-              $search = $_POST['search'];
-              $selectsql = "Select * from tbl_bus where 
-    route_id LIKE '%" . $search . "%' 
-    OR route_name LIKE '%" . $search . "%' 
-    OR departure_location LIKE'%" . $search . "%' 
-    OR destination LIKE'%" . $search . "%' 
-    OR distance LIKE'%" . $search . "%' 
-    OR duration LIKE'%" . $search . "%' ";
-
-            } else {
-              $selectsql = "Select * from tbl_bus";
-            }
-          } else {
-            $selectsql = "Select * from tbl_bus";
-          }
-
-
-          $result = $con->query($selectsql);
-
-          //check table if there is a record
-          //num_rows - will return the no of rows inside a table
-          if ($result->num_rows > 0) {
-
-            echo "<table class='table table-light table-striped my-2 border border-3'>";
-            echo "<tr>";
-            echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
-            echo "</tr>";
-            echo "<tr>";
-            echo "<th> Route ID </th>";
-            echo "<th> Route Name </th>";
-            echo "<th> Departure Location </th>";
-            echo "<th> Destination </th>";
-            echo "<th> Distance </th>";
-            echo "<th> Duration </th>";
-            echo "</tr>";
-
-            while ($maltfielddata = $result->fetch_assoc()) {
-              echo "<tr>";
-              echo "<td>" . $maltfielddata['route_id'] . "</td>";
-              echo "<td>" . $maltfielddata['route_name'] . "</td>";
-              echo "<td>" . $maltfielddata['departure_location'] . "</td>";
-              echo "<td>" . $maltfielddata['destination'] . "</td>";
-              echo "<td>" . $maltfielddata['distance'] . "</td>";
-              echo "<td>" . $maltfielddata['duration'] . "</td>";
-            }
-            echo "</table>";
-          } else {
-            echo "<div class='row'>";
-            echo "<div class='col'>";
-            echo "<br>No record found!";
-            echo "</div>";
-            echo "</div>";
-          }
 
           ?>
 
