@@ -9,7 +9,7 @@
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<body>
+<body class = "">
   <script src="scripts.js">
   </script>
   <script src="bootstrap.min.js"></script>
@@ -69,8 +69,8 @@
           <img src="Alps2.jpg" class="w-100 h-100 d-block carousel-image">
           <div class="carousel-caption">
             <h5 class="">Title Slide 1</h5>
-            <p class="">
-              Welcome To Alps Bus
+            <p class="text-bg display-5 rounded">
+              ALPS provide passenger accident insurance coverage to all passenger.
             </p>
           </div>
         </div>
@@ -78,8 +78,8 @@
           <img src="Alps3.jpg" class="w-100 h-100 d-block carousel-image">
           <div class="carousel-caption">
             <h5 class="">Title Slide 2</h5>
-            <p class="">
-              Welcome To Alps Bus
+            <p class="text-bg display-5 rounded">
+            ALPS' vision is SERVICE and the company will continue to serve with burning commitment.
             </p>
           </div>
         </div>
@@ -117,11 +117,11 @@
   <div class="fixed-container pt-4">
 
     <div class="col-12 content-container">
-      <p class="display-4 text-center border border-3 p-2 border-dark rounded"> About Us </p>
+      <p class="display-4 text-center border border-3 p-4 border-dark rounded"> About Us </p>
     </div>
 
     <!-- blender -->
-    <div class="content-container1 py-3 bg-info-subtle"></div>
+     <div class="content-container1 py-3 bg-info-subtle"></div>
 
 
 
@@ -148,9 +148,9 @@
 
     </div>
 
-    <div class="d-flex flex-row content-container align-items-stretch">
+    <div class="d-flex flex-row content-container7 align-items-stretch">
 
-      <div class="content-container3 bg-danger-subtle p-4 col-2" id="test">
+      <div class="content-container3 bg-danger-subtle p-4 col-2 mx-auto shadow-lg" id="test">
         <!-- <div id="slider" data-bs-ride="false">
           <input type="radio" name="slider" id="slide1" checked>
           <input type="radio" name="slider" id="slide2" class = "form-check-input">
@@ -248,27 +248,26 @@
           </div>
         </div>
 -->
+      <h2 class ="text-wrap display-5 about-text">Corporate Values</h2>
+
+      </div>
+
+      <div class="content-container3 bg-warning-subtle px-2 col-2 mx-auto shadow-lg"  id="test">
+        
+      
+
+
+      </div>
+      <div class="content-container3 bg-success-subtle px-2 col-2 mx-auto shadow-lg" id="test">
 
 
       </div>
 
-      <div class="content-container3 bg-warning-subtle px-2 col-2" id="test">
+      <div class="content-container3 bg-primary-subtle px-2 col-2 mx-auto shadow-lg" id="test">
 
 
       </div>
-      <div class="content-container3 bg-success-subtle px-2 col-2" id="test">
-
-
-      </div>
-      <div class="content-container3 bg-info-subtle px-2 col-2" id="test">
-
-
-      </div>
-      <div class="content-container3 bg-primary-subtle px-2 col-2" id="test">
-
-
-      </div>
-      <div class="content-container3 bg-secondary-subtle px-2 col-2" id="test">
+      <div class="content-container3 bg-light-subtle px-2 col-2 mx-auto shadow-lg" id="test">
 
 
       </div>
@@ -276,10 +275,10 @@
     </div>
 
 
-    <div class="col-12 content-container3 bg-info-subtle py-2 me-auto mx-auto">
+    <div class="col-12 content-container6 bg-info-subtle py-5 me-auto mx-auto ">
       <h2 class="text-center about-text py-2 text-success">Frequently Asked Questions</h2>
       <div class="line w-50 mb-4 mx-auto"></div>
-      <div class="d-flex flex-row container bg bg-info-subtle py-2 w-75">
+      <div class="d-flex flex-row container bg bg-info-subtle py-5 w-75 ">
         <div class="col-6 content-container3 p-5 rounded">
 
 
@@ -365,15 +364,15 @@
     </div>
 
     <!-- blender -->
-    <div class="content-container5 py-3"></div>
+    <!-- <div class="content-container5 py-3"></div> -->
 
 
     <div class="row-12 content-container4 py-4">
-      <h2 class="text-center "> Contact Us </h2>
+      <h2 class="text-center pt-5 "> Contact Us </h2>
       <div class="col-4 content-container3 py-5">
               <br>
       </div>
-      <div class="col-4 content-container3 py-5 bg-primary-subtle">
+      <div class="col-4 content-container3 py-5">
               <br>
       </div>
       <div class="col-4 content-container3 py-5">
