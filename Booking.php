@@ -9,7 +9,7 @@
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<body class="bg">
+<body>
   <script src="scripts.js">
   </script>
   <script src="bootstrap.min.js"></script>
@@ -59,8 +59,8 @@
         <div class="carousel-item active" data-bs-interval="5000">
           <img src="Alps1.jpg" class="w-100 h-100 d-block carousel-image">
           <div class="carousel-caption">
-            <h5 class=""> Welcome to Alps Bus Reservation</h5>
-            <p class="display-2">
+            <h5 class="text-title"> Welcome to Alps Bus Reservation</h5>
+            <p class="text-bg display-5 rounded">
               It is the family's vision to grow and grow in the service of the commuting public; the ALPS adopted family.
             </p>
           </div>
@@ -120,35 +120,37 @@
       <p class="display-4 text-center border border-3 p-2 border-dark rounded"> About Us </p>
     </div>
 
-     <!-- blender -->
+    <!-- blender -->
     <div class="content-container1 py-3 bg-info-subtle"></div>
+
+
 
 
     <div class="d-flex flex-row content-container align-items-stretch">
       <div class="col-6 content-container2 bg-info-subtle  py-4">
         <h2 class="about-text text-center pb-3 text-success"> Vision </h2>
-        <div class="line w-75 mb-4 mx-auto"></div>
+        <div class="line w-50 mb-4 mx-auto"></div>
         <div class="rounded about-content p-5">
           <p class="text-wrap about-para p-1">We want to be a dynamic, modern, reputable, and the safest transport company with an increasing share in the transport market, ensuring constant customer satisfaction and performance improvement with respect to our environment and safety while delivering our services. Our corporate vision is to become the best transportation company providing services of regional and domestic passenger road transport in the Philippines.</p>
         </div>
-      
+
       </div>
 
 
       <div class="col-6 content-container2 bg-info-subtle py-4">
         <h2 class="about-text text-center pb-3 text-success"> Mission </h2>
-        <div class="line w-75 mb-4 mx-auto"></div>
+        <div class="line w-50 mb-4 mx-auto"></div>
         <div class="rounded about-content1 p-5 ">
           <p class="text-wrap about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to approach actively to the resolution of any customer needs, to face any challenges within bus and coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
         </div>
-       
+
       </div>
 
     </div>
 
     <div class="d-flex flex-row content-container align-items-stretch">
 
-      <div class="container-fluid content-container3 bg-info-subtle  p-4">
+      <div class="container-fluid content-container3 bg-info-subtle p-4" id="test">
         <!-- <div id="slider" data-bs-ride="false">
           <input type="radio" name="slider" id="slide1" checked>
           <input type="radio" name="slider" id="slide2" class = "form-check-input">
@@ -205,10 +207,10 @@
             <label for="slide4"  class="active"></label>
           </div>
         </div>
---> 
-      <h2 class="text-center about-text pb-2 text-success">Corporate Values</h2>
-      <div class="line w-75 mb-4 mx-auto"></div>
-        <ul class="nav nav-fill  " id="myTab" role="tablist">
+-->
+        <h2 class="text-center about-text pb-2 text-success">Corporate Values</h2>
+        <div class="line w-50 mb-4 mx-auto"></div>
+        <ul class="nav nav-fill w-75 mx-auto" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active link-dark" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Activities</button>
           </li>
@@ -222,91 +224,137 @@
             <button class="nav-link link-dark" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Services</button>
           </li>
         </ul>
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content w-75 mx-auto" id="myTabContent">
           <div class="tab-pane fade show active about-para p-4 text-center text-wrap w-75 mx-auto" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-          We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions,
-           dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and
-            implement new products and services par excellent. 
+            We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions,
+            dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and
+            implement new products and services par excellent.
           </div>
           <div class="tab-pane fade about-para p-4 text-center text-wrap w-75 mx-auto" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-          Our buses are operated by professional drivers to serve our customers. Annually, we carry around millions of passengers.
-           Our high performance affects the reduction of our transport costs and helps us keep a favorable fare level, thus,
+            Our buses are operated by professional drivers to serve our customers. Annually, we carry around millions of passengers.
+            Our high performance affects the reduction of our transport costs and helps us keep a favorable fare level, thus,
             in consonance also with our environment. We want to be efficient and effective because of you, our customers.
           </div>
           <div class="tab-pane fade about-para p-4 text-center text-wrap w-75 mx-auto" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-          The public's transport safety is our primary concern, by instilling them that our buses are operated by competent and 
-          responsible drivers, we can assure our customers that their travel with us will be safe and enjoyable. We co-exist with 
-          our customers; thus, to them, our loyalty will always dwell.
+            The public's transport safety is our primary concern, by instilling them that our buses are operated by competent and
+            responsible drivers, we can assure our customers that their travel with us will be safe and enjoyable. We co-exist with
+            our customers; thus, to them, our loyalty will always dwell.
           </div>
           <div class="tab-pane fade about-para p-4 text-center text-wrap w-75 mx-auto" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
-          We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending
-           to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners
+            We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending
+            to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners
             with our customers.
           </div>
         </div>
-       
+
       </div>
 
     </div>
-    
 
-    <div class="row-12">
-      <div class="col-12 content-container3 bg-info-subtle py-2">
-        <h2 class="text-center about-text py-2 text-success">Frequently Asked Questions</h2>
-        <div class="line w-75 mb-4 mx-auto"></div>
-        <div class="accordion " id="accordionExample">
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                Where can I view my receipt?
-              </button>
-            </h2>
-            <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+
+    <div class="col-12 content-container3 bg-info-subtle py-2 me-auto mx-auto">
+      <h2 class="text-center about-text py-2 text-success">Frequently Asked Questions</h2>
+      <div class="line w-50 mb-4 mx-auto"></div>
+      <div class="d-flex flex-row container bg bg-info-subtle py-2 w-75">
+        <div class="col-6 content-container3 p-5 rounded">
+
+
+          <div class="accordion " id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  Where can I view my receipt?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                Accordion Item #2
-              </button>
-            </h2>
-            <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Accordion Item #2
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
               </div>
             </div>
-          </div>
-          <div class="accordion-item">
-            <h2 class="accordion-header">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                Accordion Item #3
-              </button>
-            </h2>
-            <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-              <div class="accordion-body">
-                <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  Accordion Item #3
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
               </div>
             </div>
           </div>
         </div>
-        
+        <div class="col-6 content-container3 p-5 rounded">
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Accordion Item #1
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  Accordion Item #2
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  Accordion Item #3
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      
+
+
+
+
+
     </div>
 
     <!-- blender -->
     <div class="content-container5 py-3"></div>
 
 
-    <div class="col-12 content-container">
-      <p class="display-4 text-center border border-3 p-2 border-dark rounded"> Contact Us </p>
-    </div>
-    <div class="col-12 content-container4">
-      <br>
-      <br>
+    <div class="row-12 content-container4 py-4">
+      <h2 class="text-center "> Contact Us </h2>
+      <div class="col-4 content-container3 py-5">
+              <br>
+      </div>
+      <div class="col-4 content-container3 py-5 bg-primary-subtle">
+              <br>
+      </div>
+      <div class="col-4 content-container3 py-5">
+              <br>
+      </div>
     </div>
   </div>
 
