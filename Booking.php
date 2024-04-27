@@ -117,7 +117,7 @@
   <div class="fixed-container pt-4">
 
     <div class="col-12 content-container">
-      <p class="display-4 text-center border border-3 p-4 border-dark rounded"> About Us </p>
+      <p class="display-4 text-center border border-3 p-4 border-dark rounded"> ABOUT US </p>
     </div>
 
     <!-- blender -->
@@ -141,7 +141,7 @@
         <h2 class="about-text text-center pb-3 text-success"> Mission </h2>
         <div class="line w-50 mb-4 mx-auto"></div>
         <div class="rounded about-content1 p-5 ">
-          <p class="text-wrap about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to approach actively to the resolution of any customer needs, to face any challenges within bus and coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
+          <p class="text-wrap about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to be able to approach actively to the resolution of any customer needs, to face any challenges within the bus and the coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
         </div>
 
       </div>
@@ -252,10 +252,10 @@
 
       </div>
 
-      <div class="content-container3 bg-warning-subtle px-2 col-2 mx-auto shadow-lg" id="test">
+      <div class="content-container3 bg-warning-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
-          <h5 class="card-title about-text text-center">Activity</h5>
+          <h5 class="card-title about-text text-center text-w">Activity</h5>
           We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions, dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and implement new products and services par excellent. 
           </div>
         </div>
@@ -263,7 +263,7 @@
 
 
       </div>
-      <div class="content-container3 bg-success-subtle px-2 col-2 mx-auto shadow-lg" id="test">
+      <div class="content-container3 bg-success-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
 
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
@@ -273,7 +273,7 @@
         </div>
       </div>
 
-      <div class="content-container3 bg-primary-subtle px-2 col-2 mx-auto shadow-lg" id="test">
+      <div class="content-container3 bg-primary-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
           <h5 class="card-title about-text text-center">Loyalty</h5>
@@ -282,7 +282,7 @@
         </div>
 
       </div>
-      <div class="content-container3 bg-light-subtle px-2 col-2 mx-auto shadow-lg" id="test">
+      <div class="content-container3 bg-light-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
           <h5 class="card-title about-text text-center">Services</h5>
@@ -299,7 +299,7 @@
       <h2 class="text-center about-text py-2 text-success">Frequently Asked Questions</h2>
       <div class="line w-50 mb-4 mx-auto"></div>
       <div class="d-flex flex-row container bg bg-info-subtle py-5 w-75 ">
-        <div class="col-6 content-container3 p-5 rounded">
+        <div class="col-6 content-container8 p-5 rounded">
 
 
           <div class="accordion" id="accordionExample">
@@ -341,7 +341,7 @@
             </div>
           </div>
         </div>
-        <div class="col-6 content-container3 p-5 rounded">
+        <div class="col-6 content-container8 p-5 rounded">
           <div class="accordion" id="accordionFlushExample">
             <div class="accordion-item">
               <h2 class="accordion-header">
@@ -387,17 +387,34 @@
     <!-- <div class="content-container5 py-3"></div> -->
 
 
-    <div class="row-12 content-container4 py-4">
-      <h2 class="text-center pt-5 "> Contact Us </h2>
-      <div class="col-4 content-container3 py-5">
-        <br>
+    <div class="row-12 content-container4 pt-4">
+      <h2 class="text-center pt-5 about-text pb-3 text-success "> Contact Us </h2>
+      <div class="col-4 content-container3">
+          <div class="row mx-auto text-center">
+       
+            <p>Email: Alps@gmail.com</p>
+           
+          </div>
       </div>
-      <div class="col-4 content-container3 py-5">
-        <br>
+      <div class="col-4 content-container3">
+      <div class="row mx-auto text-center">
+          
+            <p>Email: Alps@gmail.com</p>
+       
+          </div>
       </div>
-      <div class="col-4 content-container3 py-5">
-        <br>
+      <div class="col-4 content-container3">
+      <div class="row mx-auto text-center">
+         
+            <p>Email: Alps@gmail.com</p>
+          
+          </div>
       </div>
+    </div>
+    <div class="row-12 content-container7">
+          <div class="col py-4">
+            
+          </div>
     </div>
   </div>
 
