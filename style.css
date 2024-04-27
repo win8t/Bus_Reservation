@@ -200,6 +200,21 @@
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
+  /*background-image: linear-gradient(to right, #ffb1e849, #23919150, #5456eb71, #df99ff3f),url(About.png);*/
+  background-color: #EDE4FF;
+  
+  width: 100%;
+  float: left;
+  background-attachment: fixed;
+  
+
+}
+.content-container7 {
+  position: relative;
+  /*margin-top: 30px;*/
+  overflow-x: hidden;
+  overflow-y: hidden;
+  z-index: 5;
   background-image: linear-gradient(to right, #ffb1e849, #23919150, #5456eb71, #df99ff3f),url(About.png);
   
   width: 100%;
@@ -233,6 +248,8 @@
   transform: rotate(180deg);
   mask-image: linear-gradient(to top,black, transparent);
   -webkit-mask-image: linear-gradient(black 20%, transparent);
+
+  
 }
 .content-container5 {
   
@@ -243,6 +260,7 @@
   background-image: linear-gradient(#CFF4FC,#EDE4FF);
   padding: 5px;
   width: 100%;
+  clip-path: polygon(0 0,100% 0,100% calc(100% - 50px),calc(50% + 50px) calc(100% - 50px),50% 100%,calc(50% - 50px) calc(100% - 50px),0 calc(100% - 50px));
 }
 
 .content-container2 {
@@ -268,6 +286,19 @@
   width: 100%;
   float: left;
 }
+.content-container6 {
+
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  z-index: 5;
+  background-color: white;
+  clip-path: polygon(0 0,100% 0,100% calc(100% - 50px),calc(50% + 71.41px) calc(100% - 50px),50% 100%,calc(50% - 71.41px) calc(100% - 50px),0 calc(100% - 50px));
+  width: 100%;
+  float: left;
+  
+  
+}
 .content-container4 {
 
   position: relative;
@@ -275,7 +306,8 @@
   overflow-y: hidden;
   z-index: 5;
   background-color: #EDE4FF;
-  
+  clip-path: polygon(0 0,calc(50% - 0.63px - 71.41px) 0,50% calc(50px + 0.44px),calc(50% + 0.63px + 71.41px) 0,100% 0,100% 100%,0 100%);
+  margin-top: -48px;
   width: 100%;
   float: left;
 }
@@ -353,8 +385,6 @@ svg {
 
 .about-text {
   font-family:FontBold;
-  
-  
 }
 .about-para {
   font-family:FontReg;
