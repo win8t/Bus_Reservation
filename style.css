@@ -338,6 +338,7 @@
   background-color: #ffffff !important;
   border: none;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1), -2px, 2px, 8px rgba(0, 0, 0, 0.1);
+  border: 0 !important;
 }
 
 .accordion-body {
@@ -357,10 +358,14 @@
   position: relative;
 }
 
+
+
 .accordion-button:active,
 .accordion-button:focus {
   border: none !important;
   background: #d7edff !important;
+  outline: 0 !important;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0) !important;
 }
 
 .accordion-button:hover {
@@ -385,10 +390,15 @@ svg {
 
 .about-text {
   font-family:FontBold;
+  font-size: 40px;
+}
+.corp-text {
+  font-family:FontBold;
+  font-size: 40px;
 }
 .about-para {
   font-family:FontReg;
-  font-size: 17px;
+  font-size: 20px;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -594,3 +604,6 @@ svg {
 }
 
 
+.card {
+  background: none !important;
+}
