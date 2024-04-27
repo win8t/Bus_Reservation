@@ -150,7 +150,7 @@
 
     <div class="d-flex flex-row content-container align-items-stretch">
 
-      <div class="container-fluid content-container3 bg-info-subtle p-4" id="test">
+      <div class="content-container3 bg-danger-subtle p-4 col-2" id="test">
         <!-- <div id="slider" data-bs-ride="false">
           <input type="radio" name="slider" id="slide1" checked>
           <input type="radio" name="slider" id="slide2" class = "form-check-input">
@@ -208,8 +208,9 @@
           </div>
         </div>
 -->
+<!--
         <h2 class="text-center about-text pb-2 text-success">Corporate Values</h2>
-        <div class="line w-50 mb-4 mx-auto"></div>
+        <div class="line w- mb-4 mx-auto"></div>
         <ul class="nav nav-fill w-75 mx-auto" id="myTab" role="tablist">
           <li class="nav-item" role="presentation">
             <button class="nav-link active link-dark" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Activities</button>
@@ -246,6 +247,29 @@
             with our customers.
           </div>
         </div>
+-->
+
+
+      </div>
+
+      <div class="content-container3 bg-warning-subtle px-2 col-2" id="test">
+
+
+      </div>
+      <div class="content-container3 bg-success-subtle px-2 col-2" id="test">
+
+
+      </div>
+      <div class="content-container3 bg-info-subtle px-2 col-2" id="test">
+
+
+      </div>
+      <div class="content-container3 bg-primary-subtle px-2 col-2" id="test">
+
+
+      </div>
+      <div class="content-container3 bg-secondary-subtle px-2 col-2" id="test">
+
 
       </div>
 
