@@ -130,12 +130,20 @@
 
       <hr>
       <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+          <a href="Overview.php" class="nav-link" aria-current="page">
+            <svg class="bi me-2" width="16" height="16">
+              <use xlink:href="#table" />
+            </svg>
+            Overview
+          </a>
+        </li>
         <li class="nav-item">
           <a href="User.php" class="nav-link" aria-current="page">
             <svg class="bi me-2" width="16" height="16">
               <use xlink:href="#people-circle" />
             </svg>
-            Home
+            User
           </a>
         </li>
         <li class="nav-item">
@@ -204,7 +212,7 @@
           </div>
         </form>
       </div>
-
+<!--
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col pb-5 mt-2">
           <h4 class="hd-font mx-2">User Details Form</h4>
@@ -214,7 +222,7 @@
           </form>
         </div>
       </div>
-
+  -->
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
           <?php
@@ -226,19 +234,20 @@
             //to check the search box if empty or not 
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
-              $selectsql = "Select * from tbl_user where 
-    user_id LIKE '%" . $search . "%' 
-    OR full_name LIKE '%" . $search . "%' 
-    OR role LIKE'%" . $search . "%' 
-    OR username LIKE'%" . $search . "%' 
-    OR password LIKE'%" . $search . "%' 
-    OR email LIKE'%" . $search . "%' ";
+              $selectsql = "Select * from tbl_bus where 
+    reservation_id LIKE '%" . $search . "%' 
+    OR schedule_id LIKE '%" . $search . "%' 
+    OR passenger_name LIKE'%" . $search . "%' 
+    OR contact_information LIKE'%" . $search . "%' 
+    OR seat_number LIKE'%" . $search . "%' 
+    OR status LIKE'%" . $search . "%'  
+    OR reservation_date LIKE'%" . $search . "%' ";
 
             } else {
-              $selectsql = "Select * from tbl_user";
+              $selectsql = "Select * from tbl_bus";
             }
           } else {
-            $selectsql = "Select * from tbl_user";
+            $selectsql = "Select * from tbl_bus";
           }
 
 
@@ -253,22 +262,24 @@
             echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
             echo "</tr>";
             echo "<tr>";
-            echo "<th> User ID </th>";
-            echo "<th> Full Name </th>";
-            echo "<th> Role </th>";
-            echo "<th> Username </th>";
-            echo "<th> Password </th>";
-            echo "<th> Email </th>";
+            echo "<th> Reservation ID </th>";
+            echo "<th> Schedule ID </th>";
+            echo "<th> Passenger Name </th>";
+            echo "<th> Contact Information </th>";
+            echo "<th> Seat Number </th>";
+            echo "<th> Reservation Date </th>";
+            echo "<th> Status </th>";
             echo "</tr>";
 
             while ($maltfielddata = $result->fetch_assoc()) {
               echo "<tr>";
-              echo "<td>" . $maltfielddata['user_id'] . "</td>";
-              echo "<td>" . $maltfielddata['full_name'] . "</td>";
-              echo "<td>" . $maltfielddata['role'] . "</td>";
-              echo "<td>" . $maltfielddata['username'] . "</td>";
-              echo "<td>" . $maltfielddata['password'] . "</td>";
-              echo "<td>" . $maltfielddata['email'] . "</td>";
+              echo "<td>" . $maltfielddata['reservation_id'] . "</td>";
+              echo "<td>" . $maltfielddata['schedule_id'] . "</td>";
+              echo "<td>" . $maltfielddata['passenger_name'] . "</td>";
+              echo "<td>" . $maltfielddata['contact_information'] . "</td>";
+              echo "<td>" . $maltfielddata['seat_number'] . "</td>";
+              echo "<td>" . $maltfielddata['reservation_date'] . "</td>";
+              echo "<td>" . $maltfielddata['status'] . "</td>";
             }
             echo "</table>";
           } else {
