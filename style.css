@@ -627,7 +627,7 @@ svg {
 
 .banner-area {
   height: 100vh;
-  animation: animate 10s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  animation: animate 5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
  
 }
 @keyframes animate {
