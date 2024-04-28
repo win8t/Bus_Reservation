@@ -389,32 +389,25 @@
 
     <div class="row-12 content-container4 pt-4">
       <h2 class="text-center pt-5 about-text pb-3 text-success "> Contact Us </h2>
-      <div class="col-4 content-container3">
-          <div class="row mx-auto text-center">
+      
+    <div class="row-12 content-container8">
+          <div class="col-6 content-container9 ">
+          <div class="row mx-auto text-center ">
        
             <p>Email: Alps@gmail.com</p>
            
           </div>
       </div>
-      <div class="col-4 content-container3">
-      <div class="row mx-auto text-center">
-          
-            <p>Email: Alps@gmail.com</p>
-       
-          </div>
-      </div>
-      <div class="col-4 content-container3">
-      <div class="row mx-auto text-center">
+    
+      <div class="col-6 content-container9 ">
+      <div class="row mx-auto text-center ">
          
             <p>Email: Alps@gmail.com</p>
           
           </div>
       </div>
     </div>
-    <div class="row-12 content-container7">
-          <div class="col py-4">
-            
-          </div>
+         
     </div>
   </div>
 
