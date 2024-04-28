@@ -247,16 +247,18 @@
             with our customers.
           </div>
         </div>
--->     
+-->
         <h2 class="text-wrap  corp-text text-break ">Corporate Values</h2>
+        <p class="about-para">Learn about the values that we at ALPS abide by at all times.</p>
+
 
       </div>
 
       <div class="content-container3 bg-warning-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
-          <h5 class="card-title about-text text-center text-w">Activity</h5>
-          We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions, dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and implement new products and services par excellent. 
+            <h5 class="card-title about-text text-center text-w">Activity</h5>
+            We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions, dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and implement new products and services par excellent.
           </div>
         </div>
 
@@ -267,8 +269,8 @@
 
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
-          <h5 class="card-title about-text text-center">Performance</h5>
-          Our buses are operated by professional drivers to serve our customers. Annually, we carry around millions of passengers. Our high performance affects the reduction of our transport costs and helps us keep a favorable fare level, thus, in consonance also with our environment. We want to be efficient and effective because of you, our customers.
+            <h5 class="card-title about-text text-center">Performance</h5>
+            Our buses are operated by professional drivers to serve our customers. Annually, we carry around millions of passengers. Our high performance affects the reduction of our transport costs and helps us keep a favorable fare level, thus, in consonance also with our environment. We want to be efficient and effective because of you, our customers.
           </div>
         </div>
       </div>
@@ -276,8 +278,8 @@
       <div class="content-container3 bg-primary-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
-          <h5 class="card-title about-text text-center">Loyalty</h5>
-          The public's transport safety is our primary concern, by instilling them that our buses are operated by competent and responsible drivers, we can assure our customers that their travel with us will be safe and enjoyable. We co-exist with our customers; thus, to them, our loyalty will always dwell.
+            <h5 class="card-title about-text text-center">Loyalty</h5>
+            The public's transport safety is our primary concern, by instilling them that our buses are operated by competent and responsible drivers, we can assure our customers that their travel with us will be safe and enjoyable. We co-exist with our customers; thus, to them, our loyalty will always dwell.
           </div>
         </div>
 
@@ -285,8 +287,8 @@
       <div class="content-container3 bg-light-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
-          <h5 class="card-title about-text text-center">Services</h5>
-          We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners with our customers.
+            <h5 class="card-title about-text text-center">Services</h5>
+            We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners with our customers.
           </div>
         </div>
 
@@ -297,8 +299,12 @@
 
     <div class="col-12 content-container6 bg-info-subtle py-5 me-auto mx-auto ">
       <h2 class="text-center about-text py-2 text-success">Frequently Asked Questions</h2>
+
       <div class="line w-50 mb-4 mx-auto"></div>
-      <div class="d-flex flex-row container bg bg-info-subtle py-5 w-75 ">
+
+      <p class="text-center about-para bg-info-subtle">Have a question? It may already have been answered here.</p>
+
+      <div class="d-flex flex-row container bg bg-info-subtle py-3 w-75 ">
         <div class="col-6 content-container8 p-5 rounded">
 
 
@@ -388,26 +394,92 @@
 
 
     <div class="row-12 content-container4 pt-4">
-      <h2 class="text-center pt-5 about-text pb-3 text-success "> Contact Us </h2>
-      
-    <div class="row-12 content-container8">
-          <div class="col-6 content-container9 ">
-          <div class="row mx-auto text-center ">
-       
-            <p>Email: Alps@gmail.com</p>
-           
+      <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
+      <p class="text-center about-para bg-info-subtle py-2">We are here to assist you!</p>
+
+      <div class="d-flex flex-row content-container align-items-stretch">
+        <div class="col-4 content-container10 ">
+          <div class="row  text-center py-5">
+
+            <h5 class="about-text "> Main Office</h5>
+            <p>ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</p>
+
           </div>
-      </div>
-    
-      <div class="col-6 content-container9 ">
-      <div class="row mx-auto text-center ">
-         
-            <p>Email: Alps@gmail.com</p>
-          
+        </div>
+        <div class="col-4 content-container10 ">
+          <div class="row  text-center py-5">
+
+
+            <table class="table table-responsive w-75 mx-auto table-borderless ">
+              <tr>
+                <th colspan="2">
+                  <h5 class="about-text text-center ">Contact Information</h5>
+                </th>
+              </tr>
+              <tr>
+              <td colspan="2" class ="text-center pb-3">
+                  Any inquiries should have a return address or phone number.
+                </td>
+              </tr>
+              <tr>
+                <th>Main Office</th>
+                <td  colspan="2" class ="text-end">ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
+              </tr>
+              <tr>
+                <th colspan="2">Phone</th>
+              </tr>
+              <tr>
+                <td>Trunkline</td>
+                <td class="text-end" colspan> (043) 723-9033</td>
+              </tr>
+              <tr>
+                <td>SMS</td>
+                <td class="text-end"> (0917) 504-6042</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+              </tr>
+              <tr>
+                <td> info@alpsthebus.com</td>
+              </tr>
+
+
+
+
+            </table>
+
           </div>
+        </div>
+
+        <div class="col-4 content-container10 ">
+          <div class="row  text-center py-5">
+            <h5 class="about-text">Visit Us</h5>
+            <p>Check out our other platforms!</p>
+            <div class="col text-end ms-5 py-4">
+
+              <a href="https://www.facebook.com/alpsthebus" target=”_blank”><i class="bi bi-facebook h1"></i></a>
+
+            </div>
+            <div class="col py-4">
+              <a href="https://www.instagram.com/ilovealpsthebusph/?hl=en" target=”_blank”>
+                <i class="bi bi-instagram h1 insta"></i>
+              </a>
+
+            </div>
+            <div class="col text-start me-5 py-4">
+              <a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a>
+            </div>
+
+
+
+
+          </div>
+        </div>
       </div>
+
     </div>
-         
+    <div class="row-12 content-container7 p-4">
+
     </div>
   </div>
 
