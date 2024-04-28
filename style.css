@@ -196,19 +196,27 @@
 
 .content-container {
   position: relative;
-  /*margin-top: 30px;*/
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
-  /*background-image: linear-gradient(to right, #ffb1e849, #23919150, #5456eb71, #df99ff3f),url(About.png);*/
   background-color: #EDE4FF;
   
   width: 100%;
   float: left;
   background-attachment: fixed;
-  
-
 }
+.content-container10 {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  z-index: 5;
+  background-color: #ffffff;
+  
+  width: 100%;
+  float: left;
+  background-attachment: fixed;
+}
+
 .content-container7 {
   position: relative;
   /*margin-top: 30px;*/
@@ -328,11 +336,12 @@
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
-  background-color: #EDE4FF;
+  background-image: linear-gradient(to right, #ffb1e849, #23919150, #5456eb71, #df99ff3f),url(About.png);
   clip-path: polygon(0 0,calc(50% - 0.63px - 71.41px) 0,50% calc(50px + 0.44px),calc(50% + 0.63px + 71.41px) 0,100% 0,100% 100%,0 100%);
   margin-top: -48px;
   width: 100%;
   float: left;
+  background-attachment: fixed;
 }
 
 .content-container3 h3 {
@@ -414,11 +423,12 @@ svg {
 
 .about-text {
   font-family:FontBold;
-  font-size: 40px;
+  font-size: 35px;
 }
-.corp-text {
+.cont-text {
+  font-size: 45px;
   font-family:FontBold;
-  font-size: 40px;
+
 }
 .about-para {
   font-family:FontReg;
@@ -690,5 +700,22 @@ svg {
 .link-text {
 
   font-family: FontReg;
+}
+
+.insta {
+  background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D, #F56040, #F77737, #FCAF45, #FFDC80); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+
+.insta:hover {
+  background: linear-gradient(45deg, #fccc63, #fc7f5a, #ff4e50, #d81159, #8f2d56, #4f5d75, #2b8686, #18a558, #88bf36, #fccc63);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+
+.chrome:hover {
+  background: #4C8BF5;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
