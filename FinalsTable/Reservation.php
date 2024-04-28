@@ -262,7 +262,7 @@
             //to check the search box if empty or not 
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
-              $selectsql = "Select * from tbl_bus where 
+              $selectsql = "Select * from tbl_reservation where 
     reservation_id LIKE '%" . $search . "%' 
     OR schedule_id LIKE '%" . $search . "%' 
     OR passenger_name LIKE'%" . $search . "%' 
@@ -272,10 +272,10 @@
     OR reservation_date LIKE'%" . $search . "%' ";
 
             } else {
-              $selectsql = "Select * from tbl_bus";
+              $selectsql = "Select * from tbl_reservation";
             }
           } else {
-            $selectsql = "Select * from tbl_bus";
+            $selectsql = "Select * from tbl_reservation";
           }
 
 
