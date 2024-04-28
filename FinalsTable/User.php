@@ -10,8 +10,7 @@
   <title>Sidebars · Bootstrap v5.0</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-
-
+  <link rel="stylesheet" href="C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable\bootstrap.min.css">
 
   <!-- Bootstrap core CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -30,6 +29,10 @@
         font-size: 3.5rem;
       }
     }
+    #datetime{
+      font-size: 24px;
+      font-family: FontReg;
+    }
   </style>
 
 
@@ -38,7 +41,7 @@
 </head>
 
 <body>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
       <title>Bootstrap</title>
@@ -208,6 +211,31 @@
 
             <div class="col">
               <input type="submit" value="Search" name="searchbutton" class="btn btn-primary mx-2 button-font" class="form-control">
+            </div>
+
+            <!-- Date Time - Local -->
+            <div class="row bg-light pt-2">
+                <div id="datetime"></div>
+                <script>
+                  function updateDateTime() {
+                    var now = new Date();
+                    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                    var month = monthNames[now.getMonth()];
+                    var day = now.getDate();
+                    var year = now.getFullYear();
+                    var dayOfWeek = dayNames[now.getDay()];
+                    var time = now.toLocaleTimeString();
+                    var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
+                    document.getElementById('datetime').textContent = dateTimeString;
+                  }
+                  // Update the date and time every second
+                  setInterval(updateDateTime, 1000);
+
+                  // Initial update
+                  updateDateTime();
+                </script>
             </div>
           </div>
         </form>

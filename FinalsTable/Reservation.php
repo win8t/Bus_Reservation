@@ -30,6 +30,10 @@
         font-size: 3.5rem;
       }
     }
+    #datetime{
+      font-size: 24px;
+      font-family: FontReg;
+    }
   </style>
 
 
@@ -200,7 +204,7 @@
 
     <div class="container-fluid">
       <div class="row bg-light border-top border-bottom border-2">
-        <form action="User.php" method="post">
+        <form action="Reservation.php" method="post">
           <div class="input-group w-50 py-2">
             <div class="input-group-text bg-primary-subtle" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
             <input type="search" name="search" id="" class="form-control w-50" aria-label="Input group example" aria-describedby="btnGroupAddon2">
@@ -208,6 +212,30 @@
 
             <div class="col">
               <input type="submit" value="Search" name="searchbutton" class="btn btn-primary mx-2 button-font" class="form-control">
+            </div>
+            <!-- Date Time - Local -->
+            <div class="row bg-light pt-2">
+                <div id="datetime"></div>
+                <script>
+                  function updateDateTime() {
+                    var now = new Date();
+                    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                    var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                    var month = monthNames[now.getMonth()];
+                    var day = now.getDate();
+                    var year = now.getFullYear();
+                    var dayOfWeek = dayNames[now.getDay()];
+                    var time = now.toLocaleTimeString();
+                    var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
+                    document.getElementById('datetime').textContent = dateTimeString;
+                  }
+                  // Update the date and time every second
+                  setInterval(updateDateTime, 1000);
+
+                  // Initial update
+                  updateDateTime();
+                </script>
             </div>
           </div>
         </form>
