@@ -245,7 +245,7 @@
 
        <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col pb-2 mt-2">
-          <h4 class="hd-font mx-2">Route Status</h4>
+          <h4 class="hd-font mx-2">Route Details</h4>
           <button type="button" id="formDetailsBtn" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formDetails">
           Add Route Details <!-- add icon -->
           </button>

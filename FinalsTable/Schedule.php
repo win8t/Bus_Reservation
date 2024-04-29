@@ -207,6 +207,7 @@
     </div>
 
     <div class="container-fluid">
+    
       <div class="row bg-light border-top border-bottom border-2">
         <form action="Schedule.php" method="post">
           <div class="input-group w-50 py-2">
@@ -287,10 +288,11 @@
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
+            echo "<h4 class='hd-font mx-2 my-2'>Schedule Details</h4>";
 
             echo "<table class='table table-light table-striped my-2 border border-3'>";
             echo "<tr>";
-            echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
+    
             echo "</tr>";
             echo "<tr>";
             echo "<th> Schedule ID </th>";

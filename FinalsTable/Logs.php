@@ -242,9 +242,9 @@
       
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
-          <?php
+        <?php
           require_once "dbconnect.php";
-          
+
           //button function
           if (isset($_POST['searchbutton'])) {
 
@@ -252,76 +252,44 @@
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
               $selectsql = "Select * from tbl_logs where 
-                  log_id LIKE '%" . $search . "%' 
-                  OR user_id LIKE '%" . $search . "%' 
-                  OR action LIKE'%" . $search . "%' 
-                  OR DateTime LIKE'%" . $search . "%' ";
-                  
+                log_id LIKE '%" . $search . "%' 
+                OR user_id LIKE '%" . $search . "%' 
+                OR action LIKE'%" . $search . "%' 
+                OR DateTime LIKE'%" . $search . "%'";
+
             } else {
               $selectsql = "Select * from tbl_logs";
             }
           } else {
             $selectsql = "Select * from tbl_logs";
           }
-          
+         
+  
           $result = $con->query($selectsql);
 
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
+            echo "<h4 class='hd-font mx-2 my-2'>Logs Details</h4>";
 
-            echo "<div class='container'>";
-            echo "<div class='row'>";
-              foreach ($result as $index => $maltfielddata) {
-                ?>
-                <div class="col-3">
-                  <div class="container bg-light border border-black border-1 pb-2 text-left">
-                    <div class="row">
-                      <div class="col">
-                        <h3><?php echo $maltfielddata['log_id'] ?></h3>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col">
-                        <p class="small"><?php echo $maltfielddata['user_id'] ?></p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col">
-                        <i class="small"><?php echo $maltfielddata['action'] ?></i>
-                      </div>
-                    </div>
-                    <div class="row pb-2">
-                      <div class="col">
-                        <p class="small"><?php echo $maltfielddata['DateTime'] ?></p>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col">
-                        <form action="User.php" method="post">
-                          <input type="submit" value="View" name="view" class="btn btn-primary mx-2">
-                        </form>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                  <?php
-                  if (($index+1) % 4 == 0) {
-                    echo "</div><div class='row'>";
-                  }
-              }
-              echo "</div>";
-              echo "</div>";
+            echo "<table class='table table-light table-striped my-2 border border-3'>";
+            echo "<tr>";
+            echo "<th> Log ID </th>";
+            echo "<th> User Name </th>";
+            echo "<th> Action </th>";
+            echo "<th> Date Time </th>";
+   
+            echo "</tr>";
 
-              while ($maltfielddata = $result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $maltfielddata['log_id'] . "</td>";
-                echo "<td>" . $maltfielddata['user_id'] . "</td>";
-                echo "<td>" . $maltfielddata['action'] . "</td>";
-                echo "<td>" . $maltfielddata['DateTime'] . "</td>";
-                
-              }
-              echo "</table>";
+            while ($maltfielddata = $result->fetch_assoc()) {
+              echo "<tr>";
+              echo "<td>" . $maltfielddata['log_id'] . "</td>";
+              echo "<td>" . $maltfielddata['user_id'] . "</td>";
+              echo "<td>" . $maltfielddata['action'] . "</td>";
+              echo "<td>" . $maltfielddata['DateTime'] . "</td>";
+              
+            }
+            echo "</table>";
           } else {
             echo "<div class='row'>";
             echo "<div class='col'>";
@@ -329,6 +297,7 @@
             echo "</div>";
             echo "</div>";
           }
+
           ?>
 
         </div>
