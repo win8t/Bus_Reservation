@@ -150,105 +150,9 @@
 
     <div class="d-flex flex-row content-container7 align-items-stretch">
 
-      <div class="content-container3 bg-danger-subtle p-4 col-2 mx-auto shadow-lg" id="test">
-        <!-- <div id="slider" data-bs-ride="false">
-          <input type="radio" name="slider" id="slide1" checked>
-          <input type="radio" name="slider" id="slide2" class = "form-check-input">
-          <input type="radio" name="slider" id="slide3" class ="form-check-input">
-          <input type="radio" name="slider" id="slide4" class ="form-check-input">
-          <div id="slides">
-            <div id="overflow">
-              <div class="inner">
-                <div class="slide slide1">
-                  <div class="slide-content ">
-                    <h2>Slide 1</h2>
-                      <p class=" p-2">
-                          We keep our customers well informed and work hard in order to keep them within reach.
-                          We listen to their comments and suggestions, dealing with them actively.
-                          We improve our quality standards. We invest in new vehicles, prepare a new central
-                          bus station and implement new products and services par excellent. 
-                      </p>
-                  </div>
-                </div>
-                <div class="slide slide2">
-                  <div class="slide-content w-100 h-100">
-                    <h2>Slide 2</h2>
-                    <p>We keep our customers well informed and work hard in order to keep them within reach.
-                          We listen to their comments and suggestions, dealing with them actively.
-                          We improve our quality standards. We invest in new vehicles, prepare a new central
-                          bus station and implement new products and services par excellent. </p>
-                  </div>
-                </div>
-                <div class="slide slide3">
-                  <div class="slide-content w-100 h-100">
-                    <h2>Slide 3</h2>
-                    <p>Content For Slide1</p>
-                  </div>
-                </div>
-                <div class="slide slide4">
-                  <div class="slide-content w-100 h-100">
-                    <h2>Slide 4</h2>
-                    <p>Content For Slide1</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div id="controls" aria-hidden="true">
-            <label for="slide1"></label>
-            <label for="slide2"></label>
-            <label for="slide3"></label>
-            <label for="slide4"></label>
-          </div>
-          <div id="bullets">
-            <label for="slide1" class="active" ></label>
-            <label for="slide2"  class="active"></label>
-            <label for="slide3"  class="active"></label>
-            <label for="slide4"  class="active"></label>
-          </div>
-        </div>
--->
-        <!--
-        <h2 class="text-center about-text pb-2 text-success">Corporate Values</h2>
-        <div class="line w- mb-4 mx-auto"></div>
-        <ul class="nav nav-fill w-75 mx-auto" id="myTab" role="tablist">
-          <li class="nav-item" role="presentation">
-            <button class="nav-link active link-dark" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true">Activities</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link link-dark" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">Performance</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link link-dark" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">Loyalty</button>
-          </li>
-          <li class="nav-item" role="presentation">
-            <button class="nav-link link-dark" id="disabled-tab" data-bs-toggle="tab" data-bs-target="#disabled-tab-pane" type="button" role="tab" aria-controls="disabled-tab-pane" aria-selected="false">Services</button>
-          </li>
-        </ul>
-        <div class="tab-content w-75 mx-auto" id="myTabContent">
-          <div class="tab-pane fade show active about-para p-4 text-center text-wrap w-75 mx-auto" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-            We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions,
-            dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and
-            implement new products and services par excellent.
-          </div>
-          <div class="tab-pane fade about-para p-4 text-center text-wrap w-75 mx-auto" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-            Our buses are operated by professional drivers to serve our customers. Annually, we carry around millions of passengers.
-            Our high performance affects the reduction of our transport costs and helps us keep a favorable fare level, thus,
-            in consonance also with our environment. We want to be efficient and effective because of you, our customers.
-          </div>
-          <div class="tab-pane fade about-para p-4 text-center text-wrap w-75 mx-auto" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-            The public's transport safety is our primary concern, by instilling them that our buses are operated by competent and
-            responsible drivers, we can assure our customers that their travel with us will be safe and enjoyable. We co-exist with
-            our customers; thus, to them, our loyalty will always dwell.
-          </div>
-          <div class="tab-pane fade about-para p-4 text-center text-wrap w-75 mx-auto" id="disabled-tab-pane" role="tabpanel" aria-labelledby="disabled-tab" tabindex="0">
-            We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending
-            to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners
-            with our customers.
-          </div>
-        </div>
--->
-        <h2 class="text-wrap  corp-text text-break ">Corporate Values</h2>
+      <div class="content-container3 bg-danger-subtle p-4 col-2 text-start shadow-lg" id="test">
+
+        <h2 class="text-wrap  about-text text-break ">Corporate Values</h2>
         <p class="about-para">Learn about the values that we at ALPS abide by at all times.</p>
 
 
@@ -284,7 +188,7 @@
         </div>
 
       </div>
-      <div class="content-container3 bg-light-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
+      <div class="content-container3 bg-light-subtle px-2 py-2 col-2 text-end shadow-lg" id="test">
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
             <h5 class="card-title about-text text-center">Services</h5>
@@ -417,13 +321,13 @@
                 </th>
               </tr>
               <tr>
-              <td colspan="2" class ="text-center pb-3">
-                  Any inquiries should have a return address or phone number.
+                <td colspan="2" class="text-center pb-3">
+                  <strong> Any inquiries should have a return address or phone number. </strong>
                 </td>
               </tr>
               <tr>
                 <th>Main Office</th>
-                <td  colspan="2" class ="text-end">ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
+                <td colspan="2" class="text-end">ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
               </tr>
               <tr>
                 <th colspan="2">Phone</th>
