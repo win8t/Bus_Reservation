@@ -329,13 +329,13 @@
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
               $selectsql = "Select * from tbl_route where 
-    route_id LIKE '%" . $search . "%' 
-    OR route_name LIKE '%" . $search . "%' 
-    OR departure_location LIKE'%" . $search . "%' 
-    OR destination LIKE'%" . $search . "%' 
-    OR distance LIKE'%" . $search . "%' 
-    OR duration LIKE'%" . $search . "%'
-    OR price LIKE'%" . $search . "%' ";
+              route_id LIKE '%" . $search . "%' 
+              OR route_name LIKE '%" . $search . "%' 
+              OR departure_location LIKE'%" . $search . "%' 
+              OR destination LIKE'%" . $search . "%' 
+              OR distance LIKE'%" . $search . "%' 
+              OR duration LIKE'%" . $search . "%'
+              OR price LIKE'%" . $search . "%' ";
 
             } else {
               $selectsql = "Select * from tbl_route";
@@ -344,6 +344,48 @@
             $selectsql = "Select * from tbl_route";
           }
 
+          //button function
+          if(isset($_POST['add'])){
+            $routeID = $_POST['route_id'];
+            $routeName = $_POST['route_name'];
+            $departureLoc = $_POST['departure_location'];
+            $destination = $_POST['destination'];
+            $distance = $_POST['distance'];
+            $duration = $_POST['duration'];
+            $price = $_POST['price'];
+            
+            $insertsql = "Insert into tbl_route (route_id,route_name,departure_location,destination,distance,duration,price)
+            values ($routeID,'$routeName','$departureLoc','$destination',$distance,'$duration',$price)
+            ";
+
+            $result = $con->query($insertsql);
+            
+            
+            //check if successfully added
+            if ($result == True) {
+                ?>
+              <script> 
+                Swal.fire({
+                  title: "Do you want to add this user?",
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: "Add",
+                  denyButtonText: `Don't Add`
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success");
+                  } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                  }
+                });
+                  </script>
+                  <?php
+            } else {
+                //if not inserted, check query error details
+                echo $con->error;
+            }
+          } 
 
           $result = $con->query($selectsql);
 
@@ -372,6 +414,9 @@
               echo "<td>" . $maltfielddata['distance'] . "</td>";
               echo "<td>" . $maltfielddata['duration'] . "</td>";
               echo "<td>" . $maltfielddata['price'] . "</td>";
+              echo "<td>
+              <button class='button edit-button' name='edit'>Edit</button>
+              <button class='button delete-button' name='delete'>Delete</button></td>";
             }
             echo "</table>";
           } else {

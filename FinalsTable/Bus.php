@@ -355,6 +355,49 @@
             $selectsql = "Select * from tbl_bus";
           }
 
+          //button function
+          if(isset($_POST['add'])){
+            $busID = $_POST['bus_id'];
+            $busNum = $_POST['bus_number'];
+            $seatCap = $_POST['seating_capacity'];
+            $driverName = $_POST['driver_name'];
+            $departureLoc = $_POST['departure_location'];
+            $destination = $_POST['destination'];
+            $departureTime = $_POST['departure_time'];
+            $arrivalTime = $_POST['arrival_time'];
+            
+            $insertsql = "Insert into tbl_bus (bus_id,bus_number,seating_capacity,driver_name,departure_location,destination,departure_time,arrival_time)
+            values ($busID,'$busNum',$seatCap,'$driverName','$departureLoc','$destination','$departureTime','$arrivalTime')
+            ";
+
+            $result = $con->query($insertsql);
+            
+            
+            //check if successfully added
+            if ($result == True) {
+                ?>
+              <script> 
+                Swal.fire({
+                  title: "Do you want to add this user?",
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: "Add",
+                  denyButtonText: `Don't Add`
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success");
+                  } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                  }
+                });
+                  </script>
+                  <?php
+            } else {
+                //if not inserted, check query error details
+                echo $con->error;
+            }
+          } 
 
           $result = $con->query($selectsql);
 
@@ -385,6 +428,9 @@
               echo "<td>" . $maltfielddata['destination'] . "</td>";
               echo "<td>" . $maltfielddata['departure_time'] . "</td>";
               echo "<td>" . $maltfielddata['arrival_time'] . "</td>";
+              echo "<td>
+              <button class='button edit-button' name='edit'>Edit</button>
+              <button class='button delete-button' name='delete'>Delete</button></td>";
             }
             echo "</table>";
           } else {

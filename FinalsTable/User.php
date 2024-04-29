@@ -360,24 +360,32 @@
 
             $result = $con->query($insertsql);
             
+            
             //check if successfully added
             if ($result == True) {
                 ?>
               <script> 
                 Swal.fire({
-                    position: "middle",
-                    icon: "success",
-                    title: "Your work has been saved!",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
+                  title: "Do you want to add this user?",
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: "Add",
+                  denyButtonText: `Don't Add`
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success");
+                  } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                  }
+                });
                   </script>
                   <?php
             } else {
                 //if not inserted, check query error details
-                echo $con -> error;
+                echo $con->error;
             }
-          }
+          } 
   
           $result = $con->query($selectsql);
 
@@ -404,6 +412,9 @@
               echo "<td>" . $maltfielddata['username'] . "</td>";
               echo "<td>" . $maltfielddata['password'] . "</td>";
               echo "<td>" . $maltfielddata['email'] . "</td>";
+              echo "<td>
+              <button class='button edit-button' name='edit'>Edit</button>
+              <button class='button delete-button' name='delete'>Delete</button></td>";
             }
             echo "</table>";
           } else {
@@ -417,9 +428,6 @@
           ?>
     </div>
     </div>
-
-
-
 
   
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
