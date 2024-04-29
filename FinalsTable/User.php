@@ -14,6 +14,7 @@
 
   <!-- Bootstrap core CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  
 
   <style>
     .bd-placeholder-img {
@@ -41,6 +42,7 @@
 </head>
 
 <body>
+
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -241,79 +243,85 @@
         </form>
       </div>
 
-      <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col pb-3 mt-2">
-          <h4 class="hd-font mx-2">User Details Form</h4>
-          <form action="User.php" method="post">
-            
-            <!-- User ID input -->
-            <div class="row form-outline">
-              <div class="col">
-                <input type="text" id="" name="user_id" class="form-control" />
-                <label class="form-label" for="">User ID</label>
-              </div>
-
-            <!-- Full Name input -->
-              <div class="col">
-                  <input type="text" name="full_name" id="" class="form-control" />
-                  <label class="form-label" for="">Fullname</label>
-                </div>
-            </div>
-
-            <!-- Role input -->
-            <div class="form-outline mb-2">
-            <span class="form-label">Role</span>
-                <div class="btn-group mx-5" id="btn-group-3" >
-                    <div class="form-check form-check-inline ">
-                        <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Admin" />
-                        <label class="form-check-label" for="inlineRadio1">Admin</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Employee" />
-                        <label class="form-check-label" for="inlineRadio2">Employee</label>
-                    </div>
-
-                    <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="role" id="inlineRadio3" value="Customer"/>
-                        <label class="form-check-label" for="inlineRadio3">Customer</label>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Username input -->
-            <div class="row form-outline">
-              <div class="col">
-                <input type="text" id="" name="username" class="form-control" />
-                <label class="form-label" for="">Username</label>
-              </div>
-              
-            <!-- Password input -->
-              <div class="col">
-                <input type="password" name="password" id="" class="form-control" />
-                <label class="form-label" for="">Password</label>
-              </div>
-            </div>
-
-            <!-- Email input -->
-            <div class="form-outline">
-                <input type="email" name="email" id="" class="form-control" />
-                <label class="form-label" for="">Email</label>
-            </div>
-
-            <!-- Save button -->
-            <div class="row text-center">
-              <div class="col ">
-                <input type="submit"  name="sub" class="btn btn-primary btn-block w-25" value="Login" id=sub>
-                <button type="reset" name="clear" class="btn btn-danger btn-block w-25" value="Cancel">Cancel</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
+      <!-- Modal Bootstrap -->
 
       <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col container-fluid">
+        <div class="col pb-2 mt-2">
+          <h4 class="hd-font mx-2">User Status</h4>
+          <button type="button" id="formDetailsBtn" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formDetails">
+          Add User Details <!-- add icon -->
+          </button>
+
+          <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title fs-5" id="title">User Details Form</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form action="User.php" method="post">
+                <div class="modal-body">
+                  
+                    <!-- User ID input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" id="" name="user_id" class="form-control" />
+                        <label class="form-label" for="">User ID</label>
+                      </div>
+
+                    <!-- Full Name input -->
+                      <div class="col">
+                          <input type="text" name="full_name" id="" class="form-control" />
+                          <label class="form-label" for="">Fullname</label>
+                        </div>
+                    </div>
+
+                    <!-- Role input -->
+                    <div class="form-outline mb-2">
+                    <span class="form-label">Role</span>
+                        <div class="btn-group mx-5" id="btn-group-3" >
+                            <div class="form-check form-check-inline ">
+                                <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Admin" />
+                                <label class="form-check-label" for="inlineRadio1">Admin</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Employee" />
+                                <label class="form-check-label" for="inlineRadio2">Employee</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Username input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" id="" name="username" class="form-control" />
+                        <label class="form-label" for="">Username</label>
+                      </div>
+                      
+                    <!-- Password input -->
+                      <div class="col">
+                        <input type="password" name="password" id="" class="form-control" />
+                        <label class="form-label" for="">Password</label>
+                      </div>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline">
+                        <input type="email" name="email" id="" class="form-control" />
+                        <label class="form-label" for="">Email</label>
+                    </div>
+                    <!-- Save button --> 
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="submit" name="add" class="btn btn-primary">Add</button>
+                </div>
+                </form> 
+              </div>
+            </div>
+          </div>
+
           <?php
           require_once "dbconnect.php";
 
@@ -338,7 +346,7 @@
             $selectsql = "Select * from tbl_user";
           }
           //button function
-          if(isset($_POST['sub'])){
+          if(isset($_POST['add'])){
             $userID = $_POST['user_id'];
             $name = $_POST['full_name'];
             $role = $_POST['role'];
@@ -379,15 +387,13 @@
 
             echo "<table class='table table-light table-striped my-2 border border-3'>";
             echo "<tr>";
-            echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
-            echo "</tr>";
-            echo "<tr>";
             echo "<th> User ID </th>";
             echo "<th> Full Name </th>";
             echo "<th> Role </th>";
             echo "<th> Username </th>";
             echo "<th> Password </th>";
             echo "<th> Email </th>";
+            echo "<th> Action </th>";
             echo "</tr>";
 
             while ($maltfielddata = $result->fetch_assoc()) {
@@ -409,17 +415,15 @@
           }
 
           ?>
-
-        </div>
-      </div>
+    </div>
     </div>
 
 
 
 
-
+  
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="modal.js"></script>
   <script src="sidebars.js"></script>
   </main>
 </body>

@@ -268,7 +268,7 @@
               $search = $_POST['search'];
               $selectsql = "Select * from tbl_schedule where 
     schedule_id LIKE '%" . $search . "%' 
-    bus_id LIKE '%" . $search . "%' 
+    OR bus_id LIKE '%" . $search . "%' 
     OR route_id LIKE '%" . $search . "%' 
     OR departure_date LIKE'%" . $search . "%' 
     OR departure_time LIKE'%" . $search . "%' 

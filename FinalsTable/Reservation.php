@@ -240,17 +240,9 @@
           </div>
         </form>
       </div>
-<!--
-      <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col pb-5 mt-2">
-          <h4 class="hd-font mx-2">User Details Form</h4>
-          <form action="User.php" method="post">
 
+      
 
-          </form>
-        </div>
-      </div>
-  -->
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
           <?php
@@ -287,7 +279,6 @@
 
             echo "<table class='table table-light table-striped my-2 border border-3'>";
             echo "<tr>";
-            echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
             echo "</tr>";
             echo "<tr>";
             echo "<th> Reservation ID </th>";
