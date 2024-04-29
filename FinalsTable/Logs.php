@@ -239,48 +239,7 @@
           </div>
         </form>
       </div>   
-
-      <!-- <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col pb-3 mt-2">
-          <h4 class="hd-font mx-2">Login Form</h4>
-          <form action="Logs.php" method="post"> -->
-            
-            <!-- Log ID input -->
-            <!-- <div class="row form-outline">
-              <div class="col">
-                <input type="text" id="" name="log_id" class="form-control" />
-                <label class="form-label" for="">Log ID</label>
-              </div> -->
-            <!-- User ID input -->
-              <!-- <div class="col">
-                <input type="text" id="" name="user_id" class="form-control" />
-                <label class="form-label" for="">User ID</label>
-              </div>
-            </div> -->
-            <!-- Action input
-            <div class="row form-outline">
-              <div class="col">
-                <input type="text" id="" name="action" class="form-control" />
-                <label class="form-label" for="">Action</label>
-              </div>
-            </div> -->
-            <!-- Date Time input -->
-            <!-- <div class="row form-outline">
-              <div class="col">
-                <input type="datetime-local" name="datetime" id="" class="form-control" />
-                <label class="form-label" for="">Date/Time</label>
-              </div>
-            </div> -->
-            <!-- Save button -->
-            <!-- <div class="row text-center">
-              <div class="col ">
-                <input type="submit"  name="sub" class="btn btn-primary btn-block w-25" value="Login" id=sub>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div> -->
-
+      
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
           <?php

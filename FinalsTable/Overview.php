@@ -34,6 +34,10 @@
       font-size: 24px;
       font-family: FontReg;
     }
+    #status{
+      font-size: 24px;
+      font-family: FontReg;
+    }
   </style>
 
 
@@ -121,9 +125,6 @@
   </svg>
 
   <main>
-
-
-
 
     <div class=" b-example-divider  d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
@@ -241,34 +242,24 @@
           </div>
         </form>
       </div>
-<!--
+
       <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col pb-5 mt-2">
-          <h4 class="hd-font mx-2">User Details Form</h4>
-          <form action="User.php" method="post">
-
-
-          </form>
+        <div class="col mt-2">
+          <h4 class="hd-font mx-2">Overview</h4>
+            
+          <!-- user-->
+          
         </div>
       </div>
-  -->
-      <div class="row bg-light border-top border-bottom border-2 mt-2">
+ 
+      <!-- <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
-          <?php
-          require_once "dbconnect.php";
-
-          ?>
-
+        
         </div>
       </div>
-    </div>
-
-
-
-
+    </div> -->
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
   <script src="sidebars.js"></script>
   </main>
 </body>

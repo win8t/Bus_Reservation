@@ -244,19 +244,91 @@
           </div>
         </form>
       </div>
-<!--
-      <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col pb-5 mt-2">
-          <h4 class="hd-font mx-2">User Details Form</h4>
-          <form action="User.php" method="post">
 
+      <!-- Modal Bootstrap -->
 
-          </form>
-        </div>
-      </div>
-  -->
       <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col container-fluid">
+        <div class="col pb-2 mt-2">
+          <h4 class="hd-font mx-2">Bus Status</h4>
+          <button type="button" id="formDetailsBtn" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formDetails">
+          Add Bus Details <!-- add icon -->
+          </button>
+
+          <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title fs-5" id="title">Bus Details Form</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form action="Bus.php" method="post">
+                <div class="modal-body">
+                  
+                    <!-- Bus ID input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" id="" name="bus_id" class="form-control" />
+                        <label class="form-label" for="">Bus ID</label>
+                      </div>
+
+                    <!-- Bus Number input -->
+                      <div class="col">
+                          <input type="text" name="bus_number" id="" class="form-control" />
+                          <label class="form-label" for="">Bus Number</label>
+                        </div>
+                    </div>
+
+                    <!-- Seating Capacity input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="number" name="seating_capacity" id="" class="form-control" />
+                        <label class="form-label" for="">Seating Capacity</label>
+                      </div>
+                      
+                    <!-- Driver Name input -->
+                      <div class="col">
+                        <input type="text" name="driver_name" id="" class="form-control" />
+                        <label class="form-label" for="">Driver Name</label>
+                      </div>
+                    </div>
+
+                    <!-- Departure Location input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" name="departure_location" id="" class="form-control" />
+                        <label class="form-label" for="">Departure Location</label>
+                      </div>
+                    
+                    <!-- Destination input -->
+                      <div class="col">
+                          <input type="text" name="destination" id="" class="form-control" />
+                          <label class="form-label" for="">Destination</label>
+                      </div>
+                    </div>
+
+                    <!-- Departure Time input -->
+                    <div class="row form-outline">
+                        <input type="datetime-local" name="departure_time" id="" class="form-control" />
+                        <label class="form-label" for="">Departure Time</label>
+                    </div>
+
+                    <!-- Arrival Time input -->
+                    <div class="row form-outline">
+                        <input type="datetime-local" name="arrival_time" id="" class="form-control" />
+                        <label class="form-label" for="">Arrival Time</label>
+                    </div>
+
+                    <!-- Save button --> 
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="submit" name="add" class="btn btn-primary">Add</button>
+                </div>
+                </form> 
+              </div>
+            </div>
+          </div>
+
           <?php
           require_once "dbconnect.php";
 
@@ -292,9 +364,6 @@
 
             echo "<table class='table table-light table-striped my-2 border border-3'>";
             echo "<tr>";
-            echo "<th colspan=12 class='tbl-font align-middle'> <h4>User Details</h4> </th>";
-            echo "</tr>";
-            echo "<tr>";
             echo "<th> Bus ID </th>";
             echo "<th> Bus Number </th>";
             echo "<th> Seating Capacity </th>";
@@ -303,6 +372,7 @@
             echo "<th> Destination </th>";
             echo "<th> Departure Time </th>";
             echo "<th> Arrival Time </th>";
+            echo "<th> Action </th>";
             echo "</tr>";
 
             while ($maltfielddata = $result->fetch_assoc()) {
@@ -327,8 +397,6 @@
 
           ?>
 
-        </div>
-      </div>
     </div>
 
 
@@ -336,7 +404,7 @@
 
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="modal.js"></script>
   <script src="sidebars.js"></script>
   </main>
 </body>
