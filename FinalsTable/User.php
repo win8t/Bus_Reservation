@@ -263,13 +263,8 @@
                 <form action="User.php" method="post">
                 <div class="modal-body">
                   
-                    <!-- User ID input -->
                     <div class="row form-outline">
-                      <div class="col">
-                        <input type="text" id="" name="user_id" class="form-control" />
-                        <label class="form-label" for="">User ID</label>
-                      </div>
-
+                
                     <!-- Full Name input -->
                       <div class="col">
                           <input type="text" name="full_name" id="" class="form-control" />
@@ -312,6 +307,11 @@
                         <input type="email" name="email" id="" class="form-control" />
                         <label class="form-label" for="">Email</label>
                     </div>
+
+                    <div class="form-outline">
+                        <input type="num" name="contact" id="" class="form-control" />
+                        <label class="form-label" for="">Contact Number</label>
+                    </div>
                     <!-- Save button --> 
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
@@ -337,6 +337,7 @@
                 OR role LIKE'%" . $search . "%' 
                 OR username LIKE'%" . $search . "%' 
                 OR password LIKE'%" . $search . "%' 
+                OR contact LIKE'%" . $search . "%' 
                 OR email LIKE'%" . $search . "%' ";
 
             } else {
@@ -347,15 +348,15 @@
           }
           //button function
           if(isset($_POST['add'])){
-            $userID = $_POST['user_id'];
             $name = $_POST['full_name'];
             $role = $_POST['role'];
             $username = $_POST['username'];
             $password = $_POST['password'];
             $email = $_POST['email'];
+            $contact = $_POST['contact'];
             
-            $insertsql = "Insert into tbl_user (user_id,full_name,role,username,password,email)
-            values ('$userID','$name','$role','$username','$password','$email')
+            $insertsql = "Insert into tbl_user (full_name,role,username,password,email,phone)
+            values ('$name','$role','$username','$password','$email','$contact')
             ";
 
             $result = $con->query($insertsql);
