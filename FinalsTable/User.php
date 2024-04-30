@@ -198,7 +198,7 @@
       <hr>
       <div class="dropdown">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>Admin </strong>
+        <strong>Admin</strong>
         </a>
       </div>
     </div>
