@@ -245,7 +245,7 @@
 
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col mt-2">
-          <h4 class="hd-font mx-2">Overview</h4>
+          <h4 class="hd-font display-5">Overview</h4>
             
           <!-- user-->
           

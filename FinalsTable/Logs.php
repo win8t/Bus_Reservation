@@ -204,6 +204,7 @@
 
     <div class="container-fluid">
       <div class="row bg-light border-top border-bottom border-2">
+        
         <form action="Logs.php" method="post">
           <div class="input-group w-50 py-2">
             <div class="input-group-text bg-primary-subtle" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
@@ -241,7 +242,9 @@
       </div>   
       
       <div class="row bg-light border-top border-bottom border-2 mt-2">
+        
         <div class="col container-fluid">
+        <h4 class='hd-font display-6 my-2'>Logs Details</h4>
         <?php
           require_once "dbconnect.php";
 
@@ -266,18 +269,18 @@
          
   
           $result = $con->query($selectsql);
+          
 
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
-            echo "<h4 class='hd-font mx-2 my-2'>Logs Details</h4>";
 
-            echo "<table class='table table-light table-striped my-2 border border-3'>";
+            echo "<table class='table table-light table-striped text-center table-bordered my-2 border border-3'>";
             echo "<tr>";
             echo "<th> Log ID </th>";
-            echo "<th> User Name </th>";
+            echo "<th> User ID </th>";
             echo "<th> Action </th>";
-            echo "<th> Date Time </th>";
+            echo "<th> DateTime </th>";
    
             echo "</tr>";
 
