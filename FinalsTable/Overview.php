@@ -264,7 +264,7 @@
                 </div>
                 <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1 " href="User.php">View</a>
               </div>
-              < <div class="col bg-primary w-50 p-1 mx-5 rounded shadow">
+               <div class="col bg-primary w-50 p-1 mx-5 rounded shadow">
                 <div class="container-fluid bg-light p-5">
                   <svg class="bi me-2" width="50" height="50">
                     <use xlink:href="#card-list" />
@@ -301,7 +301,7 @@
               </div>
               <a type="button" value="View" class="btn btn-primary btn-blocl w-100 hd-font mt-1" href="Route.php">View</a>
             </div>
-            < <div class="col bg-primary w-50 p-1 m-5 rounded shadow">
+             <div class="col bg-primary w-50 p-1 m-5 rounded shadow">
               <div class="container-fluid bg-light p-5">
                 <svg class="bi me-2" width="50" height="50">
                   <use xlink:href="#calendar3" />
