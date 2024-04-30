@@ -198,7 +198,7 @@
       <hr>
       <div class="dropdown">
         <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>Name</strong>
+        <strong>Admin</strong>
         </a>
       </div>
     </div>
@@ -207,13 +207,10 @@
       <div class="row bg-light border-top border-bottom border-2">
         <form action="Overview.php" method="post">
           <div class="input-group w-50 py-2">
-            <div class="input-group-text bg-primary-subtle" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
-            <input type="search" name="search" id="" class="form-control w-50" aria-label="Input group example" aria-describedby="btnGroupAddon2">
+    
 
 
-            <div class="col">
-              <input type="submit" value="Search" name="searchbutton" class="btn btn-primary mx-2 button-font" class="form-control">
-            </div>
+         
 
             <!-- Date Time - Local -->
             <div class="row bg-light pt-2">
