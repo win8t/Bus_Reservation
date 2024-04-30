@@ -247,7 +247,7 @@
 
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col pb-2 mt-2">
-          <h4 class="hd-font mx-2">User Details</h4>
+          <h4 class="hd-font display-6">User Details</h4>
           <button type="button" id="formDetailsBtn" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formDetails">
           Add User Details <!-- add icon -->
           </button>
@@ -388,7 +388,7 @@
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
 
-            echo "<table class='table table-light table-striped my-2 border border-3'>";
+            echo "<table class='table table-light table-striped text-center table-bordered my-2 border border-3'>";
             echo "<tr>";
             echo "<th> User ID </th>";
             echo "<th> Full Name </th>";
