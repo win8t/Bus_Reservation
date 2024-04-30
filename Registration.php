@@ -97,7 +97,6 @@ require_once "dbconnect.php";
 if (isset($_POST['sub'])) {
     $full = $_POST['fulln'];
     $email = $_POST['email'];
-    $cont = $_POST['contact'];
     $user = $_POST['user'];
     $pass = $_POST['pass'];
     $usertype = "Customer";
