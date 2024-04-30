@@ -30,11 +30,13 @@
         font-size: 3.5rem;
       }
     }
-    #datetime{
+
+    #datetime {
       font-size: 24px;
       font-family: FontReg;
     }
-    #status{
+
+    #status {
       font-size: 24px;
       font-family: FontReg;
     }
@@ -207,34 +209,35 @@
       <div class="row bg-light border-top border-bottom border-2">
         <form action="Overview.php" method="post">
           <div class="input-group w-50 py-2">
-    
 
 
-         
+
+
 
             <!-- Date Time - Local -->
             <div class="row bg-light pt-2">
-                <div id="datetime"></div>
-                <script>
-                  function updateDateTime() {
-                    var now = new Date();
-                    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                    var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-                    var month = monthNames[now.getMonth()];
-                    var day = now.getDate();
-                    var year = now.getFullYear();
-                    var dayOfWeek = dayNames[now.getDay()];
-                    var time = now.toLocaleTimeString();
-                    var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
-                    document.getElementById('datetime').textContent = dateTimeString;
-                  }
-                  // Update the date and time every second
-                  setInterval(updateDateTime, 1000);
+              <div id="datetime"></div>
+              <script>
+                function updateDateTime() {
+                  var now = new Date();
+                  var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                  ];
+                  var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                  var month = monthNames[now.getMonth()];
+                  var day = now.getDate();
+                  var year = now.getFullYear();
+                  var dayOfWeek = dayNames[now.getDay()];
+                  var time = now.toLocaleTimeString();
+                  var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
+                  document.getElementById('datetime').textContent = dateTimeString;
+                }
+                // Update the date and time every second
+                setInterval(updateDateTime, 1000);
 
-                  // Initial update
-                  updateDateTime();
-                </script>
+                // Initial update
+                updateDateTime();
+              </script>
             </div>
           </div>
         </form>
@@ -243,21 +246,100 @@
       <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col mt-2">
           <h4 class="hd-font display-5">Overview</h4>
-            
+
           <!-- user-->
-          
+          <div class="container mt-3">
+
+            <div class="row mx-auto text-center">
+              <div class="col bg-primary w-50 p-1 mx-5 rounded shadow">
+                <div class="container-fluid bg-light p-5">
+                  <svg class="bi me-2" width="50" height="50">
+                    <use xlink:href="#people-circle" />
+                  </svg>
+                  <h4 class="hd-font">User Details</h4>
+
+
+
+
+                </div>
+                <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1 " href="User.php">View</a>
+              </div>
+              < <div class="col bg-primary w-50 p-1 mx-5 rounded shadow">
+                <div class="container-fluid bg-light p-5">
+                  <svg class="bi me-2" width="50" height="50">
+                    <use xlink:href="#card-list" />
+                  </svg>
+                  <h4 class="hd-font">Log Details</h4>
+
+                </div>
+                <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1 " href="Logs.php">View</a>
+
+            </div>
+            <div class="col bg-primary w-50 p-1 mx-5 rounded shadow">
+              <div class="container-fluid bg-light p-5">
+                <svg class="bi me-2" width="50" height="50">
+                  <use xlink:href="#bus-front" />
+                </svg>
+                <h4 class="hd-font">Bus Details</h4>
+
+              </div>
+              <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1 " href="Bus.php">View</a>
+            </div>
+          </div>
+
+          <div class="row mx-auto text-center">
+            <div class="col bg-primary w-50 p-1 m-5 rounded shadow">
+              <div class="container-fluid bg-light p-5">
+                <svg class="bi me-2" width="50" height="50">
+                  <use xlink:href="#sign-turn-right" />
+                </svg>
+                <h4 class="hd-font">Route Details</h4>
+
+
+
+
+              </div>
+              <a type="button" value="View" class="btn btn-primary btn-blocl w-100 hd-font mt-1" href="Route.php">View</a>
+            </div>
+            < <div class="col bg-primary w-50 p-1 m-5 rounded shadow">
+              <div class="container-fluid bg-light p-5">
+                <svg class="bi me-2" width="50" height="50">
+                  <use xlink:href="#calendar3" />
+                </svg>
+                <h4 class="hd-font">Schedule Details</h4>
+
+              </div>
+              <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1 " href="Schedule.php">View</a>
+
+          </div>
+          <div class="col bg-primary w-50 p-1 m-5 rounded shadow">
+            <div class="container-fluid bg-light p-5">
+              <svg class="bi me-2" width="50" height="50">
+                <use xlink:href="#calendar-date" />
+              </svg>
+              <h4 class="hd-font">Reservation Details</h4>
+
+            </div>
+            <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1" href="Reservation.php">View</a>
+          </div>
         </div>
+
+
+
       </div>
- 
-      <!-- <div class="row bg-light border-top border-bottom border-2 mt-2">
+
+    </div>
+    </div>
+
+    <!-- <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
         
         </div>
       </div>
     </div> -->
 
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="sidebars.js"></script>
+    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="sidebars.js"></script>
   </main>
 </body>
 
