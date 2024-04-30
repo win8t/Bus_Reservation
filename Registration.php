@@ -60,12 +60,7 @@
                         </div>
 
 
-                        <div class="col">
-                            <div class="form-floating mb-4">
-                                <input type="number" id="form6Example6" class="form-control" name="contact" />
-                                <label class="form-label" for="form6Example6">Contact Number</label>
-                            </div>
-                        </div>
+                      
 
                     </div>
                 </div>
