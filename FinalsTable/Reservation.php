@@ -241,10 +241,83 @@
         </form>
       </div>
 
-      
+      <!-- Modal Bootstrap -->
 
       <div class="row bg-light border-top border-bottom border-2 mt-2">
-        <div class="col container-fluid">
+        <div class="col pb-2 mt-2">
+          <h4 class="hd-font mx-2">Reservation Details</h4>
+            <button type="button" id="formDetailsBtn" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#formDetails">
+            Add Reservation Details <!-- add icon -->
+            </button>
+
+          <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title fs-5" id="title">Reservation Details Form</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form action="Reservation.php" method="post">
+                <div class="modal-body">
+                  
+                      <div class="row form-outline">
+                    <!-- Reservation ID input -->
+                        <div class="col">
+                          <input type="number" name="reservation_id" id="" class="form-control" />
+                          <label class="form-label" for="">Reservation ID</label>
+                        </div>
+
+                        <div class=" col">
+                      <!-- Schedule ID input -->
+                          <input type="number" name="schedule_id" id="" class="form-control" />
+                          <label class="form-label" for="">Schedule ID</label>
+                        </div>
+                    </div>
+
+                    <!-- Passenger Name input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" id="" name="passenger_name" class="form-control" />
+                        <label class="form-label" for="">Passenger Name</label>
+                      </div>
+                      
+                    <!-- Contact Information input -->
+                      <div class="col">
+                        <input type="number" name="contact_information" id="" class="form-control" />
+                        <label class="form-label" for="">Contact Number</label>
+                      </div>
+                    </div>
+
+                    <!-- Seat Number input -->
+                    <div class="form-outline">
+                        <input type="text" id="" name="seat_number" class="form-control" />
+                        <label class="form-label" for="">Seat Number</label>
+                    </div>
+                      
+                    <!-- Reservation Date input -->
+                      <div class="row form-outline">
+                        <div class="col">
+                          <input type="datetime-local" name="reservation_date" id="" class="form-control" />
+                          <label class="form-label" for="">Reservation Date</label>
+                        </div>
+                    <!-- Status input -->
+                        <div class="col">
+                          <input type="text" name="status" id="" class="form-control" />
+                          <label class="form-label" for="">Status</label>
+                        </div>
+                      </div>
+
+                    <!-- Save button --> 
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="submit" name="add" class="btn btn-primary">Add</button>
+                </div>
+                </form> 
+              </div>
+            </div>
+          </div>
+ 
           <?php
           require_once "dbconnect.php";
 
@@ -255,13 +328,13 @@
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
               $selectsql = "Select * from tbl_reservation where 
-    reservation_id LIKE '%" . $search . "%' 
-    OR schedule_id LIKE '%" . $search . "%' 
-    OR passenger_name LIKE'%" . $search . "%' 
-    OR contact_information LIKE'%" . $search . "%' 
-    OR seat_number LIKE'%" . $search . "%' 
-    OR status LIKE'%" . $search . "%'  
-    OR reservation_date LIKE'%" . $search . "%' ";
+                reservation_id LIKE '%" . $search . "%' 
+                OR schedule_id LIKE '%" . $search . "%' 
+                OR passenger_name LIKE'%" . $search . "%' 
+                OR contact_information LIKE'%" . $search . "%' 
+                OR seat_number LIKE'%" . $search . "%' 
+                OR status LIKE'%" . $search . "%'  
+                OR reservation_date LIKE'%" . $search . "%' ";
 
             } else {
               $selectsql = "Select * from tbl_reservation";
@@ -270,7 +343,50 @@
             $selectsql = "Select * from tbl_reservation";
           }
 
+          //button function
+          if(isset($_POST['add'])){
+            $reservationID = $_POST['reservation_id'];
+            $scheduleID = $_POST['schedule_id'];
+            $passengerName = $_POST['passenger_name'];
+            $contact = $_POST['contact_information'];
+            $seatNum = $_POST['seat_number'];
+            $reservationDate = $_POST['reservation_date'];
+            $status = $_POST['status'];
+            
+            
+            $insertsql = "Insert into tbl_reservation (reservation_id,schedule_id,passenger_name,contact_information,seat_number,reservation_date,status)
+            values ($reservationID,$scheduleID,'$passengerName',$contact,'$seatNum','$reservationDate','$status')
+            ";
 
+            $result = $con->query($insertsql);
+            
+            
+            //check if successfully added
+            if ($result == True) {
+                ?>
+              <script> 
+                Swal.fire({
+                  title: "Do you want to add this user?",
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: "Add",
+                  denyButtonText: `Don't Add`
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire("Saved!", "", "success");
+                  } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                  }
+                });
+                  </script>
+                  <?php
+            } else {
+                //if not inserted, check query error details
+                echo $con->error;
+            }
+          } 
+          
           $result = $con->query($selectsql);
 
           //check table if there is a record
@@ -290,6 +406,7 @@
             echo "<th> Seat Number </th>";
             echo "<th> Reservation Date </th>";
             echo "<th> Status </th>";
+            echo "<th> Action </th>";
             echo "</tr>";
 
             while ($maltfielddata = $result->fetch_assoc()) {
@@ -301,6 +418,9 @@
               echo "<td>" . $maltfielddata['seat_number'] . "</td>";
               echo "<td>" . $maltfielddata['reservation_date'] . "</td>";
               echo "<td>" . $maltfielddata['status'] . "</td>";
+              echo "<td>
+              <button class='button edit-button' name='edit'>Edit</button>
+              <button class='button delete-button' name='delete'>Delete</button></td>";
             }
             echo "</table>";
           } else {
@@ -313,8 +433,7 @@
 
           ?>
 
-        </div>
-      </div>
+    </div>
     </div>
 
 
@@ -322,7 +441,7 @@
 
 
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="modal.js"></script>
   <script src="sidebars.js"></script>
   </main>
 </body>
