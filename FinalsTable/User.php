@@ -308,10 +308,6 @@
                         <label class="form-label" for="">Email</label>
                     </div>
 
-                    <div class="form-outline">
-                        <input type="num" name="contact" id="" class="form-control" />
-                        <label class="form-label" for="">Contact Number</label>
-                    </div>
                     <!-- Save button --> 
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
@@ -337,7 +333,6 @@
                 OR role LIKE'%" . $search . "%' 
                 OR username LIKE'%" . $search . "%' 
                 OR password LIKE'%" . $search . "%' 
-                OR contact LIKE'%" . $search . "%' 
                 OR email LIKE'%" . $search . "%' ";
 
             } else {
@@ -353,10 +348,9 @@
             $username = $_POST['username'];
             $password = $_POST['password'];
             $email = $_POST['email'];
-            $contact = $_POST['contact'];
             
-            $insertsql = "Insert into tbl_user (full_name,role,username,password,email,phone)
-            values ('$name','$role','$username','$password','$email','$contact')
+            $insertsql = "Insert into tbl_user (full_name,role,username,password,email)
+            values ('$name','$role','$username','$password','$email')
             ";
 
             $result = $con->query($insertsql);
