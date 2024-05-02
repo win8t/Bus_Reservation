@@ -14,7 +14,7 @@
     </script>
     <script src="bootstrap.min.js"></script>
 
-    <nav class="navbar navbar-expand-lg  fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-book">
         <div class="container-fluid">
             <a class="navbar-brand me-auto ml-1 pe-none" href="#" aria-disabled="true" tabindex="-1">
                 <img src="Alps.png" alt="" class="logo img-fluid">
@@ -28,24 +28,24 @@
                 </div>
 
                 <div class="offcanvas-body">
-                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-5 rw">
+                    <ul class="navbar-nav justify-content-center flex-grow-1 pe-5">
                         <li class="nav-item">
-                            <a class="nav-link active mx-lg-2 mx-auto" href="Home.php"><i class="bi bi-house-fill"></i> Home</a>
+                            <a class="nav-link mx-lg-2 mx-auto" href="Home.php"><i class="bi bi-house-fill"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2 mx-auto" aria-current="page" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
+                            <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
                         </li>
-                        <li class="nav-item">
+                        <!--       <li class="nav-item">
                             <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-shop"></i> Transit</a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
 
             </div>
-            <a href="Login.php" class="login-button"><i class="bi bi-person-circle"></i> Login</a>
+            <a href="Login.php" class="book-login-button"><i class="bi bi-person-circle"></i> Login</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -56,47 +56,47 @@
         <div class="carousel slide  carousel-dark" id="carouselDemo" data-bs-wrap="true" data-bs-ride="carousel">
             <div class="carousel-inner">
 
-                <div class="carousel-item active" data-bs-interval="5000">
-                    <img src="Alps1.jpg" class="w-100 h-100 d-block carousel-image">
+                <div class="carousel-item book-carousel-item active" data-bs-interval="5000">
+                    <img src="Alps1.jpg" class="w-100 h-100 d-block book-carousel-image">
                     <div class="carousel-caption">
-                        <h5 class="text-title">Welcome to ALPS Bus Reservation</h5>
+                        <h5 class="book-text-title">Welcome to ALPS Bus Reservation</h5>
                         <p class="text-bg">
                             It is the family's vision to grow and grow in the service of the commuting public.
 
                         </p>
                         <div class="row  caro-posi">
                             <div class="col">
-                                <a href="Login.php" class="caro-button"> Book Now</a>
+                                <a href="Login.php" class="book-caro-button"> Book Now</a>
                             </div>
                         </div>
 
                     </div>
 
                 </div>
-                <div class="carousel-item" data-bs-interval="5000">
-                    <img src="Alps2.jpg" class="w-100 h-100 d-block carousel-image">
+                <div class="carousel-item book-carousel-item" data-bs-interval="5000">
+                    <img src="Alps2.jpg" class="w-100 h-100 d-block book-carousel-image">
                     <div class="carousel-caption">
-                        <h5 class="text-title">Welcome to ALPS Bus Reservation</h5>
+                        <h5 class="book-text-title">Welcome to ALPS Bus Reservation</h5>
                         <p class="text-bg">
                             ALPS provide passenger accident insurance coverage to all passenger.
                         </p>
                         <div class="row  caro-posi">
                             <div class="col">
-                                <a href="Login.php" class="caro-button"> Book Now</a>
+                                <a href="Login.php" class="book-caro-button"> Book Now</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="carousel-item" data-bs-interval="5000">
-                    <img src="Alps3.jpg" class="w-100 h-100 d-block carousel-image">
+                <div class="carousel-item book-carousel-item" data-bs-interval="5000">
+                    <img src="Alps3.jpg" class="w-100 h-100 d-block book-carousel-image">
                     <div class="carousel-caption">
-                        <h5 class="text-title">Welcome to ALPS Bus Reservation</h5>
+                        <h5 class="book-text-title">Welcome to ALPS Bus Reservation</h5>
                         <p class="text-bg">
                             ALPS' vision is SERVICE and the company will continue to serve with burning commitment.
                         </p>
                         <div class="row  caro-posi">
                             <div class="col">
-                                <a href="Login.php" class="caro-button"> Book Now</a>
+                                <a href="Login.php" class="book-caro-button"> Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
 
             </button>
 
-            <div class="carousel-indicators">
+            <div class="carousel-indicators book-carousel-indicators">
                 <button type="button" class="active mx-2" data-bs-target="#carouselDemo" data-bs-slide-to="0">
                     <img src="Alps1.jpg" />
 
@@ -128,6 +128,47 @@
             </div>
         </div>
     </div>
+
+    <div class="book-fixed-container pt-4">
+        <div class="book-content-container1 pt-4">
+
+        </div>
+
+        <div class="content-container8  py-5 ">
+            <div class="d-flex container-fluid booking-container p-5 w-75">
+
+                <div class="row">
+                    <div class="col">
+
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="d content-container8">
+            <div class="d-flex flex-row row-12">
+                <div class="col-3 content-container8 bg-info p-2">
+
+                </div>
+                <div class="col-9 content-container8 bg-primary p-2">
+                   
+
+                       
+
+                    
+                        
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
 
 
 
