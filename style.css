@@ -43,7 +43,7 @@
 .login-button {
   font-family: FontReg;
 
-  background-color: #29317C;
+  background-color: #8d48a1;
   color: #ffffff;
 
   font-size: 20px;
@@ -51,12 +51,12 @@
   border-radius: 50px;
   text-decoration: none;
   transition: 0.3s background-color;
-
 }
+
 
 .login-button:hover {
   color: #000;
-  background-color: #EDE4FF;
+  background-color: #ffffff;
   font-family: FontBold;
 }
 
@@ -115,9 +115,11 @@
   overflow-y: hidden;
   object-fit: cover !important;
   background-size: cover;
+  opacity:60%;
 }
 
 .carousel-item:after {
+  z-index: -4;
   content: "";
   display: block;
   position: absolute;
@@ -126,7 +128,7 @@
   left: 0;
   right: 0;
   /*set overlay of carousel */
-  background-image: linear-gradient(to bottom, #f9ffff05 90%, #EDE4FF);
+  background-image: linear-gradient(to bottom, #000000 90%, #EDE4FF);
 
 }
 
@@ -148,22 +150,48 @@
   padding: 0;
 }
 
+
 /*Carousel Text Title*/
 .text-title {
-  font-size: 25px;
-  color: rgb(242, 255, 250);
-  font-family: FontBold;
+  text-shadow: 2px 2px 7px black;
+  font-size: 50px;
+    color: #EDE4FF;
+    font-family: FontBold;
 }
 
 /*Carousel Text Caption*/
 .text-bg {
-  color: rgb(226, 243, 239);
-  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.075), rgba(0, 0, 0, 0.164));
+  text-shadow: 1px 1px 5px black;
+  color: rgb(255, 255, 255);
+  font-size:30px;
   font-family: FontReg;
-
+  margin-bottom:3%;
+  text-align:center;
+ 
+  
+}
+.caro-button {
+ z-index: 10;
+  font-family: FontReg;
+  background-color: #8d48a1;
+  color: #ffffff;
+  font-size: 20px;
+  padding: 8px 20px;
   border-radius: 20px;
+  text-decoration: none;
+  transition: 0.3s background-color;
 }
 
+.caro-posi {
+  margin-bottom:12%;
+}
+
+.caro-button:hover {
+  color: #000;
+  background-color: #ffffff;
+  font-family: FontBold;
+  margin-bottom:40%
+}
 .carousel-indicators img {
   width: 80px;
   height: 50px;
@@ -180,7 +208,7 @@
 }
 
 .carousel-indicators button.active img {
-  border: 2px solid rgb(9, 107, 0);
+  border: 2px solid rgb(142, 59, 145);
 }
 
 .fixed-container {
@@ -200,7 +228,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
-  background-color: #EDE4FF;
+  background-color: #e8e4ff;
 
   width: 100%;
   float: left;
@@ -225,7 +253,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
-  background-image: linear-gradient(to right, #ffb1e849, #23919150, #5456eb71, #df99ff3f), url(About.png);
+  background-image: linear-gradient(to right, #baedf649, #3dffff4e, #54eb9339, #baedf649), url(About.png);
 
   width: 100%;
   float: left;
@@ -279,7 +307,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 3;
-  background-color: #ffffff;
+  background-color: #000000;
   padding: 5px;
   width: 100%;
   float: left;
@@ -343,7 +371,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
-  background-image: linear-gradient(to right, #ffb1e849, #23919150, #5456eb71, #df99ff3f), url(About.png);
+  background-image: linear-gradient(to right, #baedf649, #3dffff4e, #54eb9339, #baedf649), url(About.png);
   clip-path: polygon(0 0, calc(50% - 0.63px - 71.41px) 0, 50% calc(50px + 0.44px), calc(50% + 0.63px + 71.41px) 0, 100% 0, 100% 100%, 0 100%);
   margin-top: -48px;
   width: 100%;
@@ -446,6 +474,9 @@ svg {
   text-justify: inter-word;
 }
 
+.contact-text {
+  font-family: FontReg;
+}
 .about-content {
   background-image: linear-gradient(to right, #d8f7ef0c, #d8f7ef);
   padding: 10px;
