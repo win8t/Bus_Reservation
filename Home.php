@@ -30,10 +30,10 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-center flex-grow-1 pe-5 rw">
             <li class="nav-item">
-              <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="#"><i class="bi bi-house-fill"></i> Home</a>
+              <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="Home.php"><i class="bi bi-house-fill"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="Home.php"><i class="bi bi-journal-album"></i> Book</a>
+              <a class="nav-link mx-lg-2 mx-auto" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
@@ -61,28 +61,28 @@
           <div class="carousel-caption">
             <h5 class="text-title">Welcome to ALPS Bus Reservation</h5>
             <p class="text-bg">
-             It is the family's vision to grow and grow in the service of the commuting public.
-              
+              It is the family's vision to grow and grow in the service of the commuting public.
+
             </p>
             <div class="row  caro-posi">
               <div class="col">
-              <a href="Login.php" class="caro-button"> Book Now</a>
+                <a href="Login.php" class="caro-button"> Book Now</a>
               </div>
             </div>
-            
+
           </div>
-          
+
         </div>
         <div class="carousel-item" data-bs-interval="5000">
           <img src="Alps2.jpg" class="w-100 h-100 d-block carousel-image">
           <div class="carousel-caption">
             <h5 class="text-title">Welcome to ALPS Bus Reservation</h5>
             <p class="text-bg">
-            ALPS provide passenger accident insurance coverage to all passenger.
+              ALPS provide passenger accident insurance coverage to all passenger.
             </p>
             <div class="row  caro-posi">
               <div class="col">
-              <a href="Login.php" class="caro-button"> Book Now</a>
+                <a href="Login.php" class="caro-button"> Book Now</a>
               </div>
             </div>
           </div>
@@ -92,11 +92,11 @@
           <div class="carousel-caption">
             <h5 class="text-title">Welcome to ALPS Bus Reservation</h5>
             <p class="text-bg">
-             ALPS' vision is SERVICE and the company will continue to serve with burning commitment.
+              ALPS' vision is SERVICE and the company will continue to serve with burning commitment.
             </p>
             <div class="row  caro-posi">
               <div class="col">
-              <a href="Login.php" class="caro-button"> Book Now</a>
+                <a href="Login.php" class="caro-button"> Book Now</a>
               </div>
             </div>
           </div>
@@ -239,7 +239,7 @@
               </h2>
               <div id="collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                Stopovers are only permitted for BICOL route.
+                  Stopovers are only permitted for BICOL route.
                 </div>
               </div>
             </div>
@@ -251,7 +251,7 @@
               </h2>
               <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                 <div class="accordion-body">
-                Yes. All ALPS' air-conditioned buses are equipped with free WIFI connections, DVD Player, television, air conditioning, reclining seats with headrests, and curtain covered windows.
+                  Yes. All ALPS' air-conditioned buses are equipped with free WIFI connections, DVD Player, television, air conditioning, reclining seats with headrests, and curtain covered windows.
                 </div>
               </div>
             </div>
@@ -280,35 +280,35 @@
               </h2>
               <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                Any kinds of pets are strictly not allowed on board.
-              </div>
+                  Any kinds of pets are strictly not allowed on board.
+                </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                Are route maps available?
+                  Are route maps available?
                 </button>
               </h2>
               <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                Route maps are not available.
-              </div>
+                  Route maps are not available.
+                </div>
               </div>
             </div>
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                Does ALPS guarantee its departure and arrival times?
+                  Does ALPS guarantee its departure and arrival times?
                 </button>
               </h2>
               <div id="flush-collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
                 <div class="accordion-body">
-                No. However, ALPS makes its best effort to provide on-time service, 
-                it does not guarantee its departure and arrival times, which may be 
-                delayed by any number of factors, including weather, traffic, or mechanical 
-                problems.
-              </div>
+                  No. However, ALPS makes its best effort to provide on-time service,
+                  it does not guarantee its departure and arrival times, which may be
+                  delayed by any number of factors, including weather, traffic, or mechanical
+                  problems.
+                </div>
               </div>
             </div>
           </div>
@@ -333,21 +333,21 @@
         <div class="col-4 content-container10 ">
           <div class="row  text-center py-5">
 
-          <table class="table table-responsive w-75 mx-auto table-borderless contact-text">
+            <table class="table table-responsive w-75 mx-auto table-borderless contact-text">
               <tr>
-                <th >
+                <th>
                   <h5 class="about-text text-center ">Main Office</h5>
                 </th>
               </tr>
               <tr>
-                <td  class="text-center pb-3">
-                  <strong>  Want to visit our actual office? </strong>
+                <td class="text-center pb-3">
+                  <strong> Want to visit our actual office? </strong>
                 </td>
               </tr>
               <tr>
-                <td  class="text-end"><i class="bi bi-geo-fill h3"></i>   ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
+                <td class="text-end"><i class="bi bi-geo-fill h3"></i> ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
               </tr>
-          </table>
+            </table>
 
           </div>
         </div>
@@ -366,7 +366,7 @@
                   <strong> Any inquiries should have a return address or phone number. </strong>
                 </td>
               </tr>
-            
+
               <tr>
                 <th colspan="2">Phone</th>
               </tr>
@@ -395,9 +395,9 @@
 
         <div class="col-4 content-container10 ">
           <div class="row  text-center py-5">
-         
-          
-          <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
+
+
+            <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
               <tr>
                 <th colspan="3">
                   <h5 class="about-text text-center ">Visit Us!</h5>
@@ -409,14 +409,14 @@
                 </td>
               </tr>
               <tr>
-                <td  class="text-end"><a href="https://www.facebook.com/alpsthebus" target=”_blank”><i class="bi bi-facebook h1"></i></a></td>
+                <td class="text-end"><a href="https://www.facebook.com/alpsthebus" target=”_blank”><i class="bi bi-facebook h1"></i></a></td>
                 <td class="text-center"><a href="https://www.instagram.com/ilovealpsthebusph/?hl=en" target=”_blank”>
-                <i class="bi bi-instagram h1 insta"></i>
-              </a></td>
-                <td  class="text-start"><a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a></td>
+                    <i class="bi bi-instagram h1 insta"></i>
+                  </a></td>
+                <td class="text-start"><a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a></td>
               </tr>
-              </table>
-     
+            </table>
+
 
 
           </div>
@@ -426,7 +426,7 @@
     </div>
     <div class="row-12 content-container7 p-4">
 
-</div>
+    </div>
 
   </div>
 
