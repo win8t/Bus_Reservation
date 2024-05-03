@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Alps Booking Reservation</title>
-  <link href=styleg.css rel="stylesheet" />
+  <link href=style.css rel="stylesheet" />
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -35,7 +35,7 @@
             <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
             </li>
-           <!-- <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
             </li>
             <li class="nav-item">
@@ -169,12 +169,12 @@
     <div class="d-flex flex-row content-container7 align-items-stretch">
 
       <div class="content-container3 bg-danger-subtle p-4 col-2 text-start shadow-lg corp-align" id="test">
-     
+
         <h2 class="text-wrap  cont-text text-break ">Corporate Values</h2>
         <p class="crop-para">Learn about the values that we at ALPS abide by at all times.</p>
-        
 
-       
+
+
 
 
       </div>
@@ -383,10 +383,6 @@
               <tr>
                 <td> info@alpsthebus.com</td>
               </tr>
-
-
-
-
             </table>
 
           </div>
