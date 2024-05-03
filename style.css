@@ -635,7 +635,7 @@ svg {
 
 .book-login-button:hover {
   color: #000;
-  background-color: #ffffff;
+  background-color: #c1f3ff;
   font-family: FontBold;
 }
 
@@ -660,7 +660,7 @@ svg {
 
 .book-caro-button:hover {
   color: #000;
-  background-color: #ffffff;
+  background-color: #c1f3ff;
   font-family: FontBold;
 }
 
@@ -787,7 +787,7 @@ svg {
 }
 
 .term-card-text{
-  background-color: #e6f2f8;
+  background-color: #e6f2f8 !important; 
   font-family:FontReg;
   padding: 10px;
   text-align: center;
@@ -797,7 +797,7 @@ svg {
 .term-card:hover {
   transform: scale(1.05);
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-  z-index:10;
+  z-index:30;
 }
 
 
@@ -815,3 +815,176 @@ svg {
   object-fit: cover;
   z-index: 20;
 }
+
+.term-button {
+  font-family: FontReg;
+
+  background-color: #48a198;
+  color: #ffffff;
+
+  font-size: 17px;
+  padding: 8px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: 0.3s background-color;
+}
+
+
+.term-button:hover {
+  color: #000;
+  background-color: #c1f3ff;
+  font-family: FontBold;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+#s1:checked~.slidecards #slide2,
+#s2:checked~.slidecards #slide3,
+#s3:checked~.slidecards #slide1 {
+  padding:10px;
+  transform: translate3d(-70%, 0, -220px);
+  --current-color1: #eceaed;
+  --currente-color2: #404457;
+}
+#s1:checked~.slidecards #slide3,
+#s2:checked~.slidecards #slide1,
+#s3:checked~.slidecards #slide2 {
+  padding:10px;
+  transform: translate3d(55%, 0, -120px);
+  --current-color1: #eceaed;
+  --currente-color2: #404457;
+}
+#s1:checked~.slidecards #slide1,
+#s2:checked~.slidecards #slide2,
+#s3:checked~.slidecards #slide3 {
+  padding:10px;
+  transform: translate3d(0, 0, 0);
+  --current-color1: #fad00c;
+  --currente-color2: #eceaed;
+}
+
+.container-slider {
+  width:100%;
+  height:100%;
+  max-width: 600px;
+  max-height: 600px;  
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  flex-direction: column;
+}
+
+.slidecards {
+position: relative;
+height:500px;
+width:430px;
+margin-bottom: 20px;
+perspective: 1000px;
+transform-style: preserve-3d;
+}
+
+.slidecards label {
+  position:absolute;
+  width: 430px;
+  left:0;
+  right: 0;
+  margin:auto;
+  cursor: pointer;
+  transition: transform 0.55s ease;
+}
+
+.slidecards .slidecard {
+  position:relative;
+  height:100%;
+  background-color: #29317C ;
+  border-radius: 10px;
+  padding: 30px 35px;
+}
+
+.slidecards .imageslide {
+  display:flex;
+  justify-content: space-between;
+}
+
+.slidecards .imageslide img {
+  border-radius: 5px;
+  box-shadow: 15px 15px 40px rgba(0, 0, 0, 50%);
+  margin-top: 23px;
+  width: 86%;
+  height:220px;
+  object-fit: cover;
+  transition: all .7s;
+
+}
+
+
+.slidecards .imageslide img:hover {
+  transform: scale(1.05);
+}
+
+.slidecards .imageslide .dots {
+  text-align:center;
+
+}
+
+.dots div {
+  width:10px;
+  height:10px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+.dots div:nth-child(1) {
+  background-color: var(--current-color1) ;
+}
+.dots div:nth-child(2) {
+  background-color: #5b85f9 ;
+}
+.dots div:nth-child(3) {
+  background-color: #000 ;
+}
+
+.slidecard .infos {
+  display:block;
+  text-align: end;
+  padding-top: 60px;
+}
+
+.slidecard .infos span {
+  display:block;
+  font-family: FontReg;
+}
+
+.infos .name {
+  font-family: FontBold;
+  font-size: 20px;
+  color:var(--current-color1);
+  letter-spacing: 8px;
+  margin-bottom: 20px;
+  padding-left: 10%;
+  transition: all .6s ease;
+}
+
+.slidecard .content {
+  font-size: 15.5px;
+  color: #eceaed;
+  letter-spacing: 3px;
+}
+
+.slidecard {
+display:inline-block;
+  border-radius: 5px;
+  
+  align-items: center;
+  justify-content: center;
+  color:#fff;
+  transition: all .7s ease;
+}
+
+.slidecard:hover {
+  transform: scale(1.05);
+}
+
