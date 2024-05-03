@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Alps Booking Reservation</title>
-    <link href=style.css rel="stylesheet" />
+    <link href=styleg.css rel="stylesheet" />
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -150,22 +150,119 @@
 
         <div class="d content-container8">
             <div class="d-flex flex-row row-12">
-                <div class="col-3 content-container8 bg-info p-2">
-
+                <div class="col-2 content-container7 bg-info-subtle p-5 bus-align">
+                    <h2>Bus Types</h2>
+                    <p class="about-para">Different bus types to accomodate your every need.</p>
                 </div>
-                <div class="col-9 content-container8 bg-primary p-2">
-                   
+                <div class="col-10 content-container8 bus-types">
 
-                       
+                    <div class="card-group bus-card-group">
+                        <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
+                            <img src="Executive.png" class="card-img-top" alt="...">
+                            <div class="card-body bus-card-body">
+                                <h5 class="card-title bus-card-title">Executive</h5>
+                                <hr>
+                                <p class="card-text bus-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
 
-                    
-                        
+                        </div>
+                        <div class="card bus-card border-top-0 border-bottom-0">
+                            <img src="ExecutiveSolo.png" class="card-img-top" alt="...">
+                            <div class="card-body bus-card-body">
+                                <h5 class="card-title bus-card-title">Executive Solo</h5>
+                                <hr>
+                                <p class="card-text bus-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
+
+                        </div>
+                        <div class="card bus-card border-top-0 border-bottom-0">
+                            <img src="ExecutiveClass.png" class="card-img-top border-0" alt="...">
+                            <div class="card-body bus-card-body">
+                                <h5 class="card-title bus-card-title">Executive Class</h5>
+                                <hr>
+                                <p class="card-text bus-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
+
+                        </div>
+                        <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
+                            <img src="ExecutiveLuxury.png" class="card-img-top" alt="...">
+                            <div class="card-body bus-card-body">
+                                <h5 class="card-title bus-card-title">Executive Luxury</h5>
+                                <hr>
+                                <p class="card-text bus-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="d content-container8">
+                <div class="d-flex flex-row row-12">
+                    <div class="col-7 content-container8 bg-info-subtle">
+
+                
+
+
+                    </div>
+                    <div class="col-5 content-container8 bg-info-subtle p-5 bus-align">
+                        <h2 class="text-start">Bus Routes</h2>
+                        <p class="about-para text-start">Different bus types to accomodate your every need.</p>
                     </div>
 
                 </div>
             </div>
+            <div class="d content-container8">
+                <div class="d-flex flex-row row-12">
+                    <div class="col-10 content-container8 bg-info-subtle">
 
+                    <div class="card-group term-card-group">
+                        <div class="card term-card border-top-0 border-bottom-0 border-right-0">
+                            <img src="Executive.png" class="card-img-top" alt="...">
+                            <div class="card-body term-card-body">
+                                <h5 class="card-title term-card-title">Aurora Cubao</h5>
+                                <hr>
+                                <p class="card-text term-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
+
+                        </div>
+                        <div class="card term-card border-top-0 border-bottom-0">
+                            <img src="ExecutiveSolo.png" class="card-img-top" alt="...">
+                            <div class="card-body term-card-body">
+                                <h5 class="card-title term-card-title">PITX</h5>
+                                <hr>
+                                <p class="card-text term-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
+
+                        </div>
+                        <div class="card term-card border-top-0 border-bottom-0">
+                            <img src="ExecutiveClass.png" class="card-img-top border-0" alt="...">
+                            <div class="card-body term-card-body">
+                                <h5 class="card-title term-card-title">Tabaco</h5>
+                                <hr>
+                                <p class="card-text term-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
+
+                        </div>
+                        <div class="card term-card border-top-0 border-bottom-0 border-right-0">
+                            <img src="ExecutiveLuxury.png" class="card-img-top" alt="...">
+                            <div class="card-body term-card-body">
+                                <h5 class="card-title term-card-title">Legazpi</h5>
+                                <hr>
+                                <p class="card-text term-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    </div>
+                    <div class="col-2 content-container7 bg-info-subtle p-5 bus-align">
+                        <h2 class="text-start">Bus Terminal</h2>
+                        <p class="about-para text-start">Different bus types to accomodate your every need.</p>
+                    </div>
+
+                </div>
+            </div>
         </div>
+
+    </div>
 
     </div>
 

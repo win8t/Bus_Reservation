@@ -335,7 +335,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
-  background-color: white;
+ 
   transition: all 0.5s;
   width: 100%;
   float: left;
@@ -351,6 +351,7 @@
 
   width: 100%;
   float: left;
+
 }
 
 .content-container6 {
@@ -469,6 +470,14 @@ svg {
 
 }
 
+.corp-align {
+  font-family: FontReg;
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
 .about-para {
   font-family: FontReg;
   font-size: 20px;
@@ -513,6 +522,7 @@ svg {
 
 .content-container3:hover {
   transform: scale(1.02);
+  
 }
 
 .banner-area {
@@ -681,7 +691,7 @@ svg {
   position: absolute;
   z-index: -1;
   width: 100%;
-  height: 800px;
+  height: 600px;
   background-position: center;
   background-size: cover;
   background-color: #DCE7FA;
@@ -710,4 +720,98 @@ svg {
   box-shadow: 0 2px 4px 0 rgba(0.1, 0.1, 0.1, .5);
   mask-image: linear-gradient(to top, black, transparent);
   -webkit-mask-image: linear-gradient(black 20%, transparent);
+}
+.container {
+  width:100%;
+  height:100%;
+  max-width: 600px;
+  max-height: 600px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+  flex-direction:column;
+  margin-bottom: 10px;
+}
+
+.bus-card, .bus-card-group {
+  border: none; /* Remove border */
+  border-radius: 0; /* Remove rounded corners */
+  transition: all 0.5s;
+}
+
+.bus-card-title {
+  padding: 10px;
+  background: #b4ffe7;
+  font-family:FontBold;
+  text-align: center;
+  border-radius: 10px;
+}
+
+
+.bus-card-body{
+  background-color: rgb(255, 255, 255);
+}
+
+.bus-card-text{
+  background-color: #e6f8f3;
+  font-family:FontReg;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.bus-card:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  z-index:10;
+}
+
+.term-card, .term-card-group {
+  border: none; /* Remove border */
+  border-radius: 0; /* Remove rounded corners */
+  transition: all 0.5s;
+}
+
+.term-card-title {
+  padding: 10px;
+  background: #b4ebff;
+  font-family:FontBold;
+  text-align: center;
+  border-radius: 10px;
+}
+
+
+.term-card-body{
+  background-color: rgb(255, 255, 255);
+}
+
+.term-card-text{
+  background-color: #e6f2f8;
+  font-family:FontReg;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.term-card:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+  z-index:10;
+}
+
+
+.bus-align {
+  font-family: FontBold;
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.card-img-bottom {
+  width: 100%;
+  height: 15vw;
+  object-fit: cover;
+  z-index: 20;
 }

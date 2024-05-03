@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title> Alps Booking Reservation</title>
-  <link href=style.css rel="stylesheet" />
+  <link href=styleg.css rel="stylesheet" />
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -168,10 +168,13 @@
 
     <div class="d-flex flex-row content-container7 align-items-stretch">
 
-      <div class="content-container3 bg-danger-subtle p-4 col-2 text-start shadow-lg" id="test">
+      <div class="content-container3 bg-danger-subtle p-4 col-2 text-start shadow-lg corp-align" id="test">
+     
+        <h2 class="text-wrap  cont-text text-break ">Corporate Values</h2>
+        <p class="crop-para">Learn about the values that we at ALPS abide by at all times.</p>
+        
 
-        <h2 class="text-wrap  about-text text-break ">Corporate Values</h2>
-        <p class="about-para">Learn about the values that we at ALPS abide by at all times.</p>
+       
 
 
       </div>
@@ -226,7 +229,7 @@
 
       <p class="text-center about-para bg-info-subtle">Have a question? It may already have been answered here.</p>
 
-      <div class="d-flex flex-row container bg bg-info-subtle py-3 w-75 ">
+      <div class="d-flex flex-row bg-info-subtle py-5 w-75  me-auto mx-auto ">
         <div class="col-6 content-container8 p-5 rounded">
 
 
