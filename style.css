@@ -1,3 +1,10 @@
+body {
+  padding:0;
+  margin:0;
+  width:100%;
+  max-height: 100vh; /* Set maximum height to 100% of the viewport height */
+  overflow-y: auto;
+}
 @font-face {
   font-family: Font;
   src: url(Chopin-Trial-Black.woff);
@@ -234,7 +241,6 @@
 
   width: 100%;
   float: left;
-  background-attachment: fixed;
 }
 
 .content-container10 {
@@ -256,12 +262,9 @@
   overflow-y: hidden;
   z-index: 5;
   background-image: linear-gradient(to right, #baedf649, #3dffff4e, #54eb9339, #baedf649), url(About.png);
-
   width: 100%;
   float: left;
   background-attachment: fixed;
-
-
 }
 
 .content-container p {
@@ -309,7 +312,7 @@
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 3;
-  background-color: #000000;
+  background-color: #ffffff;
   padding: 5px;
   width: 100%;
   float: left;
@@ -525,45 +528,67 @@ svg {
   
 }
 
+/*Login */
 .banner-area {
   height: 100vh;
-  animation: animate 5s cubic-bezier(0.42, 0, 0.58, 1) infinite;
-
+  animation: animate 15s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  background-color: #c5fff1;
+  transition: all 0.5s ease-in-out;
 }
-
+.banner-area:hover {
+  transform: scale(1.08);
+  transform-origin: -20%;
+}
+/*
 @keyframes animate {
   0% {
-    background-color: #c5bef9;
+    background-color: #e1defb;
   }
 
-  20% {
-    background-color: #bdb4ff;
+  25% {
+    background-color: #efdefe;
   }
 
-  40% {
-    background-color: #b7adff;
+  50% {
+    background-color: #e1ddfa;
   }
 
-  60% {
-    background-color: #b4aaf9;
+  75% {
+    background-color: #d8eff7;
   }
-
-  80% {
-    background-color: #ada2ff;
-  }
-
   100% {
-    background-color: #c5bef9;
+    background-color: #e1defb;
   }
+
+
+}*/
+
+.login-content-container7 {
+  position: relative;
+  /*margin-top: 30px;*/
+  overflow-x: hidden;
+  overflow-y: hidden;
+  z-index: 5;
+  background-image: linear-gradient(to right, #00000049, #3dffff43, #54eb934b, #00000049),url("AlpsLogin.jpg");
+  width: 100%;
+  float: left;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
 
 }
 
-.container-login {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
+.banner-shadow {
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
 
 .img-login {
@@ -691,22 +716,22 @@ svg {
   position: absolute;
   z-index: -1;
   width: 100%;
-  height: 600px;
+  height: 100px;
   background-position: center;
   background-size: cover;
   background-color: #DCE7FA;
   background-attachment: fixed;
 }
 
-/*
+
 .booking-container {
-  background-image: linear-gradient(to top, #d6ddff 10%,#c4fff5);
-  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+  background-color: #e6f8f3;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
   position:relative;
   
   
 }
-*/
+
 .book-content-container1 {
 
   position: relative;
@@ -721,18 +746,7 @@ svg {
   mask-image: linear-gradient(to top, black, transparent);
   -webkit-mask-image: linear-gradient(black 20%, transparent);
 }
-.container {
-  width:100%;
-  height:100%;
-  max-width: 600px;
-  max-height: 600px;
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  transform-style: preserve-3d;
-  flex-direction:column;
-  margin-bottom: 10px;
-}
+
 
 .bus-card, .bus-card-group {
   border: none; /* Remove border */
@@ -991,3 +1005,22 @@ display:inline-block;
   transform: scale(1.05);
 }
 
+.book-content-container8 {
+
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  z-index: 5;
+  background-color: #DCE7FA;
+
+  width: 100%;
+  float: left;
+
+}
+
+.book-content-container8 p {
+  font-family: FontBold;
+  margin: 1%;
+  font-weight: bold;
+  color: #000000;
+}

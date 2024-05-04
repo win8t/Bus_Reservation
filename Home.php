@@ -139,13 +139,13 @@
     </div>
 
     <!-- blender -->
-    <div class="content-container1 py-3 bg-info-subtle"></div>
+    <div class="content-container1 py-3 "></div>
 
 
 
 
     <div class="d-flex flex-row content-container align-items-stretch">
-      <div class="col-6 content-container2 bg-info-subtle  py-4">
+      <div class="col-6 content-container2   py-4">
         <h2 class="about-text text-center pb-3 text-success"> Vision </h2>
         <div class="line w-50 mb-4 mx-auto"></div>
         <div class="rounded about-content p-5">
@@ -155,7 +155,7 @@
       </div>
 
 
-      <div class="col-6 content-container2 bg-info-subtle py-4">
+      <div class="col-6 content-container2  py-4">
         <h2 class="about-text text-center pb-3 text-success"> Mission </h2>
         <div class="line w-50 mb-4 mx-auto"></div>
         <div class="rounded about-content1 p-5 ">
