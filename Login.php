@@ -123,10 +123,10 @@ if (isset($_POST['sub'])) {
         $role = $fielddata['role'];
 
 
-        if ($role == "Admin") {
-            header("location:Booking.php");
+        if ($role == "Admin" || $role == "Employee") {
+            header("location: Booking.php");
         } else if ($role == "Customer") {
-            header("location:Home.php");
+            header("location: Home.php");
         } else { ?>
                <script>
             Swal.fire({
@@ -136,7 +136,7 @@ if (isset($_POST['sub'])) {
                 timer: 1500
             });
         </script>
-    <?php    }
+    <?php }
     } else { ?>
          <script>
             Swal.fire({
