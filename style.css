@@ -897,6 +897,7 @@ transform-style: preserve-3d;
 }
 
 .slidecards .slidecard {
+  
   position:relative;
   height:100%;
   background-color: #29317C ;
@@ -910,6 +911,7 @@ transform-style: preserve-3d;
 }
 
 .slidecards .imageslide img {
+  
   border-radius: 5px;
   box-shadow: 15px 15px 40px rgba(0, 0, 0, 50%);
   margin-top: 23px;
@@ -950,7 +952,7 @@ transform-style: preserve-3d;
 .slidecard .infos {
   display:block;
   text-align: end;
-  padding-top: 60px;
+  padding-top: 40px;
 }
 
 .slidecard .infos span {
@@ -975,12 +977,13 @@ transform-style: preserve-3d;
 }
 
 .slidecard {
+  border:3px solid;
 display:inline-block;
   border-radius: 5px;
   
   align-items: center;
   justify-content: center;
-  color:#fff;
+  color:#ffffff;
   transition: all .7s ease;
 }
 
