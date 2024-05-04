@@ -381,6 +381,28 @@
                 echo $con->error;
             }
           } 
+          // if(isset($_POST['delete'])){
+          //   $name = $_POST['full_name'];
+          //   $deletesql = "DELETE FROM 'db_bus'.'tbl_user' WHERE 'tbl_user'.'full_name' = '$name'";
+
+          //   $deleteresult = $con->query($deletesql);
+          //   $rowsaffected = $con->query($deleteresult);
+
+          //     if(!$rowsaffected)
+          //       {
+          //           echo "Record Doesnt Exist";
+          //       }
+
+          //       elseif($deleteresult)
+          //       {   
+          //           echo "Record has been deleted";
+          //       }
+          //       else{
+
+          //           echo "Your request could not be processed due to technical Issues from our part. We regret the inconvenience caused";
+          //       }
+
+          // }
   
           $result = $con->query($selectsql);
 
@@ -406,10 +428,10 @@
               echo "<td>" . $maltfielddata['role'] . "</td>";
               echo "<td>" . $maltfielddata['username'] . "</td>";
               echo "<td>" . $maltfielddata['password'] . "</td>";
-              echo "<td>" . $maltfielddata['email'] . "</td>";
-              echo "<td>
-              <button class='button edit-button' name='edit'>Edit</button>
-              <button class='button delete-button' name='delete'>Delete</button></td>";
+              echo "<td>" . $maltfielddata['email'] . "</td>";?>
+              <td>
+              <button class="btn btn-primary edit-button" name="edit">Edit</button>
+              <button class="btn btn-danger delete-button" name="delete">Delete</button></td><?php
             }
             echo "</table>";
           } else {
