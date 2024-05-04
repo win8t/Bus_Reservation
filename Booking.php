@@ -147,7 +147,7 @@
 
 
         </div>
-    <!-- Bus Types -->
+        <!-- Bus Types -->
         <div class="d content-container8">
             <div class="d-flex flex-row row-12">
                 <div class="col-2 content-container7 bg-info-subtle p-5 bus-align">
@@ -162,7 +162,20 @@
                             <div class="card-body bus-card-body">
                                 <h5 class="card-title bus-card-title">Executive</h5>
                                 <hr>
-                                <p class="card-text bus-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                <div class="card-text bus-card-text">
+                                    <div class="row">
+                                        <div class="col">2x2 Bus</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">Reclining Seats</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">Airconditioned</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">48 Seats</div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -171,7 +184,20 @@
                             <div class="card-body bus-card-body">
                                 <h5 class="card-title bus-card-title">Executive Solo</h5>
                                 <hr>
-                                <p class="card-text bus-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                <div class="card-text bus-card-text">
+                                    <div class="row">
+                                        <div class="col">1x1x1 Bus</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">Reclining Seats</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">Airconditioned</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">32 Seats</div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -180,7 +206,21 @@
                             <div class="card-body bus-card-body">
                                 <h5 class="card-title bus-card-title">Executive Class</h5>
                                 <hr>
-                                <p class="card-text bus-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                <div class="card-text bus-card-text">
+                                    <div class="row">
+                                        <div class="col">2x2 Bus</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">Reclining Seats</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">Airconditioned</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">40 Seats</div>
+                                    </div>
+
+                                </div>
                             </div>
 
                         </div>
@@ -189,14 +229,28 @@
                             <div class="card-body bus-card-body">
                                 <h5 class="card-title bus-card-title">Executive Luxury</h5>
                                 <hr>
-                                <p class="card-text bus-card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+                                <div class="card-text bus-card-text">
+                                    <div class="row">
+                                        <div class="col">2x2 Bus with Restroom</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">Reclining Seats</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">Airconditioned</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col">36 Seats</div>
+                                    </div>
+
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-        <!-- Routes -->
+            <!-- Routes -->
             <div class="content-container8">
                 <div class="d-flex flex-row row-12">
                     <div class="col-12 content-container8 bg-info-subtle bus-align pt-5">
@@ -216,10 +270,10 @@
 
 
                             <div class="slidecards">
-                                <label for="s1" id ="slide1">
+                                <label for="s1" id="slide1">
                                     <div class="slidecard">
                                         <div class="imageslide">
-                                            <img src="Executive.png" alt="">
+                                            <img src="Bicol.png" alt="">
                                             <div class="dots">
                                                 <div class=""></div>
                                                 <div class=""></div>
@@ -229,19 +283,19 @@
                                         <div class="infos">
                                             <span class="name">Bicol - Manila</span>
                                             <span class="content">
-                                            Naga to PITX 
+                                                Naga to PITX
                                             </span>
                                             <span class="content">
-                                            Naga to Aurora Cubao
+                                                Naga to Aurora Cubao
                                             </span>
                                         </div>
                                     </div>
                                 </label>
 
-                                <label for="s2" id ="slide2">
+                                <label for="s2" id="slide2">
                                     <div class="slidecard">
                                         <div class="imageslide">
-                                            <img src="ExecutiveLuxury1.png" alt="">
+                                            <img src="Bicol1.png" alt="">
                                             <div class="dots">
                                                 <div class=""></div>
                                                 <div class=""></div>
@@ -251,26 +305,26 @@
                                         <div class="infos">
                                             <span class="name">Aurora Cubao - Bicol</span>
                                             <span class="content">
-                                            Aurora Cubao to Gubat
+                                                Aurora Cubao to Gubat
                                             </span>
                                             <span class="content">
-                                            Aurora Cubao to Legazpi
-                                          </span>
-                                            <span class="content">
-                                            Aurora Cubao to Tabaco
-                                    
+                                                Aurora Cubao to Legazpi
                                             </span>
                                             <span class="content">
-                                            Aurora Cubao to Nabua
+                                                Aurora Cubao to Tabaco
+
+                                            </span>
+                                            <span class="content">
+                                                Aurora Cubao to Nabua
                                             </span>
                                         </div>
                                     </div>
                                 </label>
 
-                                <label for="s3" id ="slide3">
+                                <label for="s3" id="slide3">
                                     <div class="slidecard">
                                         <div class="imageslide">
-                                            <img src="ExecutiveClass.png" alt="">
+                                            <img src="Bicol2.png" alt="">
                                             <div class="dots">
                                                 <div class=""></div>
                                                 <div class=""></div>
@@ -286,13 +340,13 @@
                                                 PITX to Iriga
                                             </span>
                                             <span class="content">
-                                            PITX to Legazpi
+                                                PITX to Legazpi
                                             </span>
                                             <span class="content">
-                                            PITX to Naga
+                                                PITX to Naga
                                             </span>
                                             <span class="content">
-                                            PITX to Tabaco
+                                                PITX to Tabaco
                                             </span>
                                         </div>
                                     </div>
@@ -301,15 +355,15 @@
 
                         </div>
                     </div>
-                   
+
 
                 </div>
             </div>
-            
 
 
 
-        <!-- Terminal -->
+
+            <!-- Terminal -->
             <div class="d content-container8">
                 <div class="d-flex flex-row row-12">
                     <div class="col-10 content-container8 bg-info-subtle">
@@ -320,26 +374,23 @@
                                 <div class="card-body term-card-body">
                                     <h5 class="card-title term-card-title">Aurora Cubao</h5>
                                     <hr>
-                                    <p class="card-text term-card-text px-3">
-
-                                    <table>
-                                        <tr>
-                                            <th>Location</th>
-                                            <td colspan="2" class="px-3">1019, 1102 Aurora Blvd, Project 3, Quezon City, Metro Manila</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Contact</th>
-                                            <td class="px-3">0998-8842382</td>
-                                            <td class="px-3">0943-1376974</td>
-                                        </tr>
-                                    </table>
-
-                                    </p>
-                                    <div class="row text-center mb-3">
-                                        <div class="col">
-                                            <a href="https://goo.gl/maps/aoUzJoUdUReXCknt5"  target= "_blank" class="term-button">View Location</a>
+                                    <div class="card-text term-card-text mb-3 text-start">
+                                        <div class="row">
+                                            <div class="col-3"><strong>Location</strong></div>
+                                            <div class="col-9"> 1019, 1102 Aurora Blvd, Project 3, Quezon City, Metro Manila </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"> <strong>Contact</strong> </div>
+                                            <div class="col-5"> 0998-8842382 </div>
+                                            <div class="col-4"> 0943-1376974 </div>
                                         </div>
                                     </div>
+                                    <div class="row text-center mb-3">
+                                        <div class="col">
+                                            <a href="https://goo.gl/maps/aoUzJoUdUReXCknt5" target="_blank" class="term-button">View</a>
+                                        </div>
+                                    </div>
+
                                 </div>
 
                             </div>
@@ -348,23 +399,21 @@
                                 <div class="card-body term-card-body">
                                     <h5 class="card-title term-card-title">PITX</h5>
                                     <hr>
-                                    <p class="card-text term-card-text">
-                                    <table>
-                                        <tr>
-                                            <th>Location</th>
-                                            <td colspan="2" class="px-3">Tambo, Parañaque, <br> Metro Manila</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Contact</th>
-                                            <td class="px-3">0939-9252460</td>
-                                            <td class="px-3">0933-8122039</td>
-                                        </tr>
-                                    </table>
+                                    <div class="card-text term-card-text mb-3 p-2 text-start">
+                                        <div class="row">
+                                            <div class="col-3"><strong>Location</strong></div>
+                                            <div class="col-9"> Tambo, Parañaque, <br>Metro Manila </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"> <strong>Contact</strong> </div>
+                                            <div class="col-5">0939-9252460</div>
+                                            <div class="col-4">0933-8122039</div>
+                                        </div>
 
-                                    </p>
+                                    </div>
                                     <div class="row text-center mb-3">
                                         <div class="col">
-                                            <a href="https://goo.gl/maps/EhZFkdnz5T5GXjx87" target= "_blank" class="term-button">View Location</a>
+                                            <a href="https://goo.gl/maps/EhZFkdnz5T5GXjx87" target="_blank" class="term-button">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -375,22 +424,21 @@
                                 <div class="card-body term-card-body">
                                     <h5 class="card-title term-card-title">Tabaco</h5>
                                     <hr>
-                                    <p class="card-text term-card-text">
-                                    <table>
-                                        <tr>
-                                            <th>Location</th>
-                                            <td colspan="2" class="px-3">Brgy Pawa, <br>Tabaco City, Albay</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Contact</th>
-                                            <td class="px-3">0923-7333077</td>
-                                            <td class="px-3">0998-5474973</td>
-                                        </tr>
-                                    </table>
-                                    </p>
+                                    <div class="card-text term-card-text mb-3 text-start">
+                                        <div class="row">
+                                            <div class="col-3"><strong>Location</strong></div>
+                                            <div class="col-9"> Brgy Pawa, Tabaco City, <br>Albay</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"> <strong>Contact</strong> </div>
+                                            <div class="col-5"> 0923-7333077 </div>
+                                            <div class="col-4"> 0998-5474973 </div>
+                                        </div>
+
+                                    </div>
                                     <div class="row text-center mb-3">
                                         <div class="col">
-                                            <a href="https://goo.gl/maps/64WNqZBBK2PENfXDA" target= "_blank" class="term-button">View Location</a>
+                                            <a href="https://goo.gl/maps/64WNqZBBK2PENfXDA" target="_blank" class="term-button">View</a>
                                         </div>
                                     </div>
                                 </div>
@@ -401,26 +449,25 @@
                                 <div class="card-body term-card-body">
                                     <h5 class="card-title term-card-title">Legazpi</h5>
                                     <hr>
-                                    <p class="card-text term-card-text">
-                                    <table>
-                                        <tr>
-                                            <th>Location</th>
-                                            <td colspan="2" class="px-3">LKY Terminal beside SM City Legazpi, Albay</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Contact</th>
-                                            <td class="px-3">0939-9270533</td>
-                                            <td class="px-3">0923-7333076</td>
-                                        </tr>
-                                    </table>
-                                    
-                                    </p>
+                                    <div class="card-text term-card-text mb-3 text-start">
+                                        <div class="row">
+                                            <div class="col-3"><strong>Location</strong></div>
+                                            <div class="col-9"> LKY Terminal beside SM City Legazpi, Albay</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-3"> <strong>Contact</strong> </div>
+                                            <div class="col-5"> 0939-9270533 </div>
+                                            <div class="col-4"> 0923-7333076 </div>
+                                        </div>
+                                 
+
+                                    </div>
                                     <div class="row text-center mb-3">
                                         <div class="col">
-                                            <a href="https://goo.gl/maps/Xzt21R96kxvCocsy5" target= "_blank" class="term-button">View Location</a>
+                                            <a href="https://goo.gl/maps/Xzt21R96kxvCocsy5" target="_blank" class="term-button">View</a>
                                         </div>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -434,107 +481,107 @@
                 </div>
             </div>
 
-            
+
 
         </div>
         <div class="row-12 content-container4 pt-4 mt-5">
-      <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
-      <p class="text-center about-para bg-info-subtle py-2">We are here to assist you!</p>
+            <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
+            <p class="text-center about-para bg-info-subtle py-2">We are here to assist you!</p>
 
-      <div class="d-flex flex-row content-container align-items-stretch">
-        <div class="col-4 content-container10 ">
-          <div class="row  text-center py-5">
+            <div class="d-flex flex-row content-container align-items-stretch">
+                <div class="col-4 content-container10 ">
+                    <div class="row  text-center py-5">
 
-            <table class="table table-responsive w-75 mx-auto table-borderless contact-text">
-              <tr>
-                <th>
-                  <h5 class="about-text text-center ">Main Office</h5>
-                </th>
-              </tr>
-              <tr>
-                <td class="text-center pb-3">
-                  <strong> Want to visit our actual office? </strong>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-end"><i class="bi bi-geo-fill h3"></i> ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
-              </tr>
-            </table>
+                        <table class="table table-responsive w-75 mx-auto table-borderless contact-text">
+                            <tr>
+                                <th>
+                                    <h5 class="about-text text-center ">Main Office</h5>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td class="text-center pb-3">
+                                    <strong> Want to visit our actual office? </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-end"><i class="bi bi-geo-fill h3"></i> ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
+                            </tr>
+                        </table>
 
-          </div>
+                    </div>
+                </div>
+                <div class="col-4 content-container10 ">
+                    <div class="row  text-center py-5">
+
+
+                        <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
+                            <tr>
+                                <th colspan="2">
+                                    <h5 class="about-text text-center ">Contact Information</h5>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center pb-3">
+                                    <strong> Any inquiries should have a return address or phone number. </strong>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <th colspan="2">Phone</th>
+                            </tr>
+                            <tr>
+                                <td>Trunkline</td>
+                                <td class="text-end" colspan> (043) 723-9033</td>
+                            </tr>
+                            <tr>
+                                <td>SMS</td>
+                                <td class="text-end"> (0917) 504-6042</td>
+                            </tr>
+                            <tr>
+                                <th>Email</th>
+                            </tr>
+                            <tr>
+                                <td> info@alpsthebus.com</td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="col-4 content-container10 ">
+                    <div class="row  text-center py-5">
+
+
+                        <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
+                            <tr>
+                                <th colspan="3">
+                                    <h5 class="about-text text-center ">Visit Us!</h5>
+                                </th>
+                            </tr>
+                            <tr>
+                                <td colspan="3" class="text-center pb-3">
+                                    <strong> Check out our other platforms. </strong>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-end"><a href="https://www.facebook.com/alpsthebus" target=”_blank”><i class="bi bi-facebook h1"></i></a></td>
+                                <td class="text-center"><a href="https://www.instagram.com/ilovealpsthebusph/?hl=en" target=”_blank”>
+                                        <i class="bi bi-instagram h1 insta"></i>
+                                    </a></td>
+                                <td class="text-start"><a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a></td>
+                            </tr>
+                        </table>
+
+
+
+                    </div>
+                </div>
+            </div>
+
         </div>
-        <div class="col-4 content-container10 ">
-          <div class="row  text-center py-5">
+        <div class="row-12 content-container7 p-4">
 
-
-            <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
-              <tr>
-                <th colspan="2">
-                  <h5 class="about-text text-center ">Contact Information</h5>
-                </th>
-              </tr>
-              <tr>
-                <td colspan="2" class="text-center pb-3">
-                  <strong> Any inquiries should have a return address or phone number. </strong>
-                </td>
-              </tr>
-
-              <tr>
-                <th colspan="2">Phone</th>
-              </tr>
-              <tr>
-                <td>Trunkline</td>
-                <td class="text-end" colspan> (043) 723-9033</td>
-              </tr>
-              <tr>
-                <td>SMS</td>
-                <td class="text-end"> (0917) 504-6042</td>
-              </tr>
-              <tr>
-                <th>Email</th>
-              </tr>
-              <tr>
-                <td> info@alpsthebus.com</td>
-              </tr>
-            </table>
-
-          </div>
         </div>
-
-        <div class="col-4 content-container10 ">
-          <div class="row  text-center py-5">
-
-
-            <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
-              <tr>
-                <th colspan="3">
-                  <h5 class="about-text text-center ">Visit Us!</h5>
-                </th>
-              </tr>
-              <tr>
-                <td colspan="3" class="text-center pb-3">
-                  <strong> Check out our other platforms. </strong>
-                </td>
-              </tr>
-              <tr>
-                <td class="text-end"><a href="https://www.facebook.com/alpsthebus" target=”_blank”><i class="bi bi-facebook h1"></i></a></td>
-                <td class="text-center"><a href="https://www.instagram.com/ilovealpsthebusph/?hl=en" target=”_blank”>
-                    <i class="bi bi-instagram h1 insta"></i>
-                  </a></td>
-                <td class="text-start"><a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a></td>
-              </tr>
-            </table>
-
-
-
-          </div>
-        </div>
-      </div>
-
-    </div>
-    <div class="row-12 content-container7 p-4">
-
-    </div>
 
     </div>
 
