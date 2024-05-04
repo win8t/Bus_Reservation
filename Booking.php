@@ -9,7 +9,7 @@
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<body class="">
+<body>
     <script src="scripts.js">
     </script>
     <script src="bootstrap.min.js"></script>
@@ -130,16 +130,55 @@
     </div>
 
     <div class="book-fixed-container pt-4">
-        <div class="book-content-container1 pt-4">
-
+        <div class="col-12 book-content-container8 ">
+            <p class="display-4 text-center border border-3 p-4 border-dark rounded"> BOOKING </p>
         </div>
 
-        <div class="content-container8  py-5 ">
-            <div class="d-flex container-fluid booking-container p-5 w-75">
+        <div class="book-content-container1 py-3"></div>
 
-                <div class="row">
-                    <div class="col">
+        <div class="d-flex content-container8  py-5 ">
+            <div class="booking-container p-3 w-75 rounded mx-auto">
 
+                <div class="container-fluid w-100">
+                    <div class="row">
+                        <div class="col">
+
+                            <div class="input-group ">
+                                <select id="origin" class="form-select" aria-describedby="basic-addon2">
+                                    <option>Philippines</option>
+                                    <option>Paris</option>
+                                    <option>Chicago</option>
+                                    <option>Miami</option>
+                                </select>
+                                <label class="input-group-text" for="origin">Origin</label>
+                                <button class="input-group-text" id="basic-addon2" onclick="swapValues()"><i class="bi bi-arrow-left-right"></i></button>
+
+                                <label class="input-group-text" for="destination">Destination</label>
+                                <select id="destination" class="form-select" aria-describedby="basic-addon2">
+                                    <option>London</option>
+                                    <option selected>Paris</option>
+                                    <option>Chicago</option>
+                                    <option>Tokyo</option>
+                                </select>
+                            </div>
+                            
+                        </div>
+                        <div class="col-4">
+                        <input type="date" name="date" id="" class ="form-control">
+                        
+                        </div>
+                        <div class="col-1 text-center ">
+                        <input type="button" value="Search" name ="search" class ="btn btn-primary w-100">
+                        
+                        </div>
+                    </div>
+                </div>
+
+                <div class="container-fluid w-100 mt-3">
+                    <div class="row">
+                        <div class="col bg-light p-3 rounded">
+                            
+                        </div>
                     </div>
                 </div>
 
@@ -148,7 +187,7 @@
 
         </div>
         <!-- Bus Types -->
-        <div class="d content-container8">
+        <div class="content-container8">
             <div class="d-flex flex-row row-12">
                 <div class="col-2 content-container7 bg-info-subtle p-5 bus-align">
                     <h2>Bus Types</h2>
@@ -253,16 +292,16 @@
             <!-- Routes -->
             <div class="content-container8">
                 <div class="d-flex flex-row row-12">
-                    <div class="col-12 content-container8 bg-info-subtle bus-align pt-5">
+                    <div class="col-12 book-content-container8  bus-align pt-5">
                         <h2 class="text-center">Bus Routes</h2>
                         <p class="about-para text-center ">Different bus types to accomodate your every need.</p>
                     </div>
 
                 </div>
             </div>
-            <div class="content-container8">
+            <div class="book-content-container8">
                 <div class="d-flex flex-row row-12">
-                    <div class="col-12 content-container8 bg-info-subtle pb-3">
+                    <div class="col-12 book-content-container8  pb-3">
                         <div class="container-slider mx-auto pb-5 mt-3">
                             <input type="radio" name="slider" id="s1" checked>
                             <input type="radio" name="slider" id="s2">
@@ -459,7 +498,7 @@
                                             <div class="col-5"> 0939-9270533 </div>
                                             <div class="col-4"> 0923-7333076 </div>
                                         </div>
-                                 
+
 
                                     </div>
                                     <div class="row text-center mb-3">
@@ -486,7 +525,7 @@
         </div>
         <div class="row-12 content-container4 pt-4 mt-5">
             <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
-            <p class="text-center about-para bg-info-subtle py-2">We are here to assist you!</p>
+            <p class="text-center about-para book-content-container8 py-2">We are here to assist you!</p>
 
             <div class="d-flex flex-row content-container align-items-stretch">
                 <div class="col-4 content-container10 ">
@@ -589,9 +628,18 @@
 
 
 
+    <!-- patest kung nilipat mo ba sa scripts.js gagana sha o inde o ako lang tlaga ung sumpa -->
+    <script>
+        function swapValues() {
+            // Get the selected values of origin and destination
+            var originValue = document.getElementById('origin').value;
+            var destinationValue = document.getElementById('destination').value;
 
-
-
+            // Swap the values
+            document.getElementById('origin').value = destinationValue;
+            document.getElementById('destination').value = originValue;
+        }
+    </script>
 </body>
 
 </html>
