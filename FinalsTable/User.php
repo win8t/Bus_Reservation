@@ -346,7 +346,7 @@
             $name = $_POST['full_name'];
             $role = $_POST['role'];
             $username = $_POST['username'];
-            $password = $_POST['password'];
+            $password = md5($_POST['password']);
             $email = $_POST['email'];
             
             $insertsql = "Insert into tbl_user (full_name,role,username,password,email)
