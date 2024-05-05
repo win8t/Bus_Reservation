@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <form action="Registration.php" method=post>
+                <form action="registrationtrial.php" method=post>
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <!-- Username input -->
@@ -119,7 +119,7 @@
 require_once "dbconnect.php";
 include "email_registration.php";
 
-//button function
+// Button function
 if (isset($_POST['sub'])) {
     $full = $_POST['fullname'];
     $email = $_POST['email'];
@@ -129,31 +129,61 @@ if (isset($_POST['sub'])) {
     $usertype = "Customer";
     $otp = rand(000000, 999999);
 
+    // Check if passwords match
     if ($pass == $confirmpass) {
 
+        // Check if the username already exists
+        $usersql = "select * from tbl_user where username = '$user'";
+        $user_result = $con->query($usersql);
 
-        $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp)
-    values('$full',  '$usertype', '$user','$pass', '$email','$otp')";
+        if ($user_result->num_rows == 0) {
+            // Username is unique, proceed with insertion
+            $insertsql = "INSERT INTO tbl_user (full_name, role, username, password, email, otp)
+                          VALUES ('$full', '$usertype', '$user', '$pass', '$email', '$otp')";
+            $result = $con->query($insertsql);
 
-        $result = $con->query($insertsql);
-
-        if ($result == True) {?>
-          
-        <?php
-        send_verification($full,$email,$otp);
+            if ($result == true) {
+                // If insertion successful, send verification email
+                send_verification($full, $email, $otp);
+                ?>
+                <script>
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: "Registration successful! Verification email has been sent.",
+                        timer: 3000
+                    }).then(function() {
+                        window.location = "login.php"; // Redirect to login page
+                    });
+                </script>
+                <?php
+            } else {
+                echo $con->error;
+            }
         } else {
-            echo $con->error;
+            // Username already exists
+            ?>
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Username already exists. Please choose a different username.",
+                    timer: 3000
+                });
+            </script>
+            <?php
         }
-        
-    } else { ?>
+    } else {
+        ?>
         <script>
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
                 text: "Password mismatch!",
-                timer: 1500
+                timer: 3000
             });
         </script>
-<?php  }
+        <?php
+    }
 }
 ?>
