@@ -14,8 +14,60 @@
     <script src="bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <?php
+    require_once "dbconnect.php";
 
-    <div class="container-fluid ">
+    if (isset($_POST['sub'])) {
+        //userinput 
+
+        $username = $_POST['user'];
+        $password = md5($_POST['pass']);
+
+        //login based on role
+
+        $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' ";
+
+        $loginresult = $con->query($loginsql);
+        if ($loginresult->num_rows == 1) {
+            $fielddata = $loginresult->fetch_assoc();
+            $role = $fielddata['role'];
+            $user = $fielddata['username'];
+            $pass = $fielddata['password'];
+
+
+            if ($role == "Admin") {
+                header("location: FinalsTable\Overview.php");
+            } else if ($role == "Customer") {
+                header("location: Home.php");
+            } else if ($role == "Employee") {
+                header("location: Booking.php");
+            } ?>
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Invalid Role!",
+                    timer: 1500
+                });
+            </script>
+
+        <?php
+        } else { ?>
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Invalid Login!",
+                    timer: 1500
+                });
+            </script>
+    <?php }
+    }
+
+
+    ?>
+
+    <div class="d-flex flex-container container-fluid ">
 
 
         <div class="row login-container w-75 mx-auto">
@@ -102,52 +154,3 @@
 </body>
 
 </html>
-
-
-<?php
-require_once "dbconnect.php";
-
-if (isset($_POST['sub'])) {
-    //userinput 
-
-    $username = $_POST['user'];
-    $password = md5($_POST['pass']);
-
-    //fsgds
-
-    $loginsql = "Select * from tbl_user where username = '" .$username."' and password ='".$password."' ";
-
-    $loginresult = $con->query($loginsql);
-    if ($loginresult->num_rows == 1) {
-        $fielddata = $loginresult->fetch_assoc();
-        $role = $fielddata['role'];
-
-
-        if ($role == "Admin" || $role == "Employee") {
-            header("location: Booking.php");
-        } else if ($role == "Customer") {
-            header("location: Home.php");
-        } else { ?>
-               <script>
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Wrong username or password!",
-                timer: 1500
-            });
-        </script>
-    <?php }
-    } else { ?>
-         <script>
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Invalid Login!",
-                timer: 1500
-            });
-        </script>
- <?php }
-}
-
-
-?>
