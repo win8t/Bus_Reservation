@@ -179,15 +179,15 @@
                                     </optgroup>
                                 </select>
                             </div>
-                            
+
                         </div>
                         <div class="col-4">
-                        <input type="text" name="date" id="" class ="form-control" placeholder="Trip Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                        
+                            <input type="text" name="date" id="tripDate" class="form-control" placeholder="Trip Date" onfocus="setMinDate()" onblur="(this.type='text')">
+
                         </div>
                         <div class="col-1 text-center ">
-                        <input type="button" value="Search" name ="search" class ="btn btn-primary w-100">
-                        
+                            <input type="button" value="Search" name="search" class="btn btn-primary w-100">
+
                         </div>
                     </div>
                 </div>
@@ -195,7 +195,7 @@
                 <div class="container-fluid w-100 mt-3">
                     <div class="row">
                         <div class="col bg-light p-3 rounded">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -647,7 +647,7 @@
 
 
     <!-- patest kung nilipat mo ba sa scripts.js gagana sha o inde o ako lang tlaga ung sumpa -->
-    <!-- <script>
+    <script>
         function swapValues() {
             // Get the selected values of origin and destination
             var originValue = document.getElementById('origin').value;
@@ -657,7 +657,7 @@
             document.getElementById('origin').value = destinationValue;
             document.getElementById('destination').value = originValue;
         }
-    </script> -->
+    </script>
 </body>
 
 </html>
