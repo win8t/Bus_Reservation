@@ -10,8 +10,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <body>
-    <script src="scripts.js">
-    </script>
+    <script src="scripts.js"></script>
     <script src="bootstrap.min.js"></script>
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-book">
@@ -648,7 +647,7 @@
 
 
     <!-- patest kung nilipat mo ba sa scripts.js gagana sha o inde o ako lang tlaga ung sumpa -->
-    <script>
+    <!-- <script>
         function swapValues() {
             // Get the selected values of origin and destination
             var originValue = document.getElementById('origin').value;
@@ -680,6 +679,7 @@
         }
     </script>
 
+    </script>
 </body>
 
 </html>
