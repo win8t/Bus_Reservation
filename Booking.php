@@ -647,23 +647,17 @@
 
 
     <!-- patest kung nilipat mo ba sa scripts.js gagana sha o inde o ako lang tlaga ung sumpa -->
-    <script>
-        function swapValues() {
-            // Get the selected values of origin and destination
-            var originValue = document.getElementById('origin').value;
-            var destinationValue = document.getElementById('destination').value;
+        <script>
+            function swapValues() {
+                // Get the selected values of origin and destination
+                var originValue = document.getElementById('origin').value;
+                var destinationValue = document.getElementById('destination').value;
 
-            // Swap the values
-            document.getElementById('origin').value = destinationValue;
-            document.getElementById('destination').value = originValue;
-        }
-<<<<<<<<< Temporary merge branch 1
-    </script> -->
-=========
-    </script>
-
-
-
+                // Swap the values
+                document.getElementById('origin').value = destinationValue;
+                document.getElementById('destination').value = originValue;
+            }
+        </script>
 
     <script>
         function setMinDate() {
@@ -682,7 +676,6 @@
         }
     </script>
 
->>>>>>>>> Temporary merge branch 2
 </body>
 
 </html>
