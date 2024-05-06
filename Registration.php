@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 
-    <div class="container-fluid ">
+    <div class="container-fluid d-flex flex-container">
 
 
         <div class="row login-container w-75 mx-auto">
@@ -41,7 +41,7 @@
                         <div class="col-md-6">
                             <!-- Username input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="text" class="form-control" name="user" id="floatingInput">
+                                <input type="text" class="form-control" name="user" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Username</label>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                         <div class="col-md-6">
                             <!-- FullName input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="email" class="form-control" name="email" id="floatingInput">
+                                <input type="email" class="form-control" name="email" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Email</label>
                             </div>
                         </div>
@@ -61,7 +61,7 @@
                         <div class="col-md-12">
                             <!-- Email input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="text" class="form-control" name="fullname" id="floatingInput">
+                                <input type="text" class="form-control" name="fullname" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Full Name</label>
                             </div>
                         </div>
@@ -74,14 +74,14 @@
                         <div class="col-md-6">
                             <!-- Password input -->
                             <div class="form-floating mb-5 link-text">
-                                <input type="password" class="form-control" name="pass" id="floatingInput">
+                                <input type="password" class="form-control" name="pass" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Password</label>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Password Confirmation input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="password" class="form-control" name="confirmpass" id="floatingInput">
+                                <input type="password" class="form-control" name="confirmpass" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Confirm Password</label>
                             </div>
                         </div>
@@ -131,7 +131,10 @@ if (isset($_POST['sub'])) {
 
     if ($pass == $confirmpass) {
 
+        $usersql = "select * from tbl_user where username = '$user'";
+        $user_result = $con->query($usersql);
 
+        if ($user_result->num_rows == 0) {
         $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp)
     values('$full', '$usertype', '$user','$pass', '$email','$otp')";
 
@@ -144,6 +147,18 @@ if (isset($_POST['sub'])) {
         } else {
             echo $con->error;
         }
+    } else {
+        ?>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Username already exists. Please choose a different username.",
+                timer: 3000
+            });
+        </script>
+        <?php
+    }
         
     } else { ?>
         <script>

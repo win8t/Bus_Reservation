@@ -38,7 +38,7 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="sidebarz.css" rel="stylesheet">
+  <link href="sidebar.css" rel="stylesheet">
 </head>
 
 <body>
@@ -449,7 +449,7 @@
   
   <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
   <script src="modal.js"></script>
-  <script src="sidebars.js"></script>
+  <script src="sidebarsz.js"></script>
   </main>
 </body>
 
