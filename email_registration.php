@@ -29,13 +29,13 @@ function send_verification($fullname,$email,$otp){
         $mail->isSMTP();                                      // Set mailer to use SMTP
         $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = 'malt.201410@gmail.com';                 // SMTP username
-        $mail->Password = 'lmxnlubjsvzlyobi';                           // SMTP password
+        $mail->Username = 'dawnandal18@gmail.com';                 // SMTP username
+        $mail->Password = 'oaqhgrbdiwuezpax';                           // SMTP password
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = 587;                                    // TCP port to connect to
     
         //Recipients
-        $mail->setFrom( 'malt.201410@gmail.com', 'Alps Bus Registration Verification Code');
+        $mail->setFrom( 'dawnandal18@gmail.com', 'Alps Bus Registration Verification Code');
         $mail->addAddress($email);     // Add a recipient
         //Content
         $mail->isHTML(true);  // Set email format to HTML
