@@ -180,15 +180,15 @@
                                     </optgroup>
                                 </select>
                             </div>
-                            
+
                         </div>
                         <div class="col-4">
-                        <input type="text" name="date" id="" class ="form-control" placeholder="Trip Date" onfocus="(this.type='date')" onblur="(this.type='text')">
-                        
+                            <input type="text" name="date" id="tripDate" class="form-control" placeholder="Trip Date" onfocus="setMinDate()" onblur="(this.type='text')">
+
                         </div>
                         <div class="col-1 text-center ">
-                        <input type="button" value="Search" name ="search" class ="btn btn-primary w-100">
-                        
+                            <input type="button" value="Search" name="search" class="btn btn-primary w-100">
+
                         </div>
                     </div>
                 </div>
@@ -196,7 +196,7 @@
                 <div class="container-fluid w-100 mt-3">
                     <div class="row">
                         <div class="col bg-light p-3 rounded">
-                            
+
                         </div>
                     </div>
                 </div>
@@ -659,6 +659,27 @@
             document.getElementById('destination').value = originValue;
         }
     </script>
+
+
+
+
+    <script>
+        function setMinDate() {
+            // Get current date in Philippine time zone
+            var philippineDate = new Date();
+            var philippineOffset = 8 * 60; // Philippine time zone offset in minutes (UTC+8)
+            var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
+            var philippineTime = new Date(utc + (60000 * philippineOffset));
+
+            // Format date in yyyy-mm-dd format
+            var formattedDate = philippineTime.toLocaleDateString('en-CA');
+
+            // Set the minimum date and change input type to date
+            document.getElementById("tripDate").setAttribute('type', 'date');
+            document.getElementById("tripDate").setAttribute('min', formattedDate);
+        }
+    </script>
+
 </body>
 
 </html>
