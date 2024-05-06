@@ -344,7 +344,7 @@
                 </td>
               </tr>
               <tr>
-                <td class="text-end"><i class="bi bi-geo-fill h3"></i> ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
+                <td class="justify-content-center"><i class="bi bi-geo-fill h3"></i> ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
               </tr>
             </table>
 

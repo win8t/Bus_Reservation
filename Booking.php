@@ -164,7 +164,7 @@
                             
                         </div>
                         <div class="col-4">
-                        <input type="date" name="date" id="" class ="form-control">
+                        <input type="text" name="date" id="" class ="form-control" placeholder="Trip Date" onfocus="(this.type='date')" onblur="(this.type='text')">
                         
                         </div>
                         <div class="col-1 text-center ">
