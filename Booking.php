@@ -145,20 +145,39 @@
 
                             <div class="input-group ">
                                 <select id="origin" class="form-select" aria-describedby="basic-addon2">
-                                    <option>Philippines</option>
-                                    <option>Paris</option>
-                                    <option>Chicago</option>
-                                    <option>Miami</option>
+                                    <optgroup label="Bicol - Manila">
+                                        <option>Naga</option>
+                                    </optgroup>
+                                    <optgroup label="Aurora Cubao - Bicol">
+                                        <option>Aurora Cubao</option>
+                                    </optgroup>
+                                    <optgroup label="PITX - Bicol">
+                                        <option>PITX</option>
+                                    </optgroup>
                                 </select>
+
                                 <label class="input-group-text" for="origin">Origin</label>
                                 <button class="input-group-text" id="basic-addon2" onclick="swapValues()"><i class="bi bi-arrow-left-right"></i></button>
 
                                 <label class="input-group-text" for="destination">Destination</label>
                                 <select id="destination" class="form-select" aria-describedby="basic-addon2">
-                                    <option>London</option>
-                                    <option selected>Paris</option>
-                                    <option>Chicago</option>
-                                    <option>Tokyo</option>
+                                <optgroup label="Bicol - Manila">
+                                        <option>Aurora Cubao</option>
+                                        <option>PITX</option>
+                                    </optgroup>
+                                    <optgroup label="Aurora Cubao - Bicol">
+                                        <option>Gubat</option>
+                                        <option>Nabua</option>
+                                        <option>Legazpi</option>
+                                        <option>Tabaco</option>
+                                    </optgroup>
+                                    <optgroup label="PITX - Bicol">
+                                        <option>Gubat</option>
+                                        <option>Iriga</option>
+                                        <option>Legazpi</option>
+                                        <option>Naga</option>
+                                        <option>Tabaco</option>
+                                    </optgroup>
                                 </select>
                             </div>
                             

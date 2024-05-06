@@ -136,7 +136,7 @@ if (isset($_POST['sub'])) {
 
         if ($user_result->num_rows == 0) {
         $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp)
-    values('$full',  '$usertype', '$user','$pass', '$email','$otp')";
+    values('$full', '$usertype', '$user','$pass', '$email','$otp')";
 
         $result = $con->query($insertsql);
 
