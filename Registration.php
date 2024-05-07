@@ -36,21 +36,26 @@
                     </div>
                 </div>
 
-                <form action="Registration.php" method=post>
+                <form action="Registration.php" method="post" novalidate class ="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <!-- Username input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="text" class="form-control" name="user" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Username</label>
+                                <label for="floatingInput" class="link-text">Username<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Please enter a username.</div>
+                                <div class="valid-feedback text-start">Entered username.</div>
                             </div>
+                            
                         </div>
 
                         <div class="col-md-6">
                             <!-- FullName input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="email" class="form-control" name="email" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Email</label>
+                                <label for="floatingInput" class="link-text">Email<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Please enter a valid email.</div>
+                                <div class="valid-feedback text-start">Entered valid email.</div>
                             </div>
                         </div>
 
@@ -62,7 +67,10 @@
                             <!-- Email input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="text" class="form-control" name="fullname" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Full Name</label>
+                                <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Enter your full name.</div>
+                                <div class="valid-feedback text-start">Entered full name.</div>
+                                
                             </div>
                         </div>
 
@@ -75,14 +83,18 @@
                             <!-- Password input -->
                             <div class="form-floating mb-5 link-text">
                                 <input type="password" class="form-control" name="pass" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Password</label>
+                                <label for="floatingInput" class="link-text">Password<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Please enter a password.</div>
+                                <div class="valid-feedback text-start">Entered password</div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- Password Confirmation input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="password" class="form-control" name="confirmpass" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Confirm Password</label>
+                                <label for="floatingInput" class="link-text">Confirm Password<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Please re-enter your password.</div>
+                                <div class="valid-feedback text-start">Re-entered password</div>
                             </div>
                         </div>
 
@@ -91,7 +103,7 @@
 
                     <div class="row mb-4">
                         <div class="col text-end">
-                            <input type="submit" name=sub value="Sign Up" class="btn btn-primary btn-block w-50 link-text">
+                            <input type="submit" name="sub" value="Sign Up" class="btn btn-primary btn-block w-50 link-text">
                         </div>
                         <div class="col text-start">
                             <a href="Login.php">
@@ -110,6 +122,27 @@
     </div>
     </div>
 
+<script>
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})() 
+</script>
     
 </body>
 
@@ -129,12 +162,14 @@ if (isset($_POST['sub'])) {
     $usertype = "Customer";
     $otp = rand(000000, 999999);
 
-    if ($pass == $confirmpass) {
+    $usersql = "select * from tbl_user where username = '$user'";
+    $user_result = $con->query($usersql);
 
-        $usersql = "select * from tbl_user where username = '$user'";
-        $user_result = $con->query($usersql);
+    if ($user_result->num_rows == 0) {
 
-        if ($user_result->num_rows == 0) {
+        
+
+        if ($pass == $confirmpass) {
         $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp)
     values('$full', '$usertype', '$user','$pass', '$email','$otp')";
 
@@ -153,7 +188,7 @@ if (isset($_POST['sub'])) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Username already exists. Please choose a different username.",
+                text: "Password mismatch!",
                 timer: 3000
             });
         </script>
@@ -165,7 +200,7 @@ if (isset($_POST['sub'])) {
             Swal.fire({
                 icon: "error",
                 title: "Oops...",
-                text: "Password mismatch!",
+                text: "Username already exists. Please choose a different username.",
                 timer: 1500
             });
         </script>
