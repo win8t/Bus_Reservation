@@ -10,6 +10,22 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <body>
+    <script>
+function setMinDate() {
+    // Get current date in Philippine time zone
+    var philippineDate = new Date();
+    var philippineOffset = 8 * 60; // Philippine time zone offset in minutes (UTC+8)
+    var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
+    var philippineTime = new Date(utc + (60000 * philippineOffset));
+
+    // Format date in yyyy-mm-dd format
+    var formattedDate = philippineTime.toLocaleDateString('en-CA');
+
+    // Set the minimum date and change input type to date
+    document.getElementById("tripDate").setAttribute('type', 'date');
+    document.getElementById("tripDate").setAttribute('min', formattedDate);
+}
+</script>
     <script src="scripts.js"></script>
     <script src="bootstrap.min.js"></script>
 
@@ -136,22 +152,22 @@
         <div class="book-content-container1 py-3"></div>
 
         <div class="d-flex content-container8  py-5 ">
-            <div class="booking-container p-3 w-75 rounded mx-auto">
+            <div class="booking-container p-3 w-100 rounded mx-auto">
 
                 <div class="container-fluid w-100">
                     <div class="row">
                         <div class="col">
-
+                        <form action="Booking.php" method="post">
                             <div class="input-group ">
-                                <select id="origin" class="form-select" aria-describedby="basic-addon2">
+                                <select id="origin" class="form-select" aria-describedby="basic-addon2" name ="origin">
                                     <optgroup label="Bicol - Manila">
-                                        <option>Naga</option>
+                                        <option value = "Naga">Naga</option>
                                     </optgroup>
                                     <optgroup label="Aurora Cubao - Bicol">
-                                        <option>Aurora Cubao</option>
+                                        <option value = "Aurora Cubao">Aurora Cubao</option>
                                     </optgroup>
                                     <optgroup label="PITX - Bicol">
-                                        <option>PITX</option>
+                                        <option value= "PITX">PITX</option>
                                     </optgroup>
                                 </select>
 
@@ -159,19 +175,19 @@
                                 <button class="input-group-text" id="basic-addon2" onclick="swapValues()"><i class="bi bi-arrow-left-right"></i></button>
 
                                 <label class="input-group-text" for="destination">Destination</label>
-                                <select id="destination" class="form-select" aria-describedby="basic-addon2">
-                                <optgroup label="Bicol - Manila">
-                                        <option>Aurora Cubao</option>
-                                        <option>PITX</option>
+                                <select id="destination" class="form-select" aria-describedby="basic-addon2" name ="destination">
+                                    <optgroup label="Bicol - Manila">
+                                        <option value = "Aurora Cubao">Aurora Cubao</option>
+                                        <option value= "PITX">PITX</option>
                                     </optgroup>
                                     <optgroup label="Aurora Cubao - Bicol">
-                                        <option>Gubat</option>
+                                        <option value= "Gubat">Gubat</option>
                                         <option>Nabua</option>
                                         <option>Legazpi</option>
                                         <option>Tabaco</option>
                                     </optgroup>
                                     <optgroup label="PITX - Bicol">
-                                        <option>Gubat</option>
+                                        <option >Gubat</option>
                                         <option>Iriga</option>
                                         <option>Legazpi</option>
                                         <option>Naga</option>
@@ -186,15 +202,91 @@
 
                         </div>
                         <div class="col-1 text-center ">
-                            <input type="button" value="Search" name="search" class="btn btn-primary w-100">
+                            <input type="button" value="Search" name="searchbutton" class="btn btn-primary w-100">
 
                         </div>
+                        </form>
                     </div>
                 </div>
 
                 <div class="container-fluid w-100 mt-3">
                     <div class="row">
                         <div class="col bg-light p-3 rounded">
+
+                            <?php
+                            require_once "dbconnect.php";
+
+                            //button function
+                            if (isset($_POST['searchbutton'])) {
+
+                                //to check the search box if empty or not 
+                                if ($_POST['search'] != NULL) {
+                                    $search = $_POST['search'];
+                                    $selectsql = "Select * from bus_reserve_view  where 
+                Departure Date = '" . $search . "'  
+                OR Departure Area  ='" . $search . "%' 
+                OR Destination ='" . $search . "%' 
+                 ";
+                                } else {
+                                    $selectsql = "Select * from bus_reserve_view";
+                                }
+                            } else {
+                                $selectsql = "Select * from bus_reserve_view";
+                            }
+
+
+                            $result = $con->query($selectsql);
+
+                            //check table if there is a record
+                            //num_rows - will return the no of rows inside a table
+                            if ($result->num_rows > 0) {
+
+
+                                echo "<table class='table table-light table-responsive table-striped text-center table-bordered my-2 border border-3'>";
+                                echo "<tr>";
+
+                                echo "</tr>";
+                                echo "<tr>";
+                                echo "<th> Bus Number </th>";
+                                echo "<th> Driver </th>";
+                                echo "<th> Bus Type </th>";
+                                echo "<th> Departure Date </th>";
+                                echo "<th> Depature Time </th>";
+                                echo "<th> Estimated Arrival Time </th>";
+                                echo "<th> Departure Area </th>";
+                                echo "<th> Destination </th>";
+                                echo "<th> Total Seats </th>";
+                                echo "<th> Available Seats </th>";
+                                echo "<th> Price </th>";
+                                echo "</tr>";
+
+                                while ($maltfielddata = $result->fetch_assoc()) {
+                                    echo "<tr>";
+                                    echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Driver'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Departure Time'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Estimated Arrival Time'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Departure Area'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Destination'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Total Seats'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Available Seats'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Price'] . "</td>";
+                                    echo "<td>
+            
+              <a href='Reservation.php' class='btn btn-success' name='book'>Book</a></td>";
+                                }
+                                echo "</table>";
+                            } else {
+                                echo "<div class='row'>";
+                                echo "<div class='col'>";
+                                echo "<br>No record found!";
+                                echo "</div>";
+                                echo "</div>";
+                            }
+
+                            ?>
 
                         </div>
                     </div>
@@ -643,38 +735,6 @@
     </div>
 
     </div>
-
-
-
-    <!-- patest kung nilipat mo ba sa scripts.js gagana sha o inde o ako lang tlaga ung sumpa -->
-        <script>
-            function swapValues() {
-                // Get the selected values of origin and destination
-                var originValue = document.getElementById('origin').value;
-                var destinationValue = document.getElementById('destination').value;
-
-                // Swap the values
-                document.getElementById('origin').value = destinationValue;
-                document.getElementById('destination').value = originValue;
-            }
-        </script>
-
-    <script>
-        function setMinDate() {
-            // Get current date in Philippine time zone
-            var philippineDate = new Date();
-            var philippineOffset = 8 * 60; // Philippine time zone offset in minutes (UTC+8)
-            var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
-            var philippineTime = new Date(utc + (60000 * philippineOffset));
-
-            // Format date in yyyy-mm-dd format
-            var formattedDate = philippineTime.toLocaleDateString('en-CA');
-
-            // Set the minimum date and change input type to date
-            document.getElementById("tripDate").setAttribute('type', 'date');
-            document.getElementById("tripDate").setAttribute('min', formattedDate);
-        }
-    </script>
 
 </body>
 
