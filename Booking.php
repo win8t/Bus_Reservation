@@ -190,7 +190,7 @@ function setMinDate() {
                                         <option >Gubat</option>
                                         <option>Iriga</option>
                                         <option>Legazpi</option>
-                                        <option>Naga</option>
+                                        <option value ="Naga">Naga</option>
                                         <option>Tabaco</option>
                                     </optgroup>
                                 </select>
@@ -250,11 +250,10 @@ function setMinDate() {
                                 echo "</tr>";
                                 echo "<tr>";
                                 echo "<th> Bus Number </th>";
-                                echo "<th> Driver </th>";
                                 echo "<th> Bus Type </th>";
                                 echo "<th> Departure Date </th>";
                                 echo "<th> Depature Time </th>";
-                                echo "<th> Estimated Arrival Time </th>";
+                                echo "<th> Arrival Time </th>";
                                 echo "<th> Departure Area </th>";
                                 echo "<th> Destination </th>";
                                 echo "<th> Total Seats </th>";
@@ -265,11 +264,11 @@ function setMinDate() {
                                 while ($maltfielddata = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
-                                    echo "<td>" . $maltfielddata['Driver'] . "</td>";
+                
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Time'] . "</td>";
-                                    echo "<td>" . $maltfielddata['Estimated Arrival Time'] . "</td>";
+                                    echo "<td>" . $maltfielddata['Arrival Time'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Area'] . "</td>";
                                     echo "<td>" . $maltfielddata['Destination'] . "</td>";
                                     echo "<td>" . $maltfielddata['Total Seats'] . "</td>";
