@@ -63,7 +63,7 @@ function send_verification($fullname, $email, $otp)
                 willClose: () => {
                     Swal.close();
                     setTimeout(function() {
-                        window.location.href = "Login.php";
+                        window.location.href = "otp.php";
                     }, 500);
                 }
             });
