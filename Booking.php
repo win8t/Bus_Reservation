@@ -201,9 +201,8 @@ function setMinDate() {
                             <input type="text" name="date" id="tripDate" class="form-control" placeholder="Trip Date" onfocus="setMinDate()" onblur="(this.type='text')">
 
                         </div>
-                        <div class="col-1 text-center ">
-                            <input type="button" value="Search" name="searchbutton" class="btn btn-primary w-100">
-
+                        <div class="col-1 text-center ">       
+                                <input type="button" value="Search" name="searchbutton" class="btn btn-primary w-100">
                         </div>
                         </form>
                     </div>
@@ -218,18 +217,21 @@ function setMinDate() {
 
                             //button function
                             if (isset($_POST['searchbutton'])) {
-
+                                $search = $_POST['search'];
+                                $origin = $_POST['origin'];
+                                $destination = $_POST['destination'];
                                 //to check the search box if empty or not 
-                                if ($_POST['search'] != NULL) {
-                                    $search = $_POST['search'];
-                                    $selectsql = "Select * from bus_reserve_view  where 
-                Departure Date = '" . $search . "'  
-                OR Departure Area  ='" . $search . "%' 
-                OR Destination ='" . $search . "%' 
-                 ";
-                                } else {
-                                    $selectsql = "Select * from bus_reserve_view";
-                                }
+                                    if ($origin != NULL && $destination != NULL) {
+                                        // $origin = $_POST['origin'];
+                                        // $destination = $_POST['destination'];
+                                        $selectsql = "Select * from bus_reserve_view  where 
+                                            Departure Date = '" . $search . "'  
+                                            OR Departure Area  ='" . $search . "%' 
+                                            OR Destination ='" . $search . "%' 
+                                            ";
+                                    } else {
+                                        $selectsql = "Select * from bus_reserve_view";
+                                    }
                             } else {
                                 $selectsql = "Select * from bus_reserve_view";
                             }
