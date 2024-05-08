@@ -300,7 +300,7 @@ function setMinDate() {
         <!-- Bus Types -->
         <div class="content-container8">
             <div class="d-flex flex-row row-12">
-                <div class="col-2 content-container7 bg-info-subtle p-5 bus-align">
+                <div class="col-2 content-container7 bg-info-subtle p-3 bus-align">
                     <h2>Bus Types</h2>
                     <p class="about-para">Different bus types to accomodate your every need.</p>
                 </div>
@@ -524,15 +524,27 @@ function setMinDate() {
                                 <div class="card-body term-card-body">
                                     <h5 class="card-title term-card-title">Aurora Cubao</h5>
                                     <hr>
-                                    <div class="card-text term-card-text mb-3 text-start">
+                                    <div class="card-text term-card-text mb-3 text-center">
                                         <div class="row">
-                                            <div class="col-3"><strong>Location</strong></div>
-                                            <div class="col-9"> 1019, 1102 Aurora Blvd, Project 3, Quezon City, Metro Manila </div>
+                                            <div class="col my-2"><strong>Location</strong></div>
+                                           
                                         </div>
                                         <div class="row">
-                                            <div class="col-3"> <strong>Contact</strong> </div>
-                                            <div class="col-5"> 0998-8842382 </div>
-                                            <div class="col-4"> 0943-1376974 </div>
+                                         
+                                            <div class="col"> 1019, 1102 Aurora Blvd, Project 3, Quezon City, Metro Manila </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col my-2"> <strong>Contact</strong> </div>
+                                 
+                                        </div>
+                                        <div class="row">
+                                      
+                                            <div class="col"> 0998-8842382 </div>
+                                        
+                                        </div>
+                                        <div class="row">
+                                       
+                                            <div class="col"> 0943-1376974 </div>
                                         </div>
                                     </div>
                                     <div class="row text-center mb-3">
@@ -549,15 +561,27 @@ function setMinDate() {
                                 <div class="card-body term-card-body">
                                     <h5 class="card-title term-card-title">PITX</h5>
                                     <hr>
-                                    <div class="card-text term-card-text mb-3 p-2 text-start">
+                                    <div class="card-text term-card-text mb-3 p-2 text-center">
                                         <div class="row">
-                                            <div class="col-3"><strong>Location</strong></div>
-                                            <div class="col-9"> Tambo, Parañaque, <br>Metro Manila </div>
+                                            <div class="col my-2"><strong>Location</strong></div>
+                                    
                                         </div>
                                         <div class="row">
-                                            <div class="col-3"> <strong>Contact</strong> </div>
-                                            <div class="col-5">0939-9252460</div>
-                                            <div class="col-4">0933-8122039</div>
+                                        
+                                            <div class="col"> Tambo, Parañaque, <br>Metro Manila </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col my-2"> <strong>Contact</strong> </div>
+                                        
+                                        </div>
+                                        <div class="row">
+                                         
+                                            <div class="col">0939-9252460</div>
+                                          
+                                        </div>
+                                        <div class="row">
+                                           
+                                            <div class="col">0933-8122039</div>
                                         </div>
 
                                     </div>
@@ -574,15 +598,28 @@ function setMinDate() {
                                 <div class="card-body term-card-body">
                                     <h5 class="card-title term-card-title">Tabaco</h5>
                                     <hr>
-                                    <div class="card-text term-card-text mb-3 text-start">
+                                    <div class="card-text term-card-text mb-3 text-center">
                                         <div class="row">
-                                            <div class="col-3"><strong>Location</strong></div>
-                                            <div class="col-9"> Brgy Pawa, Tabaco City, <br>Albay</div>
+                                            <div class="col my-2"><strong>Location</strong></div>
+                                       
                                         </div>
                                         <div class="row">
-                                            <div class="col-3"> <strong>Contact</strong> </div>
-                                            <div class="col-5"> 0923-7333077 </div>
-                                            <div class="col-4"> 0998-5474973 </div>
+                                      
+                                            <div class="col"> Brgy Pawa, <br>Tabaco City, Albay</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col my-2"> <strong>Contact</strong> </div>
+                                        
+                                        </div>
+                                        <div class="row">
+                                          
+                                            <div class="col"> 0923-7333077 </div>
+                                           
+                                        </div>
+                                        <div class="row">
+                                 
+                                          
+                                            <div class="col"> 0998-5474973 </div>
                                         </div>
 
                                     </div>
@@ -599,15 +636,28 @@ function setMinDate() {
                                 <div class="card-body term-card-body">
                                     <h5 class="card-title term-card-title">Legazpi</h5>
                                     <hr>
-                                    <div class="card-text term-card-text mb-3 text-start">
+                                    <div class="card-text term-card-text mb-3 text-center">
                                         <div class="row">
-                                            <div class="col-3"><strong>Location</strong></div>
-                                            <div class="col-9"> LKY Terminal beside SM City Legazpi, Albay</div>
+                                            <div class="col my-2"><strong>Location</strong></div>
+                                  
                                         </div>
                                         <div class="row">
-                                            <div class="col-3"> <strong>Contact</strong> </div>
-                                            <div class="col-5"> 0939-9270533 </div>
-                                            <div class="col-4"> 0923-7333076 </div>
+                                   
+                                            <div class="col"> LKY Terminal beside <br>SM City Legazpi, Albay</div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col my-2"> <strong>Contact</strong> </div>
+                                           
+                                        </div>
+                                        <div class="row">
+                                     
+                                            <div class="col"> 0939-9270533 </div>
+                                           
+                                        </div>
+                                        <div class="row">
+                                     
+                                           
+                                            <div class="col"> 0923-7333076 </div>
                                         </div>
 
 
@@ -623,7 +673,7 @@ function setMinDate() {
                         </div>
 
                     </div>
-                    <div class="col-2 content-container7 bg-info-subtle p-5 bus-align">
+                    <div class="col-2 content-container7 bg-info-subtle p-3 bus-align">
                         <h2 class="text-start">Bus Terminal</h2>
                         <p class="about-para text-start">Different bus types to accomodate your every need.</p>
                     </div>
