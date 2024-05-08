@@ -674,7 +674,7 @@ function setMinDate() {
 
                     </div>
                     <div class="col-2 content-container7 bg-info-subtle p-3 bus-align">
-                        <h2 class="text-start">Bus Terminal</h2>
+                        <h2 class="text-start">Bus Terminal </h2>
                         <p class="about-para text-start">Different bus types to accomodate your every need.</p>
                     </div>
 
