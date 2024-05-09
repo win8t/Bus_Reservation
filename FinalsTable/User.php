@@ -385,6 +385,7 @@
             }
           } 
 
+        
           $result = $con->query($selectsql);
 
           //check table if there is a record
