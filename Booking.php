@@ -25,6 +25,27 @@ function setMinDate() {
     document.getElementById("tripDate").setAttribute('type', 'date');
     document.getElementById("tripDate").setAttribute('min', formattedDate);
 }
+
+(() => {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})() 
+
 </script>
     <script src="scripts.js"></script>
     <script src="bootstrap.min.js"></script>
@@ -157,9 +178,10 @@ function setMinDate() {
                 <div class="container-fluid w-100">
                     <div class="row">
                         <div class="col">
-                        <form action="Booking.php" method="post">
+                        <form action="Booking.php" method="post" novalidate class ="needs-validation">
                             <div class="input-group ">
-                                <select id="origin" class="form-select" aria-describedby="basic-addon2" name ="origin">
+                                <select id="origin" class="form-select" aria-describedby="basic-addon2" name ="origin" required>
+                                    <option default disabled selected>Choose your origin</option>
                                     <optgroup label="Bicol - Manila">
                                         <option value = "Naga">Naga</option>
                                     </optgroup>
@@ -175,34 +197,35 @@ function setMinDate() {
                                 <button class="input-group-text" id="basic-addon2" onclick="swapValues()"><i class="bi bi-arrow-left-right"></i></button>
 
                                 <label class="input-group-text" for="destination">Destination</label>
-                                <select id="destination" class="form-select" aria-describedby="basic-addon2" name ="destination">
+                                <select id="destination" class="form-select" aria-describedby="basic-addon2" name ="destination" required>
+                                    <option default disabled selected>Choose your destination</option>
                                     <optgroup label="Bicol - Manila">
                                         <option value = "Aurora Cubao">Aurora Cubao</option>
                                         <option value= "PITX">PITX</option>
                                     </optgroup>
                                     <optgroup label="Aurora Cubao - Bicol">
                                         <option value= "Gubat">Gubat</option>
-                                        <option>Nabua</option>
-                                        <option>Legazpi</option>
-                                        <option>Tabaco</option>
+                                        <option  value= "Nabua">Nabua</option>
+                                        <option  value= "Legazpi">Legazpi</option>
+                                        <option value= "Tabaco">Tabaco</option>
                                     </optgroup>
                                     <optgroup label="PITX - Bicol">
-                                        <option >Gubat</option>
-                                        <option>Iriga</option>
-                                        <option>Legazpi</option>
+                                        <option value= "Gubat" >Gubat</option>
+                                        <option value= "Iriga">Iriga</option>
+                                        <option value= "Legazpi">Legazpi</option>
                                         <option value ="Naga">Naga</option>
-                                        <option>Tabaco</option>
+                                        <option value= "Tabaco">Tabaco</option>
                                     </optgroup>
                                 </select>
                             </div>
 
                         </div>
                         <div class="col-4">
-                            <input type="text" name="date" id="tripDate" class="form-control" placeholder="Trip Date" onfocus="setMinDate()" onblur="(this.type='text')">
+                            <input type="text" name="date" id="tripDate" class="form-control" placeholder="Trip Date" onfocus="setMinDate()" onblur="(this.type='text')" required>
 
                         </div>
                         <div class="col-1 text-center ">       
-                                <input type="button" value="Search" name="searchbutton" class="btn btn-primary w-100">
+                                <input type="submit" value="Search" name="searchbutton" class="btn btn-primary w-100">
                         </div>
                         </form>
                     </div>
@@ -213,23 +236,24 @@ function setMinDate() {
                         <div class="col bg-light p-3 rounded">
 
                             <?php
+                            
                             require_once "dbconnect.php";
 
                             //button function
                             if (isset($_POST['searchbutton'])) {
-                                $search = $_POST['search'];
-                                $origin = $_POST['origin'];
-                                $destination = $_POST['destination'];
+                               
                                 //to check the search box if empty or not 
-                                    if ($origin != NULL && $destination != NULL) {
-                                        // $origin = $_POST['origin'];
-                                        // $destination = $_POST['destination'];
-                                        $selectsql = "Select * from bus_reserve_view  where 
-                                            Departure Date = '" . $search . "'  
-                                            OR Departure Area  ='" . $search . "%' 
-                                            OR Destination ='" . $search . "%' 
+                                    if ($_POST['date'] != NULL && $_POST['origin'] != NULL && $_POST['destination'] != NULL) {
+                                    $date = $_POST['date'];
+                                    $origin = $_POST['origin'];
+                                    $destination = $_POST['destination'];
+                                        $selectsql = "Select * from bus_reserve_view where 
+                                            `Departure Area`  = '" . $origin . "' 
+                                            AND  `Departure Date` = '" . $date . "'   
+                                            AND `Destination` = '" . $destination . "' 
                                             ";
                                     } else {
+                                        
                                         $selectsql = "Select * from bus_reserve_view";
                                     }
                             } else {
@@ -264,7 +288,6 @@ function setMinDate() {
                                 while ($maltfielddata = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
-                
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Time'] . "</td>";
@@ -274,15 +297,16 @@ function setMinDate() {
                                     echo "<td>" . $maltfielddata['Total Seats'] . "</td>";
                                     echo "<td>" . $maltfielddata['Available Seats'] . "</td>";
                                     echo "<td>" . $maltfielddata['Price'] . "</td>";
-                                    echo "<td>
-            
-              <a href='Reservation.php' class='btn btn-success' name='book'>Book</a></td>";
+                                    echo "<td>";?>
+        
+                                     <a href='Reservation.php' class='btn btn-success' name='book'>Book</a>
+                                   <?php echo "</td>";
                                 }
                                 echo "</table>";
                             } else {
                                 echo "<div class='row'>";
                                 echo "<div class='col'>";
-                                echo "<br>No record found!";
+                                echo "<br>There is no booking at this time";
                                 echo "</div>";
                                 echo "</div>";
                             }
