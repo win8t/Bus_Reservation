@@ -321,7 +321,7 @@
           <?php
           require_once "dbconnect.php";
 
-          //button function
+          //Search Button
           if (isset($_POST['searchbutton'])) {
 
             //to check the search box if empty or not 
@@ -344,7 +344,7 @@
          
         
 
-          //button function
+          //Add Button
           if(isset($_POST['add'])){
             $name = $_POST['full_name'];
             $role = $_POST['role'];
@@ -385,86 +385,7 @@
             }
           } 
 
-          // if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
-          //   if (isset($_POST['user_id'])) {
-          //       include "dbconnect.php";
-
-          //        // Check if the user_id parameter is provided
-          //       if(isset($_POST['user_id'])) {
-          //         // Sanitize the input
-          //         $userID = mysqli_real_escape_string($con, $_POST['user_id']);
-  
-          //       // $userID = $_POST['user_id'];
-        
-          //       $deletesql = "DELETE FROM tbl_user WHERE user_id = '$userID'";
-          //       if($con->query($deletesql)) {
-
-          
-          //         Swal.fire({
-          //           title: "Are you sure?",
-          //           text: "You won't be able to revert this!",
-          //           icon: "warning",
-          //           showCancelButton: true,
-          //           confirmButtonColor: "#3085d6",
-          //           cancelButtonColor: "#d33",
-          //           confirmButtonText: "Yes, delete it!"
-          //         }).then((result) => {
-          //           if (result.isConfirmed) {
-          //             Swal.fire({
-          //               title: "Deleted!",
-          //               text: "Your file has been deleted.",
-          //               icon: "success"
-          //             });
-          //           }
-          //         });
-          //       </script><?php
-          //       } else {
-  
-          //         echo $con->error;
-          //       }
-          // }
-          // }
-          // }
-                // $stmt = $con->prepare($deletesql);
-                // $stmt->bind_param("s", $userID);
-                
-                // if ($stmt->execute()) {
-                //   Swal.fire({
-                //     title: "Are you sure?",
-                //     text: "You won't be able to revert this!",
-                //     icon: "warning",
-                //     showCancelButton: true,
-                //     confirmButtonColor: "#3085d6",
-                //     cancelButtonColor: "#d33",
-                //     confirmButtonText: "Yes, delete it!"
-                //   }).then((result) => {
-                //     if (result.isConfirmed) {
-                //       Swal.fire({
-                //         title: "Deleted!",
-                //         text: "Your file has been deleted.",
-                //         icon: "success"
-                //       });
-                //     }
-                //   });
-                // </script>
-
-               
-          //       } else {
-          //                 //lagay mo rin dito kung ano trip mo
-          //         }
-          //   }
-          //         exit; // Stop further execution
-          // }
-
-         
-  
-
-
-          
-          // $resultdel = $con->query($deletesql);
           $result = $con->query($selectsql);
-
-        
 
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
@@ -512,6 +433,7 @@
             echo "</div>";
           }
 
+          //Edit Button
           if(isset($_POST['edit'])){ 
             $user_update = $_POST['user_id'];
             $name_update = $_POST['full_name'];
@@ -521,76 +443,72 @@
             $email_update = $_POST['email'];
             
             ?>
-          
-            <form method ='post' action ='User.php'> 
-                <div class="modal-body">
-                  
-                    <div class="row form-outline">
-                
-                    <!-- Full Name input -->
-                    <div class="col">
-                      <input type="text" name="update_id" value="<?php echo $user_update; ?>" class ="form-control">
-                          <label class="form-label" for="">User ID</label>
-                        </div>
-                    </div>
-                    <div class="col">
-                      <input type="text" name="update_name" value="<?php echo $name_update; ?>" class ="form-control">
-                          <label class="form-label" for="">Full Name</label>
-                        </div>
-                    </div>
-
-                    <!-- Role input -->
-                    <div class="form-outline mb-2">
-                    <span class="form-label">Role</span>
-                        <div class="btn-group mx-5" id="btn-group-3" >
-                            <div class="form-check form-check-inline ">
-                                <input class="form-check-input" type="radio" name="update_role" id="inlineRadio1" value="Admin" <?php if ($role_update === 'Admin') echo 'checked'; ?>/>
-                                <label class="form-check-label" for="inlineRadio1">Admin</label>
-                            </div>
-
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="update_role" id="inlineRadio2" value="Employee" <?php if ($role_update === 'Employee') echo 'checked'; ?>/>
-                                <label class="form-check-label" for="inlineRadio2">Employee</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Username input -->
-                    <div class="row form-outline">
-                      <div class="col">
-                        <input type="text" id="" name="update_username" value="<?php echo $username_update; ?>" class="form-control" />
-                        <label class="form-label" for="">Username</label>
-                      </div>
+                  <form action="User.php" method="post">
+                    <div class="modal-body">
                       
-                    <!-- Password input -->
-                      <div class="col">
-                        <input type="password" name="update_password" id="" value="<?php echo $password_update; ?>" class="form-control" disabled/>
-                        <label class="form-label" for="">Password</label>
-                      </div>
+                        <div class="row form-outline">
+                    
+                          <!-- Full Name input -->
+                          <div class="col">
+                            <input type="text" name="update_id" value="<?php echo $user_update; ?>" class ="form-control" readonly />
+                                <label class="form-label" for="">User ID</label>
+                          </div>
+                          <div class="col">
+                            <input type="text" name="update_name" value="<?php echo $name_update; ?>" class ="form-control">
+                                <label class="form-label" for="">Full Name</label>
+                          </div>
+                        </div>
+
+                        <!-- Role input -->
+                        <div class="form-outline mb-2">
+                        <span class="form-label">Role</span>
+                            <div class="btn-group mx-5" id="btn-group-3" >
+                                <div class="form-check form-check-inline ">
+                                    <input class="form-check-input" type="radio" name="update_role" id="inlineRadio1" value="Admin" <?php if ($role_update === 'Admin') echo 'checked'; ?>/>
+                                    <label class="form-check-label" for="inlineRadio1">Admin</label>
+                                </div>
+
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="update_role" id="inlineRadio2" value="Employee" <?php if ($role_update === 'Employee') echo 'checked'; ?>/>
+                                    <label class="form-check-label" for="inlineRadio2">Employee</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Username input -->
+                        <div class="row form-outline">
+                          <div class="col">
+                            <input type="text" id="" name="update_username" value="<?php echo $username_update; ?>" class="form-control" />
+                            <label class="form-label" for="">Username</label>
+                          </div>
+                          
+                        <!-- Password input -->
+                          <div class="col">
+                            <input type="password" name="update_password" id="" value="<?php echo $password_update; ?>" class="form-control"/>
+                            <label class="form-label" for="">Password</label>
+                          </div>
+                        </div>
+
+                        <!-- Email input -->
+                        <div class="form-outline">
+                            <input type="email" name="update_email" id="" class="form-control" value="<?php echo $email_update; ?>"/>
+                            <label class="form-label" for="">Email</label>
+                        </div>
+
+                        <!-- Update button --> 
+                    </div>
+                    <div class="modal-footer d-flex justify-content-center">
+                      <button type="submit" name="updating" value="Update" class="btn btn-primary">Update</button>
                     </div>
 
-                    <!-- Email input -->
-                    <div class="form-outline">
-                        <input type="email" name="update_email" id="" class="form-control" value="<?php echo $email_update; ?>"/>
-                        <label class="form-label" for="">Email</label>
-                    </div>
-
-                    <!-- Save button --> 
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                  <button type="submit" name="updating" class="btn btn-primary">Update</button>
-                </div>
-                </form> 
+                  </form>
 
            <?php 
            
               
         }
 
-           
-           
-          
-             //button function
+             //Delete Button
              if(isset($_POST['delete'])){
               $user_delete = $_POST['user_id']; // Retrieve the user_id from the form
     
@@ -629,6 +547,52 @@
                   echo $con->error;
               }
             } 
+            //Update Button
+
+            require_once "dbconnect.php";
+
+            if (isset($_POST['updating'])) {
+              $user_update = $_POST['update_id'];
+              $name_update = $_POST['update_name'];
+              $role_update = $_POST['update_role'];
+              $username_update = $_POST['update_username'];
+              $password_update = md5($_POST['update_password']);
+              $email_update = $_POST['update_email'];
+
+              
+
+              $updatesql = "UPDATE tbl_user SET user_id = $user_update, full_name = '$name_update', 
+              role = '$role_update', username = '$username_update', password = '$password_update', 
+              email = '$email_update' WHERE user_id = $user_update";
+              
+              $resultup = $con->query($updatesql);
+              
+              //check if successfully updated
+              if ($resultup == True) {
+                  ?>
+                <script> 
+                  Swal.fire({
+                    title: "Do you want to update?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Update",
+                    denyButtonText: `Don't Update`
+                  }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {
+                      Swal.fire("Updated!", "", "success");
+                    } else if (result.isDenied) {
+                      Swal.fire("Changes are not updated", "", "info");
+                    }
+                  });
+                    </script>
+                    <?php
+              } else {
+                  //if not, check query error details
+                  echo $con->error;
+              }
+            }
+  
 
           
           ?>
