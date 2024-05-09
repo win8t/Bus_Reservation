@@ -267,10 +267,10 @@
                   
                       <div class="row form-outline">
                     <!-- Schedule ID input -->
-                        <div class="col">
+                        <!-- <div class="col">
                           <input type="number" name="schedule_id" id="" class="form-control" />
                           <label class="form-label" for="">Schedule ID</label>
-                        </div>
+                        </div> -->
 
                         <div class="col">
                       <!-- Bus ID input -->
@@ -338,9 +338,8 @@
             $selectsql = "Select * from tbl_schedule";
           }
 
-          //button function
+          //Add Button
           if(isset($_POST['add'])){
-            $scheduleID = $_POST['schedule_id'];
             $busID = $_POST['bus_id'];
             $routeID = $_POST['route_id'];
             $departureDate = $_POST['departure_date'];
@@ -348,8 +347,8 @@
             $availableSeats = $_POST['available_seats'];
             
             
-            $insertsql = "Insert into tbl_schedule (schedule_id,bus_id,route_id,departure_date,departure_time,available_seats)
-            values ($scheduleID,$busID,$routeID,'$departureDate','$departureTime',$availableSeats)
+            $insertsql = "Insert into tbl_schedule (bus_id,route_id,departure_date,departure_time,available_seats)
+            values ($busID,$routeID,'$departureDate','$departureTime',$availableSeats)
             ";
 
             $result = $con->query($insertsql);
@@ -402,17 +401,22 @@
             echo "<th> Action </th>";
             echo "</tr>";
 
-            while ($maltfielddata = $result->fetch_assoc()) {
+            while ($fielddata = $result->fetch_assoc()) {
               echo "<tr>";
-              echo "<td>" . $maltfielddata['schedule_id'] . "</td>";
-              echo "<td>" . $maltfielddata['bus_id'] . "</td>";
-              echo "<td>" . $maltfielddata['route_id'] . "</td>";
-              echo "<td>" . $maltfielddata['departure_date'] . "</td>";
-              echo "<td>" . $maltfielddata['departure_time'] . "</td>";
-              echo "<td>" . $maltfielddata['available_seats'] . "</td>";
+              echo "<td>" . $fielddata['schedule_id'] . "</td>";
+              echo "<td>" . $fielddata['bus_id'] . "</td>";
+              echo "<td>" . $fielddata['route_id'] . "</td>";
+              echo "<td>" . $fielddata['departure_date'] . "</td>";
+              echo "<td>" . $fielddata['departure_time'] . "</td>";
+              echo "<td>" . $fielddata['available_seats'] . "</td>";
               echo "<td>" ?>
               <form method ='post' action ='Schedule.php'> 
-               <?php   echo "<input type='hidden' name='schedule_id' value='" . $maltfielddata['schedule_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='schedule_id' value='" . $fielddata['schedule_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='bus_id' value='" . $fielddata['bus_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='route_id' value='" . $fielddata['route_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='departure_date' value='" . $fielddata['departure_date'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='departure_time' value='" . $fielddata['departure_time'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='available_seats' value='" . $fielddata['available_seats'] . "'>"; ?>
                 <button class='btn btn-primary edit-button' name='edit'>Edit</button>
                 <button class='btn btn-danger delete-button' name='delete'>Delete</button>
               </form>
@@ -427,6 +431,71 @@
             echo "</div>";
           }
 
+          //Edit Button
+          if(isset($_POST['edit'])){ 
+            $scheduleID_update = $_POST['schedule_id'];
+            $busID_update = $_POST['bus_id'];
+            $routeID_update = $_POST['route_id'];
+            $departureDate_update = $_POST['departure_date'];
+            $departureTime_update = $_POST['departure_time'];
+            $availableSeats_update = $_POST['available_seats'];
+            
+            ?>
+                <form action="Schedule.php" method="post">
+                <div class="modal-body">
+                  
+                      <div class="row form-outline">
+                    <!-- Schedule ID input -->
+                        <div class="col">
+                          <input type="number" name="update_scheduleID" value="<?php echo $scheduleID_update; ?>" class="form-control" readonly/>
+                          <label class="form-label" for="">Schedule ID</label>
+                        </div>
+
+                        <div class="col">
+                      <!-- Bus ID input -->
+                          <input type="number" name="update_busID" value="<?php echo $busID_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Bus ID</label>
+                        </div>
+
+                        <div class="col">
+                      <!-- Route ID input -->
+                          <input type="number" name="update_routeID" value="<?php echo $routeID_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Route ID</label>
+                        </div>
+                    </div>
+                      
+                    <!-- Departure Date input -->
+                      <div class="row form-outline">
+                        <div class="col">
+                          <input type="date" name="update_departureDate" value="<?php echo $departureDate_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Departure Date</label>
+                        </div>
+                    <!-- Departure Time input -->
+                        <div class="col">
+                          <input type="time" name="update_departureTime" value="<?php echo $departureTime_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Departure Time</label>
+                        </div>
+                      </div>
+
+                      <!-- Available Seats input -->
+                      <div class="form-outline">
+                          <input type="number" name="update_availableSeats" value="<?php echo $availableSeats_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Available Seats</label>
+                      </div>
+
+                    <!-- Save button --> 
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="submit" name="updating" value="Update" class="btn btn-primary">Update</button>
+                </div>
+                </form> 
+
+           <?php 
+           
+              
+        }
+
+        //Delete Button
           if(isset($_POST['delete'])){
             $sched_delete = $_POST['schedule_id']; // Retrieve the user_id from the form
   
@@ -465,6 +534,54 @@
                 echo $con->error;
             }
           } 
+
+          //Update Button
+
+          require_once "dbconnect.php";
+
+          if (isset($_POST['updating'])) {
+            $scheduleID_update = $_POST['update_scheduleID'];
+            $busID_update = $_POST['update_busID'];
+            $routeID_update = $_POST['update_routeID'];
+            $departureDate_update = $_POST['update_departureDate'];
+            $departureTime_update = $_POST['update_departureTime'];
+            $availableSeats_update = $_POST['update_availableSeats'];
+
+            
+
+            $updatesql = "UPDATE tbl_schedule SET schedule_id = $scheduleID_update, bus_id = $busID_update,
+            route_id = $routeID_update, departure_date = '$departureDate_update', departure_time = '$departureTime_update',
+            available_seats = $availableSeats_update WHERE schedule_id = $scheduleID_update";
+            
+            $resultup = $con->query($updatesql);
+            
+            //check if successfully updated
+            if ($resultup == True) {
+                ?>
+              <script> 
+                Swal.fire({
+                  title: "Do you want to update?",
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: "Update",
+                  denyButtonText: `Don't Update`
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire("Updated!", "", "success");
+                  } else if (result.isDenied) {
+                    Swal.fire("Changes are not updated", "", "info");
+                  }
+                });
+                  </script>
+                  <?php
+            } else {
+                //if not, check query error details
+                echo $con->error;
+            }
+          }
+
+
 
           ?>
     </div>
