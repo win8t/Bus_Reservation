@@ -1,5 +1,5 @@
-<html lang="en">
 
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,7 +18,7 @@
     <div class="container-fluid d-flex flex-container">
 
 
-        <div class="row login-container w-75 mx-auto">
+        <div class="row login-container w-100 mx-auto">
             <div class="col-7 bg-info-subtle p-5 text-center mx-auto banner-shadow rounded">
 
 
@@ -35,6 +35,7 @@
                         <p class="link-text">Discover the Philippines and its wonders.</p>
                     </div>
                 </div>
+
 
                 <form action="Reservation.php" method="post" novalidate class ="needs-validation">
                     <div class="row justify-content-center">
@@ -61,12 +62,6 @@
 
 
                     </div>
-
-                    <?php
-                    require_once "dbconnect.php";
-
-
-                    ?>
 
                     <div class="row justify-content-center">
                         <div class="col-md-12">
@@ -112,7 +107,7 @@
                             <input type="submit" name="sub" value="Sign Up" class="btn btn-primary btn-block w-50 link-text">
                         </div>
                         <div class="col text-start">
-                            <a href="Login.php">
+                            <a href="Booking.php">
                                 <input type="button" value="Go Back" class="btn btn-secondary btn-block link-text  w-50">
                             </a>
                         </div>

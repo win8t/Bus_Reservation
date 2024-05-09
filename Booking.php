@@ -26,26 +26,6 @@ function setMinDate() {
     document.getElementById("tripDate").setAttribute('min', formattedDate);
 }
 
-(() => {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      
-
-      form.classList.add('was-validated')
-    }, false)
-  })
-})() 
-
 </script>
     <script src="scripts.js"></script>
     <script src="bootstrap.min.js"></script>
@@ -181,7 +161,7 @@ function setMinDate() {
                         <form action="Booking.php" method="post" novalidate class ="needs-validation">
                             <div class="input-group ">
                                 <select id="origin" class="form-select" aria-describedby="basic-addon2" name ="origin" required>
-                                    <option default disabled selected>Choose your origin</option>
+                                    <option default disabled selected  value="">Choose your origin</option>
                                     <optgroup label="Bicol - Manila">
                                         <option value = "Naga">Naga</option>
                                     </optgroup>
@@ -192,13 +172,14 @@ function setMinDate() {
                                         <option value= "PITX">PITX</option>
                                     </optgroup>
                                 </select>
+                                    
 
                                 <label class="input-group-text" for="origin">Origin</label>
                                 <button class="input-group-text" id="basic-addon2" onclick="swapValues()"><i class="bi bi-arrow-left-right"></i></button>
 
                                 <label class="input-group-text" for="destination">Destination</label>
                                 <select id="destination" class="form-select" aria-describedby="basic-addon2" name ="destination" required>
-                                    <option default disabled selected>Choose your destination</option>
+                                    <option default disabled selected value="">Choose your destination</option>
                                     <optgroup label="Bicol - Manila">
                                         <option value = "Aurora Cubao">Aurora Cubao</option>
                                         <option value= "PITX">PITX</option>
@@ -216,12 +197,16 @@ function setMinDate() {
                                         <option value ="Naga">Naga</option>
                                         <option value= "Tabaco">Tabaco</option>
                                     </optgroup>
+                                    
                                 </select>
+                                       
                             </div>
 
                         </div>
                         <div class="col-4">
                             <input type="text" name="date" id="tripDate" class="form-control" placeholder="Trip Date" onfocus="setMinDate()" onblur="(this.type='text')" required>
+                                <div class="invalid-feedback text-start">Please select a date.</div>
+                                <div class="valid-feedback text-start">Departure date selected.</div>
 
                         </div>
                         <div class="col-1 text-center ">       
@@ -273,6 +258,7 @@ function setMinDate() {
 
                                 echo "</tr>";
                                 echo "<tr>";
+                                echo "<th> Schedule ID </th>";
                                 echo "<th> Bus Number </th>";
                                 echo "<th> Bus Type </th>";
                                 echo "<th> Departure Date </th>";
@@ -287,6 +273,7 @@ function setMinDate() {
 
                                 while ($maltfielddata = $result->fetch_assoc()) {
                                     echo "<tr>";
+                                    echo "<td>" . $maltfielddata['Schedule ID'] . "</td>";
                                     echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
@@ -298,8 +285,11 @@ function setMinDate() {
                                     echo "<td>" . $maltfielddata['Available Seats'] . "</td>";
                                     echo "<td>" . $maltfielddata['Price'] . "</td>";
                                     echo "<td>";?>
-        
-                                     <a href='Reservation.php' class='btn btn-success' name='book'>Book</a>
+                                    <form method ='post' action ='Reservation.php'> 
+                                       <?php   echo "<input type='hidden' name='Schedule ID' value='" . $maltfielddata['Schedule ID'] . "'>"; ?>
+                                       <a href ="Reservation.php" class='btn btn-success' name='book'>Book</a>
+                            
+                                    </form>
                                    <?php echo "</td>";
                                 }
                                 echo "</table>";
