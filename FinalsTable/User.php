@@ -497,7 +497,7 @@
                <?php   echo "<input type='hidden' name='username' value='" . $fielddata['username'] . "'>"; ?>
                <?php   echo "<input type='hidden' name='password' value='" . $fielddata['password'] . "'>"; ?>
                <?php   echo "<input type='hidden' name='email' value='" . $fielddata['email'] . "'>"; ?>
-                <button class='btn btn-primary edit-button' name='edit'>Edit</button>
+                <button class='btn btn-primary edit-button' name='edit' >Edit</button>
                 <button class='btn btn-danger delete-button' name='delete'>Delete</button>
               </form>
               <?php "</td>";
@@ -564,7 +564,7 @@
                       
                     <!-- Password input -->
                       <div class="col">
-                        <input type="password" name="update_password" id="" value="<?php echo $password_update; ?>" class="form-control" />
+                        <input type="password" name="update_password" id="" value="<?php echo $password_update; ?>" class="form-control" disabled/>
                         <label class="form-label" for="">Password</label>
                       </div>
                     </div>
@@ -578,16 +578,18 @@
                     <!-- Save button --> 
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                  <button type="submit" name="add" class="btn btn-primary">Update</button>
+                  <button type="submit" name="updating" class="btn btn-primary">Update</button>
                 </div>
                 </form> 
-           </form>
 
            <?php 
+           
+              
+        }
 
            
-          }
-
+           
+          
              //button function
              if(isset($_POST['delete'])){
               $user_delete = $_POST['user_id']; // Retrieve the user_id from the form
