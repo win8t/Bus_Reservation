@@ -46,7 +46,7 @@
 </head>
 
 <body>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
       <title>Bootstrap</title>
@@ -269,14 +269,14 @@
                     <!-- Bus ID input -->
                     <div class="row form-outline">
                       <div class="col">
-                        <input type="text" id="" name="bus_id" class="form-control" />
-                        <label class="form-label" for="">Bus ID</label>
+                      <input type="text" name="bus_number" id="" class="form-control" />
+                          <label class="form-label" for="">Bus Number</label>
                       </div>
 
                     <!-- Bus Number input -->
                       <div class="col">
-                          <input type="text" name="bus_number" id="" class="form-control" />
-                          <label class="form-label" for="">Bus Number</label>
+                          <input type="text" name="bus_type" id="" class="form-control" />
+                          <label class="form-label" for="">Bus Type</label>
                         </div>
                     </div>
 
@@ -310,14 +310,16 @@
 
                     <!-- Departure Time input -->
                     <div class="row form-outline">
+                      <div class="col">
                         <input type="datetime-local" name="departure_time" id="" class="form-control" />
                         <label class="form-label" for="">Departure Time</label>
-                    </div>
+                      </div>
 
                     <!-- Arrival Time input -->
-                    <div class="row form-outline">
-                        <input type="datetime-local" name="arrival_time" id="" class="form-control" />
-                        <label class="form-label" for="">Arrival Time</label>
+                      <div class="col">
+                          <input type="datetime-local" name="arrival_time" id="" class="form-control" />
+                          <label class="form-label" for="">Arrival Time</label>
+                      </div>
                     </div>
 
                     <!-- Save button --> 
@@ -342,6 +344,7 @@
               $selectsql = "Select * from tbl_bus where 
                 bus_id LIKE '%" . $search . "%' 
                 OR bus_number LIKE '%" . $search . "%' 
+                OR bus_type LIKE '%" . $search . "%' 
                 OR seating_capacity LIKE'%" . $search . "%' 
                 OR driver_name LIKE'%" . $search . "%' 
                 OR departure_location LIKE'%" . $search . "%' 
@@ -358,8 +361,8 @@
 
           //button function
           if(isset($_POST['add'])){
-            $busID = $_POST['bus_id'];
             $busNum = $_POST['bus_number'];
+            $busType = $_POST['bus_type'];
             $seatCap = $_POST['seating_capacity'];
             $driverName = $_POST['driver_name'];
             $departureLoc = $_POST['departure_location'];
@@ -367,8 +370,8 @@
             $departureTime = $_POST['departure_time'];
             $arrivalTime = $_POST['arrival_time'];
             
-            $insertsql = "Insert into tbl_bus (bus_id,bus_number,seating_capacity,driver_name,departure_location,destination,departure_time,arrival_time)
-            values ($busID,'$busNum',$seatCap,'$driverName','$departureLoc','$destination','$departureTime','$arrivalTime')
+            $insertsql = "Insert into tbl_bus (bus_number,bus_type,seating_capacity,driver_name,departure_location,destination,departure_time,arrival_time)
+            values ('$busNum','$busType',$seatCap,'$driverName','$departureLoc','$destination','$departureTime','$arrivalTime')
             ";
 
             $result = $con->query($insertsql);
@@ -400,75 +403,161 @@
             }
           } 
 
-          if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
-            if (isset($_POST['bus_id'])) {
-                $busID = $_POST['bus_id'];
-        
-                $delete_query = "DELETE FROM tbl_bus WHERE bus_id = ?";
-                $stmt = $con->prepare($delete_query);
-                $stmt->bind_param("s", $busID);
-                
-                if ($stmt->execute()) {
-                  ?>
-                <script> 
-                    Swal.fire({
-                        title: "Are you sure?",
-                        text: "You won't be able to revert this!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes, delete it!"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-                        }
-                    });
-                </script>
-                <?php
-    
-                } else {
-                    //lagay mo rin dito kung ano trip mo
-                }
+          $result = $con->query($selectsql);
+
+          //check table if there is a record
+          //num_rows - will return the no of rows inside a table
+          if ($result->num_rows > 0) {
+
+            echo "<table class='table table-light table-striped table-bordered text-center my-2 border border-3'>";
+            echo "<tr>";
+            echo "<th> Bus ID </th>";
+            echo "<th> Bus Number </th>";
+            echo "<th> Bus Type </th>";
+            echo "<th> Seating Capacity </th>";
+            echo "<th> Driver Name </th>";
+            echo "<th> Departure Location </th>";
+            echo "<th> Destination </th>";
+            echo "<th> Departure Time </th>";
+            echo "<th> Arrival Time </th>";
+            echo "<th> Action </th>";
+            echo "</tr>";
+
+            while ($fielddata = $result->fetch_assoc()) {
+              echo "<tr>";
+              echo "<td>" . $fielddata['bus_id'] . "</td>";
+              echo "<td>" . $fielddata['bus_number'] . "</td>";
+              echo "<td>" . $fielddata['bus_type'] . "</td>";
+              echo "<td>" . $fielddata['seating_capacity'] . "</td>";
+              echo "<td>" . $fielddata['driver_name'] . "</td>";
+              echo "<td>" . $fielddata['departure_location'] . "</td>";
+              echo "<td>" . $fielddata['destination'] . "</td>";
+              echo "<td>" . $fielddata['departure_time'] . "</td>";
+              echo "<td>" . $fielddata['arrival_time'] . "</td>";
+              echo "<td>" ?>
+              <form method ='post' action ='Bus.php'> 
+               <?php   echo "<input type='hidden' name='bus_id' value='" . $fielddata['bus_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='bus_number' value='" . $fielddata['bus_number'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='bus_type' value='" . $fielddata['bus_type'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='seating_capacity' value='" . $fielddata['seating_capacity'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='driver_name' value='" . $fielddata['driver_name'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='departure_location' value='" . $fielddata['departure_location'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='destination' value='" . $fielddata['destination'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='departure_time' value='" .  $fielddata['departure_time'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='arrival_time' value='" . $fielddata['arrival_time'] . "'>"; ?>
+                <button class='btn btn-primary edit-button' name='edit' >Edit</button>
+                <button class='btn btn-danger delete-button' name='delete'>Delete</button>
+              </form>
+              <?php "</td>";
             }
-            exit; // Stop further execution
-        }
-
-        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
-          // Include the database connection file
-          include "dbconnect.php";
-      
-          // Check if the user_id parameter is provided
-          if(isset($_POST['bus_id'])) {
-              // Sanitize the input
-              $busID = mysqli_real_escape_string($con, $_POST['bus_id']);
-      
-              // Prepare and execute the SQL query to delete the record
-              $delete_query = "DELETE FROM tbl_bus WHERE bus_id = '$busID'";
-              if(mysqli_query($con, $delete_query)) {
-  
-                  echo "Record deleted successfully.";
-              } else {
-  
-                  echo "Error deleting record: " . mysqli_error($con);
-              }
+            echo "</table>";
+          } else {
+            echo "<div class='row'>";
+            echo "<div class='col'>";
+            echo "<br>No record found!";
+            echo "</div>";
+            echo "</div>";
           }
-      }
 
+           //Edit Button
+           if(isset($_POST['edit'])){ 
+            $busID_update = $_POST['bus_id'];
+            $busNum_update = $_POST['bus_number'];
+            $busType_update = $_POST['bus_type'];
+            $seatCap_update = $_POST['seating_capacity'];
+            $driverName_update = $_POST['driver_name'];
+            $departureLoc_update = $_POST['departure_location'];
+            $destination_update = $_POST['destination'];
+            $departureTime_update = $_POST['departure_time'];
+            $arrivalTime_update = $_POST['arrival_time'];
+            
+            ?>
+                <form action="Bus.php" method="post">
+                <div class="modal-body">
+                  
+                    <!-- Bus ID input -->                    
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" name="update_id" value="<?php echo $busID_update; ?>" class="form-control" readonly />
+                        <label class="form-label" for="">Bus ID</label>
+                      </div>
+
+                      <!-- Bus Number input -->
+                      <div class="col">
+                      <input type="text" name="update_number" value="<?php echo $busNum_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Bus Number</label>
+                      </div>
+
+                    <!-- Bus Number input -->
+                      <div class="col">
+                          <input type="text" name="update_type" value="<?php echo $busType_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Bus Type</label>
+                        </div>
+                    </div>
+
+                    <!-- Seating Capacity input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="number" name="update_capacity" value="<?php echo $seatCap_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Seating Capacity</label>
+                      </div>
+                      
+                    <!-- Driver Name input -->
+                      <div class="col">
+                        <input type="text" name="update_driver" value="<?php echo $driverName_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Driver Name</label>
+                      </div>
+                    </div>
+
+                    <!-- Departure Location input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" name="update_location" value="<?php echo $departureLoc_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Departure Location</label>
+                      </div>
+                    
+                    <!-- Destination input -->
+                      <div class="col">
+                          <input type="text" name="update_destination" value="<?php echo $destination_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Destination</label>
+                      </div>
+                    </div>
+
+                    <!-- Departure Time input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="datetime-local" name="update_dtime" value="<?php echo $departureTime_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Departure Time</label>
+                      </div>
+
+                    <!-- Arrival Time input -->
+                      <div class="col">
+                          <input type="datetime-local" name="update_atime" value="<?php echo $arrivalTime_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Arrival Time</label>
+                      </div>
+                    </div>
+
+                    <!-- Update button --> 
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="submit" name="updating" value="Update" class="btn btn-primary">Update</button>
+                </div>
+                </form> 
+
+           <?php     
+          }
+
+          //Delete Button
           if(isset($_POST['delete'])){
             $busID = $_POST['bus_id'];
         
-            $deletesql = "DELETE FROM tbl_bus WHERE bus_id = '$busID'";
+            $deletesql = "DELETE FROM tbl_bus WHERE bus_id = ?";
             $stmt = $con->prepare($deletesql);
             $stmt->bind_param("i", $busID);
-            $stmt->execute();
+            $resultdel=$stmt->execute();
         
             // Check if successfully deleted
-            if ($stmt->affected_rows > 0) {
+            if ($resultdel == True) {
                 ?>
                 <script> 
                     Swal.fire({
@@ -492,56 +581,64 @@
                 <?php
             } else {
                 // If not, check query error details
-                echo $stmt->error;
+                echo $con->error;
             }
-            $stmt->close();
         } 
         
+         //Update Button
 
-          $result = $con->query($selectsql);
+         require_once "dbconnect.php";
 
-          //check table if there is a record
-          //num_rows - will return the no of rows inside a table
-          if ($result->num_rows > 0) {
+         if (isset($_POST['updating'])) {
+            $busID_update = $_POST['update_id'];
+            $busNum_update = $_POST['update_number'];
+            $busType_update = $_POST['update_type'];
+            $seatCap_update = $_POST['update_capacity'];
+            $driverName_update = $_POST['update_driver'];
+            $departureLoc_update = $_POST['update_location'];
+            $destination_update = $_POST['update_destination'];
+            $departureTime_update = $_POST['update_dtime'];
+            $arrivalTime_update = $_POST['update_atime'];
+           
+           $updatesql = "UPDATE tbl_bus SET bus_id = $busID_update, bus_number = '$busNum_update', 
+           bus_type = '$busType_update', seating_capacity = $seatCap_update, driver_name = '$driverName_update',
+           departure_location = '$departureLoc_update', destination = '$destination_update', 
+           departure_time = '$departureTime_update', arrival_time = '$arrivalTime_update'
+           WHERE bus_id = $busID_update";
+           
+           $resultup = $con->query($updatesql);
+           
+           //check if successfully updated
+           if ($resultup == True) {
+               ?>
+             <script> 
+               Swal.fire({
+                 title: "Do you want to update?",
+                 showDenyButton: true,
+                 showCancelButton: true,
+                 confirmButtonText: "Update",
+                 denyButtonText: `Don't Update`
+               }).then((result) => {
+                 /* Read more about isConfirmed, isDenied below */
+                 if (result.isConfirmed) {
+                   Swal.fire("Updated!", "", "success");
+                 } else if (result.isDenied) {
+                   Swal.fire("Changes are not updated", "", "info");
+                 }
+               });
+                 </script>
+                 <?php
+           } else {
+               //if not, check query error details
+               echo $con->error;
+           }
+         }
 
-            echo "<table class='table table-light table-striped table-bordered text-center my-2 border border-3'>";
-            echo "<tr>";
-            echo "<th> Bus ID </th>";
-            echo "<th> Bus Number </th>";
-            echo "<th> Seating Capacity </th>";
-            echo "<th> Driver Name </th>";
-            echo "<th> Departure Location </th>";
-            echo "<th> Destination </th>";
-            echo "<th> Departure Time </th>";
-            echo "<th> Arrival Time </th>";
-            echo "<th> Action </th>";
-            echo "</tr>";
 
-            while ($maltfielddata = $result->fetch_assoc()) {
-              echo "<tr>";
-              echo "<td>" . $maltfielddata['bus_id'] . "</td>";
-              echo "<td>" . $maltfielddata['bus_number'] . "</td>";
-              echo "<td>" . $maltfielddata['seating_capacity'] . "</td>";
-              echo "<td>" . $maltfielddata['driver_name'] . "</td>";
-              echo "<td>" . $maltfielddata['departure_location'] . "</td>";
-              echo "<td>" . $maltfielddata['destination'] . "</td>";
-              echo "<td>" . $maltfielddata['departure_time'] . "</td>";
-              echo "<td>" . $maltfielddata['arrival_time'] . "</td>";
-              echo "<td>
-              <button class='button edit-button' name='edit'>Edit</button>
-              <button class='button delete-button' name='delete'>Delete</button></td>";
-            }
-            echo "</table>";
-          } else {
-            echo "<div class='row'>";
-            echo "<div class='col'>";
-            echo "<br>No record found!";
-            echo "</div>";
-            echo "</div>";
-          }
+       
+       ?>
 
-          ?>
-
+    </div>
     </div>
 
 
