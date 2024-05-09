@@ -267,7 +267,7 @@
             $selectsql = "Select * from tbl_logs";
           }
          
-  
+          
           $result = $con->query($selectsql);
           
 
