@@ -38,7 +38,7 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="sidebarz.css" rel="stylesheet">
+  <link href="sidebar.css" rel="stylesheet">
 </head>
 
 <body>

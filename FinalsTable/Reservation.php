@@ -42,7 +42,7 @@
 </head>
 
 <body>
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
       <title>Bootstrap</title>
@@ -416,9 +416,13 @@
               echo "<td>" . $maltfielddata['seat_number'] . "</td>";
               echo "<td>" . $maltfielddata['reservation_date'] . "</td>";
               echo "<td>" . $maltfielddata['status'] . "</td>";
-              echo "<td>
-              <button class='button edit-button' name='edit'>Edit</button>
-              <button class='button delete-button' name='delete'>Delete</button></td>";
+              echo "<td>" ?>
+              <form method ='post' action ='Reservation.php'> 
+               <?php   echo "<input type='hidden' name='reservation_id' value='" . $maltfielddata['reservation_id'] . "'>"; ?>
+                <button class='btn btn-primary edit-button' name='edit'>Edit</button>
+                <button class='btn btn-danger delete-button' name='delete'>Delete</button>
+              </form>
+              <?php "</td>";
             }
             echo "</table>";
           } else {
@@ -428,6 +432,45 @@
             echo "</div>";
             echo "</div>";
           }
+
+          if(isset($_POST['delete'])){
+            $reserve_delete = $_POST['reservation_id']; // Retrieve the user_id from the form
+  
+            // Use prepared statements to prevent SQL injection
+            $deletesql = "DELETE FROM tbl_reservation WHERE reservation_id = ?";
+            $stmt = $con->prepare($deletesql);
+            $stmt->bind_param("i", $reserve_delete); // Assuming user_id is an integer
+            $resultdel = $stmt->execute();
+            
+            
+            //check if successfully deleted
+            if ($resultdel == True) {
+                ?>
+              <script> 
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      });
+                    }
+                  });
+                  </script>
+                  <?php
+            } else {
+                //if not, check query error details
+                echo $con->error;
+            }
+          } 
 
           ?>
 

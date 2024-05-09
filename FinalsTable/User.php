@@ -341,10 +341,11 @@
           } else {
             $selectsql = "Select * from tbl_user";
           }
+         
+        
 
           //button function
           if(isset($_POST['add'])){
-            $userID = $_POST['user_id'];
             $name = $_POST['full_name'];
             $role = $_POST['role'];
             $username = $_POST['username'];
@@ -455,49 +456,15 @@
           //         exit; // Stop further execution
           // }
 
-          //button function
-          if(isset($_POST['delete'])){
-            $userID = $_POST['user_id'];
-            
-            $deletesql = "DELETE FROM tbl_user WHERE user_id = '$userID'";
-
-            $resultdel = $con->query($deletesql);
-            
-            
-            //check if successfully deleted
-            if ($resultdel == True) {
-                ?>
-              <script> 
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                      });
-                    }
-                  });
-                  </script>
-                  <?php
-            } else {
-                //if not, check query error details
-                echo $con->error;
-            }
-          } 
+         
   
 
 
           
           // $resultdel = $con->query($deletesql);
           $result = $con->query($selectsql);
+
+        
 
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
@@ -522,10 +489,18 @@
               echo "<td>" . $fielddata['username'] . "</td>";
               echo "<td>" . $fielddata['password'] . "</td>";
               echo "<td>" . $fielddata['email'] . "</td>";
-              echo "<td>
+              echo "<td>" ?>
+              <form method ='post' action ='User.php'> 
+               <?php   echo "<input type='hidden' name='user_id' value='" . $fielddata['user_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='full_name' value='" . $fielddata['full_name'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='role' value='" . $fielddata['role'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='username' value='" . $fielddata['username'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='password' value='" . $fielddata['password'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='email' value='" . $fielddata['email'] . "'>"; ?>
                 <button class='btn btn-primary edit-button' name='edit'>Edit</button>
                 <button class='btn btn-danger delete-button' name='delete'>Delete</button>
-              </td>";
+              </form>
+              <?php "</td>";
               
             }
             echo "</table>";
@@ -536,6 +511,124 @@
             echo "</div>";
             echo "</div>";
           }
+
+          if(isset($_POST['edit'])){ 
+            $user_update = $_POST['user_id'];
+            $name_update = $_POST['full_name'];
+            $role_update = $_POST['role'];
+            $username_update = $_POST['username'];
+            $password_update = md5($_POST['password']);
+            $email_update = $_POST['email'];
+            
+            ?>
+          
+            <form method ='post' action ='User.php'> 
+                <div class="modal-body">
+                  
+                    <div class="row form-outline">
+                
+                    <!-- Full Name input -->
+                    <div class="col">
+                      <input type="text" name="update_id" value="<?php echo $user_update; ?>" class ="form-control">
+                          <label class="form-label" for="">User ID</label>
+                        </div>
+                    </div>
+                    <div class="col">
+                      <input type="text" name="update_name" value="<?php echo $name_update; ?>" class ="form-control">
+                          <label class="form-label" for="">Full Name</label>
+                        </div>
+                    </div>
+
+                    <!-- Role input -->
+                    <div class="form-outline mb-2">
+                    <span class="form-label">Role</span>
+                        <div class="btn-group mx-5" id="btn-group-3" >
+                            <div class="form-check form-check-inline ">
+                                <input class="form-check-input" type="radio" name="update_role" id="inlineRadio1" value="Admin" <?php if ($role_update === 'Admin') echo 'checked'; ?>/>
+                                <label class="form-check-label" for="inlineRadio1">Admin</label>
+                            </div>
+
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="update_role" id="inlineRadio2" value="Employee" <?php if ($role_update === 'Employee') echo 'checked'; ?>/>
+                                <label class="form-check-label" for="inlineRadio2">Employee</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Username input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" id="" name="update_username" value="<?php echo $username_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Username</label>
+                      </div>
+                      
+                    <!-- Password input -->
+                      <div class="col">
+                        <input type="password" name="update_password" id="" value="<?php echo $password_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Password</label>
+                      </div>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="form-outline">
+                        <input type="email" name="update_email" id="" class="form-control" value="<?php echo $email_update; ?>"/>
+                        <label class="form-label" for="">Email</label>
+                    </div>
+
+                    <!-- Save button --> 
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="submit" name="add" class="btn btn-primary">Update</button>
+                </div>
+                </form> 
+           </form>
+
+           <?php 
+
+           
+          }
+
+             //button function
+             if(isset($_POST['delete'])){
+              $user_delete = $_POST['user_id']; // Retrieve the user_id from the form
+    
+              // Use prepared statements to prevent SQL injection
+              $deletesql = "DELETE FROM tbl_user WHERE user_id = ?";
+              $stmt = $con->prepare($deletesql);
+              $stmt->bind_param("i", $user_delete); // Assuming user_id is an integer
+              $resultdel = $stmt->execute();
+              
+              
+              //check if successfully deleted
+              if ($resultdel == True) {
+                  ?>
+                <script> 
+                  Swal.fire({
+                      title: "Are you sure?",
+                      text: "You won't be able to revert this!",
+                      icon: "warning",
+                      showCancelButton: true,
+                      confirmButtonColor: "#3085d6",
+                      cancelButtonColor: "#d33",
+                      confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                      if (result.isConfirmed) {
+                        Swal.fire({
+                          title: "Deleted!",
+                          text: "Your file has been deleted.",
+                          icon: "success"
+                        });
+                      }
+                    });
+                    </script>
+                    <?php
+              } else {
+                  //if not, check query error details
+                  echo $con->error;
+              }
+            } 
+
+          
           ?>
     </div>
     </div>

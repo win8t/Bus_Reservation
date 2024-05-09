@@ -44,7 +44,7 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="sidebarz.css" rel="stylesheet">
+  <link href="sidebar.css" rel="stylesheet">
 </head>
 
 <body>
@@ -127,7 +127,7 @@
   </svg>
 
   <main>
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div class=" b-example-divider  d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 
