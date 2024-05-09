@@ -341,8 +341,10 @@
           } else {
             $selectsql = "Select * from tbl_user";
           }
+
           //button function
           if(isset($_POST['add'])){
+            $userID = $_POST['user_id'];
             $name = $_POST['full_name'];
             $role = $_POST['role'];
             $username = $_POST['username'];
@@ -381,29 +383,120 @@
                 echo $con->error;
             }
           } 
-          // if(isset($_POST['delete'])){
-          //   $name = $_POST['full_name'];
-          //   $deletesql = "DELETE FROM 'db_bus'.'tbl_user' WHERE 'tbl_user'.'full_name' = '$name'";
 
-          //   $deleteresult = $con->query($deletesql);
-          //   $rowsaffected = $con->query($deleteresult);
+          // if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
+          //   if (isset($_POST['user_id'])) {
+          //       include "dbconnect.php";
 
-          //     if(!$rowsaffected)
-          //       {
-          //           echo "Record Doesnt Exist";
-          //       }
-
-          //       elseif($deleteresult)
-          //       {   
-          //           echo "Record has been deleted";
-          //       }
-          //       else{
-
-          //           echo "Your request could not be processed due to technical Issues from our part. We regret the inconvenience caused";
-          //       }
-
-          // }
+          //        // Check if the user_id parameter is provided
+          //       if(isset($_POST['user_id'])) {
+          //         // Sanitize the input
+          //         $userID = mysqli_real_escape_string($con, $_POST['user_id']);
   
+          //       // $userID = $_POST['user_id'];
+        
+          //       $deletesql = "DELETE FROM tbl_user WHERE user_id = '$userID'";
+          //       if($con->query($deletesql)) {
+
+          
+          //         Swal.fire({
+          //           title: "Are you sure?",
+          //           text: "You won't be able to revert this!",
+          //           icon: "warning",
+          //           showCancelButton: true,
+          //           confirmButtonColor: "#3085d6",
+          //           cancelButtonColor: "#d33",
+          //           confirmButtonText: "Yes, delete it!"
+          //         }).then((result) => {
+          //           if (result.isConfirmed) {
+          //             Swal.fire({
+          //               title: "Deleted!",
+          //               text: "Your file has been deleted.",
+          //               icon: "success"
+          //             });
+          //           }
+          //         });
+          //       </script><?php
+          //       } else {
+  
+          //         echo $con->error;
+          //       }
+          // }
+          // }
+          // }
+                // $stmt = $con->prepare($deletesql);
+                // $stmt->bind_param("s", $userID);
+                
+                // if ($stmt->execute()) {
+                //   Swal.fire({
+                //     title: "Are you sure?",
+                //     text: "You won't be able to revert this!",
+                //     icon: "warning",
+                //     showCancelButton: true,
+                //     confirmButtonColor: "#3085d6",
+                //     cancelButtonColor: "#d33",
+                //     confirmButtonText: "Yes, delete it!"
+                //   }).then((result) => {
+                //     if (result.isConfirmed) {
+                //       Swal.fire({
+                //         title: "Deleted!",
+                //         text: "Your file has been deleted.",
+                //         icon: "success"
+                //       });
+                //     }
+                //   });
+                // </script>
+
+               
+          //       } else {
+          //                 //lagay mo rin dito kung ano trip mo
+          //         }
+          //   }
+          //         exit; // Stop further execution
+          // }
+
+          //button function
+          if(isset($_POST['delete'])){
+            $userID = $_POST['user_id'];
+            
+            $deletesql = "DELETE FROM tbl_user WHERE user_id = '$userID'";
+
+            $resultdel = $con->query($deletesql);
+            
+            
+            //check if successfully deleted
+            if ($resultdel == True) {
+                ?>
+              <script> 
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      Swal.fire({
+                        title: "Deleted!",
+                        text: "Your file has been deleted.",
+                        icon: "success"
+                      });
+                    }
+                  });
+                  </script>
+                  <?php
+            } else {
+                //if not, check query error details
+                echo $con->error;
+            }
+          } 
+  
+
+
+          
+          // $resultdel = $con->query($deletesql);
           $result = $con->query($selectsql);
 
           //check table if there is a record
@@ -421,17 +514,19 @@
             echo "<th> Action </th>";
             echo "</tr>";
 
-            while ($maltfielddata = $result->fetch_assoc()) {
+            while ($fielddata = $result->fetch_assoc()) {
               echo "<tr>";
-              echo "<td>" . $maltfielddata['user_id'] . "</td>";
-              echo "<td>" . $maltfielddata['full_name'] . "</td>";
-              echo "<td>" . $maltfielddata['role'] . "</td>";
-              echo "<td>" . $maltfielddata['username'] . "</td>";
-              echo "<td>" . $maltfielddata['password'] . "</td>";
-              echo "<td>" . $maltfielddata['email'] . "</td>";?>
-              <td>
-              <button class="btn btn-primary edit-button" name="edit">Edit</button>
-              <button class="btn btn-danger delete-button" name="delete">Delete</button></td><?php
+              echo "<td>" . $fielddata['user_id'] . "</td>";
+              echo "<td>" . $fielddata['full_name'] . "</td>";
+              echo "<td>" . $fielddata['role'] . "</td>";
+              echo "<td>" . $fielddata['username'] . "</td>";
+              echo "<td>" . $fielddata['password'] . "</td>";
+              echo "<td>" . $fielddata['email'] . "</td>";
+              echo "<td>
+                <button class='btn btn-primary edit-button' name='edit'>Edit</button>
+                <button class='btn btn-danger delete-button' name='delete'>Delete</button>
+              </td>";
+              
             }
             echo "</table>";
           } else {
@@ -441,7 +536,6 @@
             echo "</div>";
             echo "</div>";
           }
-
           ?>
     </div>
     </div>
@@ -452,5 +546,4 @@
   <script src="sidebarsz.js"></script>
   </main>
 </body>
-
 </html>

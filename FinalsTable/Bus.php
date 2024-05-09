@@ -400,6 +400,104 @@
             }
           } 
 
+          if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
+            if (isset($_POST['bus_id'])) {
+                $busID = $_POST['bus_id'];
+        
+                $delete_query = "DELETE FROM tbl_bus WHERE bus_id = ?";
+                $stmt = $con->prepare($delete_query);
+                $stmt->bind_param("s", $busID);
+                
+                if ($stmt->execute()) {
+                  ?>
+                <script> 
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                </script>
+                <?php
+    
+                } else {
+                    //lagay mo rin dito kung ano trip mo
+                }
+            }
+            exit; // Stop further execution
+        }
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
+          // Include the database connection file
+          include "dbconnect.php";
+      
+          // Check if the user_id parameter is provided
+          if(isset($_POST['bus_id'])) {
+              // Sanitize the input
+              $busID = mysqli_real_escape_string($con, $_POST['bus_id']);
+      
+              // Prepare and execute the SQL query to delete the record
+              $delete_query = "DELETE FROM tbl_bus WHERE bus_id = '$busID'";
+              if(mysqli_query($con, $delete_query)) {
+  
+                  echo "Record deleted successfully.";
+              } else {
+  
+                  echo "Error deleting record: " . mysqli_error($con);
+              }
+          }
+      }
+
+          if(isset($_POST['delete'])){
+            $busID = $_POST['bus_id'];
+        
+            $deletesql = "DELETE FROM tbl_bus WHERE bus_id = '$busID'";
+            $stmt = $con->prepare($deletesql);
+            $stmt->bind_param("i", $busID);
+            $stmt->execute();
+        
+            // Check if successfully deleted
+            if ($stmt->affected_rows > 0) {
+                ?>
+                <script> 
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                </script>
+                <?php
+            } else {
+                // If not, check query error details
+                echo $stmt->error;
+            }
+            $stmt->close();
+        } 
+        
+
           $result = $con->query($selectsql);
 
           //check table if there is a record
