@@ -166,3 +166,52 @@ main {
   .tbl-font, .hd-font {
     font-family:FontBold;
   }
+
+  .card {transition: all 0.6 ease-in-out;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+  }
+  
+  .dropdown-tog {
+    font-family: FontBold;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    color: black;
+  }
+  
+  .dropup-center.dropup .btn-secondary:hover,
+  .dropup-center.dropup .btn-secondary:focus {
+    background-color: #0d6efd !important;
+    color: white;
+  }
+  
+  .dropdown-menu {
+    background-color: rgb(255, 255, 255);
+    border: none;
+    width: 100%;
+  }
+  
+  .dropup-center.dropup .dropdown-menu li a {
+    color: black;
+    font-family: FontReg;
+  }
+  
+  .dropup-center.dropup .dropdown-menu li a:hover {
+    color: white;
+    background-color: #0d6efd;
+    border-radius: 5px;
+    font-family: FontBold;
+  }
+  
+  .dropup-center.dropup .dropdown-tog {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropup-center.dropup .dropdown-tog strong {
+    flex-grow: 1;
+  }

@@ -10,6 +10,7 @@
   <title>Sidebars · Bootstrap v5.0</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
 
@@ -39,10 +40,11 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="sidebar.css" rel="stylesheet">
+  <link href="sidebars.css" rel="stylesheet">
 </head>
 
 <body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
@@ -196,10 +198,15 @@
 
 
       <hr>
-      <div class="dropdown">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>Admin</strong>
-        </a>
+      <div class="dropup-center dropup">
+        <button class="btn btn-secondary dropdown-tog" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong class ="">Admin </strong>
+          <span class ="d-flex justify-content-end"><i class="bi bi-caret-up-fill"></i></span>
+        </button>
+        <ul class="dropdown-menu p-1 mb-2">
+          <li><a class="dropdown-item" href="#">Log Out</a></li>
+        </ul>
       </div>
     </div>
 
@@ -418,7 +425,7 @@
               echo "<td>" . $fielddata['passenger_name'] . "</td>";
               echo "<td>" . $fielddata['contact_information'] . "</td>";
               echo "<td>" . $fielddata['seat_number'] . "</td>";
-              echo "<td>" . $fielddata['reservation_date'] . "</td>";
+              echo "<td>" . date_format(date_create($fielddata['reservation_date']), 'Y-m-d h:i A') . "</td>";
               echo "<td>" . $fielddata['status'] . "</td>";
               echo "<td>" ?>
               <form method='post' action='Reservation.php'>
@@ -427,12 +434,13 @@
                 <?php echo "<input type='hidden' name='passenger_name' value='" . $fielddata['passenger_name'] . "'>"; ?>
                 <?php echo "<input type='hidden' name='contact_information' value='" . $fielddata['contact_information'] . "'>"; ?>
                 <?php echo "<input type='hidden' name='seat_number' value='" . $fielddata['seat_number'] . "'>"; ?>
-                <?php echo "<input type='hidden' name='reservation_date' value='" . $fielddata['reservation_date'] . "'>"; ?>
+                <?php echo "<input type='hidden' name='reservation_date' value='" . date_format(date_create($fielddata['reservation_date']), 'Y-m-d h:i A') . "'>"; ?>
                 <?php echo "<input type='hidden' name='status' value='" . $fielddata['status'] . "'>"; ?>
                 <button class='btn btn-primary edit-button' name='edit'>Edit</button>
                 <button class='btn btn-danger delete-button' name='delete'>Delete</button>
               </form>
             <?php "</td>";
+                  "</tr>";
             }
             echo "</table>";
           } else {
@@ -608,11 +616,6 @@
         </div>
       </div>
 
-
-
-
-
-      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
       <script src="modal.js"></script>
       <script src="sidebars.js"></script>
   </main>

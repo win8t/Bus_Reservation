@@ -10,6 +10,7 @@
   <title>Sidebars · Bootstrap v5.0</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 
 
@@ -38,11 +39,11 @@
 
 
   <!-- Custom styles for this template -->
-  <link href="sidebar.css" rel="stylesheet">
+  <link href="sidebars.css" rel="stylesheet">
 </head>
 
 <body>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
     <symbol id="bootstrap" viewBox="0 0 118 94">
       <title>Bootstrap</title>
@@ -195,10 +196,15 @@
 
 
       <hr>
-      <div class="dropdown">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>Admin</strong>
-        </a>
+      <div class="dropup-center dropup">
+        <button class="btn btn-secondary dropdown-tog" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+          <strong class ="">Admin </strong>
+          <span class ="d-flex justify-content-end"><i class="bi bi-caret-up-fill"></i></span>
+        </button>
+        <ul class="dropdown-menu p-1 mb-2">
+          <li><a class="dropdown-item" href="#">Log Out</a></li>
+        </ul>
       </div>
     </div>
 
@@ -309,9 +315,6 @@
 
 
 
-
-
-  <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
 
   <script src="sidebars.js"></script>
   </main>
