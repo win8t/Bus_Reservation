@@ -127,7 +127,7 @@
   </svg>
 
   <main>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <div class=" b-example-divider  d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 280px;">
       <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 
@@ -205,7 +205,16 @@
       </div>
     </div>
 
+
+      
+  
+
     <div class="container-fluid">
+
+    <div class="row bg-light border-top border-bottom border-2 mb-2">
+        <h1 class ="hd-text py-3">Welcome to ALPS Admin Dashboard</h1>
+
+      </div>
       <div class="row bg-light border-top border-bottom border-2">
         <form action="Overview.php" method="post">
           <div class="input-group w-50 py-2">
@@ -248,98 +257,198 @@
           <h4 class="hd-font display-5">Overview</h4>
 
           <!-- user-->
-          <div class="container mt-3">
+          <div class="container mt-3 ">
 
-            <div class="row mx-auto text-center">
-              <div class="col bg-primary w-50 p-1 mx-5 rounded shadow">
-                <div class="container-fluid bg-light p-5">
-                  <svg class="bi me-2" width="50" height="50">
-                    <use xlink:href="#people-circle" />
-                  </svg>
-                  <h4 class="hd-font">User Details</h4>
+            <?php require_once "dbconnect.php"; ?>
+            <div class="row">
+              <div class="col-xl-3 col-md-6 mx-auto">
+                <div class="card bg-primary text-white mb-4">
+                  <div class="card-body hd-font d-flex align-items-center"> <!-- Added align-items-center -->
+                    <svg class="bi me-2" width="30" height="30">
+                      <use xlink:href="#people-circle" />
+                    </svg>
+
+                    Total Users Record:
+                    <?php
+
+                    $user_count_query = "select * from tbl_user";
+                    $user_query = mysqli_query($con, $user_count_query);
+                    if ($user_total = mysqli_num_rows($user_query)) {
+                      echo '<h4 class = "text-center mx-2 hd-text">' . $user_total . '</h4>';
+                    } else {
+                      echo '<h4 class = "text-center mx-2 hd-text">0</h4>';
+                    }
+
+                    ?>
 
 
-
-
+                  </div>
+                  <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="User.php" class="small text-white stretched-link hd-font">
+                      View Details
+                    </a>
+                  </div>
                 </div>
-                <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1 " href="User.php">View</a>
               </div>
-               <div class="col bg-primary w-50 p-1 mx-5 rounded shadow">
-                <div class="container-fluid bg-light p-5">
-                  <svg class="bi me-2" width="50" height="50">
-                    <use xlink:href="#card-list" />
-                  </svg>
-                  <h4 class="hd-font">Log Details</h4>
 
+              <div class="col-xl-3 col-md-6 mx-auto">
+
+                <div class="card bg-dark text-white mb-4">
+                  <div class="card-body hd-font d-flex align-items-center"> <!-- Added align-items-center -->
+                    <svg class="bi me-2" width="30" height="30">
+                      <use xlink:href="#card-list" />
+                    </svg>
+                    Total Logs Record:
+                    <?php
+
+                    $log_count_query = "select * from tbl_logs";
+                    $log_query = mysqli_query($con, $log_count_query);
+                    if ($log_total = mysqli_num_rows($log_query)) {
+                      echo '<h4 class = "text-center mx-2 hd-text">' . $log_total . '</h4>';
+                    } else {
+                      echo '<h4 class = "text-center mx-2 hd-text">0 </h4>';
+                    }
+
+                    ?>
+
+                  </div>
+                  <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="Logs.php" class="small text-white stretched-link hd-font">
+                      View Details
+                    </a>
+                  </div>
                 </div>
-                <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1 " href="Logs.php">View</a>
+              </div>
+              <div class="col-xl-3 col-md-6 mx-auto">
+                <div class="card bg-success text-white mb-4">
+                  <div class="card-body hd-font d-flex align-items-center"> <!-- Added align-items-center -->
+                    <svg class="bi me-2" width="30" height="30">
+                      <use xlink:href="#bus-front" />
+                    </svg>
+                    Total Bus Record:
 
+                    <?php
+
+                    $bus_count_query = "select * from tbl_bus";
+                    $bus_query = mysqli_query($con, $bus_count_query);
+                    if ($bus_total = mysqli_num_rows($bus_query)) {
+                      echo '<h4 class = "text-center mx-2 hd-text">' . $bus_total . '</h4>';
+                    } else {
+                      echo '<h4 class = "text-center mx-2 hd-text">0 </h4>';
+                    }
+
+                    ?>
+
+                  </div>
+                  <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="Bus.php" class="small text-white stretched-link hd-font">
+                      View Details
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="col bg-primary w-50 p-1 mx-5 rounded shadow">
-              <div class="container-fluid bg-light p-5">
-                <svg class="bi me-2" width="50" height="50">
-                  <use xlink:href="#bus-front" />
-                </svg>
-                <h4 class="hd-font">Bus Details</h4>
+            <div class="row">
+              <div class="col-xl-3 col-md-6 mx-auto">
+                <div class="card bg-danger text-white mb-4">
+                  <div class="card-body hd-font d-flex align-items-center"> <!-- Added align-items-center -->
+                    <svg class="bi me-2" width="30" height="30">
+                      <use xlink:href="#sign-turn-right" />
+                    </svg>
+                    Total Route Record:
+                    <?php
+
+                    $route_count_query = "select * from tbl_route";
+                    $route_query = mysqli_query($con, $bus_count_query);
+                    if ($route_total = mysqli_num_rows($route_query)) {
+                      echo '<h4 class = "text-center mx-2 hd-text">' . $bus_total . '</h4>';
+                    } else {
+                      echo '<h4 class = "text-center mx-2 hd-text">0 </h4>';
+                    }
+
+                    ?>
+                  </div>
+                  <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="Route.php" class="small text-white stretched-link hd-font">
+                      View Details
+                    </a>
+                  </div>
+                </div>
 
               </div>
-              <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1 " href="Bus.php">View</a>
-            </div>
-          </div>
+              <div class="col-xl-3 col-md-6 mx-auto">
+                <div class="card bg-warning text-white mb-4">
+                  <div class="card-body hd-font d-flex align-items-center"> <!-- Added align-items-center -->
+                    <svg class="bi me-2" width="30" height="30">
+                      <use xlink:href="#calendar3" />
+                    </svg>
+                    Total Schedule Record:
+                    <?php
 
-          <div class="row mx-auto text-center">
-            <div class="col bg-primary w-50 p-1 m-5 rounded shadow">
-              <div class="container-fluid bg-light p-5">
-                <svg class="bi me-2" width="50" height="50">
-                  <use xlink:href="#sign-turn-right" />
-                </svg>
-                <h4 class="hd-font">Route Details</h4>
+                    $sched_count_query = "select * from tbl_schedule";
+                    $sched_query = mysqli_query($con, $sched_count_query);
+                    if ($sched_total = mysqli_num_rows($sched_query)) {
+                      echo '<h4 class = "text-center mx-2 hd-text">' . $bus_total . '</h4>';
+                    } else {
+                      echo '<h4 class = "text-center mx-2 hd-text">0 </h4>';
+                    }
 
-
-
+                    ?>
+                  </div>
+                  <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="Schedule.php" class="small text-white stretched-link hd-font">
+                      View Details
+                    </a>
+                  </div>
+                </div>
 
               </div>
-              <a type="button" value="View" class="btn btn-primary btn-blocl w-100 hd-font mt-1" href="Route.php">View</a>
-            </div>
-             <div class="col bg-primary w-50 p-1 m-5 rounded shadow">
-              <div class="container-fluid bg-light p-5">
-                <svg class="bi me-2" width="50" height="50">
-                  <use xlink:href="#calendar3" />
-                </svg>
-                <h4 class="hd-font">Schedule Details</h4>
+              <div class="col-xl-3 col-md-6 mx-auto">
+                <div class="card bg-info text-white mb-4">
+                  <div class="card-body hd-font d-flex align-items-center"> <!-- Added align-items-center -->
+                    <svg class="bi me-2" width="30" height="30">
+                      <use xlink:href="#calendar-date" />
+                    </svg>
+                    Total Reservation Details:
+                    <?php
+
+                    $reserve_count_query = "select * from tbl_reservation";
+                    $reserve_query = mysqli_query($con, $reserve_count_query);
+                    if ($reserve_total = mysqli_num_rows($reserve_query)) {
+                      echo '<h4 class = "text-center mx-2 hd-text">' . $bus_total . '</h4>';
+                    } else {
+                      echo '<h4 class = "text-center mx-2 hd-text">0 </h4>';
+                    }
+
+                    ?>
+                  </div>
+                  <div class="card-footer d-flex align-items-center justify-content-between">
+                    <a href="Reservation.php" class="small text-white stretched-link hd-font">
+                      View Details
+                    </a>
+                  </div>
+                </div>
 
               </div>
-              <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1 " href="Schedule.php">View</a>
-
-          </div>
-          <div class="col bg-primary w-50 p-1 m-5 rounded shadow">
-            <div class="container-fluid bg-light p-5">
-              <svg class="bi me-2" width="50" height="50">
-                <use xlink:href="#calendar-date" />
-              </svg>
-              <h4 class="hd-font">Reservation Details</h4>
-
             </div>
-            <a type="button" value="View" class="btn btn-primary btn-block w-100 hd-font mt-1" href="Reservation.php">View</a>
+
+
+
+
           </div>
+
         </div>
-
-
-
       </div>
 
-    </div>
-    </div>
-
-    <!-- <div class="row bg-light border-top border-bottom border-2 mt-2">
+      <!-- <div class="row bg-light border-top border-bottom border-2 mt-2">
         <div class="col container-fluid">
         
         </div>
       </div>
     </div> -->
 
-    <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="sidebars.js"></script>
+      <script src="../assets/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="sidebars.js"></script>
   </main>
 </body>
 
