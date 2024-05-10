@@ -261,53 +261,47 @@
                 <form action="Route.php" method="post">
                 <div class="modal-body">
                   
-                    <!-- Route ID input -->
+                    <!-- Route Name input -->
                     <div class="row form-outline">
                       <div class="col">
-                        <input type="text" id="" name="route_id" class="form-control" />
-                        <label class="form-label" for="">Route ID</label>
+                      <input type="text" name="route_name" id="" class="form-control" />
+                          <label class="form-label" for="">Route Name</label>
                       </div>
 
-                    <!-- Route Name input -->
-                      <div class="col">
-                          <input type="text" name="route_name" id="" class="form-control" />
-                          <label class="form-label" for="">Route Name</label>
-                        </div>
-                    </div>
-
                     <!-- Departure Location input -->
-                    <div class="row form-outline">
                       <div class="col">
                         <input type="text" name="departure_location" id="" class="form-control" />
                         <label class="form-label" for="">Departure Location</label>
                       </div>
-                    
-                    <!-- Destination input -->
-                      <div class="col">
-                          <input type="text" name="destination" id="" class="form-control" />
-                          <label class="form-label" for="">Destination</label>
-                      </div>
                     </div>
 
-                    <!-- Distance input -->
+                    <!-- Destination input -->
                     <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" name="destination" id="" class="form-control" />
+                        <label class="form-label" for="">Destination</label>
+                      </div>
+                    
+                    <!-- Distance input -->
                       <div class="col">
                         <input type="number" name="distance" id="" class="form-control" />
                         <label class="form-label" for="">Distance (in km)</label>
                       </div>
-
-                    <!-- Duration input -->
-                      <div class="col">
-                          <input type="time" name="duration" id="" class="form-control" />
-                          <label class="form-label" for="">Duration</label>
-                      </div>
                     </div>
 
-                    <!-- Price input -->
+                    <!-- Duration input -->
                     <div class="row form-outline">
+                      <div class="col">
+                        <input type="time" name="duration" id="" class="form-control" />
+                        <label class="form-label" for="">Duration</label>
+                      </div>
+
+                    <!-- Price input -->
+                      <div class="col">
                         <input type="number" name="price" id="" class="form-control" />
                         <label class="form-label" for="">Price</label>
                       </div>
+                    </div>
 
                     <!-- Save button --> 
                 </div>
@@ -344,9 +338,8 @@
             $selectsql = "Select * from tbl_route";
           }
 
-          //button function
+          //Add Button
           if(isset($_POST['add'])){
-            $routeID = $_POST['route_id'];
             $routeName = $_POST['route_name'];
             $departureLoc = $_POST['departure_location'];
             $destination = $_POST['destination'];
@@ -354,8 +347,8 @@
             $duration = $_POST['duration'];
             $price = $_POST['price'];
             
-            $insertsql = "Insert into tbl_route (route_id,route_name,departure_location,destination,distance,duration,price)
-            values ($routeID,'$routeName','$departureLoc','$destination',$distance,'$duration',$price)
+            $insertsql = "Insert into tbl_route (route_name,departure_location,destination,distance,duration,price)
+            values ('$routeName','$departureLoc','$destination',$distance,'$duration',$price)
             ";
 
             $result = $con->query($insertsql);
@@ -405,18 +398,24 @@
             echo "<th> Action </th>";
             echo "</tr>";
 
-            while ($maltfielddata = $result->fetch_assoc()) {
+            while ($fielddata = $result->fetch_assoc()) {
               echo "<tr>";
-              echo "<td>" . $maltfielddata['route_id'] . "</td>";
-              echo "<td>" . $maltfielddata['route_name'] . "</td>";
-              echo "<td>" . $maltfielddata['departure_location'] . "</td>";
-              echo "<td>" . $maltfielddata['destination'] . "</td>";
-              echo "<td>" . $maltfielddata['distance'] . "</td>";
-              echo "<td>" . $maltfielddata['duration'] . "</td>";
-              echo "<td>" . $maltfielddata['price'] . "</td>";
+              echo "<td>" . $fielddata['route_id'] . "</td>";
+              echo "<td>" . $fielddata['route_name'] . "</td>";
+              echo "<td>" . $fielddata['departure_location'] . "</td>";
+              echo "<td>" . $fielddata['destination'] . "</td>";
+              echo "<td>" . $fielddata['distance'] . "</td>";
+              echo "<td>" . $fielddata['duration'] . "</td>";
+              echo "<td>" . $fielddata['price'] . "</td>";
               echo "<td>" ?>
               <form method ='post' action ='Route.php'> 
-               <?php   echo "<input type='hidden' name='route_id' value='" . $maltfielddata['route_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='route_id' value='" . $fielddata['route_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='route_name' value='" . $fielddata['route_name'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='departure_location' value='" . $fielddata['departure_location'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='destination' value='" . $fielddata['destination'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='distance' value='" . $fielddata['distance'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='duration' value='" . $fielddata['duration'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='price' value='" . $fielddata['price'] . "'>"; ?>
                 <button class='btn btn-primary edit-button' name='edit'>Edit</button>
                 <button class='btn btn-danger delete-button' name='delete'>Delete</button>
               </form>
@@ -431,6 +430,80 @@
             echo "</div>";
           }
 
+           //Edit Button
+           if(isset($_POST['edit'])){ 
+            $routeID_update = $_POST['route_id'];
+            $routeName_update = $_POST['route_name'];
+            $departureLoc_update = $_POST['departure_location'];
+            $destination_update = $_POST['destination'];
+            $distance_update = $_POST['distance'];
+            $duration_update = $_POST['duration'];
+            $price_update = $_POST['price'];
+            
+            ?>
+
+                <form action="Route.php" method="post">
+                <div class="modal-body">
+                  
+                    <!-- Route ID input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" id="" name="update_routeID" value="<?php echo $routeID_update; ?>" class="form-control" readonly />
+                        <label class="form-label" for="">Route ID</label>
+                      </div>
+
+                    <!-- Route Name input -->
+                      <div class="col">
+                          <input type="text" name="update_routeName" value="<?php echo $routeName_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Route Name</label>
+                        </div>
+                    </div>
+
+                    <!-- Departure Location input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" name="update_departureLoc" value="<?php echo $departureLoc_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Departure Location</label>
+                      </div>
+                    
+                    <!-- Destination input -->
+                      <div class="col">
+                          <input type="text" name="update_destination" value="<?php echo $destination_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Destination</label>
+                      </div>
+                    </div>
+
+                    <!-- Distance input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="number" name="update_distance" value="<?php echo $distance_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Distance (in km)</label>
+                      </div>
+
+                    <!-- Duration input -->
+                      <div class="col">
+                          <input type="time" name="update_duration" value="<?php echo $duration_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Duration</label>
+                      </div>
+                    </div>
+
+                    <!-- Price input -->
+                    <div class="row form-outline">
+                        <input type="number" name="update_price" value="<?php echo $price_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Price</label>
+                      </div>
+
+                    <!-- Save button --> 
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
+                </div>
+                </form> 
+            <?php
+
+            }
+
+            //Delete Button
           if(isset($_POST['delete'])){
             $route_delete = $_POST['route_id']; // Retrieve the user_id from the form
   
@@ -470,9 +543,58 @@
             }
           } 
 
+          //Update Button
+
+          require_once "dbconnect.php";
+
+          if (isset($_POST['updating'])) {
+            $routeID_update = $_POST['update_routeID'];
+            $routeName_update = $_POST['update_routeName'];
+            $departureLoc_update = $_POST['update_departureLoc'];
+            $destination_update = $_POST['update_destination'];
+            $distance_update = $_POST['update_distance'];
+            $duration_update = $_POST['update_duration'];
+            $price_update = $_POST['update_price'];
+
+            
+
+            $updatesql = "UPDATE tbl_route SET route_id = $routeID_update, route_name = '$routeName_update',
+            departure_location = '$departureLoc_update', destination = '$destination_update', distance = $distance_update,
+            duration = '$duration_update', price = $price_update WHERE route_id = $routeID_update";
+            
+            $resultup = $con->query($updatesql);
+            
+            //check if successfully updated
+            if ($resultup == True) {
+                ?>
+              <script> 
+                Swal.fire({
+                  title: "Do you want to update?",
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: "Update",
+                  denyButtonText: `Don't Update`
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire("Updated!", "", "success");
+                  } else if (result.isDenied) {
+                    Swal.fire("Changes are not updated", "", "info");
+                  }
+                });
+                  </script>
+                  <?php
+            } else {
+                //if not, check query error details
+                echo $con->error;
+            }
+          }
+
+
 
           ?>
 
+    </div>
     </div>
 
 

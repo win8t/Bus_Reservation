@@ -262,51 +262,47 @@
                 <div class="modal-body">
                   
                       <div class="row form-outline">
-                    <!-- Reservation ID input -->
                         <div class="col">
-                          <input type="number" name="reservation_id" id="" class="form-control" />
-                          <label class="form-label" for="">Reservation ID</label>
-                        </div>
-
-                        <div class=" col">
-                      <!-- Schedule ID input -->
+                          <!-- Schedule ID input -->
                           <input type="number" name="schedule_id" id="" class="form-control" />
                           <label class="form-label" for="">Schedule ID</label>
                         </div>
-                    </div>
 
-                    <!-- Passenger Name input -->
-                    <div class="row form-outline">
-                      <div class="col">
+                        <div class=" col">
+                      <!-- Passenger Name input -->
                         <input type="text" id="" name="passenger_name" class="form-control" />
                         <label class="form-label" for="">Passenger Name</label>
-                      </div>
-                      
-                    <!-- Contact Information input -->
+                        </div>
+                    </div>
+
+                    
+                    <div class="row form-outline">
                       <div class="col">
+                        <!-- Contact Number -->
                         <input type="number" name="contact_information" id="" class="form-control" />
                         <label class="form-label" for="">Contact Number</label>
                       </div>
-                    </div>
-
-                    <!-- Seat Number input -->
-                    <div class="form-outline">
+                                       
+                      <div class="col">
+                        <!-- Seat Number -->
                         <input type="text" id="" name="seat_number" class="form-control" />
                         <label class="form-label" for="">Seat Number</label>
+                      </div>
                     </div>
-                      
-                    <!-- Reservation Date input -->
-                      <div class="row form-outline">
-                        <div class="col">
+
+                    <div class="row form-outline">
+                      <div class="col">
+                        <!-- Reservation Date -->
                           <input type="datetime-local" name="reservation_date" id="" class="form-control" />
                           <label class="form-label" for="">Reservation Date</label>
-                        </div>
-                    <!-- Status input -->
+                      </div>
+                      
+                        <!-- Status input -->
                         <div class="col">
                           <input type="text" name="status" id="" class="form-control" />
                           <label class="form-label" for="">Status</label>
                         </div>
-                      </div>
+                    </div>
 
                     <!-- Save button --> 
                 </div>
@@ -343,9 +339,9 @@
             $selectsql = "Select * from tbl_reservation";
           }
 
-          //button function
+          //Add Button
           if(isset($_POST['add'])){
-            $reservationID = $_POST['reservation_id'];
+            
             $scheduleID = $_POST['schedule_id'];
             $passengerName = $_POST['passenger_name'];
             $contact = $_POST['contact_information'];
@@ -354,8 +350,8 @@
             $status = $_POST['status'];
             
             
-            $insertsql = "Insert into tbl_reservation (reservation_id,schedule_id,passenger_name,contact_information,seat_number,reservation_date,status)
-            values ($reservationID,$scheduleID,'$passengerName',$contact,'$seatNum','$reservationDate','$status')
+            $insertsql = "Insert into tbl_reservation (schedule_id,passenger_name,contact_information,seat_number,reservation_date,status)
+            values ($scheduleID,'$passengerName',$contact,$seatNum,'$reservationDate','$status')
             ";
 
             $result = $con->query($insertsql);
@@ -407,18 +403,24 @@
             echo "<th> Action </th>";
             echo "</tr>";
 
-            while ($maltfielddata = $result->fetch_assoc()) {
+            while ($fielddata = $result->fetch_assoc()) {
               echo "<tr>";
-              echo "<td>" . $maltfielddata['reservation_id'] . "</td>";
-              echo "<td>" . $maltfielddata['schedule_id'] . "</td>";
-              echo "<td>" . $maltfielddata['passenger_name'] . "</td>";
-              echo "<td>" . $maltfielddata['contact_information'] . "</td>";
-              echo "<td>" . $maltfielddata['seat_number'] . "</td>";
-              echo "<td>" . $maltfielddata['reservation_date'] . "</td>";
-              echo "<td>" . $maltfielddata['status'] . "</td>";
+              echo "<td>" . $fielddata['reservation_id'] . "</td>";
+              echo "<td>" . $fielddata['schedule_id'] . "</td>";
+              echo "<td>" . $fielddata['passenger_name'] . "</td>";
+              echo "<td>" . $fielddata['contact_information'] . "</td>";
+              echo "<td>" . $fielddata['seat_number'] . "</td>";
+              echo "<td>" . $fielddata['reservation_date'] . "</td>";
+              echo "<td>" . $fielddata['status'] . "</td>";
               echo "<td>" ?>
               <form method ='post' action ='Reservation.php'> 
-               <?php   echo "<input type='hidden' name='reservation_id' value='" . $maltfielddata['reservation_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='reservation_id' value='" . $fielddata['reservation_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='schedule_id' value='" . $fielddata['schedule_id'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='passenger_name' value='" . $fielddata['passenger_name'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='contact_information' value='" . $fielddata['contact_information'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='seat_number' value='" . $fielddata['seat_number'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='reservation_date' value='" . $fielddata['reservation_date'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='status' value='" . $fielddata['status']. "'>"; ?>
                 <button class='btn btn-primary edit-button' name='edit'>Edit</button>
                 <button class='btn btn-danger delete-button' name='delete'>Delete</button>
               </form>
@@ -433,6 +435,78 @@
             echo "</div>";
           }
 
+          //Edit Button
+          if(isset($_POST['edit'])){
+            $reservationID_update = $_POST['reservation_id'];
+            $scheduleID_update = $_POST['schedule_id'];
+            $passengerName_update = $_POST['passenger_name'];
+            $contact_update = $_POST['contact_information'];
+            $seatNum_update = $_POST['seat_number'];
+            $reservationDate_update = $_POST['reservation_date'];
+            $status_update = $_POST['status'];
+
+            ?>
+              <form action="Reservation.php" method="post">
+                <div class="modal-body">
+                  
+                      <div class="row form-outline">
+                        <div class="col">
+                          <!-- Reservation ID input -->
+                          <input type="number" name="update_reservationID" value="<?php echo $reservationID_update; ?>" class="form-control" readonly />
+                          <label class="form-label" for="">Reservation ID</label>
+                        </div>
+
+                        <div class="col">
+                          <!-- Schedule ID input -->
+                          <input type="number" name="update_scheduleID" value="<?php echo $scheduleID_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Schedule ID</label>
+                        </div>
+
+                        <div class=" col">
+                      <!-- Passenger Name input -->
+                        <input type="text" id="" name="update_passengerName" value="<?php echo $passengerName_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Passenger Name</label>
+                        </div>
+                    </div>
+                    
+                    <div class="row form-outline">
+                      <div class="col">
+                        <!-- Contact Number -->
+                        <input type="number" name="update_contactInformation" value="<?php echo $contact_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Contact Number</label>
+                      </div>
+                                       
+                      <div class="col">
+                        <!-- Seat Number -->
+                        <input type="text" id="" name="update_seatNumber" value="<?php echo $seatNum_update; ?>" class="form-control" />
+                        <label class="form-label" for="">Seat Number</label>
+                      </div>
+                    </div>
+
+                    <div class="row form-outline">
+                      <div class="col">
+                        <!-- Reservation Date -->
+                          <input type="datetime-local" name="update_reservationDate" value="<?php echo $reservationDate_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Reservation Date</label>
+                      </div>
+                      
+                        <!-- Status input -->
+                        <div class="col">
+                          <input type="text" name="update_status" value="<?php echo $status_update; ?>" class="form-control" />
+                          <label class="form-label" for="">Status</label>
+                        </div>
+                    </div>
+
+                    <!-- Save button --> 
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
+                </div>
+                </form>
+  
+            <?php
+          }
+          //Delete Button
           if(isset($_POST['delete'])){
             $reserve_delete = $_POST['reservation_id']; // Retrieve the user_id from the form
   
@@ -471,6 +545,51 @@
                 echo $con->error;
             }
           } 
+
+          //Update Button
+          require_once "dbconnect.php";
+          
+          if(isset($_POST['updating'])){
+            $reservationID_update = $_POST['update_reservationID'];
+            $scheduleID_update = $_POST['update_scheduleID'];
+            $passengerName_update = $_POST['update_passengerName'];
+            $contact_update = $_POST['update_contactInformation'];
+            $seatNum_update = $_POST['update_seatNumber'];
+            $reservationDate_update = $_POST['update_reservationDate'];
+            $status_update = $_POST['update_status'];
+
+            $updatesql = "UPDATE tbl_reservation SET reservation_id = $reservationID_update, schedule_id = $scheduleID_update,
+            passenger_name = '$passengerName_update', contact_information = $contact_update, seat_number = $seatNum_update,
+            reservation_date = '$reservationDate_update', status = '$status_update'
+            WHERE reservation_id = $reservationID_update";
+
+            $resultup = $con->query($updatesql);
+                        
+            //check if successfully updated
+            if ($resultup == True) {
+                ?>
+              <script> 
+                Swal.fire({
+                  title: "Do you want to update?",
+                  showDenyButton: true,
+                  showCancelButton: true,
+                  confirmButtonText: "Update",
+                  denyButtonText: `Don't Update`
+                }).then((result) => {
+                  /* Read more about isConfirmed, isDenied below */
+                  if (result.isConfirmed) {
+                    Swal.fire("Updated!", "", "success");
+                  } else if (result.isDenied) {
+                    Swal.fire("Changes are not updated", "", "info");
+                  }
+                });
+                  </script>
+                  <?php
+            } else {
+                //if not, check query error details
+                echo $con->error;
+            }
+          }
 
           ?>
 
