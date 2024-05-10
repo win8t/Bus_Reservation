@@ -269,27 +269,34 @@
                     <!-- Bus ID input -->
                     <div class="row form-outline">
                       <div class="col">
-                      <input type="text" name="bus_number" id="" class="form-control" />
+                      <input type="text" name="bus_number" id="" class="form-control" required/>
                           <label class="form-label" for="">Bus Number</label>
                       </div>
 
                     <!-- Bus Number input -->
                       <div class="col">
-                          <input type="text" name="bus_type" id="" class="form-control" />
-                          <label class="form-label" for="">Bus Type</label>
+                      <select name="bus_type" id="bus_type" class="form-select" required>
+                          <option value="" selected disabled>Select Bus Type</option>
+                          <option value="Executive">Executive</option>
+                          <option value="Executive Solo">Executive Solo</option>
+                          <option value="Executive Class">Executive Class</option>
+                          <option value="Executive Luxury">Executive Luxury</option>
+                          <!-- Add more options as needed -->
+                        </select>
+                        <label class="form-label" for="">Bus Type</label>
                         </div>
                     </div>
 
                     <!-- Seating Capacity input -->
                     <div class="row form-outline">
                       <div class="col">
-                        <input type="number" name="seating_capacity" id="" class="form-control" />
+                        <input type="number" name="seating_capacity" id="" class="form-control" required/>
                         <label class="form-label" for="">Seating Capacity</label>
                       </div>
                       
                     <!-- Driver Name input -->
                       <div class="col">
-                        <input type="text" name="driver_name" id="" class="form-control" />
+                        <input type="text" name="driver_name" id="" class="form-control" required/>
                         <label class="form-label" for="">Driver Name</label>
                       </div>
                     </div>
@@ -297,13 +304,13 @@
                     <!-- Departure Location input -->
                     <div class="row form-outline">
                       <div class="col">
-                        <input type="text" name="departure_location" id="" class="form-control" />
+                        <input type="text" name="departure_location" id="" class="form-control" required/>
                         <label class="form-label" for="">Departure Location</label>
                       </div>
                     
                     <!-- Destination input -->
                       <div class="col">
-                          <input type="text" name="destination" id="" class="form-control" />
+                          <input type="text" name="destination" id="" class="form-control" required/>
                           <label class="form-label" for="">Destination</label>
                       </div>
                     </div>
@@ -311,13 +318,13 @@
                     <!-- Departure Time input -->
                     <div class="row form-outline">
                       <div class="col">
-                        <input type="datetime-local" name="departure_time" id="" class="form-control" />
+                        <input type="datetime-local" name="departure_time" id="" class="form-control" required/>
                         <label class="form-label" for="">Departure Time</label>
                       </div>
 
                     <!-- Arrival Time input -->
                       <div class="col">
-                          <input type="datetime-local" name="arrival_time" id="" class="form-control" />
+                          <input type="datetime-local" name="arrival_time" id="" class="form-control" required />
                           <label class="form-label" for="">Arrival Time</label>
                       </div>
                     </div>
@@ -489,9 +496,17 @@
                       </div>
 
                     <!-- Bus Number input -->
+                    
                       <div class="col">
-                          <input type="text" name="update_type" value="<?php echo $busType_update; ?>" class="form-control" />
-                          <label class="form-label" for="">Bus Type</label>
+                      <select name="update_type" id="bus_type" class="form-select" required>
+                          <option value="" selected disabled>Select Bus Type</option>
+                          <option value="Executive" <?php if ($busType_update === 'Executive') echo 'selected'; ?> >Executive</option>
+                          <option value="Executive Solo" <?php if ($busType_update === 'Executive Solo') echo 'selected'; ?>>Executive Solo</option>
+                          <option value="Executive Class" <?php if ($busType_update === 'Executive Class') echo 'selected'; ?>>Executive Class</option>
+                          <option value="Executive Luxury" <?php if ($busType_update === 'Executive Luxury') echo 'selected'; ?>>Executive Luxury</option>
+                          <!-- Add more options as needed -->
+                        </select>
+                        <label class="form-label" for="">Bus Type</label>
                         </div>
                     </div>
 
