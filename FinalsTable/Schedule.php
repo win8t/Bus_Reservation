@@ -486,7 +486,7 @@
                     <!-- Save button --> 
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
-                  <button type="submit" name="updating" value="Update" class="btn btn-primary">Update</button>
+                  <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
                 </div>
                 </form> 
 
