@@ -1,5 +1,5 @@
-
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,24 +37,24 @@
                 </div>
 
 
-                <form action="Reservation.php" method="post" novalidate class ="needs-validation">
+                <form action="Reservation.php" method="post" novalidate class="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <!-- Passenger Name input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="text" class="form-control" name="passname" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Passenger Name (FN LN MI)<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Passenger Name (FN LN MI)<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter your full name.</div>
                                 <div class="valid-feedback text-start">Entered passenger name.</div>
                             </div>
-                            
+
                         </div>
 
                         <div class="col-md-6">
                             <!-- FullName input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="number" class="form-control" name="text" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Contact Information<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Contact Information<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter your contact number</div>
                                 <div class="valid-feedback text-start">Entered a valid contact number.</div>
                             </div>
@@ -65,13 +65,13 @@
 
                     <div class="row justify-content-center">
                         <div class="col-md-12">
-                            <!-- Email input -->
+                            <!-- Seat No. input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="text" class="form-control" name="reservedate" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text"> (FN LN MI)<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Seat Number<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Enter your full name.</div>
                                 <div class="valid-feedback text-start">Entered full name.</div>
-                                
+
                             </div>
                         </div>
 
@@ -81,21 +81,26 @@
 
 
                         <div class="col-md-6">
-                            <!-- Password input -->
+                            <!-- Reserve Date input -->
                             <div class="form-floating mb-5 link-text">
                                 <input type="password" class="form-control" name="pass" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Password<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Password<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter a password.</div>
                                 <div class="valid-feedback text-start">Entered password</div>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <!-- Password Confirmation input -->
+                            <!-- Status input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="password" class="form-control" name="confirmpass" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Confirm Password<span class ="text-danger">*</span></label>
-                                <div class="invalid-feedback text-start">Please re-enter your password.</div>
-                                <div class="valid-feedback text-start">Re-entered password</div>
+
+                                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <label for="floatingSelect">Works with selects</label>
+
                             </div>
                         </div>
 
@@ -123,28 +128,28 @@
     </div>
     </div>
 
-<script>
-(() => {
-  'use strict'
+    <script>
+        (() => {
+            'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
+            // Fetch all the forms we want to apply custom Bootstrap validation styles to
+            const forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      
+            // Loop over them and prevent submission
+            Array.from(forms).forEach(form => {
+                form.addEventListener('submit', event => {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})() 
-</script>
-    
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+        })()
+    </script>
+
 </body>
 
 </html>
