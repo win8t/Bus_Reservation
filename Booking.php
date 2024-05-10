@@ -277,13 +277,14 @@ function setMinDate() {
                                     echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
-                                    echo "<td>" . $maltfielddata['Departure Time'] . "</td>";
-                                    echo "<td>" . $maltfielddata['Arrival Time'] . "</td>";
+                                    echo "<td>" . date_format(date_create($maltfielddata['Departure Time']), 'h:i A') . "</td>";
+                                    echo "<td>" . date_format(date_create($maltfielddata['Arrival Time']), 'h:i A') . "</td>";
+
                                     echo "<td>" . $maltfielddata['Departure Area'] . "</td>";
                                     echo "<td>" . $maltfielddata['Destination'] . "</td>";
                                     echo "<td>" . $maltfielddata['Total Seats'] . "</td>";
                                     echo "<td>" . $maltfielddata['Available Seats'] . "</td>";
-                                    echo "<td>" . $maltfielddata['Price'] . "</td>";
+                                    echo "<td>" . number_format($maltfielddata['Price']) . "</td>";
                                     echo "<td>";?>
                                     <form method ='post' action ='Reservation.php'> 
                                        <?php   echo "<input type='hidden' name='Schedule ID' value='" . $maltfielddata['Schedule ID'] . "'>"; ?>
