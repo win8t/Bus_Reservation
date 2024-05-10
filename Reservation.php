@@ -64,47 +64,29 @@
                     </div>
 
                     <div class="row justify-content-center">
-                        <div class="col-md-12">
+                        <div class="col-md-6">
                             <!-- Seat No. input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="text" class="form-control" name="reservedate" id="floatingInput" required>
+                                <input type="number" class="form-control" name="reservedate" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Seat Number<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Enter your full name.</div>
                                 <div class="valid-feedback text-start">Entered full name.</div>
 
                             </div>
                         </div>
-
-                    </div>
-
-                    <div class="row justify-content-center">
-
-
                         <div class="col-md-6">
                             <!-- Reserve Date input -->
                             <div class="form-floating mb-5 link-text">
-                                <input type="password" class="form-control" name="pass" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Password<span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" name="pass" id="floatingInput" required>
+                                <label for="floatingInput" class="link-text">Destination Date<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter a password.</div>
                                 <div class="valid-feedback text-start">Entered password</div>
                             </div>
                         </div>
-                        <div class="col-md-6">
-                            <!-- Status input -->
-                            <div class="form-floating mb-3 link-text">
-
-                                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
-                                <label for="floatingSelect">Works with selects</label>
-
-                            </div>
-                        </div>
 
                     </div>
+
+                
 
 
                     <div class="row mb-4">
