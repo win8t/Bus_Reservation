@@ -41,7 +41,7 @@
                         <div class="col-md-6">
                             <!-- OTP input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="text" class="form-control" name="otpverify" id="floatingInput" required>
+                                <input type="text" class="form-control" name="otp" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">OTP Verification<span class ="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter the OTP verification code.</div>
                                 <div class="valid-feedback text-start">Entered OTP verification code.</div>
@@ -55,7 +55,7 @@
 
                     <div class="row mb-4">
                         <div class="col text-end">
-                            <input type="submit" name="sub" value="Verify" class="btn btn-primary btn-block w-50 link-text">
+                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-50 link-text">
                         </div>
                         <div class="col text-start">
                             <a href="Registration.php">
@@ -99,4 +99,35 @@
 </body>
 
 </html>
+<?php
+require_once "dbconnect.php";
 
+if (isset($_POST['ver'])) {
+   //user input
+   $otpinput = $_POST['otp'];
+
+   $otpsql = "Select * from tbl_user where otp = '".$otpinput."'";
+   $result = $con->query($otpsql);
+
+   if ($result->num_rows == 1 ) {
+
+    $updatesql = "UPDATE tbl_user SET status = 'Active', otp = NULL WHERE otp = '".$otpinput."'";
+    $con->query($updatesql);
+    
+    header("location: Login.php");
+
+   } else {
+
+    ?>
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            });
+    </script>
+    <?php
+   }
+   
+}
+?>
