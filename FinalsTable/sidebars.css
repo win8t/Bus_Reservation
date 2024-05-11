@@ -36,7 +36,8 @@ main {
 
 
 .b-example-divider {
-  flex-shrink: 0;
+  overflow:auto;
+  flex-shrink: 1;
   width: 1.5rem;
   background-color: rgba(0, 0, 0, .1);
   border: solid rgba(0, 0, 0, .15);

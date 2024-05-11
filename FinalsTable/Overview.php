@@ -219,7 +219,7 @@
 
 
 
-    <div class="container-fluid">
+    <div class="container-fluid bg-light">
 
       <div class="row bg-light border-top border-bottom border-2 mb-2">
         <h1 class="hd-text py-3">Welcome to ALPS Admin Dashboard</h1>

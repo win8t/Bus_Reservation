@@ -120,7 +120,7 @@
       <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
     </symbol>
   </svg>
-
+<div class="d-flex container-fluid flex-column p-0 m-0">
   <main>
 
 
@@ -398,7 +398,8 @@
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
 
-            echo "<table class='table table-light table-striped text-center table-bordered my-2 border border-3'>";
+            echo "<table class='table table-light text-center table-bordered my-2 border border-3 table-hover rounded table-responsive border-dark'>";
+            echo "<thead class ='table-dark'>";
             echo "<tr>";
             echo "<th> User ID </th>";
             echo "<th> Full Name </th>";
@@ -409,8 +410,11 @@
             echo "<th> Status </th>";
             echo "<th> Action </th>";
             echo "</tr>";
+            echo "</thead>";
+       
 
             while ($fielddata = $result->fetch_assoc()) {
+         
               echo "<tr>";
               echo "<td>" . $fielddata['user_id'] . "</td>";
               echo "<td>" . $fielddata['full_name'] . "</td>";
@@ -432,6 +436,7 @@
                 <button class='btn btn-danger delete-button' name='delete'>Delete</button>
               </form>
               <?php "</td>";
+            
               
             }
             echo "</table>";
@@ -612,5 +617,6 @@
   <script src="modal.js"></script>
   <script src="sidebarsz.js"></script>
   </main>
+
 </body>
 </html>

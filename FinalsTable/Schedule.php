@@ -47,6 +47,7 @@
 </head>
 
 <body>
+  
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
@@ -394,8 +395,8 @@
           if ($result->num_rows > 0) {
          
 
-            echo "<table class='table table-light table-striped text-center table-bordered my-2 border border-3'>";
-            echo "<tr>";
+            echo "<table class='table table-light text-center table-bordered my-2 border border-3 table-hover rounded table-responsive border-dark'>";
+            echo "<thead class ='table-dark'>";;
     
             echo "</tr>";
             echo "<tr>";
@@ -407,6 +408,7 @@
             echo "<th> Available Seats </th>";
             echo "<th> Action </th>";
             echo "</tr>";
+            echo "</thead>";
 
             while ($fielddata = $result->fetch_assoc()) {
               echo "<tr>";

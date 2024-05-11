@@ -281,12 +281,14 @@
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
 
-            echo "<table class='table table-light table-striped text-center table-bordered my-2 border border-3'>";
+            echo "<table class='table table-light text-center table-bordered my-2 border border-3 table-hover rounded table-responsive border-dark'>";
+            echo "<thead class ='table-dark'>";;
             echo "<tr>";
             echo "<th> Log ID </th>";
             echo "<th> User ID </th>";
             echo "<th> Action </th>";
             echo "<th> DateTime </th>";
+            echo "</thead>";;
    
             echo "</tr>";
 
