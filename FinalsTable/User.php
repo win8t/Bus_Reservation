@@ -333,7 +333,8 @@
                 OR role LIKE'%" . $search . "%' 
                 OR username LIKE'%" . $search . "%' 
                 OR password LIKE'%" . $search . "%' 
-                OR email LIKE'%" . $search . "%' ";
+                OR email LIKE'%" . $search . "%'
+                OR otp LIKE'%" . $search . "%' ";
 
             } else {
               $selectsql = "Select * from tbl_user";
@@ -400,6 +401,7 @@
             echo "<th> Username </th>";
             echo "<th> Password </th>";
             echo "<th> Email </th>";
+            echo "<th> OTP </th>";
             echo "<th> Action </th>";
             echo "</tr>";
 
@@ -411,6 +413,7 @@
               echo "<td>" . $fielddata['username'] . "</td>";
               echo "<td>" . $fielddata['password'] . "</td>";
               echo "<td>" . $fielddata['email'] . "</td>";
+              echo "<td>" . $fielddata['otp'] . "</td>";
               echo "<td>" ?>
               <form method ='post' action ='User.php'> 
                <?php   echo "<input type='hidden' name='user_id' value='" . $fielddata['user_id'] . "'>"; ?>
