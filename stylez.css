@@ -570,7 +570,7 @@ svg {
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
-  background-image: linear-gradient(to right, #00000049, #3dffff43, #54eb934b, #00000049),url("AlpsLogin.jpg");
+  background-image: linear-gradient(to right, #000000b6, #000000b6),url("AlpsLogin.jpg");
   width: 100%;
   float: left;
   background-attachment: fixed;
