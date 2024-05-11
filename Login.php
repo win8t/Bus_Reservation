@@ -19,21 +19,32 @@
 
     if (isset($_POST['sub'])) {
         //userinput 
-
+        session_start();
         $username = $_POST['user'];
         $password = md5($_POST['pass']);
 
         //login based on role
 
-        $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' ";
+        $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' and status = 'Active' ";
 
         $loginresult = $con->query($loginsql);
         if ($loginresult->num_rows == 1) {
             $fielddata = $loginresult->fetch_assoc();
+
             $role = $fielddata['role'];
             $user = $fielddata['username'];
             $pass = $fielddata['password'];
+            $fullname = $fielddata['full_name'];
+            $userID = $fielddata['user_id'];
 
+            $_SESSION['username'] = $user;
+            $_SESSION['role'] = $role;
+            $_SESSION['user_id'] = $userID;
+
+
+            $logsql = "Insert into tbl_logs (user_id,action,DateTime)
+            values('$userID','Logged In',NOW())";
+            $con->query($logsql);
 
             if ($role == "Admin") {
                 header("location: FinalsTable\Overview.php");
