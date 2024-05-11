@@ -1,0 +1,206 @@
+@font-face {
+    font-family: Font;
+    src: url(Chopin-Trial-Black.woff);
+  }
+  
+  @font-face {
+    font-family: FontBold;
+    src: url(Chopin-Trial-Bold.woff);
+  }
+  
+  @font-face {
+    font-family: FontReg;
+    src: url(Chopin-Trial-Regular.woff);
+  }
+
+  
+  .links {
+    list-style-type: none; /* Remove the default bullet points */
+  }
+  
+  .links li {
+    margin-left: -40px; /* Adjust indentation if necessary */
+  }
+  
+
+  body {
+    height:100vh;
+    width:100%;
+    background: rgb(255, 255, 255);
+    background-position: center;
+    background-size: cover;
+    overflow-y: auto;
+    overflow-x:auto;
+    
+
+  }
+  .sidebar  {
+    grid-template-columns: auto 1fr; /* Sidebar takes up auto width, main content takes up remaining width */
+    gap:40px; /* Adjust the gap between sidebar and main content */
+    margin-right:20%;
+    position: fixed;
+    top:0;
+    left:0;
+    display: grid;
+    align-items: center;
+    flex-direction: column;
+    background-image: linear-gradient(to top, #6bffff7d, #ffffff47),url("Alps2.jpg");
+    width: 100px;
+    height:100%;
+    backdrop-filter: blur(17px);
+    --webkit-backdrop-filter: blur(17px);
+    border-right: 1px solid rgb(255, 255, 255, 0.2);
+    transition: width 0.4s ease-in;
+    -webkit-transition: width 0.4s ease-out;
+       -moz-transition: width 0.4s ease-out;
+         -o-transition: width 0.4s ease-out;
+        -ms-transition: width 0.4s ease-out;
+    z-index: 100;
+  }
+  .sidebar:hover {
+    width: 190px;
+  }
+  .sidebar .logo {
+    display:flex;
+    align-items:center;
+    padding: 25px 10px 15px;
+  }
+
+  .logo img  {
+   margin:auto;
+
+    width: 43px;
+    border-radius: 50%;
+    
+  }
+
+  .logo h2 
+  {
+    
+    margin:auto;
+    font-family: FontBold;
+    color:rgb(0, 0, 0);
+    font-weight: 600;
+    font-size: 2.15rem;
+    margin-left: 15px;
+    display:none;
+  }
+
+  .logo {
+    margin-top: 30px;
+  }
+
+
+
+  .links .sidebar {
+    list-style: none;
+    margin-top: 20px;
+    height: calc(100%-140px);
+    overflow-y: auto;
+    scrollbar-width: none;
+  }
+  .links::-webkit-scrollbar .sidebar {
+    display:none;
+  }
+  .sidebar:hover .logo h2 {
+    display:block;
+
+  }
+
+  .sidebar .links h4  {
+color: #000000;
+font-weight: 500;
+font-family:FontBold;
+display:none;
+
+
+  }
+  .links li:hover {
+    background-color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 4px;
+    
+  }
+  .sidebar:hover .links h4 {
+    display:block;
+  }
+
+  .links li {
+    font-family:FontReg;
+    display:flex;
+    align-items: center;
+ 
+  }
+  .links li i {
+padding:12px 10px;
+  }
+  .links li a {
+    color:#000000;
+    padding: 10px;
+    font-weight: 500;
+    white-space: nowrap;
+    text-decoration: none;
+    display:none;
+
+  }
+ 
+  .sidebar:hover .links li a {
+display: block;
+  }
+
+  .bi {
+    color: rgb(0, 0, 0);
+  }
+
+  .disabled {
+    pointer-events:none; 
+        
+}
+
+.container-fluid{
+  margin-left:5.00%;
+  width:85%;
+  background-color: rgb(255, 255, 255);
+}
+
+.sidebar:hover + .container-fluid {
+  margin-left: 190px; /* Adjust this value according to your sidebar width */
+  transition: margin-left 0.5s; /* Add transition effect for smooth animation */
+}
+
+
+/* Style for active icon */
+/* Style for active link */
+.links li.active i, .links li a.active {
+  color: #ffffff; /* Change the color to indicate active */
+}
+
+.links li.active {
+  background-color: black;
+  border-radius: 4px;
+}
+
+/* Define a media query for smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+  
+    width: 20%; /* Make the sidebar take up full width */
+    margin-right: 0; /* Remove the right margin */
+  }
+
+  .sidebar:hover {
+
+    width: 25%; /* Keep the sidebar at full width on hover */
+  }
+
+  .container-fluid {
+
+    margin-left: 20%; /* Remove the left margin */
+    width: 100%; /* Make the main content take up full width */
+  }
+
+  .sidebar:hover + .container-fluid {
+    margin-right: 20%; /* Remove the margin for the main content on hover */
+  }
+}
+
