@@ -55,7 +55,7 @@
 
                     <div class="row mb-4">
                         <div class="col text-end">
-                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-50 link-text">
+                            <input type="submit" name="veri" value="Verify" class="btn btn-primary btn-block w-50 link-text">
                         </div>
                         <div class="col text-start">
                             <a href="Login.php">
@@ -102,7 +102,7 @@
 <?php
 require_once "dbconnect.php";
 
-if (isset($_POST['ver'])) {
+if (isset($_POST['veri'])) {
     session_start();
    //user input
    $otpinput = $_POST['otp'];
@@ -112,8 +112,8 @@ if (isset($_POST['ver'])) {
 
    if ($result->num_rows == 1 ) {
 
-    // $updatesql = "UPDATE tbl_user SET otp = NULL WHERE otp = '".$otpinput."'";
-    // $con->query($updatesql);
+    $updatesql = "UPDATE tbl_user SET otp = NULL WHERE otp = '".$otpinput."'";
+    $con->query($updatesql);
 
     ?>
         <script>

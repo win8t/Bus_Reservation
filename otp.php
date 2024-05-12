@@ -111,7 +111,7 @@ if (isset($_POST['ver'])) {
 
    if ($result->num_rows == 1 ) {
 
-    $updatesql = "UPDATE tbl_user SET status = 'Active', otp = NULL WHERE otp = '".$otpinput."'";
+    $updatesql = "UPDATE tbl_user SET status = 'Active' WHERE otp = '".$otpinput."'";
     $con->query($updatesql);
     
     header("location: Login.php");
