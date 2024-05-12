@@ -32,15 +32,14 @@
             $fielddata = $loginresult->fetch_assoc();
 
             $role = $fielddata['role'];
-            $user = $fielddata['username'];
-            $pass = $fielddata['password'];
-            $fullname = $fielddata['full_name'];
-            $userID = $fielddata['user_id'];
-
-            $_SESSION['user'] = $fullname;
-
-            $_SESSION['username'] = $user;
             $_SESSION['role'] = $role;
+
+            $user = $fielddata['username'];
+            $_SESSION['username'] = $user;
+
+            $pass = $fielddata['password'];
+
+            $userID = $fielddata['user_id'];
             $_SESSION['user_id'] = $userID;
 
 

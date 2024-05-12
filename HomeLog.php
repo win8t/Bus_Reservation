@@ -49,8 +49,8 @@
       <a href="Home.php" class="home-login-button"><i class="bi bi-person-circle"></i>
         <?php 
             session_start();
-            $fullname = $_SESSION['user'];
-            echo $fullname;
+            $user = $_SESSION['username'];
+            echo $user;
         ?>
 
             </a>

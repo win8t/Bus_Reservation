@@ -27,7 +27,7 @@
 
 
 
-                        <h2 class="display-2 about-login">Forgot Password</h2>
+                        <h2 class="display-2 about-login">Forgot Password?</h2>
                     </div>
                 </div>
                 <div class="row">
@@ -55,7 +55,7 @@
 
                     <div class="row mb-4">
                         <div class="col text-end">
-                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-50 link-text">
+                            <input type="submit" name="ver" value="Reset Password" class="btn btn-primary btn-block w-50 link-text">
                         </div>
                         <div class="col text-start">
                             <a href="Login.php">
@@ -101,32 +101,29 @@
 </html>
 <?php
 require_once "dbconnect.php";
+include "email_ver.php";
 
+
+// Generate OTP
 if (isset($_POST['ver'])) {
     session_start();
-        $foremail = $_POST['emailadd'];
-        $otp = rand(000000, 999999);
 
-        // Check if the email exists in the database
-        $usersql = "SELECT * FROM tbl_user WHERE email = '$foremail'";
-        $result = $con->query($usersql);
+// Generate OTP
+$otp = rand(000000, 999999);
+$_SESSION['otp'] = $otp;
 
-        if ($result->num_rows > 0) {
-            $fielddata = $result->fetch_assoc();
-            $email = $fielddata['email'];
+// Store OTP and Expiry Time (you can save this in a database)
+$email = $_POST['emailadd'];
+$_SESSION['email'] = $email;
 
-            $_SESSION['email'] = $email;
+$fullname = $fielddata['full_name'];
+$_SESSION['user'] = $fullname;
 
-            send_verification($full,$email,$otp);
-            // Store the token in the database
-            $updatesql = "UPDATE tbl_user SET otp = '$otp' WHERE email = '$foremail'";
-            $con->query($updatesql);
+send_ver($fullname, $email, $otp);
 
-            // echo "An email with instructions to reset your password has been sent to $email";
-            header("location: otpforgot.php");
-        } else {
-            echo "Email not found";
-        }
-
+// Redirect user to enter OTP
+header("Location: otpforgot.php");
+exit;
 }
 ?>
+

@@ -20,7 +20,7 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-function send_verification($fullname, $email, $otp)
+function send_ver($fullname, $email, $otp)
 {
 
     $mail = new PHPMailer(true);                              // Passing `true` enables exceptions

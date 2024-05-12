@@ -154,7 +154,7 @@ include "email_registration.php";
 
 //button function
 if (isset($_POST['sub'])) {
-    start_session();
+    session_start();
     $full = $_POST['fullname'];
     $email = $_POST['email'];
     $user = $_POST['user'];
