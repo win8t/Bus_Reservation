@@ -1,0 +1,317 @@
+@font-face {
+  font-family: Font;
+  src: url(Chopin-Trial-Black.woff);
+}
+
+@font-face {
+  font-family: FontBold;
+  src: url(Chopin-Trial-Bold.woff);
+}
+
+@font-face {
+  font-family: FontReg;
+  src: url(Chopin-Trial-Regular.woff);
+}
+
+
+.links {
+  list-style-type: none;
+  /* Remove the default bullet points */
+}
+
+.links li {
+  margin-left: -40px;
+  /* Adjust indentation if necessary */
+}
+
+
+body {
+  height: 100vh;
+  width: 100%;
+  background-color: #e2eaf8;
+  background-position: center;
+  background-size: cover;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+
+}
+
+.hd-text {
+  font-family: FontReg;
+}
+
+.sidebar {
+  grid-template-columns: auto 1fr;
+  /* Sidebar takes up auto width, main content takes up remaining width */
+  gap: 40px;
+  /* Adjust the gap between sidebar and main content */
+  margin-right: 20%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  align-items: center;
+  flex-direction: column;
+  background-image: linear-gradient(#0000008c, #ffffff47), url("Sidebar.jpg");
+  width: 100px;
+  height: 100%;
+  backdrop-filter: blur(17px);
+  --webkit-backdrop-filter: blur(17px);
+  border-right: 1px solid rgb(255, 255, 255, 0.2);
+  transition: width 0.4s ease-in;
+  -webkit-transition: width 0.4s ease-out;
+  -moz-transition: width 0.4s ease-out;
+  -o-transition: width 0.4s ease-out;
+  -ms-transition: width 0.4s ease-out;
+  z-index: 100;
+}
+
+.sidebar:hover {
+  width: 190px;
+}
+
+.sidebar .logo {
+  display: flex;
+  align-items: center;
+  padding: 25px 10px 15px;
+}
+
+.logo img {
+  margin: auto;
+
+  width: 43px;
+  border-radius: 50%;
+
+}
+
+.logo h2 {
+
+  margin: auto;
+  font-family: FontBold;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
+  font-size: 2.15rem;
+  margin-left: 15px;
+  display: none;
+}
+
+.logo {
+  margin-top: 30px;
+}
+
+
+
+.links .sidebar {
+  list-style: none;
+  margin-top: 20px;
+  height: calc(100%-140px);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.links::-webkit-scrollbar .sidebar {
+  display: none;
+}
+
+.sidebar:hover .logo h2 {
+  display: block;
+
+}
+
+.sidebar .links h4 {
+  color: #e2fdff;
+  font-weight: 500;
+  font-family: FontBold;
+  display: none;
+}
+
+.sidebar .links h3 {
+  color: #e2fdff;
+  font-weight: 500;
+  font-family: FontBold;
+  display: none;
+}
+
+.links li:hover {
+  background-color: #c7dcff;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #442775;
+
+}
+
+.links li:hover i,
+.links li:hover a {
+  color: #442775;
+  /* Change to the desired color */
+}
+
+.sidebar:hover .links h4 {
+  display: block;
+}
+
+.sidebar:hover .links h3 {
+  display: block;
+}
+
+
+.sidebar .links hr {
+
+  border: none;
+  margin: 0;
+
+  border-color: #ffffff;
+  /* Set background color */
+
+  align-items: center;
+
+}
+
+.links li {
+  font-family: FontBold;
+  display: flex;
+  align-items: center;
+
+
+}
+
+.links li i {
+  padding: 12px 10px;
+}
+
+.links li a {
+  color: #edfaff;
+  padding: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  display: none;
+
+}
+
+.sidebar:hover .links li a {
+  display: block;
+}
+
+.bi {
+  color: rgb(255, 255, 255);
+}
+
+.disabled {
+  pointer-events: none;
+
+}
+
+.container-fluid {
+  margin-left: 5.00%;
+  width: 95%;
+  background-color: #e2eaf8;
+}
+
+
+.sidebar:hover+.container-fluid {
+  margin-left: 190px;
+  /* Adjust this value according to your sidebar width */
+  transition: margin-left 0.5s;
+  /* Add transition effect for smooth animation */
+}
+
+
+/* Style for active icon */
+/* Style for active link */
+.links li.active i,
+.links li a.active {
+  color: #442775;
+  /* Change the color to indicate active */
+}
+
+.links li.active {
+  background-color: #c7dcff;
+  padding: 2px;
+  border-radius: 4px;
+}
+
+/* Define a media query for smaller screens */
+@media (max-width: 768px) {
+  .sidebar {
+
+    width: 20%;
+    /* Make the sidebar take up full width */
+    margin-right: 0;
+    /* Remove the right margin */
+  }
+
+  .sidebar:hover {
+
+    width: 25%;
+    /* Keep the sidebar at full width on hover */
+  }
+
+  .container-fluid {
+
+    margin-left: 20%;
+    /* Remove the left margin */
+    width: 100%;
+    /* Make the main content take up full width */
+  }
+
+  .sidebar:hover+.container-fluid {
+    margin-right: 20%;
+    /* Remove the margin for the main content on hover */
+  }
+}
+
+.collapse {
+  transition: all 0.4s ease-in;
+  -webkit-transition: all 0.4s ease-out;
+  -moz-transition: all 0.4s ease-out;
+  -o-transition: all 0.4s ease-out;
+  -ms-transition: all 0.4s ease-out;
+}
+
+.card-body i {
+  color: white;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.card {
+  transition: all 0.6 ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
+
+.bg-row {
+  background-color: rgb(7, 44, 75);
+}
+
+.tble-bg {
+  background-color: rgb(7, 44, 75) !important;
+}
+
+th {
+  background-image: linear-gradient(#1717178c, #29292947), url("Sidebar.jpg");
+}
+
+.bg-rowimg {
+  background-image: linear-gradient(#1717178c, #29292947), url("Sidebar.jpg");
+  background-size: cover;
+}
+.table-striped>tbody>tr:nth-child(odd)>td:hover, 
+.table-striped>tbody>tr:nth-child(odd)>th:hover {
+   background-color: rgb(238, 241, 255);
+   color:rgb(15, 11, 70);
+ }
+
+ .btn-color {
+  background-color: rgb(7, 44, 75) !important;
+  color:white;
+ }
+ .btn-color:hover {
+color:rgb(255, 255, 255);
+background-color: #172685 !important;
+ }
