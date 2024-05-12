@@ -7,11 +7,15 @@
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <link rel="stylesheet" href="sidebar5.css">
+  <link rel="stylesheet" href="sidebar6.css">
 
 </head>
 
-<body>
+<body class ="hd-text">
+  <?php
+  require_once "dbconnect.php";
+  require_once "BusArrays.php";
+  ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -55,7 +59,7 @@
       </li>
       <li class="active">
         <i class="bi bi-sign-turn-right-fill"></i>
-        <a  class="active" href="Route1.php">Route</a>
+        <a class="active" href="Route1.php">Route</a>
       </li>
       <li>
         <i class="bi bi-calendar3"></i>
@@ -85,18 +89,18 @@
     <div class="row ">
       <div class="col pb-2 ">
         <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">ROUTE DETAILS | Welcome Admin!</h1>
-         
+
         <div class="row bg-row mx-auto p-1 m-1 rounded">
-          
+
           <form action="Route1.php" method="post">
-            
+
             <div class="input-group w-50 pt-4">
               <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
               <input type="search" name="search" id="" class="form-control rounded mx-1" aria-label="Input group example" aria-describedby="btnGroupAddon2">
 
 
               <div class="col-3 ">
-                
+
                 <input type="submit" value="Search" name="searchbutton" class="h-100 btn btn-primary mx-1  hd-text" class="form-control">
               </div>
             </div>
@@ -127,89 +131,168 @@
                 </script>
               </div>
             </div>
-            
+
         </div>
 
         </form>
         <button type="button" id="formDetailsBtn" class="btn btn-color hd-text" data-bs-toggle="modal" data-bs-target="#formDetails">
           Add Route Details <!-- add icon -->
-          </button>
+        </button>
 
-          <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title fs-5" id="title">Route Details Form</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+        <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title fs-5" id="title">Route Details Form</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
 
-                <form action="Route1.php" method="post">
+              <form action="Route1.php" method="post">
                 <div class="modal-body">
-                  
-                    <!-- Route Name input -->
-                    <div class="row form-outline">
-                      <div class="col">
-                      <input type="text" name="route_name" id="" class="form-control" />
-                          <label class="form-label" for="">Route Name</label>
-                      </div>
 
-                    <!-- Departure Location input -->
-                      <div class="col">
-                        <input type="text" name="departure_location" id="" class="form-control" />
-                        <label class="form-label" for="">Departure Location</label>
-                      </div>
+                  <!-- Route Name input -->
+                  <div class="row form-outline">
+                    <div class="col">
+                      <select name="route_name" id="route_name" class="form-select">
+                        <option value="" selected disabled>Select Route</option>
+                        <?php
+                        foreach ($routes as $route => $subroutes) {
+                          echo '<optgroup label="' . $route . '">';
+                          foreach ($subroutes as $subroute) {
+                            echo '<option value="' . $subroute . '">' . $subroute . '</option>';
+                          }
+                          echo '</optgroup>';
+                        }
+                        ?>
+                      </select>
+                      <label class="form-label" for="route_name">Route Name</label>
+
                     </div>
+                  </div>
+                  <!-- Departure Location input -->
+                  <div class="row form-outline">
+                    <div class="col">
+                      <select id="departure_location" class="form-select" name="departure_location" required>
+                        <?php
+                        echo '<option default disabled selected value="">Origin</option>';
+
+                        foreach ($origins as $group_label => $origin) {
+                          echo '<optgroup label="' . $group_label . '">';
+                          echo '<option value="' . $origin . '">' . $origin . '</option>';
+                          echo '</optgroup>';
+                        }
+
+                        ?>
+                      </select>
+
+
+                      <label class="form-label" for="departure_location">Departure Location</label>
+                    </div>
+
 
                     <!-- Destination input -->
-                    <div class="row form-outline">
-                      <div class="col">
-                        <input type="text" name="destination" id="" class="form-control" />
-                        <label class="form-label" for="">Destination</label>
-                      </div>
-                    
-                    <!-- Distance input -->
-                      <div class="col">
-                        <input type="number" name="distance" id="" class="form-control" />
-                        <label class="form-label" for="">Distance (in km)</label>
-                      </div>
-                    </div>
 
-                    <!-- Duration input -->
+                    <div class="col">
+                      <select id="destination" class="form-select" name="destination" required>
+                        <?php
+
+                        echo '<option default disabled selected value="">Destination</option>';
+
+                        foreach ($destinations as $group_label => $locations) {
+                          echo '<optgroup label="' . $group_label . '">';
+                          foreach ($locations as $location) {
+                            echo '<option value="' . $location . '">' . $location . '</option>';
+                          }
+                          echo '</optgroup>';
+                        }
+
+                        ?>
+                      </select>
+                      <label class="form-label" for="destination">Destination</label>
+                    </div>
+                  </div>
+                  <div class="row form-outline">
+
+                    <!-- Distance input -->
+                    <div class="col">
+                      <div class="input-group">
+                        <input type="number" name="distance" class="form-control" aria-label="Distance (in km)" placeholder="Distance" required>
+                        <span class="input-group-text hd-text">km</span>
+                      </div>
+                      <label class="form-label" for="distance">Distance (in km)</label>
+                    </div>
+                  </div>
+
+                  <!-- Duration input -->
+                  <!--
                     <div class="row form-outline">
                       <div class="col">
                         <input type="time" name="duration" id="" class="form-control" />
                         <label class="form-label" for="">Duration</label>
                       </div>
+                -->
+                  <div class="row form-outline mb-2">
+
+                    <div class="col">
+                      <div class="input-group">
+                        <input type="number" name="hrduration" class="form-control" min="0" placeholder="0" required>
+                        <span class="input-group-text hd-text">Hrs</span>
+                      </div>
+
+                    </div>
+                    <div class="col">
+                      <div class="input-group">
+                        <input type="number" name="minduration" class="form-control" min="0" max="59" placeholder="0" required>
+                        <span class="input-group-text hd-text">Mins</span>
+                      </div>
+
+                    </div>
+                    <div class="col">
+                      <div class="input-group">
+                        <input type="number" name="secduration" class="form-control" min="0" max="59" placeholder="0" required>
+                        <span class="input-group-text hd-text">Secs</span>
+                      </div>
+
+                    </div>
+                    <label class="form-label" for="">Duration</label>
+                  </div>
+
+
+                  <div class="row form-outline">
 
                     <!-- Price input -->
-                      <div class="col">
-                        <input type="number" name="price" id="" class="form-control" />
-                        <label class="form-label" for="">Price</label>
+                    <div class="col">
+                      <div class="input-group">
+                        <span class="input-group-text hd-text">₱</span>
+                        <input type="number" name="price" class="form-control" aria-label="Price" placeholder="Price" required>
                       </div>
-                    </div>
+                      <label class="form-label" for="price">Price</label>
 
-                    <!-- Save button --> 
+                    </div>
+                  </div>
+
+                  <!-- Save button -->
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="submit" name="add" class="btn btn-primary">Add</button>
                 </div>
-                </form> 
-              </div>
+              </form>
             </div>
           </div>
+        </div>
       </div>
     </div>
 
     <?php
-          require_once "dbconnect.php";
 
-          //button function
-          if (isset($_POST['searchbutton'])) {
 
-            //to check the search box if empty or not 
-            if ($_POST['search'] != NULL) {
-              $search = $_POST['search'];
-              $selectsql = "Select * from tbl_route where 
+    //button function
+    if (isset($_POST['searchbutton'])) {
+
+      //to check the search box if empty or not 
+      if ($_POST['search'] != NULL) {
+        $search = $_POST['search'];
+        $selectsql = "Select * from tbl_route where 
               route_id LIKE '%" . $search . "%' 
               OR route_name LIKE '%" . $search . "%' 
               OR departure_location LIKE'%" . $search . "%' 
@@ -217,58 +300,63 @@
               OR distance LIKE'%" . $search . "%' 
               OR duration LIKE'%" . $search . "%'
               OR price LIKE'%" . $search . "%' ";
-
-            } else {
-              $selectsql = "Select * from tbl_route";
-            }
-          } else {
-            $selectsql = "Select * from tbl_route";
-          }
+      } else {
+        $selectsql = "Select * from tbl_route";
+      }
+    } else {
+      $selectsql = "Select * from tbl_route";
+    }
 
 
 
 
     //Add Button
-    if(isset($_POST['add'])){
-        $routeName = $_POST['route_name'];
-        $departureLoc = $_POST['departure_location'];
-        $destination = $_POST['destination'];
-        $distance = $_POST['distance'];
-        $duration = $_POST['duration'];
-        $price = $_POST['price'];
-        
-        $insertsql = "Insert into tbl_route (route_name,departure_location,destination,distance,duration,price)
+    if (isset($_POST['add'])) {
+      $routeName = $_POST['route_name'];
+      $departureLoc = $_POST['departure_location'];
+      $destination = $_POST['destination'];
+      $distance = $_POST['distance'];
+
+      $hrduration = $_POST['hrduration'];
+      $minduration = $_POST['minduration'];
+      $secduration = $_POST['secduration'];
+
+      $duration = $hrduration . ":" . $minduration . ":" . $secduration;
+
+      $price = $_POST['price'];
+
+      $insertsql = "Insert into tbl_route (route_name,departure_location,destination,distance,duration,price)
         values ('$routeName','$departureLoc','$destination',$distance,'$duration',$price)
         ";
 
-        $result = $con->query($insertsql);
-        
-        
-        //check if successfully added
-        if ($result == True) {
-            ?>
-          <script> 
-            Swal.fire({
-              title: "Do you want to add this user?",
-              showDenyButton: true,
-              showCancelButton: true,
-              confirmButtonText: "Add",
-              denyButtonText: `Don't Add`
-            }).then((result) => {
-              /* Read more about isConfirmed, isDenied below */
-              if (result.isConfirmed) {
-                Swal.fire("Saved!", "", "success");
-              } else if (result.isDenied) {
-                Swal.fire("Changes are not saved", "", "info");
-              }
-            });
-              </script>
-              <?php
-        } else {
-            //if not inserted, check query error details
-            echo $con->error;
-        }
-      } 
+      $result = $con->query($insertsql);
+
+
+      //check if successfully added
+      if ($result == True) {
+    ?>
+        <script>
+          Swal.fire({
+            title: "Do you want to add this user?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Add",
+            denyButtonText: `Don't Add`
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire("Saved!", "", "success");
+            } else if (result.isDenied) {
+              Swal.fire("Changes are not saved", "", "info");
+            }
+          });
+        </script>
+      <?php
+      } else {
+        //if not inserted, check query error details
+        echo $con->error;
+      }
+    }
 
 
     $result = $con->query($selectsql);
@@ -276,15 +364,15 @@
     //check table if there is a record
     //num_rows - will return the no of rows inside a table
     if ($result->num_rows > 0) {
-
-      echo "<table class='table table-striped table-sm text-center table-bordered w-100 border border-2  table-responsive border-dark align-middle mx-auto'>";
+      echo "<div class='bdr'>";
+      echo "<table class='table table-striped text-center table-bordered w-100 border border-2  table-responsive border-dark align-middle mx-auto'>";
       echo "<thead class ='table-dark'>";
       echo "<tr>";
       echo "<th> Route ID </th>";
       echo "<th> Route Name </th>";
       echo "<th> Departure Location </th>";
       echo "<th> Destination </th>";
-      echo "<th> Distance </th>";
+      echo "<th> Distance (km) </th>";
       echo "<th> Duration </th>";
       echo "<th> Price </th>";
       echo "<th> Action </th>";
@@ -305,12 +393,8 @@
       ?>
         <form method="post" action="Route1.php">
           <input type="hidden" name="route_del" value="<?php echo $fielddata['route_id']; ?>" class="form-control" />
-          
-          <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" 
-          href="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" 
-          data-bs-target="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" 
-          aria-expanded="false" 
-          aria-controls="updateFormCollapse<?php echo $fielddata['route_id']; ?>">Edit</button>
+
+          <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['route_id']; ?>">Edit</button>
 
           <button class='btn btn-danger delete-button' name='delete'>Delete</button>
         </form>
@@ -326,72 +410,148 @@
         <!-- form-->
 
         <form action="Route1.php" method="post">
-        <h5 class="hd-text text-center pb-2 fs-5" id="title">Route Editing Form</h5>
-                  
-                    <!-- Route ID input -->
-                    <div class="row form-outline">
-                      <div class="col">
-                        <input type="text" id="" name="update_routeID" value="<?php  echo $fielddata['route_id']; ?>" class="form-control" readonly />
-                        <label class="form-label" for="">Route ID</label>
-                      </div>
+          <h5 class="hd-text text-center pb-2 fs-5" id="title">Route Editing Form</h5>
 
-                    <!-- Route Name input -->
-                      <div class="col">
-                          <input type="text" name="update_routeName" value="<?php echo $fielddata['route_name']; ?>" class="form-control" />
-                          <label class="form-label" for="">Route Name</label>
-                        </div>
-                    </div>
+          <!-- Route ID input -->
+          <div class="row form-outline">
+            <div class="col">
+              <input type="text" id="" name="update_routeID" value="<?php echo $fielddata['route_id']; ?>" class="form-control" readonly />
+              <label class="form-label" for="">Route ID</label>
+            </div>
+          </div>
 
-                    <!-- Departure Location input -->
-                    <div class="row form-outline">
-                      <div class="col">
-                        <input type="text" name="update_departureLoc" value="<?php echo $fielddata['departure_location'] ?>" class="form-control" />
-                        <label class="form-label" for="">Departure Location</label>
-                      </div>
-                    
-                    <!-- Destination input -->
-                      <div class="col">
-                          <input type="text" name="update_destination" value="<?php echo $fielddata['destination']; ?>" class="form-control" />
-                          <label class="form-label" for="">Destination</label>
-                      </div>
-                    </div>
+          <!-- Route Name input -->
+          <div class="row form-outline">
+            <div class="col">
+              <select name="update_routeName" class="form-select">
+                <?php
+                foreach ($routes as $route => $subroutes) {
+                  echo "<optgroup label='$route'>";
+                  foreach ($subroutes as $subroute) {
+                    $selected = ($fielddata['route_name'] === $subroute) ? 'selected' : '';
+                    echo "<option value='$subroute' $selected>$subroute</option>";
+                  }
+                  echo '</optgroup>';
+                }
+                ?>
+              </select>
+              <label class="form-label" for="update_routeName">Route Name</label>
 
-                    <!-- Distance input -->
-                    <div class="row form-outline">
-                      <div class="col">
-                        <input type="number" name="update_distance" value="<?php echo $fielddata['distance']; ?>" class="form-control" />
-                        <label class="form-label" for="">Distance (in km)</label>
-                      </div>
+            </div>
+          </div>
 
-                    <!-- Duration input -->
-                      <div class="col">
-                          <input type="time" name="update_duration" value="<?php echo  $fielddata['duration']; ?>" class="form-control" />
+          <!-- Departure Location input -->
+          <div class="row form-outline">
+            <div class="col">
+              <select id="update_departureLoc" class="form-select" name="update_departureLoc" required>
+                <?php
+                echo '<option default disabled selected value="">Origin</option>';
+
+                foreach ($origins as $group_label => $origin) {
+                  echo '<optgroup label="' . $group_label . '">';
+                  $selected = ($fielddata['departure_location'] === $origin) ? 'selected' : '';
+                  echo '<option value="' . $origin . '" ' . $selected . '>' . $origin . '</option>';
+                  echo '</optgroup>';
+                }
+                ?>
+
+              </select>
+              <label class="form-label" for="">Departure Location</label>
+            </div>
+
+            <!-- Destination input -->
+            <div class="col">
+
+              <select id="update_destination" class="form-select" name="update_destination" required>
+                <?php
+
+
+                foreach ($destinations as $group_label => $options) {
+                  echo '<optgroup label="' . $group_label . '">';
+                  foreach ($options as $option) {
+                    $selected = ($fielddata['destination'] === $option) ? 'selected' : '';
+                    echo '<option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
+                  }
+                  echo '</optgroup>';
+                }
+                ?>
+
+              </select>
+              <label class="form-label" for="destination">Destination</label>
+
+            </div>
+          </div>
+
+          <!-- Distance input -->
+          <div class="row form-outline">
+            <div class="col">
+              <div class="input-group">
+                <input type="number" name="update_distance" value="<?php echo $fielddata['distance']; ?>" class="form-control" />
+                <span class="input-group-text hd-text">km</span>
+
+              </div>
+              <label class="form-label" for="">Distance (in km)</label>
+            </div>
+
+            <div class="col">
+              <div class="input-group">
+                <span class="input-group-text hd-text">₱</span>
+                <input type="number" name="update_price" value="<?php echo $fielddata['price']; ?>" class="form-control" />
+              </div>
+              <label class="form-label" for="">Price</label>
+
+            </div>
+          </div>
+
+          <!-- Duration input -->
+          <!--   <div class="col">
+                          <input type="time" name="update_duration" value="<?php /* echo  $fielddata['duration']; */ ?>" class="form-control" />
                           <label class="form-label" for="">Duration</label>
-                      </div>
-                    </div>
+                      </div> -->
 
-                    <!-- Price input -->
-                    <div class="row form-outline">
-                        <div class="col">
-                        <input type="number" name="update_price" value="<?php echo $fielddata['price']; ?>" class="form-control" />
-                        <label class="form-label" for="">Price</label>
-                        </div>
-                        
-                      </div>
 
-                    <!-- Save button --> 
-               
-                    <div class="row form-outline text-center pt-2">
-                      <div class="col">
-                      <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
-                      </div>
-                    </div>
-                </form> 
+          <!-- Price input -->
+          <div class="row form-outline">
+
+            <div class="col">
+              <div class="input-group">
+                <input type="number" name="update_hrduration" id="update_hrduration" class="form-control" min="0" placeholder="0" value="<?php echo date_create_from_format('H:i:s', $fielddata['duration'])->format('G'); ?>" required />
+                <span class="input-group-text hd-text">Hrs</span>
+
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group">
+                <input type="number" name="update_minduration" id="update_minduration" class="form-control" min="0" max="59" placeholder="0" value="<?php echo date_create_from_format('H:i:s', $fielddata['duration'])->format('i'); ?>" required />
+                <span class="input-group-text hd-text">Mins</span>
+
+              </div>
+            </div>
+            <div class="col">
+              <div class="input-group">
+                <input type="number" name="update_secduration" id="update_secduration" class="form-control" min="0" max="59" placeholder="0" value="<?php echo date_create_from_format('H:i:s', $fielddata['duration'])->format('s'); ?>" required />
+                <span class="input-group-text hd-text">Secs</span>
+
+
+              </div>
+            </div>
+            <label class="form-label" for="duration">Duration</label>
+          </div>
+
+          <!-- Save button -->
+
+          <div class="row form-outline text-center pt-1">
+            <div class="col">
+              <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
+            </div>
+          </div>
+        </form>
       <?php
         echo "</div>";
         echo "</td>";
         echo "</tr>";
       }
+      echo "</div>";
       echo "</table>";
     } else {
       echo "<div class='row'>";
@@ -400,7 +560,7 @@
       echo "</div>";
       echo "</div>";
     }
-    
+
     //Delete Button
     if (isset($_POST['delete'])) {
       $user_delete = $_POST['route_del']; // Retrieve the user_id from the form
@@ -410,36 +570,36 @@
       $stmt = $con->prepare($deletesql);
       $stmt->bind_param("i", $route_delete); // Assuming user_id is an integer
       $resultdel = $stmt->execute();
-      
-      
+
+
       //check if successfully deleted
       if ($resultdel == True) {
-          ?>
-        <script> 
+      ?>
+        <script>
           Swal.fire({
-              title: "Are you sure?",
-              text: "You won't be able to revert this!",
-              icon: "warning",
-              showCancelButton: true,
-              confirmButtonColor: "#3085d6",
-              cancelButtonColor: "#d33",
-              confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-              if (result.isConfirmed) {
-                Swal.fire({
-                  title: "Deleted!",
-                  text: "Your file has been deleted.",
-                  icon: "success"
-                });
-              }
-            });
-            </script>
-            <?php
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              });
+            }
+          });
+        </script>
+      <?php
       } else {
-          //if not, check query error details
-          echo $con->error;
+        //if not, check query error details
+        echo $con->error;
       }
-    } 
+    }
 
     //Update Button
 
@@ -449,7 +609,12 @@
       $departureLoc_update = $_POST['update_departureLoc'];
       $destination_update = $_POST['update_destination'];
       $distance_update = $_POST['update_distance'];
-      $duration_update = $_POST['update_duration'];
+
+      $hrduration_update = $_POST['update_hrduration'];
+      $minduration_update = $_POST['update_minduration'];
+      $secduration_update = $_POST['update_secduration'];
+      $duration_update = $hrduration_update . ":" . $minduration_update . ":" . $secduration_update;
+
       $price_update = $_POST['update_price'];
 
 
@@ -493,7 +658,7 @@
   </div>
 
   </div>
-  
+
 
 </body>
 

@@ -315,3 +315,8 @@ th {
 color:rgb(255, 255, 255);
 background-color: #172685 !important;
  }
+
+ .bdr {
+  border-radius: 6px 6px 6px 6px;
+  overflow: hidden;
+}
