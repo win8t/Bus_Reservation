@@ -7,11 +7,11 @@
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <link rel="stylesheet" href="sidebar5.css">
+  <link rel="stylesheet" href="sidebar6.css">
 
 </head>
 
-<body>
+<body class ="hd-text">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -136,7 +136,7 @@
         </button>
 
         <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
-          <div class="modal-dialog">
+          <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title fs-5" id="title">User Details Form</h5>
@@ -277,7 +277,8 @@
     //num_rows - will return the no of rows inside a table
     if ($result->num_rows > 0) {
 
-      echo "<table class='table table-striped table-sm text-center table-bordered w-100 border border-2 table-responsive border-dark align-middle mx-auto'>";
+      echo "<div class='bdr'>";
+      echo "<table class='table table-striped text-center table-bordered w-100 border border-2 table-responsive border-dark align-middle mx-auto'>";
       echo "<thead class ='table-dark'>";
       echo "<tr>";
       echo "<th> User ID </th>";
@@ -369,7 +370,7 @@
             <label class="form-label" for="">Email</label>
           </div>
 
-          <div class="row form-outline text-center pt-2">
+          <div class="row form-outline text-center pt-1">
             <div class="col">
               <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
             </div>
@@ -383,6 +384,7 @@
         echo "</tr>";
       }
       echo "</table>";
+      echo "</div>";
     } else {
       echo "<div class='row'>";
       echo "<div class='col'>";

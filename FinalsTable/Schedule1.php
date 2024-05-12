@@ -1,3 +1,4 @@
+
 <html lang="en">
 
 <head>
@@ -7,11 +8,12 @@
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="sidebar5.css">
+    <link rel="stylesheet" href="sidebar6.css">
 
 </head>
 
-<body>
+<body class ="hd-text">
+    <?php require_once "dbconnect.php"; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -136,14 +138,14 @@
                 </button>
 
                 <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title fs-5" id="title">Schedule Details Form</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <form action="Schedule.php" method="post">
+                            <form action="Schedule1.php" method="post">
                                 <div class="modal-body">
 
                                     <div class="row form-outline">
@@ -155,14 +157,56 @@
 
                                         <div class="col">
                                             <!-- Bus ID input -->
-                                            <input type="number" name="bus_id" id="" class="form-control" />
-                                            <label class="form-label" for="">Bus ID</label>
+                                            <!--  <input type="number" name="bus_id" id="" class="form-control" />
+                                            <label class="form-label" for="">Bus ID</label> -->
+                                            <select name="bus_id" class="form-select">
+                                                <?php
+
+                                                $sqlfk = "SELECT bus_id, bus_number FROM tbl_bus"; // Change routes_table to your actual table name
+
+                                                // Execute query
+                                                $bus_fk = $con->query($sqlfk);
+
+                                                // Check if any results returned
+                                                if ($bus_fk->num_rows > 0) {
+                                                    // Output data of each row
+                                                    while ($busFK = $bus_fk->fetch_assoc()) {
+                                                        echo "<option value='" . $busFK['bus_id'] . "'>" . $busFK['bus_id'] . " (" . $busFK['bus_number'] . ")" . "</option>";
+                                                    }
+                                                } else {
+                                                    echo "<option value=''>No busses found</option>";
+                                                }
+                                                ?>
+
+                                            </select>
+                                            <label class="form-label" for="bus_id">Bus ID</label>
                                         </div>
 
                                         <div class="col">
                                             <!-- Route ID input -->
-                                            <input type="number" name="route_id" id="" class="form-control" />
-                                            <label class="form-label" for="">Route ID</label>
+                                            <!--     <input type="number" name="route_id" id="" class="form-control" />
+                                            <label class="form-label" for="">Route ID</label> -->
+                                            <select name="route_id" class="form-select">
+                                                <?php
+
+                                                $sqlfk = "SELECT route_id, route_name FROM tbl_route"; // Change routes_table to your actual table name
+
+                                                // Execute query
+                                                $route_fk = $con->query($sqlfk);
+
+                                                // Check if any results returned
+                                                if ($route_fk->num_rows > 0) {
+                                                    // Output data of each row
+                                                    while ($routeFK = $route_fk->fetch_assoc()) {
+                                                        echo "<option value='" . $routeFK['route_id'] . "'>" . $routeFK['route_id'] . " (" . $routeFK['route_name'] . ")" . "</option>";
+                                                    }
+                                                } else {
+                                                    echo "<option value=''>No routes found</option>";
+                                                }
+                                                ?>
+
+                                            </select>
+                                            <label class="form-label" for="route_id">Route ID</label>
                                         </div>
                                     </div>
 
@@ -198,7 +242,6 @@
         </div>
 
         <?php
-        require_once "dbconnect.php";
 
         //Search Button
         if (isset($_POST['searchbutton'])) {
@@ -222,7 +265,6 @@
 
 
 
-        //Add Button
         //Add Button
         if (isset($_POST['add'])) {
             $busID = $_POST['bus_id'];
@@ -271,8 +313,8 @@
         //check table if there is a record
         //num_rows - will return the no of rows inside a table
         if ($result->num_rows > 0) {
-
-            echo "<table class='table table-striped table-sm text-center table-bordered w-100 border border-2 table-responsive border-dark align-middle mx-auto'>";
+            echo "<div class='bdr'>";
+            echo "<table class='table table-striped text-center table-bordered w-100 border border-2 table-responsive border-dark align-middle mx-auto'>";
             echo "<thead class ='table-dark'>";
             echo "<tr>";
             echo "<th> Schedule ID </th>";
@@ -292,7 +334,7 @@
                 echo "<td>" . $fielddata['bus_id'] . "</td>";
                 echo "<td>" . $fielddata['route_id'] . "</td>";
                 echo "<td>" . $fielddata['departure_date'] . "</td>";
-                echo "<td>" . date_format(date_create($fielddata['departure_time']), 'h:i A') . "</td>";
+                echo "<td>" . date_format(date_create($fielddata['departure_time']), 'g:i A') . "</td>";
                 echo "<td>" . $fielddata['available_seats'] . "</td>";
                 echo "<td class ='pt-3 pb-0'>";
             ?>
@@ -313,8 +355,8 @@
                 <!-- form-->
 
                 <form action="Schedule1.php" method="post">
-                <h5 class="hd-text text-center pb-2 fs-5" id="title">Schedule Editing Form</h5>
-                
+                    <h5 class="hd-text text-center pb-2 fs-5" id="title">Schedule Editing Form</h5>
+
                     <div class="row form-outline">
                         <!-- Schedule ID input -->
                         <div class="col">
@@ -324,13 +366,43 @@
 
                         <div class="col">
                             <!-- Bus ID input -->
-                            <input type="number" name="update_busID" value="<?php echo $fielddata['bus_id']; ?>" class="form-control" />
+                            <!--   <input type="number" name="update_busID" value="<?php /* echo $fielddata['bus_id']; */ ?>" class="form-control" />
+                            <label class="form-label" for="">Bus ID</label> -->
+
+                            <select name="update_busID" class="form-select">
+                                <?php
+                                $bus_query = "select bus_id, bus_number FROM tbl_bus";
+                                $bus_result = $con->query($bus_query);
+
+                                if ($bus_result->num_rows > 0) {
+                                    while ($bus_data = $bus_result->fetch_assoc()) {
+                                        $selected = ($bus_data['bus_id'] == $fielddata['bus_id']) ? "selected" : "";
+                                        echo "<option value='" . $bus_data['bus_id'] . "' $selected>" . $bus_data['bus_id'] . " (" . $bus_data['bus_number'] . ")" . "</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
                             <label class="form-label" for="">Bus ID</label>
                         </div>
 
                         <div class="col">
                             <!-- Route ID input -->
-                            <input type="number" name="update_routeID" value="<?php echo $fielddata['route_id']; ?>" class="form-control" />
+                          <!--  <input type="number" name="update_routeID" value="<?php /* echo $fielddata['route_id']; */?>" class="form-control" />
+                            <label class="form-label" for="">Route ID</label> -->
+
+                            <select name="update_routeID" class="form-select">
+                                <?php
+                                $route_query = "select route_id, route_name FROM tbl_route";
+                                $route_result = $con->query($route_query);
+
+                                if ($route_result->num_rows > 0) {
+                                    while ($route_data = $route_result->fetch_assoc()) {
+                                        $selected = ($route_data['route_id'] == $fielddata['route_id']) ? "selected" : "";
+                                        echo "<option value='" . $route_data['route_id'] . "' $selected>" . $route_data['route_id'] . " (" . $route_data['route_name'] . ")" . "</option>";
+                                    }
+                                }
+                                ?>
+                            </select>
                             <label class="form-label" for="">Route ID</label>
                         </div>
                     </div>
@@ -354,7 +426,7 @@
                         <label class="form-label" for="">Available Seats</label>
                     </div>
                     <!-- Submit -->
-                    <div class="row form-outline text-center pt-2">
+                    <div class="row form-outline text-center pt-1">
                         <div class="col">
                             <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
                         </div>
@@ -365,7 +437,9 @@
                 echo "</td>";
                 echo "</tr>";
             }
+            
             echo "</table>";
+            echo "</div>";
         } else {
             echo "<div class='row'>";
             echo "<div class='col'>";
@@ -375,48 +449,47 @@
         }
 
         //Delete Button
-        if(isset($_POST['delete'])){
+        if (isset($_POST['delete'])) {
             $sched_delete = $_POST['schel_del']; // Retrieve the user_id from the form
-  
+
             // Use prepared statements to prevent SQL injection
             $deletesql = "DELETE FROM tbl_schedule WHERE schedule_id = ?";
             $stmt = $con->prepare($deletesql);
             $stmt->bind_param("i", $sched_delete); // Assuming user_id is an integer
             $resultdel = $stmt->execute();
-            
-            
+
+
             //check if successfully deleted
             if ($resultdel == True) {
-                ?>
-              <script> 
-                Swal.fire({
-                    title: "Are you sure?",
-                    text: "You won't be able to revert this!",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!"
-                  }).then((result) => {
-                    if (result.isConfirmed) {
-                      Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                      });
-                    }
-                  });
-                  </script>
-                  <?php
+            ?>
+                <script>
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                </script>
+            <?php
             } else {
                 //if not, check query error details
                 echo $con->error;
             }
-          } 
+        }
 
         //Update Button
 
-        require_once "dbconnect.php";
 
         if (isset($_POST['updating'])) {
             $scheduleID_update = $_POST['update_scheduleID'];
@@ -426,7 +499,7 @@
             $departureTime_update = $_POST['update_departureTime'];
             $availableSeats_update = $_POST['update_availableSeats'];
 
-            
+
 
             $updatesql = "UPDATE tbl_schedule SET schedule_id = $scheduleID_update, bus_id = $busID_update,
             route_id = $routeID_update, departure_date = '$departureDate_update', departure_time = '$departureTime_update',

@@ -7,11 +7,11 @@
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <link rel="stylesheet" href="sidebar5.css">
+  <link rel="stylesheet" href="sidebar6.css">
 
 </head>
 
-<body>
+<body class ="hd-text">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -81,6 +81,7 @@
 
   <div class="row ">
       <div class="col pb-2 ">
+        
         <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">OVERVIEW | Welcome Admin!</h1>
          
         <div class="row bg-row mx-auto p-1 m-1 rounded">
@@ -119,8 +120,9 @@
         
 
         <?php require_once "dbconnect.php"; ?>
+        <h1 class="hd-font bg-rowimg text-center text-light rounded p-3 "> Total Records</h1>
         <div class="container-fluid mx-auto w-100 p-5 bg-primary-subtle">
-        <h1 class="hd-font bg-rowimg text-center text-light rounded p-3 mb-4 "> Total Records</h1>
+       
         <div class="row">
           <div class="col-xl-3 col-md-6 mx-auto">
             <div class="card bg-dark text-white mb-4 shadow">
@@ -142,8 +144,8 @@
 
 
               </div>
-              <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="User.php" class="small text-white stretched-link hd-font text-decoration-none mx-auto">
+              <div class="card-footer d-flex align-items-center bg-light justify-content-between">
+                <a href="User1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                   View Details
                 </a>
               </div>
@@ -169,8 +171,8 @@
                 ?>
 
               </div>
-              <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="Logs.php" class="small text-white stretched-link hd-font text-decoration-none mx-auto">
+              <div class="card-footer d-flex bg-light align-items-center justify-content-between">
+                <a href="Logs1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                   View Details
                 </a>
               </div>
@@ -195,8 +197,8 @@
                 ?>
 
               </div>
-              <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="Bus.php" class="small text-white stretched-link hd-font text-decoration-none mx-auto" >
+              <div class="card-footer d-flex bg-light align-items-center justify-content-between">
+                <a href="Bus1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto" >
                   View Details
                 </a>
               </div>
@@ -212,17 +214,17 @@
                 <?php
 
                 $route_count_query = "select * from tbl_route";
-                $route_query = mysqli_query($con, $bus_count_query);
+                $route_query = mysqli_query($con, $route_count_query);
                 if ($route_total = mysqli_num_rows($route_query)) {
-                  echo '<h4 class = "text-center mt-2 mx-3 hd-text">' . $bus_total . '</h4>';
+                  echo '<h4 class = "text-center mt-2 mx-3 hd-text">' . $route_total . '</h4>';
                 } else {
                   echo '<h4 class = "text-center mt-2 mx-3 hd-text">0 </h4>';
                 }
 
                 ?>
               </div>
-              <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="Route.php" class="small text-white stretched-link hd-font text-decoration-none mx-auto">
+              <div class="card-footer d-flex bg-light align-items-center justify-content-between">
+                <a href="Route1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                   View Details
                 </a>
               </div>
@@ -246,8 +248,8 @@
 
                 ?>
               </div>
-              <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="Schedule.php" class="small text-white stretched-link hd-font text-decoration-none mx-auto">
+              <div class="card-footer d-flex bg-light align-items-center justify-content-between">
+                <a href="Schedule1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                   View Details
                 </a>
               </div>
@@ -271,8 +273,8 @@
 
                 ?>
               </div>
-              <div class="card-footer d-flex align-items-center justify-content-between">
-                <a href="Reservation.php" class="small text-white stretched-link hd-font text-decoration-none mx-auto">
+              <div class="card-footer d-flex bg-light align-items-center justify-content-between">
+                <a href="Reservation1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                   View Details
                 </a>
               </div>

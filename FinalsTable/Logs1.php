@@ -7,11 +7,11 @@
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="sidebar5.css">
+    <link rel="stylesheet" href="sidebar6.css">
 
 </head>
 
-<body>
+<body class ="hd-text">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -157,8 +157,8 @@
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
-
-            echo "<table class='table table-striped text-center table-bordered mx-auto mt-2 border border-3  rounded table-responsive border-dark'>";
+            echo "<div class='bdr mt-2'>";
+            echo "<table class='table table-striped text-center table-bordered w-100 border border-2 table-responsive border-dark align-middle mx-auto''>";
             echo "<thead class ='table-dark'>";;
             echo "<tr class ='tble-bg'>";
             echo "<th> Log ID </th>";
@@ -174,10 +174,12 @@
               echo "<td>" . $maltfielddata['log_id'] . "</td>";
               echo "<td>" . $maltfielddata['user_id'] . "</td>";
               echo "<td>" . $maltfielddata['action'] . "</td>";
-              echo "<td>" . $maltfielddata['DateTime'] . "</td>";
+              echo "<td>" . date_format(date_create($maltfielddata['DateTime']), 'Y-m-d g:i A') . "</td>";
+
               
             }
             echo "</table>";
+            echo "</div>";
           } else {
             echo "<div class='row'>";
             echo "<div class='col'>";
