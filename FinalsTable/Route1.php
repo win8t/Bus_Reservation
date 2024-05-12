@@ -1,0 +1,500 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Panel</title>
+  <link href="bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <link rel="stylesheet" href="sidebar5.css">
+
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+  <aside class="sidebar d-flex flex-container">
+    <div class="logo">
+      <img src="AlpsLogo.jpg" alt="Alps">
+      <h2 class="">ALPS</h2>
+    </div>
+    <ul class="links">
+
+      <li class="disabled">
+        <h4 class="">Main Menu</h4>
+      </li>
+
+
+      <li>
+        <i class="bi bi-table"></i>
+        <a href="Overview1.php">Overview</a>
+      </li>
+
+      <li>
+        <i class="bi bi-person-circle"></i>
+        <a href="User1.php">User</a>
+      </li>
+      <li>
+        <i class="bi bi-card-list"></i>
+        <a href="Logs1.php">Logs</a>
+      </li>
+
+      <li class="disabled border border-light my-2">
+        <hr class="">
+      </li>
+      <li class="disabled">
+        <h4 class="">Bus Menu</h4>
+      </li>
+
+      <li>
+        <i class="bi bi-bus-front"></i>
+        <a href="Bus1.php">Bus</a>
+      </li>
+      <li class="active">
+        <i class="bi bi-sign-turn-right-fill"></i>
+        <a  class="active" href="Route1.php">Route</a>
+      </li>
+      <li>
+        <i class="bi bi-calendar3"></i>
+        <a href="Schedule1.php">Schedule</a>
+      </li>
+      <li>
+        <i class="bi bi-calendar-date"></i>
+        <a href="Reservation1.php">Reservation</a>
+      </li>
+      <li class="disabled border border-light my-2">
+        <hr class="">
+      </li>
+
+      <li>
+        <i class="bi bi-box-arrow-right"></i>
+        <a href="Home.php">Log Out</a>
+      </li>
+    </ul>
+
+
+  </aside>
+  <div class="container-fluid">
+
+
+
+
+    <div class="row ">
+      <div class="col pb-2 ">
+        <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">ROUTE DETAILS | Welcome Admin!</h1>
+         
+        <div class="row bg-row mx-auto p-1 m-1 rounded">
+          
+          <form action="Route1.php" method="post">
+            
+            <div class="input-group w-50 pt-4">
+              <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
+              <input type="search" name="search" id="" class="form-control rounded mx-1" aria-label="Input group example" aria-describedby="btnGroupAddon2">
+
+
+              <div class="col-3 ">
+                
+                <input type="submit" value="Search" name="searchbutton" class="h-100 btn btn-primary mx-1  hd-text" class="form-control">
+              </div>
+            </div>
+            <div class="col">
+              <!-- Date Time - Local -->
+              <div class="row rounded pt-2 pb-0 ">
+                <div id="datetime" class="h4 text-light"></div>
+                <script>
+                  function updateDateTime() {
+                    var now = new Date();
+                    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                    ];
+                    var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                    var month = monthNames[now.getMonth()];
+                    var day = now.getDate();
+                    var year = now.getFullYear();
+                    var dayOfWeek = dayNames[now.getDay()];
+                    var time = now.toLocaleTimeString();
+                    var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
+                    document.getElementById('datetime').textContent = dateTimeString;
+                  }
+                  // Update the date and time every second
+                  setInterval(updateDateTime, 1000);
+
+                  // Initial update
+                  updateDateTime();
+                </script>
+              </div>
+            </div>
+            
+        </div>
+
+        </form>
+        <button type="button" id="formDetailsBtn" class="btn btn-color hd-text" data-bs-toggle="modal" data-bs-target="#formDetails">
+          Add Route Details <!-- add icon -->
+          </button>
+
+          <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title fs-5" id="title">Route Details Form</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <form action="Route1.php" method="post">
+                <div class="modal-body">
+                  
+                    <!-- Route Name input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                      <input type="text" name="route_name" id="" class="form-control" />
+                          <label class="form-label" for="">Route Name</label>
+                      </div>
+
+                    <!-- Departure Location input -->
+                      <div class="col">
+                        <input type="text" name="departure_location" id="" class="form-control" />
+                        <label class="form-label" for="">Departure Location</label>
+                      </div>
+                    </div>
+
+                    <!-- Destination input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" name="destination" id="" class="form-control" />
+                        <label class="form-label" for="">Destination</label>
+                      </div>
+                    
+                    <!-- Distance input -->
+                      <div class="col">
+                        <input type="number" name="distance" id="" class="form-control" />
+                        <label class="form-label" for="">Distance (in km)</label>
+                      </div>
+                    </div>
+
+                    <!-- Duration input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="time" name="duration" id="" class="form-control" />
+                        <label class="form-label" for="">Duration</label>
+                      </div>
+
+                    <!-- Price input -->
+                      <div class="col">
+                        <input type="number" name="price" id="" class="form-control" />
+                        <label class="form-label" for="">Price</label>
+                      </div>
+                    </div>
+
+                    <!-- Save button --> 
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button type="submit" name="add" class="btn btn-primary">Add</button>
+                </div>
+                </form> 
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+
+    <?php
+          require_once "dbconnect.php";
+
+          //button function
+          if (isset($_POST['searchbutton'])) {
+
+            //to check the search box if empty or not 
+            if ($_POST['search'] != NULL) {
+              $search = $_POST['search'];
+              $selectsql = "Select * from tbl_route where 
+              route_id LIKE '%" . $search . "%' 
+              OR route_name LIKE '%" . $search . "%' 
+              OR departure_location LIKE'%" . $search . "%' 
+              OR destination LIKE'%" . $search . "%' 
+              OR distance LIKE'%" . $search . "%' 
+              OR duration LIKE'%" . $search . "%'
+              OR price LIKE'%" . $search . "%' ";
+
+            } else {
+              $selectsql = "Select * from tbl_route";
+            }
+          } else {
+            $selectsql = "Select * from tbl_route";
+          }
+
+
+
+
+    //Add Button
+    if(isset($_POST['add'])){
+        $routeName = $_POST['route_name'];
+        $departureLoc = $_POST['departure_location'];
+        $destination = $_POST['destination'];
+        $distance = $_POST['distance'];
+        $duration = $_POST['duration'];
+        $price = $_POST['price'];
+        
+        $insertsql = "Insert into tbl_route (route_name,departure_location,destination,distance,duration,price)
+        values ('$routeName','$departureLoc','$destination',$distance,'$duration',$price)
+        ";
+
+        $result = $con->query($insertsql);
+        
+        
+        //check if successfully added
+        if ($result == True) {
+            ?>
+          <script> 
+            Swal.fire({
+              title: "Do you want to add this user?",
+              showDenyButton: true,
+              showCancelButton: true,
+              confirmButtonText: "Add",
+              denyButtonText: `Don't Add`
+            }).then((result) => {
+              /* Read more about isConfirmed, isDenied below */
+              if (result.isConfirmed) {
+                Swal.fire("Saved!", "", "success");
+              } else if (result.isDenied) {
+                Swal.fire("Changes are not saved", "", "info");
+              }
+            });
+              </script>
+              <?php
+        } else {
+            //if not inserted, check query error details
+            echo $con->error;
+        }
+      } 
+
+
+    $result = $con->query($selectsql);
+
+    //check table if there is a record
+    //num_rows - will return the no of rows inside a table
+    if ($result->num_rows > 0) {
+
+      echo "<table class='table table-striped table-sm text-center table-bordered w-100 border border-2  table-responsive border-dark align-middle mx-auto'>";
+      echo "<thead class ='table-dark'>";
+      echo "<tr>";
+      echo "<th> Route ID </th>";
+      echo "<th> Route Name </th>";
+      echo "<th> Departure Location </th>";
+      echo "<th> Destination </th>";
+      echo "<th> Distance </th>";
+      echo "<th> Duration </th>";
+      echo "<th> Price </th>";
+      echo "<th> Action </th>";
+      echo "</tr>";
+      echo "</thead>";
+
+
+      while ($fielddata = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $fielddata['route_id'] . "</td>";
+        echo "<td>" . $fielddata['route_name'] . "</td>";
+        echo "<td>" . $fielddata['departure_location'] . "</td>";
+        echo "<td>" . $fielddata['destination'] . "</td>";
+        echo "<td>" . $fielddata['distance'] . "</td>";
+        echo "<td>" . $fielddata['duration'] . "</td>";
+        echo "<td>" . number_format($fielddata['price']) . "</td>";
+        echo "<td class ='pt-3 pb-0'>";
+      ?>
+        <form method="post" action="Route1.php">
+          <input type="hidden" name="route_del" value="<?php echo $fielddata['route_id']; ?>" class="form-control" />
+          
+          <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" 
+          href="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" 
+          data-bs-target="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" 
+          aria-expanded="false" 
+          aria-controls="updateFormCollapse<?php echo $fielddata['route_id']; ?>">Edit</button>
+
+          <button class='btn btn-danger delete-button' name='delete'>Delete</button>
+        </form>
+        <?php
+        echo "</td>";
+        echo "</tr>";
+
+        // Collapse
+        echo "<tr>";
+        echo "<td colspan='8' class ='tble-bg'>";
+        echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['route_id'] . "'>";
+        ?>
+        <!-- form-->
+
+        <form action="Route1.php" method="post">
+        <h5 class="hd-text text-center pb-2 fs-5" id="title">Route Editing Form</h5>
+                  
+                    <!-- Route ID input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" id="" name="update_routeID" value="<?php  echo $fielddata['route_id']; ?>" class="form-control" readonly />
+                        <label class="form-label" for="">Route ID</label>
+                      </div>
+
+                    <!-- Route Name input -->
+                      <div class="col">
+                          <input type="text" name="update_routeName" value="<?php echo $fielddata['route_name']; ?>" class="form-control" />
+                          <label class="form-label" for="">Route Name</label>
+                        </div>
+                    </div>
+
+                    <!-- Departure Location input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="text" name="update_departureLoc" value="<?php echo $fielddata['departure_location'] ?>" class="form-control" />
+                        <label class="form-label" for="">Departure Location</label>
+                      </div>
+                    
+                    <!-- Destination input -->
+                      <div class="col">
+                          <input type="text" name="update_destination" value="<?php echo $fielddata['destination']; ?>" class="form-control" />
+                          <label class="form-label" for="">Destination</label>
+                      </div>
+                    </div>
+
+                    <!-- Distance input -->
+                    <div class="row form-outline">
+                      <div class="col">
+                        <input type="number" name="update_distance" value="<?php echo $fielddata['distance']; ?>" class="form-control" />
+                        <label class="form-label" for="">Distance (in km)</label>
+                      </div>
+
+                    <!-- Duration input -->
+                      <div class="col">
+                          <input type="time" name="update_duration" value="<?php echo  $fielddata['duration']; ?>" class="form-control" />
+                          <label class="form-label" for="">Duration</label>
+                      </div>
+                    </div>
+
+                    <!-- Price input -->
+                    <div class="row form-outline">
+                        <div class="col">
+                        <input type="number" name="update_price" value="<?php echo $fielddata['price']; ?>" class="form-control" />
+                        <label class="form-label" for="">Price</label>
+                        </div>
+                        
+                      </div>
+
+                    <!-- Save button --> 
+               
+                    <div class="row form-outline text-center pt-2">
+                      <div class="col">
+                      <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
+                      </div>
+                    </div>
+                </form> 
+      <?php
+        echo "</div>";
+        echo "</td>";
+        echo "</tr>";
+      }
+      echo "</table>";
+    } else {
+      echo "<div class='row'>";
+      echo "<div class='col'>";
+      echo "<br>No record found!";
+      echo "</div>";
+      echo "</div>";
+    }
+    
+    //Delete Button
+    if (isset($_POST['delete'])) {
+      $user_delete = $_POST['route_del']; // Retrieve the user_id from the form
+
+      // Use prepared statements to prevent SQL injection
+      $deletesql = "DELETE FROM tbl_route WHERE route_id = ?";
+      $stmt = $con->prepare($deletesql);
+      $stmt->bind_param("i", $route_delete); // Assuming user_id is an integer
+      $resultdel = $stmt->execute();
+      
+      
+      //check if successfully deleted
+      if ($resultdel == True) {
+          ?>
+        <script> 
+          Swal.fire({
+              title: "Are you sure?",
+              text: "You won't be able to revert this!",
+              icon: "warning",
+              showCancelButton: true,
+              confirmButtonColor: "#3085d6",
+              cancelButtonColor: "#d33",
+              confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+              if (result.isConfirmed) {
+                Swal.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success"
+                });
+              }
+            });
+            </script>
+            <?php
+      } else {
+          //if not, check query error details
+          echo $con->error;
+      }
+    } 
+
+    //Update Button
+
+    if (isset($_POST['updating'])) {
+      $routeID_update = $_POST['update_routeID'];
+      $routeName_update = $_POST['update_routeName'];
+      $departureLoc_update = $_POST['update_departureLoc'];
+      $destination_update = $_POST['update_destination'];
+      $distance_update = $_POST['update_distance'];
+      $duration_update = $_POST['update_duration'];
+      $price_update = $_POST['update_price'];
+
+
+
+
+      $updatesql = "UPDATE tbl_route SET route_id = $routeID_update, route_name = '$routeName_update',
+            departure_location = '$departureLoc_update', destination = '$destination_update', distance = $distance_update,
+            duration = '$duration_update', price = $price_update WHERE route_id = $routeID_update";
+
+      $resultup = $con->query($updatesql);
+
+      //check if successfully updated
+      if ($resultup == True) {
+      ?>
+        <script>
+          Swal.fire({
+            title: "Do you want to update?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Update",
+            denyButtonText: `Don't Update`
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire("Updated!", "", "success");
+            } else if (result.isDenied) {
+              Swal.fire("Changes are not updated", "", "info");
+            }
+          });
+        </script>
+    <?php
+      } else {
+        //if not, check query error details
+        echo $con->error;
+      }
+    }
+
+
+
+    ?>
+  </div>
+
+  </div>
+  
+
+</body>
+
+</html>
