@@ -6,7 +6,7 @@
     <title>Alps Login</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="style.css" rel="stylesheet" />
+    <link href="stylez.css" rel="stylesheet" />
 </head>
 
 <body class="login-content-container7">
@@ -50,7 +50,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <!-- FullName input -->
+                            <!-- Email input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="email" class="form-control" name="email" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Email<span class ="text-danger">*</span></label>
@@ -64,7 +64,7 @@
 
                     <div class="row justify-content-center">
                         <div class="col-md-12">
-                            <!-- Email input -->
+                            <!-- Fullname input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="text" class="form-control" name="fullname" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
@@ -154,6 +154,7 @@ include "email_registration.php";
 
 //button function
 if (isset($_POST['sub'])) {
+    start_session();
     $full = $_POST['fullname'];
     $email = $_POST['email'];
     $user = $_POST['user'];

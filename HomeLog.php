@@ -33,7 +33,7 @@
               <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="Home.php"><i class="bi bi-house-fill"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
+              <a class="nav-link mx-lg-2 mx-auto" href="BookingLog.php"><i class="bi bi-journal-album"></i> Book</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
@@ -46,7 +46,14 @@
 
       </div>
       
-      <a href="Login.php" class="home-login-button"><i class="bi bi-person-circle"></i> Login</a>
+      <a href="Home.php" class="home-login-button"><i class="bi bi-person-circle"></i>
+        <?php 
+            session_start();
+            $fullname = $_SESSION['user'];
+            echo $fullname;
+        ?>
+
+            </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -67,7 +74,7 @@
             </p>
             <div class="row  caro-posi">
               <div class="col">
-                <a href="Login.php" class="home-caro-button"> Book Now</a>
+                <a href="BookingLog.php" class="home-caro-button"> Book Now</a>
               </div>
             </div>
 
@@ -83,7 +90,7 @@
             </p>
             <div class="row  caro-posi">
               <div class="col">
-                <a href="Login.php" class="home-caro-button"> Book Now</a>
+                <a href="BookingLog.php" class="home-caro-button"> Book Now</a>
               </div>
             </div>
           </div>
@@ -97,7 +104,7 @@
             </p>
             <div class="row  caro-posi">
               <div class="col">
-                <a href="Login.php" class="home-caro-button"> Book Now</a>
+                <a href="BookingLog.php" class="home-caro-button"> Book Now</a>
               </div>
             </div>
           </div>
