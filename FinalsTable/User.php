@@ -431,7 +431,7 @@
                <?php   echo "<input type='hidden' name='username' value='" . $fielddata['username'] . "'>"; ?>
                <?php   echo "<input type='hidden' name='password' value='" . $fielddata['password'] . "'>"; ?>
                <?php   echo "<input type='hidden' name='email' value='" . $fielddata['email'] . "'>"; ?>
-               <?php   echo "<input type='hidden' name='email' value='" . $fielddata['status'] . "'>"; ?>
+               <?php   echo "<input type='hidden' name='status' value='" . $fielddata['status'] . "'>"; ?>
                 <button class='btn btn-primary edit-button' name='edit' >Edit</button>
                 <button class='btn btn-danger delete-button' name='delete'>Delete</button>
               </form>

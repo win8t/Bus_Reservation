@@ -37,6 +37,8 @@
             $fullname = $fielddata['full_name'];
             $userID = $fielddata['user_id'];
 
+            $_SESSION['user'] = $fullname;
+
             $_SESSION['username'] = $user;
             $_SESSION['role'] = $role;
             $_SESSION['user_id'] = $userID;
@@ -49,9 +51,9 @@
             if ($role == "Admin") {
                 header("location: FinalsTable\Overview.php");
             } else if ($role == "Customer") {
-                header("location: Home.php");
+                header("location: HomeLog.php");
             } else if ($role == "Employee") {
-                header("location: Booking.php");
+                header("location: FinalsTable\Reservation.php");
             } ?>
             <script>
                 Swal.fire({
@@ -122,7 +124,7 @@
 
                     <div class="row mb-4">
                         <div class="col d-flex justify-content-center ">
-                            <a href="Register.php" class="link-text">Forgot Password?</a>
+                            <a href="ForgotPassword.php" class="link-text">Forgot Password?</a>
                         </div>
                     </div>
 

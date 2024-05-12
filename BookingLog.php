@@ -46,7 +46,7 @@ function setMinDate() {
                 <div class="offcanvas-body">
                     <ul class="navbar-nav justify-content-center flex-grow-1 pe-5">
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2 mx-auto" href="Home.php"><i class="bi bi-house-fill"></i> Home</a>
+                            <a class="nav-link mx-lg-2 mx-auto" href="HomeLog.php"><i class="bi bi-house-fill"></i> Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
@@ -61,7 +61,13 @@ function setMinDate() {
                 </div>
 
             </div>
-            <a href="Login.php" class="book-login-button"><i class="bi bi-person-circle"></i> Login</a>
+            <a href="Home.php" class="book-login-button"><i class="bi bi-person-circle"></i>
+            <?php 
+                session_start();
+                $fullname = $_SESSION['user'];
+                echo $fullname;
+            ?>
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -82,7 +88,7 @@ function setMinDate() {
                         </p>
                         <div class="row  caro-posi">
                             <div class="col">
-                                <a href="Login.php" class="book-caro-button"> Book Now</a>
+                                <a href="BookingLog.php" class="book-caro-button"> Book Now</a>
                             </div>
                         </div>
 
@@ -98,7 +104,7 @@ function setMinDate() {
                         </p>
                         <div class="row  caro-posi">
                             <div class="col">
-                                <a href="Login.php" class="book-caro-button"> Book Now</a>
+                                <a href="BookingLog.php" class="book-caro-button"> Book Now</a>
                             </div>
                         </div>
                     </div>
@@ -112,7 +118,7 @@ function setMinDate() {
                         </p>
                         <div class="row  caro-posi">
                             <div class="col">
-                                <a href="Login.php" class="book-caro-button"> Book Now</a>
+                                <a href="BookingLog.php" class="book-caro-button"> Book Now</a>
                             </div>
                         </div>
                     </div>
