@@ -10,23 +10,24 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <body>
+    <?php require_once "FinalsTable\BusArrays.php"; ?>
+    <?php require_once "dbconnect.php"; ?>
     <script>
-function setMinDate() {
-    // Get current date in Philippine time zone
-    var philippineDate = new Date();
-    var philippineOffset = 8 * 60; // Philippine time zone offset in minutes (UTC+8)
-    var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
-    var philippineTime = new Date(utc + (60000 * philippineOffset));
+        function setMinDate() {
+            // Get current date in Philippine time zone
+            var philippineDate = new Date();
+            var philippineOffset = 8 * 60; // Philippine time zone offset in minutes (UTC+8)
+            var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
+            var philippineTime = new Date(utc + (60000 * philippineOffset));
 
-    // Format date in yyyy-mm-dd format
-    var formattedDate = philippineTime.toLocaleDateString('en-CA');
+            // Format date in yyyy-mm-dd format
+            var formattedDate = philippineTime.toLocaleDateString('en-CA');
 
-    // Set the minimum date and change input type to date
-    document.getElementById("tripDate").setAttribute('type', 'date');
-    document.getElementById("tripDate").setAttribute('min', formattedDate);
-}
-
-</script>
+            // Set the minimum date and change input type to date
+            document.getElementById("tripDate").setAttribute('type', 'date');
+            document.getElementById("tripDate").setAttribute('min', formattedDate);
+        }
+    </script>
     <script src="scripts.js"></script>
     <script src="bootstrap.min.js"></script>
 
@@ -158,59 +159,53 @@ function setMinDate() {
                 <div class="container-fluid w-100">
                     <div class="row">
                         <div class="col">
-                        <form action="Booking.php" method="post" novalidate class ="needs-validation">
-                            <div class="input-group ">
-                                <select id="origin" class="form-select" aria-describedby="basic-addon2" name ="origin" required>
-                                    <option default disabled selected  value="">Choose your origin</option>
-                                    <optgroup label="Bicol - Manila">
-                                        <option value = "Naga">Naga</option>
-                                    </optgroup>
-                                    <optgroup label="Aurora Cubao - Bicol">
-                                        <option value = "Aurora Cubao">Aurora Cubao</option>
-                                    </optgroup>
-                                    <optgroup label="PITX - Bicol">
-                                        <option value= "PITX">PITX</option>
-                                    </optgroup>
-                                </select>
-                                    
+                            <form action="Booking.php" method="post" novalidate class="needs-validation">
+                                <div class="input-group ">
+                                    <select id="origin" class="form-select" aria-describedby="basic-addon2" name="origin" required>
+                                        <?php
+                                        echo '<option default disabled selected value="">Origin</option>';
 
-                                <label class="input-group-text" for="origin">Origin</label>
-                                <button class="input-group-text" id="basic-addon2" onclick="swapValues()"><i class="bi bi-arrow-left-right"></i></button>
+                                        foreach ($origins as $group_label => $origin) {
+                                            echo '<optgroup label="' . $group_label . '">';
+                                            $selected = ($fielddata['departure_location'] === $origin) ? 'selected' : '';
+                                            echo '<option value="' . $origin . '" ' . $selected . '>' . $origin . '</option>';
+                                            echo '</optgroup>';
+                                        }
+                                        ?>
+                                    </select>
 
-                                <label class="input-group-text" for="destination">Destination</label>
-                                <select id="destination" class="form-select" aria-describedby="basic-addon2" name ="destination" required>
-                                    <option default disabled selected value="">Choose your destination</option>
-                                    <optgroup label="Bicol - Manila">
-                                        <option value = "Aurora Cubao">Aurora Cubao</option>
-                                        <option value= "PITX">PITX</option>
-                                    </optgroup>
-                                    <optgroup label="Aurora Cubao - Bicol">
-                                        <option value= "Gubat">Gubat</option>
-                                        <option  value= "Nabua">Nabua</option>
-                                        <option  value= "Legazpi">Legazpi</option>
-                                        <option value= "Tabaco">Tabaco</option>
-                                    </optgroup>
-                                    <optgroup label="PITX - Bicol">
-                                        <option value= "Gubat" >Gubat</option>
-                                        <option value= "Iriga">Iriga</option>
-                                        <option value= "Legazpi">Legazpi</option>
-                                        <option value ="Naga">Naga</option>
-                                        <option value= "Tabaco">Tabaco</option>
-                                    </optgroup>
-                                    
-                                </select>
-                                       
-                            </div>
+
+                                    <label class="input-group-text" for="origin">Origin</label>
+                                    <button class="input-group-text" id="basic-addon2" onclick="swapValues()"><i class="bi bi-arrow-left-right"></i></button>
+
+                                    <label class="input-group-text" for="destination">Destination</label>
+                                    <select id="destination" class="form-select" aria-describedby="basic-addon2" name="destination" required>
+                                        <?php
+
+
+                                        foreach ($destinations as $group_label => $options) {
+                                            echo '<optgroup label="' . $group_label . '">';
+                                            foreach ($options as $option) {
+                                                $selected = ($fielddata['destination'] === $option) ? 'selected' : '';
+                                                echo '<option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
+                                            }
+                                            echo '</optgroup>';
+                                        }
+                                        ?>
+
+                                    </select>
+
+                                </div>
 
                         </div>
                         <div class="col-4">
                             <input type="text" name="date" id="tripDate" class="form-control" placeholder="Trip Date" onfocus="setMinDate()" onblur="(this.type='text')" required>
-                                <div class="invalid-feedback text-start">Please select a date.</div>
-                                <div class="valid-feedback text-start">Departure date selected.</div>
+                            <div class="invalid-feedback text-start">Please select a date.</div>
+                            <div class="valid-feedback text-start">Departure date selected.</div>
 
                         </div>
-                        <div class="col-1 text-center ">       
-                                <input type="submit" value="Search" name="searchbutton" class="btn btn-primary w-100">
+                        <div class="col-1 text-center ">
+                            <input type="submit" value="Search" name="searchbutton" class="btn btn-primary w-100">
                         </div>
                         </form>
                     </div>
@@ -221,26 +216,26 @@ function setMinDate() {
                         <div class="col bg-light p-3 rounded">
 
                             <?php
-                            
+
                             require_once "dbconnect.php";
 
                             //button function
                             if (isset($_POST['searchbutton'])) {
-                               
+
                                 //to check the search box if empty or not 
-                                    if ($_POST['date'] != NULL && $_POST['origin'] != NULL && $_POST['destination'] != NULL) {
+                                if ($_POST['date'] != NULL && $_POST['origin'] != NULL && $_POST['destination'] != NULL) {
                                     $date = $_POST['date'];
                                     $origin = $_POST['origin'];
                                     $destination = $_POST['destination'];
-                                        $selectsql = "Select * from bus_reserve_view where 
+                                    $selectsql = "Select * from bus_reserve_view where 
                                             `Departure Area`  = '" . $origin . "' 
                                             AND  `Departure Date` = '" . $date . "'   
                                             AND `Destination` = '" . $destination . "' 
                                             ";
-                                    } else {
-                                        
-                                        $selectsql = "Select * from bus_reserve_view";
-                                    }
+                                } else {
+
+                                    $selectsql = "Select * from bus_reserve_view";
+                                }
                             } else {
                                 $selectsql = "Select * from bus_reserve_view";
                             }
@@ -277,21 +272,21 @@ function setMinDate() {
                                     echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
-                                    echo "<td>" . date_format(date_create($maltfielddata['Departure Time']), 'h:i A') . "</td>";
-                                    echo "<td>" . date_format(date_create($maltfielddata['Arrival Time']), 'h:i A') . "</td>";
+                                    echo "<td>" . date_format(date_create($maltfielddata['Departure Time']), 'g:i A') . "</td>";
+                                    echo "<td>" . date_format(date_create($maltfielddata['Arrival Time']), 'g:i A') . "</td>";
 
                                     echo "<td>" . $maltfielddata['Departure Area'] . "</td>";
                                     echo "<td>" . $maltfielddata['Destination'] . "</td>";
                                     echo "<td>" . $maltfielddata['Total Seats'] . "</td>";
                                     echo "<td>" . $maltfielddata['Available Seats'] . "</td>";
                                     echo "<td>" . number_format($maltfielddata['Price']) . "</td>";
-                                    echo "<td>";?>
-                                    <form method ='post' action ='Reservation.php'> 
-                                       <?php   echo "<input type='hidden' name='Schedule ID' value='" . $maltfielddata['Schedule ID'] . "'>"; ?>
-                                       <a href ="Reservation.php" class='btn btn-success' name='book'>Book</a>
-                            
+                                    echo "<td>"; ?>
+                                    <form method='post' action='Reservation.php'>
+                                        <?php echo "<input type='hidden' name='Schedule ID' value='" . $maltfielddata['Schedule ID'] . "'>"; ?>
+                                        <a href="Reservation.php" class='btn btn-success' name='book'>Book</a>
+
                                     </form>
-                                   <?php echo "</td>";
+                            <?php echo "</td>";
                                 }
                                 echo "</table>";
                             } else {
@@ -542,23 +537,23 @@ function setMinDate() {
                                     <div class="card-text term-card-text mb-3 text-center">
                                         <div class="row">
                                             <div class="col my-2"><strong>Location</strong></div>
-                                           
+
                                         </div>
                                         <div class="row">
-                                         
+
                                             <div class="col"> 1019, 1102 Aurora Blvd, Project 3, Quezon City, Metro Manila </div>
                                         </div>
                                         <div class="row">
                                             <div class="col my-2"> <strong>Contact</strong> </div>
-                                 
+
                                         </div>
                                         <div class="row">
-                                      
+
                                             <div class="col"> 0998-8842382 </div>
-                                        
+
                                         </div>
                                         <div class="row">
-                                       
+
                                             <div class="col"> 0943-1376974 </div>
                                         </div>
                                     </div>
@@ -579,23 +574,23 @@ function setMinDate() {
                                     <div class="card-text term-card-text mb-3 p-2 text-center">
                                         <div class="row">
                                             <div class="col my-2"><strong>Location</strong></div>
-                                    
+
                                         </div>
                                         <div class="row">
-                                        
+
                                             <div class="col"> Tambo, Parañaque, <br>Metro Manila </div>
                                         </div>
                                         <div class="row">
                                             <div class="col my-2"> <strong>Contact</strong> </div>
-                                        
+
                                         </div>
                                         <div class="row">
-                                         
+
                                             <div class="col">0939-9252460</div>
-                                          
+
                                         </div>
                                         <div class="row">
-                                           
+
                                             <div class="col">0933-8122039</div>
                                         </div>
 
@@ -616,24 +611,24 @@ function setMinDate() {
                                     <div class="card-text term-card-text mb-3 text-center">
                                         <div class="row">
                                             <div class="col my-2"><strong>Location</strong></div>
-                                       
+
                                         </div>
                                         <div class="row">
-                                      
+
                                             <div class="col"> Brgy Pawa, <br>Tabaco City, Albay</div>
                                         </div>
                                         <div class="row">
                                             <div class="col my-2"> <strong>Contact</strong> </div>
-                                        
+
                                         </div>
                                         <div class="row">
-                                          
+
                                             <div class="col"> 0923-7333077 </div>
-                                           
+
                                         </div>
                                         <div class="row">
-                                 
-                                          
+
+
                                             <div class="col"> 0998-5474973 </div>
                                         </div>
 
@@ -654,24 +649,24 @@ function setMinDate() {
                                     <div class="card-text term-card-text mb-3 text-center">
                                         <div class="row">
                                             <div class="col my-2"><strong>Location</strong></div>
-                                  
+
                                         </div>
                                         <div class="row">
-                                   
+
                                             <div class="col"> LKY Terminal beside <br>SM City Legazpi, Albay</div>
                                         </div>
                                         <div class="row">
                                             <div class="col my-2"> <strong>Contact</strong> </div>
-                                           
+
                                         </div>
                                         <div class="row">
-                                     
+
                                             <div class="col"> 0939-9270533 </div>
-                                           
+
                                         </div>
                                         <div class="row">
-                                     
-                                           
+
+
                                             <div class="col"> 0923-7333076 </div>
                                         </div>
 
