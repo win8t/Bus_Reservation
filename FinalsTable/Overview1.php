@@ -7,7 +7,7 @@
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <link rel="stylesheet" href="sidebar6.css">
+  <link rel="stylesheet" href="sidebar7.css">
 
 </head>
 
@@ -120,8 +120,8 @@
         
 
         <?php require_once "dbconnect.php"; ?>
-        <h1 class="hd-font bg-rowimg text-center text-light rounded p-3 "> Total Records</h1>
-        <div class="container-fluid mx-auto w-100 p-5 bg-primary-subtle">
+        <h1 class="hd-font bg-rowimg text-center text-light rounded p-3 mt-2 "> Total Records</h1>
+        <div class="container-fluid mx-auto w-100 p-5 bg-row rounded">
        
         <div class="row">
           <div class="col-xl-3 col-md-6 mx-auto">
