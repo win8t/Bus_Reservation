@@ -7,7 +7,7 @@
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="sidebar6.css">
+    <link rel="stylesheet" href="sidebar7.css">
 
 </head>
 
@@ -157,8 +157,9 @@
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
-            echo "<div class='bdr mt-2'>";
-            echo "<table class='table table-striped text-center table-bordered w-100 border border-2 table-responsive border-dark align-middle mx-auto''>";
+            echo "<div class=' bg-row p-5 rounded mt-2'>";
+            echo "<div class='bdr table-responsive mt-2'>";
+            echo "<table class='table table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto''>";
             echo "<thead class ='table-dark'>";;
             echo "<tr class ='tble-bg'>";
             echo "<th> Log ID </th>";
@@ -179,6 +180,7 @@
               
             }
             echo "</table>";
+            echo "</div>";
             echo "</div>";
           } else {
             echo "<div class='row'>";
