@@ -132,7 +132,7 @@
                             <input type="submit" name="sub" value="Log In" class="btn btn-primary btn-block w-50 link-text">
                         </div>
                         <div class="col text-start">
-                            <a href="Booking.php">
+                            <a href="Home.php">
                                 <input type="button" value="Go Back" class="btn btn-secondary btn-block link-text  w-50">
                             </a>
                         </div>

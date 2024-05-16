@@ -71,7 +71,7 @@
                 </div>
 
             </div>
-            <a href="Login.php" class="book-login-button"><i class="bi bi-person-circle"></i>
+            <a href="Home.php" class="book-login-button"><i class="bi bi-person-circle"></i>
                 <?php
                 session_start();
                 if (isset($_SESSION['username'])) {
