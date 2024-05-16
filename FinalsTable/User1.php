@@ -354,7 +354,7 @@
           <!-- Username input -->
           <div class="row form-outline">
             <div class="col">
-              <input type="text" id="" name="update_username" value="<?php echo $fielddata['email']; ?>" class="form-control" />
+              <input type="text" id="" name="update_username" value="<?php echo $fielddata['username']; ?>" class="form-control" />
               <label class="form-label" for="">Username</label>
             </div>
 

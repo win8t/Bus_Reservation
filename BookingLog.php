@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Alps Booking Reservation</title>
-    <link href=stylez.css rel="stylesheet" />
+    <link href=stylert.css rel="stylesheet" />
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -12,6 +12,10 @@
 <body>
     <?php require_once "FinalsTable\BusArrays.php"; ?>
     <?php require_once "dbconnect.php"; ?>
+    <script>
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+    </script>
     <script>
         function setMinDate() {
             // Get current date in Philippine time zone
@@ -29,7 +33,7 @@
         }
     </script>
     <script src="scripts.js"></script>
-    <script src="bootstrap.min.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-book">
         <div class="container-fluid">
@@ -62,11 +66,15 @@
                 </div>
 
             </div>
-            <a href="Home.php" class="book-login-button"><i class="bi bi-person-circle"></i>
+            <a href="Login.php" class="book-login-button"><i class="bi bi-person-circle"></i>
                 <?php
                 session_start();
-                $user = $_SESSION['username'];
-                echo $user;
+                if (isset($_SESSION['username'])) {
+                    $user = $_SESSION['username'];
+                    echo $user;
+                } else {
+                    echo "<span> Login </span> ";
+                }
                 ?>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
@@ -251,6 +259,8 @@
 
                             //check table if there is a record
                             //num_rows - will return the no of rows inside a table
+                            $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
+                            $buttonTooltip = $buttonDisabled ? 'data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom"' : '';
                             if ($result->num_rows > 0) {
                                 echo "<table class='table table-light table-responsive table-striped text-center table-bordered my-2 border border-3'>";
                                 echo "<tr>";
@@ -269,28 +279,129 @@
                                 echo "<th> Price </th>";
                                 echo "</tr>";
 
+
                                 while ($maltfielddata = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     echo "<td>" . $maltfielddata['Schedule ID'] . "</td>";
                                     echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
-                                    echo "<td>" . $maltfielddata['Departure Time'] . "</td>";
-                                    echo "<td>" . $maltfielddata['Arrival Time'] . "</td>";
+                                    echo "<td>" . date_format(date_create($maltfielddata['Departure Time']), 'g:i A') . "</td>";
+                                    echo "<td>" . date_format(date_create($maltfielddata['Arrival Time']), 'g:i A') . "</td>";
+
                                     echo "<td>" . $maltfielddata['Departure Area'] . "</td>";
                                     echo "<td>" . $maltfielddata['Destination'] . "</td>";
                                     echo "<td>" . $maltfielddata['Total Seats'] . "</td>";
                                     echo "<td>" . $maltfielddata['Available Seats'] . "</td>";
-                                    echo "<td>" . $maltfielddata['Price'] . "</td>";
+                                    echo "<td>" . number_format($maltfielddata['Price']) . "</td>";
                                     echo "<td>";
-                                    echo "<button class='btn btn-success' type='button' data-bs-toggle='collapse' data-bs-target='#collapseExample" . $maltfielddata['Schedule ID'] . "' aria-expanded='false' aria-controls='collapseExample" . $maltfielddata['Schedule ID'] . "'>Book</button>";
+                                    echo "<div class ='$buttonTooltip'>";
+                                    echo "<button class='btn btn-success' type='button' data-bs-toggle='collapse' data-bs-target='#collapseExample" . $maltfielddata['Schedule ID'] . "' aria-expanded='false' 
+                                     aria-controls='collapseExample" . $maltfielddata['Schedule ID'] . "' $buttonDisabled>Book</button>";
+                                    echo "</div>";
                                     echo "</td>";
                                     echo "</tr>";
                                     echo "<tr class='collapse' id='collapseExample" . $maltfielddata['Schedule ID'] . "'>";
                                     echo "<td colspan='12'>";
-                                    echo "<div class='card card-body'>"; ?>
-                                    <h2> Collapsible content </h2>
-                            <?php
+                                    echo "<div class='w-50 mx-auto'>";
+
+                            ?>
+                                    <form action="ReservationReceipt.php" method="post">
+                                        <h5 class="hd-text text-center pb-2 fs-5" id="title">User Editing Form</h5>
+                                        <div class="row form-outline">
+                                            <!-- Full Name input -->
+                                            <div class="col">
+                                                <input type="hidden" name="book_id" value="<?php echo $maltfielddata['Schedule ID'] ?>" class="form-control" readonly />
+
+                                            </div>
+                                            <div class="col">
+                                                <input type="hidden" name="book_num" value="<?php echo $maltfielddata['Bus Number']; ?>" class="form-control" readonly />
+
+                                            </div>
+                                            <div class="col">
+                                                <input type="hidden" name="book_type" value="<?php echo $maltfielddata['Bus Type']; ?>" class="form-control" readonly />
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Role input -->
+                                        <div class="row form-outline mb-2">
+                                            <div class="col">
+                                                <input type="hidden" name="book_ddate" value="<?php echo $maltfielddata['Departure Date']; ?>" class="form-control" />
+
+                                            </div>
+
+                                            <div class="col">
+                                                <input type="hidden" name="book_dtime" value="<?php echo date_format(date_create($maltfielddata['Departure Time']), 'H:i'); ?>" class="form-control" />
+                                            </div>
+
+                                            <div class="col">
+                                                <input type="hidden" name="book_atime" value="<?php echo date_format(date_create($maltfielddata['Arrival Time']), 'H:i') ?>" class="form-control" />
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-outline">
+                                            <!-- Full Name input -->
+                                            <div class="col">
+                                                <input type="hidden" name="book_depart" value="<?php echo $maltfielddata['Departure Area']; ?>" class="form-control" readonly />
+
+                                            </div>
+                                            <div class="col">
+                                                <input type="hidden" name="book_desti" value="<?php echo $maltfielddata['Destination']; ?>" class="form-control" readonly />
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-outline">
+                                            <!-- Full Name input -->
+                                            <div class="col">
+                                                <input type="hidden" name="book_price" value="<?php echo number_format($maltfielddata['Price']); ?>" class="form-control" readonly />
+
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-outline">
+                                            <!-- Full Name input -->
+                                            <div class="col">
+                                                <input type="hidden" name="book_tseats" value="<?php echo $maltfielddata['Total Seats']; ?>" class="form-control" readonly />
+
+                                            </div>
+                                            <div class="col">
+                                                <input type="hidden" name="book_aseats" value="<?php echo $maltfielddata['Available Seats']; ?>" class="form-control" readonly />
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Username input -->
+                                        <div class="row form-outline">
+                                            <div class="col">
+                                                <input type="text" id="" name="p_name" class="form-control" />
+                                                <label class="form-label" for="">Passenger Name</label>
+                                            </div>
+
+                                            <!-- Password input -->
+                                            <div class="col">
+                                                <input type="number" name="c_number" id="" class="form-control" />
+                                                <label class="form-label" for="">Contact Number</label>
+                                            </div>
+                                        </div>
+
+                                        <!-- Seat input -->
+                                        <div class="form-outline">
+                                            <input type="number" name="seatnum" id="" class="form-control" />
+                                            <label class="form-label" for="">Seat Number</label>
+                                        </div>
+
+                                        <div class="row form-outline text-center pt-1">
+                                            <div class="col">
+                                                <button type="submit" name="booking" value="Book" class="btn btn-success">Complete the Booking</button>
+                                            </div>
+                                        </div>
+
+                        </div>
+                        </form>
+                <?php
                                     echo "</div>";
                                     echo "</td>";
                                     echo "</tr>";
@@ -303,501 +414,501 @@
                                 echo "</div>";
                                 echo "</div>";
                             }
-                            ?>
+                ?>
 
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- Bus Types -->
+    <div class="content-container8">
+        <div class="d-flex flex-row row-12">
+            <div class="col-2 content-container7 bg-info-subtle p-3 bus-align">
+                <h2>Bus Types</h2>
+                <p class="about-para">Different bus types to accomodate your every need.</p>
+            </div>
+            <div class="col-10 content-container8 bus-types">
+
+                <div class="card-group bus-card-group">
+                    <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
+                        <img src="Executive.png" class="card-img-top" alt="...">
+                        <div class="card-body bus-card-body">
+                            <h5 class="card-title bus-card-title">Executive</h5>
+                            <hr>
+                            <div class="card-text bus-card-text">
+                                <div class="row">
+                                    <div class="col">2x2 Bus</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Reclining Seats</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Airconditioned</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">48 Seats</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card bus-card border-top-0 border-bottom-0">
+                        <img src="ExecutiveSolo.png" class="card-img-top" alt="...">
+                        <div class="card-body bus-card-body">
+                            <h5 class="card-title bus-card-title">Executive Solo</h5>
+                            <hr>
+                            <div class="card-text bus-card-text">
+                                <div class="row">
+                                    <div class="col">1x1x1 Bus</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Reclining Seats</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Airconditioned</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">32 Seats</div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card bus-card border-top-0 border-bottom-0">
+                        <img src="ExecutiveClass.png" class="card-img-top" alt="...">
+                        <div class="card-body bus-card-body">
+                            <h5 class="card-title bus-card-title">Executive Class</h5>
+                            <hr>
+                            <div class="card-text bus-card-text">
+                                <div class="row">
+                                    <div class="col">2x2 Bus</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Reclining Seats</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Airconditioned</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">40 Seats</div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
+                        <img src="ExecutiveLuxury1.png" class="card-img-top" alt="...">
+                        <div class="card-body bus-card-body">
+                            <h5 class="card-title bus-card-title">Executive Luxury</h5>
+                            <hr>
+                            <div class="card-text bus-card-text">
+                                <div class="row">
+                                    <div class="col">2x2 Bus with Restroom</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Reclining Seats</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">Airconditioned</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">36 Seats</div>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-
-
         </div>
-        <!-- Bus Types -->
+
+        <!-- Routes -->
         <div class="content-container8">
             <div class="d-flex flex-row row-12">
+                <div class="col-12 book-content-container8  bus-align pt-5">
+                    <h2 class="text-center">Bus Routes</h2>
+                    <p class="about-para text-center ">Different bus types to accomodate your every need.</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="book-content-container8">
+            <div class="d-flex flex-row row-12">
+                <div class="col-12 book-content-container8  pb-3">
+                    <div class="container-slider mx-auto pb-5 mt-3">
+                        <input type="radio" name="slider" id="s1" checked>
+                        <input type="radio" name="slider" id="s2">
+                        <input type="radio" name="slider" id="s3">
+
+
+                        <div class="slidecards">
+                            <label for="s1" id="slide1">
+                                <div class="slidecard">
+                                    <div class="imageslide">
+                                        <img src="Bicol.png" alt="">
+                                        <div class="dots">
+                                            <div class=""></div>
+                                            <div class=""></div>
+                                            <div class=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="infos">
+                                        <span class="name">Bicol - Manila</span>
+                                        <span class="content">
+                                            Naga to PITX
+                                        </span>
+                                        <span class="content">
+                                            Naga to Aurora Cubao
+                                        </span>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label for="s2" id="slide2">
+                                <div class="slidecard">
+                                    <div class="imageslide">
+                                        <img src="Bicol1.png" alt="">
+                                        <div class="dots">
+                                            <div class=""></div>
+                                            <div class=""></div>
+                                            <div class=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="infos">
+                                        <span class="name">Aurora Cubao - Bicol</span>
+                                        <span class="content">
+                                            Aurora Cubao to Gubat
+                                        </span>
+                                        <span class="content">
+                                            Aurora Cubao to Legazpi
+                                        </span>
+                                        <span class="content">
+                                            Aurora Cubao to Tabaco
+
+                                        </span>
+                                        <span class="content">
+                                            Aurora Cubao to Nabua
+                                        </span>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <label for="s3" id="slide3">
+                                <div class="slidecard">
+                                    <div class="imageslide">
+                                        <img src="Bicol2.png" alt="">
+                                        <div class="dots">
+                                            <div class=""></div>
+                                            <div class=""></div>
+                                            <div class=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="infos">
+                                        <span class="name">PITX - Bicol</span>
+                                        <span class="content">
+                                            PITX to Gubat
+                                        </span>
+                                        <span class="content">
+                                            PITX to Iriga
+                                        </span>
+                                        <span class="content">
+                                            PITX to Legazpi
+                                        </span>
+                                        <span class="content">
+                                            PITX to Naga
+                                        </span>
+                                        <span class="content">
+                                            PITX to Tabaco
+                                        </span>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+
+
+
+        <!-- Terminal -->
+        <div class="d content-container8">
+            <div class="d-flex flex-row row-12">
+                <div class="col-10 content-container8 bg-info-subtle">
+
+                    <div class="card-group term-card-group">
+                        <div class="card term-card border-top-0 border-bottom-0 border-right-0">
+                            <img src="AuroraCubao.png" class="card-img-top" alt="...">
+                            <div class="card-body term-card-body">
+                                <h5 class="card-title term-card-title">Aurora Cubao</h5>
+                                <hr>
+                                <div class="card-text term-card-text mb-3 text-center">
+                                    <div class="row">
+                                        <div class="col my-2"><strong>Location</strong></div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col"> 1019, 1102 Aurora Blvd, Project 3, Quezon City, Metro Manila </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col my-2"> <strong>Contact</strong> </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col"> 0998-8842382 </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col"> 0943-1376974 </div>
+                                    </div>
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col">
+                                        <a href="https://goo.gl/maps/aoUzJoUdUReXCknt5" target="_blank" class="term-button">View</a>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="card term-card border-top-0 border-bottom-0">
+                            <img src="PITX.png" class="card-img-top" alt="...">
+                            <div class="card-body term-card-body">
+                                <h5 class="card-title term-card-title">PITX</h5>
+                                <hr>
+                                <div class="card-text term-card-text mb-3 p-2 text-center">
+                                    <div class="row">
+                                        <div class="col my-2"><strong>Location</strong></div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col"> Tambo, Parañaque, <br>Metro Manila </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col my-2"> <strong>Contact</strong> </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col">0939-9252460</div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col">0933-8122039</div>
+                                    </div>
+
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col">
+                                        <a href="https://goo.gl/maps/EhZFkdnz5T5GXjx87" target="_blank" class="term-button">View</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card term-card border-top-0 border-bottom-0">
+                            <img src="TABACO.png" class="card-img-top border-0" alt="...">
+                            <div class="card-body term-card-body">
+                                <h5 class="card-title term-card-title">Tabaco</h5>
+                                <hr>
+                                <div class="card-text term-card-text mb-3 text-center">
+                                    <div class="row">
+                                        <div class="col my-2"><strong>Location</strong></div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col"> Brgy Pawa, <br>Tabaco City, Albay</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col my-2"> <strong>Contact</strong> </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col"> 0923-7333077 </div>
+
+                                    </div>
+                                    <div class="row">
+
+
+                                        <div class="col"> 0998-5474973 </div>
+                                    </div>
+
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col">
+                                        <a href="https://goo.gl/maps/64WNqZBBK2PENfXDA" target="_blank" class="term-button">View</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="card term-card border-top-0 border-bottom-0 border-right-0">
+                            <img src="LEGAZPI.png" class="card-img-top" alt="...">
+                            <div class="card-body term-card-body">
+                                <h5 class="card-title term-card-title">Legazpi</h5>
+                                <hr>
+                                <div class="card-text term-card-text mb-3 text-center">
+                                    <div class="row">
+                                        <div class="col my-2"><strong>Location</strong></div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col"> LKY Terminal beside <br>SM City Legazpi, Albay</div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col my-2"> <strong>Contact</strong> </div>
+
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="col"> 0939-9270533 </div>
+
+                                    </div>
+                                    <div class="row">
+
+
+                                        <div class="col"> 0923-7333076 </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="row text-center mb-3">
+                                    <div class="col">
+                                        <a href="https://goo.gl/maps/Xzt21R96kxvCocsy5" target="_blank" class="term-button">View</a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="col-2 content-container7 bg-info-subtle p-3 bus-align">
-                    <h2>Bus Types</h2>
-                    <p class="about-para">Different bus types to accomodate your every need.</p>
+                    <h2 class="text-start">Bus Terminal </h2>
+                    <p class="about-para text-start">Different bus types to accomodate your every need.</p>
                 </div>
-                <div class="col-10 content-container8 bus-types">
 
-                    <div class="card-group bus-card-group">
-                        <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
-                            <img src="Executive.png" class="card-img-top" alt="...">
-                            <div class="card-body bus-card-body">
-                                <h5 class="card-title bus-card-title">Executive</h5>
-                                <hr>
-                                <div class="card-text bus-card-text">
-                                    <div class="row">
-                                        <div class="col">2x2 Bus</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">Reclining Seats</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">Airconditioned</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">48 Seats</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card bus-card border-top-0 border-bottom-0">
-                            <img src="ExecutiveSolo.png" class="card-img-top" alt="...">
-                            <div class="card-body bus-card-body">
-                                <h5 class="card-title bus-card-title">Executive Solo</h5>
-                                <hr>
-                                <div class="card-text bus-card-text">
-                                    <div class="row">
-                                        <div class="col">1x1x1 Bus</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">Reclining Seats</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">Airconditioned</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">32 Seats</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card bus-card border-top-0 border-bottom-0">
-                            <img src="ExecutiveClass.png" class="card-img-top" alt="...">
-                            <div class="card-body bus-card-body">
-                                <h5 class="card-title bus-card-title">Executive Class</h5>
-                                <hr>
-                                <div class="card-text bus-card-text">
-                                    <div class="row">
-                                        <div class="col">2x2 Bus</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">Reclining Seats</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">Airconditioned</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">40 Seats</div>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
-                            <img src="ExecutiveLuxury1.png" class="card-img-top" alt="...">
-                            <div class="card-body bus-card-body">
-                                <h5 class="card-title bus-card-title">Executive Luxury</h5>
-                                <hr>
-                                <div class="card-text bus-card-text">
-                                    <div class="row">
-                                        <div class="col">2x2 Bus with Restroom</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">Reclining Seats</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">Airconditioned</div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">36 Seats</div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-
-            <!-- Routes -->
-            <div class="content-container8">
-                <div class="d-flex flex-row row-12">
-                    <div class="col-12 book-content-container8  bus-align pt-5">
-                        <h2 class="text-center">Bus Routes</h2>
-                        <p class="about-para text-center ">Different bus types to accomodate your every need.</p>
-                    </div>
-
-                </div>
-            </div>
-            <div class="book-content-container8">
-                <div class="d-flex flex-row row-12">
-                    <div class="col-12 book-content-container8  pb-3">
-                        <div class="container-slider mx-auto pb-5 mt-3">
-                            <input type="radio" name="slider" id="s1" checked>
-                            <input type="radio" name="slider" id="s2">
-                            <input type="radio" name="slider" id="s3">
-
-
-                            <div class="slidecards">
-                                <label for="s1" id="slide1">
-                                    <div class="slidecard">
-                                        <div class="imageslide">
-                                            <img src="Bicol.png" alt="">
-                                            <div class="dots">
-                                                <div class=""></div>
-                                                <div class=""></div>
-                                                <div class=""></div>
-                                            </div>
-                                        </div>
-                                        <div class="infos">
-                                            <span class="name">Bicol - Manila</span>
-                                            <span class="content">
-                                                Naga to PITX
-                                            </span>
-                                            <span class="content">
-                                                Naga to Aurora Cubao
-                                            </span>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                <label for="s2" id="slide2">
-                                    <div class="slidecard">
-                                        <div class="imageslide">
-                                            <img src="Bicol1.png" alt="">
-                                            <div class="dots">
-                                                <div class=""></div>
-                                                <div class=""></div>
-                                                <div class=""></div>
-                                            </div>
-                                        </div>
-                                        <div class="infos">
-                                            <span class="name">Aurora Cubao - Bicol</span>
-                                            <span class="content">
-                                                Aurora Cubao to Gubat
-                                            </span>
-                                            <span class="content">
-                                                Aurora Cubao to Legazpi
-                                            </span>
-                                            <span class="content">
-                                                Aurora Cubao to Tabaco
-
-                                            </span>
-                                            <span class="content">
-                                                Aurora Cubao to Nabua
-                                            </span>
-                                        </div>
-                                    </div>
-                                </label>
-
-                                <label for="s3" id="slide3">
-                                    <div class="slidecard">
-                                        <div class="imageslide">
-                                            <img src="Bicol2.png" alt="">
-                                            <div class="dots">
-                                                <div class=""></div>
-                                                <div class=""></div>
-                                                <div class=""></div>
-                                            </div>
-                                        </div>
-                                        <div class="infos">
-                                            <span class="name">PITX - Bicol</span>
-                                            <span class="content">
-                                                PITX to Gubat
-                                            </span>
-                                            <span class="content">
-                                                PITX to Iriga
-                                            </span>
-                                            <span class="content">
-                                                PITX to Legazpi
-                                            </span>
-                                            <span class="content">
-                                                PITX to Naga
-                                            </span>
-                                            <span class="content">
-                                                PITX to Tabaco
-                                            </span>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
-
-
-
-            <!-- Terminal -->
-            <div class="d content-container8">
-                <div class="d-flex flex-row row-12">
-                    <div class="col-10 content-container8 bg-info-subtle">
-
-                        <div class="card-group term-card-group">
-                            <div class="card term-card border-top-0 border-bottom-0 border-right-0">
-                                <img src="AuroraCubao.png" class="card-img-top" alt="...">
-                                <div class="card-body term-card-body">
-                                    <h5 class="card-title term-card-title">Aurora Cubao</h5>
-                                    <hr>
-                                    <div class="card-text term-card-text mb-3 text-center">
-                                        <div class="row">
-                                            <div class="col my-2"><strong>Location</strong></div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col"> 1019, 1102 Aurora Blvd, Project 3, Quezon City, Metro Manila </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col my-2"> <strong>Contact</strong> </div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col"> 0998-8842382 </div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col"> 0943-1376974 </div>
-                                        </div>
-                                    </div>
-                                    <div class="row text-center mb-3">
-                                        <div class="col">
-                                            <a href="https://goo.gl/maps/aoUzJoUdUReXCknt5" target="_blank" class="term-button">View</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                            <div class="card term-card border-top-0 border-bottom-0">
-                                <img src="PITX.png" class="card-img-top" alt="...">
-                                <div class="card-body term-card-body">
-                                    <h5 class="card-title term-card-title">PITX</h5>
-                                    <hr>
-                                    <div class="card-text term-card-text mb-3 p-2 text-center">
-                                        <div class="row">
-                                            <div class="col my-2"><strong>Location</strong></div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col"> Tambo, Parañaque, <br>Metro Manila </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col my-2"> <strong>Contact</strong> </div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col">0939-9252460</div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col">0933-8122039</div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row text-center mb-3">
-                                        <div class="col">
-                                            <a href="https://goo.gl/maps/EhZFkdnz5T5GXjx87" target="_blank" class="term-button">View</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="card term-card border-top-0 border-bottom-0">
-                                <img src="TABACO.png" class="card-img-top border-0" alt="...">
-                                <div class="card-body term-card-body">
-                                    <h5 class="card-title term-card-title">Tabaco</h5>
-                                    <hr>
-                                    <div class="card-text term-card-text mb-3 text-center">
-                                        <div class="row">
-                                            <div class="col my-2"><strong>Location</strong></div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col"> Brgy Pawa, <br>Tabaco City, Albay</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col my-2"> <strong>Contact</strong> </div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col"> 0923-7333077 </div>
-
-                                        </div>
-                                        <div class="row">
-
-
-                                            <div class="col"> 0998-5474973 </div>
-                                        </div>
-
-                                    </div>
-                                    <div class="row text-center mb-3">
-                                        <div class="col">
-                                            <a href="https://goo.gl/maps/64WNqZBBK2PENfXDA" target="_blank" class="term-button">View</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="card term-card border-top-0 border-bottom-0 border-right-0">
-                                <img src="LEGAZPI.png" class="card-img-top" alt="...">
-                                <div class="card-body term-card-body">
-                                    <h5 class="card-title term-card-title">Legazpi</h5>
-                                    <hr>
-                                    <div class="card-text term-card-text mb-3 text-center">
-                                        <div class="row">
-                                            <div class="col my-2"><strong>Location</strong></div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col"> LKY Terminal beside <br>SM City Legazpi, Albay</div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col my-2"> <strong>Contact</strong> </div>
-
-                                        </div>
-                                        <div class="row">
-
-                                            <div class="col"> 0939-9270533 </div>
-
-                                        </div>
-                                        <div class="row">
-
-
-                                            <div class="col"> 0923-7333076 </div>
-                                        </div>
-
-
-                                    </div>
-                                    <div class="row text-center mb-3">
-                                        <div class="col">
-                                            <a href="https://goo.gl/maps/Xzt21R96kxvCocsy5" target="_blank" class="term-button">View</a>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-2 content-container7 bg-info-subtle p-3 bus-align">
-                        <h2 class="text-start">Bus Terminal </h2>
-                        <p class="about-para text-start">Different bus types to accomodate your every need.</p>
-                    </div>
-
-                </div>
-            </div>
-
-
-
         </div>
-        <div class="row-12 content-container4 pt-4 mt-5">
-            <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
-            <p class="text-center about-para book-content-container8 py-2">We are here to assist you!</p>
 
-            <div class="d-flex flex-row content-container align-items-stretch">
-                <div class="col-4 content-container10 ">
-                    <div class="row  text-center py-5">
 
-                        <table class="table table-responsive w-75 mx-auto table-borderless contact-text">
-                            <tr>
-                                <th>
-                                    <h5 class="about-text text-center ">Main Office</h5>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td class="text-center pb-3">
-                                    <strong> Want to visit our actual office? </strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-end"><i class="bi bi-geo-fill h3"></i> ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
-                            </tr>
-                        </table>
 
-                    </div>
+    </div>
+    <div class="row-12 content-container4 pt-4 mt-5">
+        <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
+        <p class="text-center about-para book-content-container8 py-2">We are here to assist you!</p>
+
+        <div class="d-flex flex-row content-container align-items-stretch">
+            <div class="col-4 content-container10 ">
+                <div class="row  text-center py-5">
+
+                    <table class="table table-responsive w-75 mx-auto table-borderless contact-text">
+                        <tr>
+                            <th>
+                                <h5 class="about-text text-center ">Main Office</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td class="text-center pb-3">
+                                <strong> Want to visit our actual office? </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-end"><i class="bi bi-geo-fill h3"></i> ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
+                        </tr>
+                    </table>
+
                 </div>
-                <div class="col-4 content-container10 ">
-                    <div class="row  text-center py-5">
+            </div>
+            <div class="col-4 content-container10 ">
+                <div class="row  text-center py-5">
 
 
-                        <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
-                            <tr>
-                                <th colspan="2">
-                                    <h5 class="about-text text-center ">Contact Information</h5>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td colspan="2" class="text-center pb-3">
-                                    <strong> Any inquiries should have a return address or phone number. </strong>
-                                </td>
-                            </tr>
+                    <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
+                        <tr>
+                            <th colspan="2">
+                                <h5 class="about-text text-center ">Contact Information</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="text-center pb-3">
+                                <strong> Any inquiries should have a return address or phone number. </strong>
+                            </td>
+                        </tr>
 
-                            <tr>
-                                <th colspan="2">Phone</th>
-                            </tr>
-                            <tr>
-                                <td>Trunkline</td>
-                                <td class="text-end" colspan> (043) 723-9033</td>
-                            </tr>
-                            <tr>
-                                <td>SMS</td>
-                                <td class="text-end"> (0917) 504-6042</td>
-                            </tr>
-                            <tr>
-                                <th>Email</th>
-                            </tr>
-                            <tr>
-                                <td> info@alpsthebus.com</td>
-                            </tr>
-                        </table>
+                        <tr>
+                            <th colspan="2">Phone</th>
+                        </tr>
+                        <tr>
+                            <td>Trunkline</td>
+                            <td class="text-end" colspan> (043) 723-9033</td>
+                        </tr>
+                        <tr>
+                            <td>SMS</td>
+                            <td class="text-end"> (0917) 504-6042</td>
+                        </tr>
+                        <tr>
+                            <th>Email</th>
+                        </tr>
+                        <tr>
+                            <td> info@alpsthebus.com</td>
+                        </tr>
+                    </table>
 
-                    </div>
-                </div>
-
-                <div class="col-4 content-container10 ">
-                    <div class="row  text-center py-5">
-
-
-                        <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
-                            <tr>
-                                <th colspan="3">
-                                    <h5 class="about-text text-center ">Visit Us!</h5>
-                                </th>
-                            </tr>
-                            <tr>
-                                <td colspan="3" class="text-center pb-3">
-                                    <strong> Check out our other platforms. </strong>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-end"><a href="https://www.facebook.com/alpsthebus" target=”_blank”><i class="bi bi-facebook h1"></i></a></td>
-                                <td class="text-center"><a href="https://www.instagram.com/ilovealpsthebusph/?hl=en" target=”_blank”>
-                                        <i class="bi bi-instagram h1 insta"></i>
-                                    </a></td>
-                                <td class="text-start"><a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a></td>
-                            </tr>
-                        </table>
-
-
-
-                    </div>
                 </div>
             </div>
 
-        </div>
-        <div class="row-12 content-container7 p-4">
+            <div class="col-4 content-container10 ">
+                <div class="row  text-center py-5">
 
+
+                    <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
+                        <tr>
+                            <th colspan="3">
+                                <h5 class="about-text text-center ">Visit Us!</h5>
+                            </th>
+                        </tr>
+                        <tr>
+                            <td colspan="3" class="text-center pb-3">
+                                <strong> Check out our other platforms. </strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-end"><a href="https://www.facebook.com/alpsthebus" target=”_blank”><i class="bi bi-facebook h1"></i></a></td>
+                            <td class="text-center"><a href="https://www.instagram.com/ilovealpsthebusph/?hl=en" target=”_blank”>
+                                    <i class="bi bi-instagram h1 insta"></i>
+                                </a></td>
+                            <td class="text-start"><a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a></td>
+                        </tr>
+                    </table>
+
+
+
+                </div>
+            </div>
         </div>
+
+    </div>
+    <div class="row-12 content-container7 p-4">
+
+    </div>
 
     </div>
 

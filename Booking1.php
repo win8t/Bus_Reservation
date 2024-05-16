@@ -251,7 +251,9 @@ function setMinDate() {
                             //check table if there is a record
                             //num_rows - will return the no of rows inside a table
                                         if ($result->num_rows > 0) {
-                        echo "<table class='table table-light table-responsive table-striped text-center table-bordered my-2 border border-3'>";
+
+                        echo "<div class='table-responsive'>";
+                        echo "<table class='table table-light table-striped text-center table-bordered my-2 border border-3'>";
                         echo "<tr>";
                         echo "</tr>";
                         echo "<tr>";
@@ -295,6 +297,7 @@ function setMinDate() {
                             echo "</tr>";
                         }
                         echo "</table>";
+                        echo "</div>";
                     } else {
                         echo "<div class='row'>";
                         echo "<div class='col'>";
