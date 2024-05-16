@@ -35,6 +35,9 @@
             <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
             </li>
+            <li class="nav-item">
+                            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Status</a>
+                        </li>
             <!-- <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
             </li>

@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Alps Booking Reservation</title>
-    <link href=stylert.css rel="stylesheet" />
+    <link href=stylez.css rel="stylesheet" />
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <body>
-    <?php require_once "FinalsTable\BusArrays.php"; ?>
-    <?php require_once "dbconnect.php"; ?>
+    <?php
+    require_once "FinalsTable\BusArrays.php";
+    require_once "dbconnect.php";
+    require_once "SeatFunction.php";
+     ?>
+    <?php  ?>
     <script>
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
         const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
@@ -56,9 +60,10 @@
                         <li class="nav-item">
                             <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
                         </li>
-                        <!--       <li class="nav-item">
-                            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
+                       <li class="nav-item">
+                            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Status</a>
                         </li>
+                        <!--
                         <li class="nav-item">
                             <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-shop"></i> Transit</a>
                         </li> -->
@@ -262,7 +267,8 @@
                             $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
                             $buttonTooltip = $buttonDisabled ? 'data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom"' : '';
                             if ($result->num_rows > 0) {
-                                echo "<table class='table table-light table-responsive table-striped text-center table-bordered my-2 border border-3'>";
+                                echo "<div class = 'table-responsive'>";
+                                echo "<table class='table table-light table-striped text-center table-bordered my-2 border border-3'>";
                                 echo "<tr>";
                                 echo "</tr>";
                                 echo "<tr>";
@@ -303,11 +309,11 @@
                                     echo "</tr>";
                                     echo "<tr class='collapse' id='collapseExample" . $maltfielddata['Schedule ID'] . "'>";
                                     echo "<td colspan='12'>";
-                                    echo "<div class='w-50 mx-auto'>";
+                                    echo "<div class='w-50 mx-auto text-auto'>";
 
                             ?>
                                     <form action="ReservationReceipt.php" method="post">
-                                        <h5 class="hd-text text-center pb-2 fs-5" id="title">User Editing Form</h5>
+                                        <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
                                         <div class="row form-outline">
                                             <!-- Full Name input -->
                                             <div class="col">
@@ -375,25 +381,29 @@
 
                                         <!-- Username input -->
                                         <div class="row form-outline">
-                                            <div class="col">
+                                            <div class="col-5">
                                                 <input type="text" id="" name="p_name" class="form-control" />
                                                 <label class="form-label" for="">Passenger Name</label>
                                             </div>
 
                                             <!-- Password input -->
-                                            <div class="col">
+                                            <div class="col-5">
                                                 <input type="number" name="c_number" id="" class="form-control" />
                                                 <label class="form-label" for="">Contact Number</label>
+                                            </div>
+                                            <div class="col-2">
+                                            <?php
+                                            seattype($maltfielddata['Bus Type']);
+                                            ?>
+                                           <label class="form-label" for="">Seat</label>
+                                           
                                             </div>
                                         </div>
 
                                         <!-- Seat input -->
-                                        <div class="form-outline">
-                                            <input type="number" name="seatnum" id="" class="form-control" />
-                                            <label class="form-label" for="">Seat Number</label>
-                                        </div>
+                                     
 
-                                        <div class="row form-outline text-center pt-1">
+                                        <div class="row form-outline text-center pt-1 pb-4">
                                             <div class="col">
                                                 <button type="submit" name="booking" value="Book" class="btn btn-success">Complete the Booking</button>
                                             </div>
@@ -407,6 +417,7 @@
                                     echo "</tr>";
                                 }
                                 echo "</table>";
+                                echo "</div>";
                             } else {
                                 echo "<div class='row'>";
                                 echo "<div class='col'>";
