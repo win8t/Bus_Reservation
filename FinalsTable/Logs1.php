@@ -82,7 +82,7 @@
 
     <div class="row ">
       <div class="col pb-2 ">
-        <h1 class="hd-font bg-row text-white rounded-bottom mx-auto p-3">LOG DETAILS | Welcome Admin!</h1>
+        <h1 class="hd-font bg-row text-white rounded-bottom mx-auto p-3"></h1>
          
         <div class="row bg-row p-1 mx-auto rounded">
           

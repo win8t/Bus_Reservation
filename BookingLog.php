@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Alps Booking Reservation</title>
-    <link href=stylert.css rel="stylesheet" />
+    <link href=stylez.css rel="stylesheet" />
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -66,7 +66,7 @@
                 </div>
 
             </div>
-            <a href="Login.php" class="book-login-button"><i class="bi bi-person-circle"></i>
+            <a href="Home.php" class="book-login-button"><i class="bi bi-person-circle"></i>
                 <?php
                 session_start();
                 if (isset($_SESSION['username'])) {
