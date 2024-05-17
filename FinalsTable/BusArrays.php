@@ -1,4 +1,5 @@
 <?php
+require_once "dbconnect.php";
 $origins = array(
                   "Bicol - Manila" => "Naga",
                   "Aurora Cubao - Bicol" => "Aurora Cubao",
@@ -40,5 +41,3 @@ $routes = array(
             "PITX to Tabaco"
         )
     );
-
-?>
