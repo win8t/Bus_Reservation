@@ -1,3 +1,8 @@
+<?php
+require "dbconnect.php";
+session_start();
+?>
+
 <html lang="en">
 
 <head>
@@ -36,8 +41,8 @@
               <a class="nav-link mx-lg-2 mx-auto" href="BookingLog.php"><i class="bi bi-journal-album"></i> Book</a>
             </li>
             <li class="nav-item">
-                            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Status</a>
-                        </li>
+              <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Status</a>
+            </li>
             <!-- <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
             </li>
@@ -48,22 +53,11 @@
         </div>
 
       </div>
-    
-      <a href="Home.php" class="home-login-button" name="logout"><i class="bi bi-person-circle"></i>
-        <?php 
-            if(session_start()){
-              $user = $_SESSION['username'];
-              echo $user;
-            }else{
-              session_destroy();
-              header("Location: Home.php");
-            }
-        ?>
-
-            </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <form action="Logout.php" method="post">
+          <button class="home-login-button" type="submit" name="logout" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+            <i class="bi bi-person-circle"></i><?php echo " ".$_SESSION['username']; ?>
+          </button>
+        </form>
     </div>
   </nav>
 
@@ -449,25 +443,3 @@
 
 </html>
 <?php
-if(isset($_POST['logout'])){
-  session_destroy();
-  // $username = $_POST['user'];
-
-  // $logoutsql = "Select * from tbl_user where username = '$username'";
-
-  // $logoutresult = $con->query($logoutsql);
-  //       if ($logoutresult->num_rows == 1) {
-            $fielddata = $logoutresult->fetch_assoc();
-
-            $user = $fielddata['username'];
-            $_SESSION['username'] = $user;
-
-            $userID = $fielddata['user_id'];
-            $_SESSION['user_id'] = $userID;
-
-            $logsql = "Insert into tbl_logs (user_id,action,DateTime)
-            values('$userID','Logged Out',NOW())";
-            $con->query($logsql);
-  //       }
-}
-?>

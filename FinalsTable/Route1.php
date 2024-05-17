@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
@@ -13,7 +17,6 @@
 
 <body class ="hd-text">
   <?php
-  require_once "dbconnect.php";
   require_once "BusArrays.php";
   ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -73,10 +76,12 @@
         <hr class="">
       </li>
 
+      <form action="Logout1.php" method="post">
       <li>
-        <i class="bi bi-box-arrow-right"></i>
-        <a href="\FINAL_ALPS_BUS\Login.php">Log Out</a>
+          <i class="bi bi-box-arrow-right"></i>
+          <button type="submit" name="logout1" style="background:none; border:none; cursor:pointer; text:inherit; padding:0;">Log Out</button>
       </li>
+      </form>
     </ul>
 
 
@@ -88,13 +93,7 @@
 
     <div class="row ">
       <div class="col pb-2 ">
-        <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">
-        <?php 
-            session_start();
-            $user = $_SESSION['username'];
-            echo 'ROUTE DETAILS | Welcome '.$user.'!';
-        ?>
-        </h1>
+        <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">ROUTE DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
 
         <div class="row bg-row mx-auto p-1 m-1 rounded">
 

@@ -1,3 +1,7 @@
+<?php
+require "dbconnect.php";
+session_start();
+?>
 <html lang="en">
 
 <head>
@@ -14,7 +18,6 @@
 <body>
     <?php
     require_once "FinalsTable\BusArrays.php";
-    require_once "dbconnect.php";
     require_once "SeatFunction.php";
      ?>
     <?php  ?>
@@ -73,20 +76,11 @@
                 </div>
 
             </div>
-            <a href="Home.php" class="book-login-button"><i class="bi bi-person-circle"></i>
-                <?php
-                session_start();
-                if (isset($_SESSION['username'])) {
-                    $user = $_SESSION['username'];
-                    echo $user;
-                } else {
-                    echo "<span> Login </span> ";
-                }
-                ?>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <form action="Logout.php" method="post">
+                <button class="book-login-button" type="submit" name="logout" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <i class="bi bi-person-circle"></i><?php echo " ".$_SESSION['username']; ?>
+                </button>
+            </form>
         </div>
     </nav>
 
