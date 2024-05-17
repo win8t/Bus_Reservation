@@ -48,11 +48,11 @@
             $con->query($logsql);
 
             if ($role == "Admin") {
-                header("location: FinalsTable\Overview.php");
+                header("location: FinalsTable\Overview1.php");
             } else if ($role == "Customer") {
                 header("location: HomeLog.php");
             } else if ($role == "Employee") {
-                header("location: FinalsTable\Reservation.php");
+                header("location: FinalsTable\Reservation1.php");
             } ?>
             <script>
                 Swal.fire({

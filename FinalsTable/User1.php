@@ -1,3 +1,6 @@
+<!-- Show these admin pages only when the admin is logged in -->
+<?php  require 'admin.php';   ?>
+
 <html lang="en">
 
 <head>
@@ -71,7 +74,7 @@
 
       <li>
         <i class="bi bi-box-arrow-right"></i>
-        <a href="Home.php">Log Out</a>
+        <a href="\FINAL_ALPS_BUS\logout.php">Log Out</a>
       </li>
     </ul>
 
@@ -79,12 +82,12 @@
   </aside>
   <div class="container-fluid">
 
-
-
-
     <div class="row ">
       <div class="col pb-2 ">
-        <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">USER DETAILS | Welcome Admin!</h1>
+        <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3"><?php
+            $user = $_SESSION['username'];
+            echo 'BUS DETAILS | Welcome '.$user.'!';
+        ?></h1>
 
         <div class="row bg-row mx-auto p-1 m-1 rounded">
 
@@ -205,6 +208,8 @@
 
     <?php
     require_once "dbconnect.php";
+    if($loggedIn)
+        {
 
     //Search Button
     if (isset($_POST['searchbutton'])) {
@@ -269,6 +274,7 @@
         echo $con->error;
       }
     }
+  }
 
 
     $result = $con->query($selectsql);

@@ -75,7 +75,7 @@
 
       <li>
         <i class="bi bi-box-arrow-right"></i>
-        <a href="Home.php">Log Out</a>
+        <a href="\FINAL_ALPS_BUS\Login.php">Log Out</a>
       </li>
     </ul>
 
@@ -88,7 +88,11 @@
 
     <div class="row ">
       <div class="col pb-2 ">
-        <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">BUS DETAILS | Welcome Admin!</h1>
+        <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3"><?php 
+            session_start();
+            $user = $_SESSION['username'];
+            echo 'BUS DETAILS | Welcome '.$user.'!';
+        ?></h1>
 
         <div class="row bg-row mx-auto p-1 m-1 rounded">
 
