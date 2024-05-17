@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Alps Booking Reservation</title>
     <link href=stylez.css rel="stylesheet" />
+
+    
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -178,7 +180,7 @@
                 <div class="container-fluid w-100">
                     <div class="row">
                         <div class="col">
-                            <form action="Booking.php" method="post" novalidate class="needs-validation">
+                            <form action="BookingLog.php" method="post" novalidate class="needs-validation">
                                 <div class="input-group ">
                                     <select id="origin" class="form-select" aria-describedby="basic-addon2" name="origin" required>
                                         <?php
@@ -232,7 +234,7 @@
 
                 <div class="container-fluid w-100 mt-3">
                     <div class="row">
-                        <div class="col bg-light p-3 rounded">
+                        <div class="col  p-2 rounded">
 
                             <?php
 
@@ -250,13 +252,14 @@
                                             `Departure Area`  = '" . $origin . "' 
                                             AND  `Departure Date` = '" . $date . "'   
                                             AND `Destination` = '" . $destination . "' 
-                                            ";
+                                            AND `Available Seats` > 0
+                                            AND `Departure Date` >= CURDATE()";
                                 } else {
 
-                                    $selectsql = "Select * from bus_reserve_view";
+                                    $selectsql = "Select * from bus_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0";
                                 }
                             } else {
-                                $selectsql = "Select * from bus_reserve_view";
+                                $selectsql = "Select * from bus_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0";
                             }
 
 
@@ -267,12 +270,14 @@
                             $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
                             $buttonTooltip = $buttonDisabled ? 'data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom"' : '';
                             if ($result->num_rows > 0) {
-                                echo "<div class = 'table-responsive'>";
-                                echo "<table class='table table-light table-striped text-center table-bordered my-2 border border-3'>";
+                                echo "<div class='bg-row-book p-5 rounded'>";
+                                echo "<div class = 'table-responsive bdr'>";
+                                echo "<table class='table table-striped text-center table-bordered w-100 border border-2 border-success-subtle align-middle mx-auto'>";
                                 echo "<tr>";
                                 echo "</tr>";
+                                echo "<thead class ='table-success'>";
                                 echo "<tr>";
-                                echo "<th> Schedule ID </th>";
+                                echo "<th > Schedule ID </th>";
                                 echo "<th> Bus Number </th>";
                                 echo "<th> Bus Type </th>";
                                 echo "<th> Departure Date </th>";
@@ -283,7 +288,9 @@
                                 echo "<th> Total Seats </th>";
                                 echo "<th> Available Seats </th>";
                                 echo "<th> Price </th>";
+                                echo "<th> Reserve </th>";
                                 echo "</tr>";
+                                echo "</thead>";
 
 
                                 while ($maltfielddata = $result->fetch_assoc()) {
@@ -380,7 +387,7 @@
                                         </div>
 
                                         <!-- Username input -->
-                                        <div class="row form-outline">
+                                        <div class="row input-group form-outline">
                                             <div class="col-5">
                                                 <input type="text" id="" name="p_name" class="form-control" />
                                                 <label class="form-label" for="">Passenger Name</label>
@@ -393,7 +400,7 @@
                                             </div>
                                             <div class="col-2">
                                             <?php
-                                            seattype($maltfielddata['Bus Type']);
+                                            seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con );
                                             ?>
                                            <label class="form-label" for="">Seat</label>
                                            
@@ -405,7 +412,7 @@
 
                                         <div class="row form-outline text-center pt-1 pb-4">
                                             <div class="col">
-                                                <button type="submit" name="booking" value="Book" class="btn btn-success">Complete the Booking</button>
+                                                <button type="submit" name="booking" value="Book" class="btn btn-success">Confirm Booking</button>
                                             </div>
                                         </div>
 
@@ -417,6 +424,7 @@
                                     echo "</tr>";
                                 }
                                 echo "</table>";
+                                echo "</div>";
                                 echo "</div>";
                             } else {
                                 echo "<div class='row'>";

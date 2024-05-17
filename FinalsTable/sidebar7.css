@@ -312,7 +312,10 @@ th {
 .table-striped>tbody>tr:nth-child(odd)>th:hover {
    background-color: rgb(238, 241, 255);
    color:rgb(15, 11, 70);
+   font-family:FontBold;
  }
+
+ 
 
  .btn-color {
   background-color: rgb(7, 44, 75) !important;

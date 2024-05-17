@@ -1033,3 +1033,59 @@ display:inline-block;
   -o-transition: all 0.4s ease-out;
   -ms-transition: all 0.4s ease-out;
 }
+
+#printButton {
+  border:none;
+  background-color: #b0fffb;
+  display: block;
+  margin: auto;
+  font-weight: bold;
+}
+#backButton {
+  border:none;
+  background-color: #83e2a6;
+  display: block;
+  margin: auto;
+  font-weight: bold;
+}
+#printButton:hover {
+  background-color: #2758a1;
+  color:white;
+}
+#backButton:hover {
+  background-color: #439a5d;
+  color:white;
+}
+.bdr {
+border-radius: 6px 6px 6px 6px !important;
+overflow: hidden !important;
+
+}
+.bg-row-book {
+  
+background-color: rgb(98, 199, 162);
+box-shadow: -2px 2px 30px 9px rgba(0, 56, 6, 0.164) inset;
+-webkit-box-shadow: -2px 2px 30px 9px rgba(0, 56, 6, 0.164) inset;
+-moz-box-shadow: -2px 2px 30px 9px rgba(0, 56, 6, 0.164) inset;
+}
+.bg-row {
+  
+  background-color: rgb(7, 44, 75);
+  box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
+  -webkit-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
+  -moz-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td:hover, 
+.table-striped>tbody>tr:nth-child(odd)>th:hover {
+   background-color: rgb(216, 255, 234);
+   color:rgb(3, 63, 24);
+   font-family:FontBold;
+ }
+ @media (max-width: 768px) {
+ .table{
+  display: block !important;
+  overflow-x: auto !important;
+  width: 100% !important;
+}
+ }

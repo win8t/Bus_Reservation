@@ -159,7 +159,7 @@
           if ($result->num_rows > 0) {
             echo "<div class=' bg-row p-5 rounded mt-2'>";
             echo "<div class='bdr table-responsive mt-2'>";
-            echo "<table class='table table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto''>";
+            echo "<table class='table table-striped text-center  table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto''>";
             echo "<thead class ='table-dark'>";;
             echo "<tr class ='tble-bg'>";
             echo "<th> Log ID </th>";
