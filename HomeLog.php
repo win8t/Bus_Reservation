@@ -48,12 +48,16 @@
         </div>
 
       </div>
-      
-      <a href="Home.php" class="home-login-button"><i class="bi bi-person-circle"></i>
+    
+      <a href="Home.php" class="home-login-button" name="logout"><i class="bi bi-person-circle"></i>
         <?php 
-            session_start();
-            $user = $_SESSION['username'];
-            echo $user;
+            if(session_start()){
+              $user = $_SESSION['username'];
+              echo $user;
+            }else{
+              session_destroy();
+              header("Location: Home.php");
+            }
         ?>
 
             </a>
@@ -444,3 +448,26 @@
 </body>
 
 </html>
+<?php
+if(isset($_POST['logout'])){
+  session_destroy();
+  // $username = $_POST['user'];
+
+  // $logoutsql = "Select * from tbl_user where username = '$username'";
+
+  // $logoutresult = $con->query($logoutsql);
+  //       if ($logoutresult->num_rows == 1) {
+            $fielddata = $logoutresult->fetch_assoc();
+
+            $user = $fielddata['username'];
+            $_SESSION['username'] = $user;
+
+            $userID = $fielddata['user_id'];
+            $_SESSION['user_id'] = $userID;
+
+            $logsql = "Insert into tbl_logs (user_id,action,DateTime)
+            values('$userID','Logged Out',NOW())";
+            $con->query($logsql);
+  //       }
+}
+?>
