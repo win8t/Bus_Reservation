@@ -1,28 +1,33 @@
+<?php
+session_start();
+require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ALPS OTP</title>
 </head>
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <input type="hidden" name="fullname" value="<?php echo $_SESSION['fullname']; ?>">
 </body>
 
 </html>
 <?php
-session_start();
-
+$full = $_SESSION['fullname'];
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-function send_ver($fullname, $email, $otp)
+function send_ver($user, $email, $otp)
 {
 
+    
     $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
     $mail->SMTPOptions = [
         'ssl' => [
@@ -42,15 +47,15 @@ function send_ver($fullname, $email, $otp)
 
         //Recipients
         
-        $mail->setFrom( 'dawnandal18@gmail.com', 'Alps Bus Registration Verification Code');
+        $mail->setFrom( 'dawnandal18@gmail.com', 'Alps Bus Reset Password Code');
 
-        $mail->setFrom('dawnandal18@gmail.com', 'Alps Bus Registration Verification Code');
+        $mail->setFrom('dawnandal18@gmail.com', 'Alps Bus Reset Password Code');
         
         $mail->addAddress($email);     // Add a recipient
         //Content
         $mail->isHTML(true);  // Set email format to HTML
-        $mail->Subject = "OTP Verification";
-        $mail->Body    = "Hello " . $fullname . "<br> This your account verification code: " . $otp;
+        $mail->Subject = "ALPS Reset Password";
+        $mail->Body    = "Hello, " . $full . "!" ."<br> This is your password reset code: " . $otp;
 
         $mail->send();
 ?>
@@ -64,7 +69,7 @@ function send_ver($fullname, $email, $otp)
                 willClose: () => {
                     Swal.close();
                     setTimeout(function() {
-                        window.location.href = "otp.php";
+                        window.location.href = "otpforgot.php";
                     }, 500);
                 }
             });

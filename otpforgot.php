@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alps Login</title>
+    <title>Alps OTP</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="stylez.css" rel="stylesheet" />
@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <form action="otp.php" method="post" novalidate class ="needs-validation">
+                <form action="otpforgot.php" method="post" novalidate class ="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <!-- OTP input -->
@@ -55,10 +55,10 @@
 
                     <div class="row mb-4">
                         <div class="col text-end">
-                            <input type="submit" name="veri" value="Verify" class="btn btn-primary btn-block w-50 link-text">
+                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-50 link-text">
                         </div>
                         <div class="col text-start">
-                            <a href="Login.php">
+                            <a href="Registration.php">
                                 <input type="button" value="Go Back" class="btn btn-secondary btn-block link-text  w-50">
                             </a>
                         </div>
@@ -100,10 +100,9 @@
 
 </html>
 <?php
-require_once "dbconnect.php";
+require "dbconnect.php";
 
-if (isset($_POST['veri'])) {
-    session_start();
+if (isset($_POST['ver'])) {
    //user input
    $otpinput = $_POST['otp'];
 
@@ -112,21 +111,10 @@ if (isset($_POST['veri'])) {
 
    if ($result->num_rows == 1 ) {
 
-    $updatesql = "UPDATE tbl_user SET otp = NULL WHERE otp = '".$otpinput."'";
+    $updatesql = "UPDATE tbl_user SET status = 'Active', otp = NULL WHERE otp = '".$otpinput."'";
     $con->query($updatesql);
-
-    ?>
-        <script>
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "OTP Verified!",
-                showConfirmButton: false,
-                timer: 1500
-            });
-        </script>
-    <?php
-    header("location: NewPassword.php");
+    
+    header("location: ResetPassword.php");
 
    } else {
 

@@ -7,7 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alps Login</title>
+    <title>Alps Registration</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="stylez.css" rel="stylesheet" />
@@ -170,11 +170,9 @@ if (isset($_POST['sub'])) {
 
     if ($user_result->num_rows == 0) {
 
-        
-
         if ($pass == $confirmpass) {
         $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp)
-    values('$full', '$usertype', '$user','$pass', '$email',$otp)";
+        values('$full', '$usertype', '$user','$pass', '$email',$otp)";
 
         $result = $con->query($insertsql);
 

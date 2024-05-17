@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alps Login</title>
+    <title>Alps OTP</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="stylez.css" rel="stylesheet" />
@@ -100,7 +100,7 @@
 
 </html>
 <?php
-require_once "dbconnect.php";
+require "dbconnect.php";
 
 if (isset($_POST['ver'])) {
    //user input
@@ -111,7 +111,7 @@ if (isset($_POST['ver'])) {
 
    if ($result->num_rows == 1 ) {
 
-    $updatesql = "UPDATE tbl_user SET status = 'Active' WHERE otp = '".$otpinput."'";
+    $updatesql = "UPDATE tbl_user SET status = 'Active', otp = NULL WHERE otp = '".$otpinput."'";
     $con->query($updatesql);
     
     header("location: Login.php");

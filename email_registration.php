@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>ALPS OTP</title>
 </head>
 
 <body>
@@ -13,6 +13,7 @@
 </html>
 <?php
 session_start();
+require "dbconnect.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -20,7 +21,7 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-function send_verification($fullname, $email, $otp)
+function send_verification($full, $email, $otp)
 {
 
     $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
@@ -50,7 +51,7 @@ function send_verification($fullname, $email, $otp)
         //Content
         $mail->isHTML(true);  // Set email format to HTML
         $mail->Subject = "OTP Verification";
-        $mail->Body    = "Hello " . $fullname . "<br> This your account verification code: " . $otp;
+        $mail->Body    = "Hello, " . $full . "!" ."<br> This your account verification code: " . $otp;
 
         $mail->send();
 ?>

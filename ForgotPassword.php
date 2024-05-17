@@ -1,9 +1,13 @@
+<?php
+    session_start();
+    require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alps Login</title>
+    <title>Alps Forgot Password</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="stylez.css" rel="stylesheet" />
@@ -36,10 +40,10 @@
                     </div>
                 </div>
 
-                <form action="otpforgot.php" method="post" novalidate class ="needs-validation">
+                <form action="ForgotPassword.php" method="post" novalidate class ="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
-                            <!-- OTP input -->
+                            <!-- Email input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="email" class="form-control" name="emailadd" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Email Address<span class ="text-danger">*</span></label>
@@ -55,7 +59,7 @@
 
                     <div class="row mb-4">
                         <div class="col text-end">
-                            <input type="submit" name="ver" value="Reset Password" class="btn btn-primary btn-block w-50 link-text">
+                            <input type="submit" name="reset" value="Send" class="btn btn-primary btn-block w-50 link-text">
                         </div>
                         <div class="col text-start">
                             <a href="Login.php">
@@ -97,33 +101,53 @@
 </script>
     
 </body>
-
 </html>
 <?php
-require_once "dbconnect.php";
-include "email_ver.php";
+include "email_otp.php";
 
+if (isset($_POST['reset'])) {
+    $_SESSION['fullname'] = $full;
+    $_SESSION['email'] = $email;
 
-// Generate OTP
-if (isset($_POST['ver'])) {
-    session_start();
+    $email1 = $_POST['emailadd'];
+    $otp = rand(000000, 999999);
 
-// Generate OTP
-$otp = rand(000000, 999999);
-$_SESSION['otp'] = $otp;
+        $emailsql = "select * from tbl_user where email = '$email1'";
+        $email_result = $con->query($emailsql);
 
-// Store OTP and Expiry Time (you can save this in a database)
-$email = $_POST['emailadd'];
-$_SESSION['email'] = $email;
+    if ($email_result->num_rows == 1) {
+        $fielddata = $email_result->fetch_assoc();
 
-$fullname = $fielddata['full_name'];
-$_SESSION['user'] = $fullname;
+            $full = $fielddata['fullname'];
+            $_SESSION['fullname'] = $full;
 
-send_ver($fullname, $email, $otp);
+            $email = $fielddata['email'];
+            $_SESSION['email'] = $email;
 
-// Redirect user to enter OTP
-header("Location: otpforgot.php");
-exit;
+            $updatesql = "UPDATE tbl_user SET otp = $otp WHERE email = '$email1'";
+
+            $result = $con->query($updatesql);
+
+            if ($result == True) {?>
+            <?php
+            send_ver($full,$email,$otp);
+            } else {
+                echo $con->error;
+            }
+    } else {
+        ?>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Email mismatch!",
+                timer: 3000
+            });
+        </script>
+        <?php
+    }
+        
 }
+    
 ?>
 
