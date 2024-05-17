@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
@@ -15,17 +19,14 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <?php
-    require_once "dbconnect.php";
-
     if (isset($_POST['sub'])) {
         //userinput 
-        session_start();
         $username = $_POST['user'];
         $password = md5($_POST['pass']);
 
         //login based on role
 
-        $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' and status = 'Active' ";
+        $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' and status = 'Active'";
 
         $loginresult = $con->query($loginsql);
         if ($loginresult->num_rows == 1) {
@@ -37,7 +38,8 @@
             $user = $fielddata['username'];
             $_SESSION['username'] = $user;
 
-            $pass = $fielddata['password'];
+            $pass = $fielddata['pass'];
+            $_SESSION['pass'] = $pass;
 
             $userID = $fielddata['user_id'];
             $_SESSION['user_id'] = $userID;
@@ -48,11 +50,11 @@
             $con->query($logsql);
 
             if ($role == "Admin") {
-                header("location: FinalsTable\Overview1.php");
+                header("location: \FINAL_ALPS_BUS\FinalsTable\Overview1.php");
             } else if ($role == "Customer") {
                 header("location: HomeLog.php");
             } else if ($role == "Employee") {
-                header("location: FinalsTable\Reservation1.php");
+                header("location: \FINAL_ALPS_BUS\FinalsTable\Reservation1.php");
             } ?>
             <script>
                 Swal.fire({

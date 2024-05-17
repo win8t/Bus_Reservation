@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
@@ -149,12 +153,10 @@
 </html>
 
 <?php
-require_once "dbconnect.php";
 include "email_registration.php";
 
 //button function
 if (isset($_POST['sub'])) {
-    session_start();
     $full = $_POST['fullname'];
     $email = $_POST['email'];
     $user = $_POST['user'];

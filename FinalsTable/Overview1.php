@@ -1,3 +1,7 @@
+<?php
+  session_start();
+  require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
@@ -68,27 +72,23 @@
       <li class="disabled border border-light my-2">
         <hr class="">
       </li>
-
+      <form action="Logout1.php" method="post">
       <li>
-        <i class="bi bi-box-arrow-right"></i>
-        <a href="\FINAL_ALPS_BUS\Login.php">Log Out</a>
+          <i class="bi bi-box-arrow-right"></i>
+          <button type="submit" name="logout1" style="background:none; border:none; color:inherit; cursor:pointer; padding:0; font: inherit;">
+          <label for="" class="bi bi-text">Log Out</label>
+          </button>
       </li>
+      </form>
     </ul>
-
-
   </aside>
+
   <div class="container-fluid">
 
   <div class="row ">
       <div class="col pb-2 ">
         
-        <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">
-        <?php 
-            session_start();
-            $user = $_SESSION['username'];
-            echo 'OVERVIEW | Welcome '.$user.'!';
-        ?>
-        </h1>
+        <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">OVERVIEW | Welcome, <?php echo $_SESSION['username']; ?></h1>
          
         <div class="row bg-row mx-auto p-1 m-1 rounded">
           
