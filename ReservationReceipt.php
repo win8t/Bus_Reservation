@@ -62,10 +62,17 @@ $receipt_dtime = $_POST['book_dtime'];
 $receipt_atime = $_POST['book_atime'];
 $receipt_depart = $_POST['book_depart'];
 $receipt_desti = $_POST['book_desti'];
+$receipt_route = $receipt_depart." to ".$receipt_desti;
+
 $receipt_price = "<h3 class ='text-success'> ₱ " . $_POST['book_price'] . "</h3>";
 $receipt_tseats = $_POST['book_tseats'];
 $receipt_aseats = $_POST['book_aseats'];
-$receipt_p_name = $_POST['p_name'];
+
+$receipt_f_name = $_POST['f_name'];
+$receipt_l_name = $_POST['l_name'];
+$receipt_m_name = $_POST['m_name'];
+$receipt_fullname = $receipt_f_name." ".$receipt_m_name." ".$receipt_l_name;
+
 $receipt_c_number = $_POST['c_number'];
 $receipt_seatnum = $_POST['seatnum'];
 $seatnum = $_SESSION['seatnum'] = $receipt_seatnum;
@@ -101,9 +108,10 @@ if (isset($_POST['booking'])) {
       "Bus Type" => $receipt_type,
       "Departure Date" => $receipt_ddate,
       "Departure Time" => $receipt_dtime,
-      "Departure" => $receipt_depart,
-      "Destination" => $receipt_desti,
-      "Passenger Name" => $receipt_p_name,
+    /*  "Departure" => $receipt_depart,
+      "Destination" => $receipt_desti, */
+      "Route Name" => $receipt_route,
+      "Passenger Name" => $receipt_fullname,
       "Contact Number" => $receipt_c_number,
       "Chosen Seat Number" => $receipt_seatnum,
       "Status" => $receipt_status,
