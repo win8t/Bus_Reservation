@@ -10,7 +10,7 @@ session_start();
     <title> Alps Booking Reservation</title>
     <link href=stylez.css rel="stylesheet" />
 
-    
+
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -19,7 +19,7 @@ session_start();
     <?php
     require_once "FinalsTable\BusArrays.php";
     require_once "SeatFunction.php";
-     ?>
+    ?>
     <?php  ?>
     <script>
         const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
@@ -65,7 +65,7 @@ session_start();
                         <li class="nav-item">
                             <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
                         </li>
-                       <li class="nav-item">
+                        <li class="nav-item">
                             <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Status</a>
                         </li>
                         <!--
@@ -271,7 +271,7 @@ session_start();
                                 echo "</tr>";
                                 echo "<thead class ='table-success'>";
                                 echo "<tr>";
-                                echo "<th > Schedule ID </th>";
+                                /* echo "<th > Schedule ID </th>"; */
                                 echo "<th> Bus Number </th>";
                                 echo "<th> Bus Type </th>";
                                 echo "<th> Departure Date </th>";
@@ -289,7 +289,7 @@ session_start();
 
                                 while ($maltfielddata = $result->fetch_assoc()) {
                                     echo "<tr>";
-                                    echo "<td>" . $maltfielddata['Schedule ID'] . "</td>";
+                                    "<td>" . $maltfielddata['Schedule ID'] . "</td>";
                                     echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
@@ -313,9 +313,9 @@ session_start();
                                     echo "<div class='w-50 mx-auto text-auto'>";
 
                             ?>
-                                    <form action="ReservationReceipt.php" method="post">
+                                    <form action="ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');">
                                         <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
-                                        <div class="row form-outline">
+                                        <div class="row  form-outline">
                                             <!-- Full Name input -->
                                             <div class="col">
                                                 <input type="hidden" name="book_id" value="<?php echo $maltfielddata['Schedule ID'] ?>" class="form-control" readonly />
@@ -381,28 +381,43 @@ session_start();
                                         </div>
 
                                         <!-- Username input -->
-                                        <div class="row input-group form-outline">
-                                            <div class="col-5">
-                                                <input type="text" id="" name="p_name" class="form-control" />
-                                                <label class="form-label" for="">Passenger Name</label>
+                                        <div class="row text-start form-outline mb-2">
+                                            <div class="col">
+                                                <label class="form-label text-secondary" for="">First Name</label>
+                                                <input type="text" id="" name="f_name" class="form-control" />
+
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-label text-secondary" for="">Last Name</label>
+                                                <input type="text" id="" name="l_name" class="form-control" />
+                                            </div>
+                                            <div class="col">
+                                                <label class="form-label text-secondary" for="">Middle Name</label>
+                                                <input type="text" id="" name="m_name" class="form-control" />
                                             </div>
 
+                                            <label class="form-label" for="">Passenger Name</label>
+                                        </div>
+
+
+                                        <div class="row text-start form-outline">
                                             <!-- Password input -->
-                                            <div class="col-5">
+                                            <div class="col">
                                                 <input type="number" name="c_number" id="" class="form-control" />
                                                 <label class="form-label" for="">Contact Number</label>
                                             </div>
-                                            <div class="col-2">
-                                            <?php
-                                            seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con );
-                                            ?>
-                                           <label class="form-label" for="">Seat</label>
-                                           
+                                            <div class="col">
+                                                <?php
+                                                seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con);
+                                                ?>
+                                                <label class="form-label" for="">Seat</label>
+
                                             </div>
                                         </div>
 
+
                                         <!-- Seat input -->
-                                     
+
 
                                         <div class="row form-outline text-center pt-1 pb-4">
                                             <div class="col">
@@ -453,18 +468,11 @@ session_start();
                             <h5 class="card-title bus-card-title">Executive</h5>
                             <hr>
                             <div class="card-text bus-card-text">
-                                <div class="row">
-                                    <div class="col">2x2 Bus</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Reclining Seats</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Airconditioned</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">48 Seats</div>
-                                </div>
+                                <?php
+                                foreach ($Executive as $bustype) {
+                                    echo '<div class="row"><div class="col">' . $bustype . '</div></div>';
+                                }
+                                ?>
                             </div>
                         </div>
 
@@ -475,18 +483,11 @@ session_start();
                             <h5 class="card-title bus-card-title">Executive Solo</h5>
                             <hr>
                             <div class="card-text bus-card-text">
-                                <div class="row">
-                                    <div class="col">1x1x1 Bus</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Reclining Seats</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Airconditioned</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">32 Seats</div>
-                                </div>
+                                <?php
+                                foreach ($ExecutiveSolo as $bustype) {
+                                    echo '<div class="row"><div class="col">' . $bustype . '</div></div>';
+                                }
+                                ?>
                             </div>
                         </div>
 
@@ -497,19 +498,11 @@ session_start();
                             <h5 class="card-title bus-card-title">Executive Class</h5>
                             <hr>
                             <div class="card-text bus-card-text">
-                                <div class="row">
-                                    <div class="col">2x2 Bus</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Reclining Seats</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Airconditioned</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">40 Seats</div>
-                                </div>
-
+                                <?php
+                                foreach ($ExecutiveClass as $bustype) {
+                                    echo '<div class="row"><div class="col">' . $bustype . '</div></div>';
+                                }
+                                ?>
                             </div>
                         </div>
 
@@ -520,18 +513,11 @@ session_start();
                             <h5 class="card-title bus-card-title">Executive Luxury</h5>
                             <hr>
                             <div class="card-text bus-card-text">
-                                <div class="row">
-                                    <div class="col">2x2 Bus with Restroom</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Reclining Seats</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">Airconditioned</div>
-                                </div>
-                                <div class="row">
-                                    <div class="col">36 Seats</div>
-                                </div>
+                                <?php
+                                foreach ($ExecutiveLuxury as $bustype) {
+                                    echo '<div class="row"><div class="col">' . $bustype . '</div></div>';
+                                }
+                                ?>
 
                             </div>
                         </div>
@@ -554,93 +540,34 @@ session_start();
             <div class="d-flex flex-row row-12">
                 <div class="col-12 book-content-container8  pb-3">
                     <div class="container-slider mx-auto pb-5 mt-3">
-                        <input type="radio" name="slider" id="s1" checked>
-                        <input type="radio" name="slider" id="s2">
-                        <input type="radio" name="slider" id="s3">
+                        <?php for ($slideradio = 1; $slideradio <= 3; $slideradio++) { ?>
+                            <input type="radio" name="slider" id="s<?php echo $slideradio; ?>" <?php echo ($slideradio === 1) ? 'checked' : ''; ?>>
+                        <?php } ?>
+
 
 
                         <div class="slidecards">
-                            <label for="s1" id="slide1">
-                                <div class="slidecard">
-                                    <div class="imageslide">
-                                        <img src="Bicol.png" alt="">
-                                        <div class="dots">
-                                            <div class=""></div>
-                                            <div class=""></div>
-                                            <div class=""></div>
+                            <?php foreach ($slides as $key => $slide) { ?>
+                                <label for="s<?php echo $key + 1; ?>" id="slide<?php echo $key + 1; ?>">
+                                    <div class="slidecard">
+                                        <div class="imageslide">
+                                            <img src="<?php echo $slide['image']; ?>" alt="">
+                                            <div class="dots">
+                                                <?php for ($i = 0; $i < count($slide['contents']); $i++) { ?>
+                                                    <div class=""></div>
+                                                <?php } ?>
+                                            </div>
+                                        </div>
+                                        <div class="infos">
+                                            <span class="name"><?php echo $slide['name']; ?></span>
+                                            <?php foreach ($slide['contents'] as $content) { ?>
+                                                <span class="content"><?php echo $content; ?></span>
+                                            <?php } ?>
                                         </div>
                                     </div>
-                                    <div class="infos">
-                                        <span class="name">Bicol - Manila</span>
-                                        <span class="content">
-                                            Naga to PITX
-                                        </span>
-                                        <span class="content">
-                                            Naga to Aurora Cubao
-                                        </span>
-                                    </div>
-                                </div>
-                            </label>
+                                </label>
+                            <?php } ?>
 
-                            <label for="s2" id="slide2">
-                                <div class="slidecard">
-                                    <div class="imageslide">
-                                        <img src="Bicol1.png" alt="">
-                                        <div class="dots">
-                                            <div class=""></div>
-                                            <div class=""></div>
-                                            <div class=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="infos">
-                                        <span class="name">Aurora Cubao - Bicol</span>
-                                        <span class="content">
-                                            Aurora Cubao to Gubat
-                                        </span>
-                                        <span class="content">
-                                            Aurora Cubao to Legazpi
-                                        </span>
-                                        <span class="content">
-                                            Aurora Cubao to Tabaco
-
-                                        </span>
-                                        <span class="content">
-                                            Aurora Cubao to Nabua
-                                        </span>
-                                    </div>
-                                </div>
-                            </label>
-
-                            <label for="s3" id="slide3">
-                                <div class="slidecard">
-                                    <div class="imageslide">
-                                        <img src="Bicol2.png" alt="">
-                                        <div class="dots">
-                                            <div class=""></div>
-                                            <div class=""></div>
-                                            <div class=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="infos">
-                                        <span class="name">PITX - Bicol</span>
-                                        <span class="content">
-                                            PITX to Gubat
-                                        </span>
-                                        <span class="content">
-                                            PITX to Iriga
-                                        </span>
-                                        <span class="content">
-                                            PITX to Legazpi
-                                        </span>
-                                        <span class="content">
-                                            PITX to Naga
-                                        </span>
-                                        <span class="content">
-                                            PITX to Tabaco
-                                        </span>
-                                    </div>
-                                </div>
-                            </label>
                         </div>
 
                     </div>
