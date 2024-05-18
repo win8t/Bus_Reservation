@@ -41,6 +41,57 @@
                 </div>
 
                 <form action="Registration.php" method="post" novalidate class ="needs-validation">
+
+                
+                <div class="row justify-content-center">
+                        <div class="col-md-4">
+                            <!-- Fullname input -->
+                            <div class="form-floating mb-3 link-text">
+                            <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
+                                <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Enter your full name.</div>
+                                <div class="valid-feedback text-start">Entered full name.</div> -->
+
+                                <input type="text" class="form-control" name="f_name" id="floatingInput" required>
+                                <label for="floatingInput" class="link-text">First Name<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Enter your first name.</div>
+                                <div class="valid-feedback text-start">Entered first name.</div> 
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Fullname input -->
+                            <div class="form-floating mb-3 link-text">
+                            <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
+                                <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Enter your full name.</div>
+                                <div class="valid-feedback text-start">Entered full name.</div> -->
+
+                                <input type="text" class="form-control" name="m_name" id="floatingInput" required>
+                                <label for="floatingInput" class="link-text">Middle Name<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Enter your middle name.</div>
+                                <div class="valid-feedback text-start">Entered middle name.</div> 
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Fullname input -->
+                            <div class="form-floating mb-3 link-text">
+                            <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
+                                <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Enter your full name.</div>
+                                <div class="valid-feedback text-start">Entered full name.</div> -->
+
+                                <input type="text" class="form-control" name="l_name" id="floatingInput" required>
+                                <label for="floatingInput" class="link-text">Last Name<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Enter your last name.</div>
+                                <div class="valid-feedback text-start">Entered last name.</div> 
+                                
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <!-- Username input -->
@@ -63,20 +114,6 @@
                             </div>
                         </div>
 
-
-                    </div>
-
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <!-- Fullname input -->
-                            <div class="form-floating mb-3 link-text">
-                                <input type="text" class="form-control" name="fullname" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
-                                <div class="invalid-feedback text-start">Enter your full name.</div>
-                                <div class="valid-feedback text-start">Entered full name.</div>
-                                
-                            </div>
-                        </div>
 
                     </div>
 
@@ -157,7 +194,10 @@ include "email_registration.php";
 
 //button function
 if (isset($_POST['sub'])) {
-    $full = $_POST['fullname'];
+    $first = $_POST['f_name'];
+    $last = $_POST['l_name'];
+    $mid = $_POST['m_name'];
+    $full = $first." ".$last." ".$mid;
     $email = $_POST['email'];
     $user = $_POST['user'];
     $pass = md5($_POST['pass']);
