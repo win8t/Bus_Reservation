@@ -54,7 +54,7 @@ session_start();
 
       </div>
         <form action="Logout.php" method="post">
-          <button class="home-login-button" type="submit" name="logout" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <button class="home-login-button mt-4 border-0" type="submit" name="logout" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
             <i class="bi bi-person-circle"></i><?php echo " ".$_SESSION['username']; ?>
           </button>
         </form>
@@ -442,4 +442,3 @@ session_start();
 </body>
 
 </html>
-<?php

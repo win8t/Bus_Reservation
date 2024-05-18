@@ -143,9 +143,17 @@ body {
   color: #442775;
 
 }
+.links li:hover {
+  background-color: #c7dcff;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #442775;
+
+}
 
 .links li:hover i,
-.links li:hover a {
+.links li:hover a,
+.links li:hover button {
   color: #442775;
   /* Change to the desired color */
 }
@@ -192,8 +200,22 @@ body {
   display: none;
 
 }
+.links li button {
+  color: #edfaff;
+  padding: 10px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-decoration: none;
+  display: none;
+  margin:10px;
+
+}
 
 .sidebar:hover .links li a {
+  display: block;
+}
+
+.sidebar:hover .links li button {
   display: block;
 }
 
