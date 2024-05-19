@@ -124,13 +124,13 @@ if (isset($_POST['reset'])) {
             $email = $fielddata['email'];
             $_SESSION['email'] = $email;
 
-            $updatesql = "UPDATE tbl_user SET otp = $otp WHERE email = '$email1'";
+            $updatesql = "UPDATE tbl_user SET otp = $otp, status = 'Inactive' WHERE email = '$email1'";
 
             $result = $con->query($updatesql);
 
             if ($result == True) {?>
             <?php
-            send_ver($full,$email,$otp);
+            send_ver($email,$otp);
             } else {
                 echo $con->error;
             }

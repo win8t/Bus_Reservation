@@ -144,8 +144,8 @@
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
               $selectsql = "Select * from tbl_logs where 
-                log_id LIKE '%" . $search . "%' 
-                OR user_id LIKE '%" . $search . "%' 
+                full_name LIKE '%" . $search . "%' 
+                OR role LIKE'%" . $search . "%' 
                 OR action LIKE'%" . $search . "%' 
                 OR DateTime LIKE'%" . $search . "%'";
 
@@ -166,22 +166,22 @@
             echo "<div class=' bg-row p-5 rounded mt-2'>";
             echo "<div class='bdr table-responsive mt-2'>";
             echo "<table class='table table-striped text-center  table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto''>";
-            echo "<thead class ='table-dark'>";;
+            echo "<thead class ='table-dark'>";
             echo "<tr class ='tble-bg'>";
-            echo "<th> Log ID </th>";
-            echo "<th> User ID </th>";
+            echo "<th> User </th>";
+            echo "<th> Role </th>";
             echo "<th> Action </th>";
             echo "<th> DateTime </th>";
             echo "</thead>";;
    
             echo "</tr>";
 
-            while ($maltfielddata = $result->fetch_assoc()) {
+            while ($fielddata = $result->fetch_assoc()) {
               echo "<tr>";
-              echo "<td>" . $maltfielddata['log_id'] . "</td>";
-              echo "<td>" . $maltfielddata['user_id'] . "</td>";
-              echo "<td>" . $maltfielddata['action'] . "</td>";
-              echo "<td>" . date_format(date_create($maltfielddata['DateTime']), 'Y-m-d g:i A') . "</td>";
+              echo "<td>" . $fielddata['full_name'] . "</td>";
+              echo "<td>" . $fielddata['role'] . "</td>";
+              echo "<td>" . $fielddata['action'] . "</td>";
+              echo "<td>" . date_format(date_create($fielddata['DateTime']), 'Y-m-d g:i A') . "</td>";
 
               
             }

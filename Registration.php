@@ -171,8 +171,8 @@ if (isset($_POST['sub'])) {
     if ($user_result->num_rows == 0) {
 
         if ($pass == $confirmpass) {
-        $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp)
-        values('$full', '$usertype', '$user','$pass', '$email',$otp)";
+        $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp,status)
+        values('$full', '$usertype', '$user','$pass', '$email',$otp, 'Inactive')";
 
         $result = $con->query($insertsql);
 

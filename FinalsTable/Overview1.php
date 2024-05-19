@@ -75,9 +75,7 @@
       <form action="Logout1.php" method="post">
       <li>
           <i class="bi bi-box-arrow-right"></i>
-          <button type="submit" name="logout1" style="background:none; border:none; color:inherit; cursor:pointer; padding:0; font: inherit;">
-          <label for="" class="bi bi-text">Log Out</label>
-          </button>
+          <button type="submit" name="logout1" style="background:none; border:none; cursor:pointer; text:inherit; padding:0;">Log Out</button>
       </li>
       </form>
     </ul>

@@ -26,11 +26,14 @@
 
         //login based on role
 
-        $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' and status = 'Active'";
+        $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' and otp = NULL and status = 'Active'";
 
         $loginresult = $con->query($loginsql);
         if ($loginresult->num_rows == 1) {
             $fielddata = $loginresult->fetch_assoc();
+
+            $full = $fielddata['full_name'];
+            $_SESSION['full_name'] = $full;
 
             $role = $fielddata['role'];
             $_SESSION['role'] = $role;
@@ -45,8 +48,8 @@
             $_SESSION['user_id'] = $userID;
 
 
-            $logsql = "Insert into tbl_logs (user_id,action,DateTime)
-            values('$userID','Logged In',NOW())";
+            $logsql = "Insert into tbl_logs (user_id,full_name,role,action,DateTime)
+            values($userID,'$full','$role','Logged In',NOW())";
             $con->query($logsql);
 
             if ($role == "Admin") {
