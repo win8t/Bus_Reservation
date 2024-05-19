@@ -66,11 +66,11 @@
             </li>
             <li>
                 <i class="bi bi-calendar3"></i>
-                <a href="Schedule1.php">Schedule</a>
+                <a href="Schedule2.php">Schedule</a>
             </li>
             <li class="active">
                 <i class="bi bi-calendar-date"></i>
-                <a class="active" href="Reservation1.php">Reservation</a>
+                <a class="active" href="Reservation2.php">Reservation</a>
             </li>
             <li class="disabled border border-light my-2">
                 <hr class="">
@@ -249,19 +249,29 @@
             //to check the search box if empty or not 
             if ($_POST['search'] != NULL) {
                 $search = $_POST['search'];
-                $selectsql = "Select * from tbl_reservation where 
+                $selectsql = "Select * from reservation_booking_view where 
             reservation_id LIKE '%" . $search . "%' 
             OR schedule_id LIKE '%" . $search . "%' 
+            OR bus_id LIKE '%" . $search . "%' 
+            OR route_id LIKE '%" . $search . "%' 
+            OR ticket_number LIKE '%" . $search . "%' 
+            OR bus_number LIKE '%" . $search . "%' 
+            OR departure_date LIKE '%" . $search . "%' 
+            OR departure_time LIKE '%" . $search . "%' 
             OR passenger_name LIKE'%" . $search . "%' 
             OR contact_information LIKE'%" . $search . "%' 
             OR seat_number LIKE'%" . $search . "%' 
+            OR reservation_date LIKE'%" . $search . "%' 
+            OR price LIKE'%" . $search . "%' 
+            OR payment_method LIKE'%" . $search . "%' 
+            OR reference_num LIKE'%" . $search . "%' 
             OR status LIKE'%" . $search . "%'  
             OR reservation_date LIKE'%" . $search . "%'  ORDER BY reservation_id DESC";
             } else {
-                $selectsql = "Select * from tbl_reservation ORDER BY reservation_id DESC";
+                $selectsql = "Select * from reservation_booking_view ORDER BY reservation_id DESC";
             }
         } else {
-            $selectsql = "Select * from tbl_reservation ORDER BY reservation_id DESC";
+            $selectsql = "Select * from reservation_booking_view ORDER BY reservation_id DESC";
         }
 
 
@@ -320,12 +330,17 @@
             echo "<table class='table  table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
             echo "<thead class ='table-dark'>";
             echo "<tr>";
-            echo "<th> Reservation ID </th>";
-            echo "<th> Schedule ID </th>";
+            echo "<th> Ticket Number </th>";
+            echo "<th> Bus Number </th>";
+            echo "<th> Departure Date </th>";
+            echo "<th> Departure Time </th>";
             echo "<th> Passenger Name </th>";
             echo "<th> Contact Information </th>";
             echo "<th> Seat Number </th>";
             echo "<th> Reservation Date </th>";
+            echo "<th> Price </th>";
+            echo "<th> Payment Method </th>";
+            echo "<th> Reference Number </th>";
             echo "<th> Status </th>";
             echo "<th> Action </th>";
             echo "</tr>";
@@ -334,18 +349,28 @@
 
             while ($fielddata = $result->fetch_assoc()) {
                 echo "<tr>";
-                echo "<td>" . $fielddata['reservation_id'] . "</td>";
-                echo "<td>" . $fielddata['schedule_id'] . "</td>";
+                "<td>" . $fielddata['reservation_id'] . "</td>";
+                "<td>" . $fielddata['schedule_id'] . "</td>";
+                "<td>" . $fielddata['bus_id'] . "</td>";
+                "<td>" . $fielddata['route_id'] . "</td>";
+                echo "<td>" . $fielddata['ticket_number'] . "</td>";
+                echo "<td>" . $fielddata['bus_number'] . "</td>";
+                echo "<td>" . $fielddata['departure_date'] . "</td>";
+                echo "<td>" . $fielddata['departure_time'] . "</td>";
                 echo "<td>" . $fielddata['passenger_name'] . "</td>";
                 echo "<td>" . $fielddata['contact_information'] . "</td>";
                 echo "<td>" . $fielddata['seat_number'] . "</td>";
                 echo "<td>" . date_format(date_create($fielddata['reservation_date']), 'Y-m-d g:i A') . "</td>";
+                echo "<td>" . $fielddata['price'] . "</td>";
+                echo "<td>" . $fielddata['payment_method'] . "</td>";
+                echo "<td>" . $fielddata['reference_num'] . "</td>";
                 echo "<td>" . $fielddata['status'] . "</td>";
                 echo "<td class ='pt-3 pb-0'>";
             ?>
                 <form method="post" action="Reservation1.php">
                     <input type="hidden" name="res_del" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" />
                     <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['reservation_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['reservation_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['reservation_id']; ?>">Edit</button>
+                    <button class='btn btn-danger delete-button' name='delete'>Delete</button>
                 </form>
                 <?php
                 echo "</td>";
@@ -457,6 +482,45 @@
             echo "</div>";
         }
 
+        //Delete Button
+        if (isset($_POST['delete'])) {
+            $reserve_delete = $_POST['res_del']; // Retrieve the user_id from the form
+
+            // Use prepared statements to prevent SQL injection
+            $deletesql = "DELETE FROM tbl_reservation WHERE reservation_id = ?";
+            $stmt = $con->prepare($deletesql);
+            $stmt->bind_param("i", $reserve_delete); // Assuming user_id is an integer
+            $resultdel = $stmt->execute();
+
+
+            //check if successfully deleted
+            if ($resultdel == True) {
+            ?>
+                <script>
+                    Swal.fire({
+                        title: "Are you sure?",
+                        text: "You won't be able to revert this!",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                        }
+                    });
+                </script>
+            <?php
+            } else {
+                //if not, check query error details
+                echo $con->error;
+            }
+        }
         //Update Button
 
 

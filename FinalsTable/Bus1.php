@@ -273,20 +273,21 @@
       if ($_POST['search'] != NULL) {
         $search = $_POST['search'];
         $selectsql = "Select * from tbl_bus where 
-                bus_id LIKE '%" . $search . "%' 
-                OR bus_number LIKE '%" . $search . "%' 
-                OR bus_type LIKE '%" . $search . "%' 
-                OR seating_capacity LIKE'%" . $search . "%' 
-                OR driver_name LIKE'%" . $search . "%' 
-                OR departure_location LIKE'%" . $search . "%' 
-                OR destination LIKE'%" . $search . "%'
-                OR departure_time LIKE'%" . $search . "%'
-                OR arrival_time LIKE'%" . $search . "%' ";
+        bus_id LIKE '%" . $search . "%' 
+        OR bus_number LIKE '%" . $search . "%' 
+        OR bus_type LIKE '%" . $search . "%' 
+        OR seating_capacity LIKE'%" . $search . "%' 
+        OR driver_name LIKE'%" . $search . "%' 
+        OR departure_location LIKE'%" . $search . "%' 
+        OR destination LIKE'%" . $search . "%'
+        OR departure_time LIKE'%" . $search . "%'
+        OR arrival_time LIKE'%" . $search . "%'  ORDER BY bus_id DESC";
+
       } else {
-        $selectsql = "Select * from tbl_bus";
+        $selectsql = "Select * from tbl_bus ORDER BY bus_id DESC";
       }
     } else {
-      $selectsql = "Select * from tbl_bus";
+      $selectsql = "Select * from tbl_bus ORDER BY bus_id DESC";
     }
 
 
@@ -339,10 +340,11 @@
 
 
     $result = $con->query($selectsql);
-
+  
     //check table if there is a record
     //num_rows - will return the no of rows inside a table
     if ($result->num_rows > 0) {
+     
       echo "<div class=' bg-row p-5 rounded'>";
       echo "<div class='bdr table-responsive'>";
       echo "<table class='table table-striped text-center   table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";

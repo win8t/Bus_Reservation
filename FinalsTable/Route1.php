@@ -304,12 +304,12 @@
               OR destination LIKE'%" . $search . "%' 
               OR distance LIKE'%" . $search . "%' 
               OR duration LIKE'%" . $search . "%'
-              OR price LIKE'%" . $search . "%' ";
+              OR price LIKE'%" . $search . "%' ORDER BY route_id DESC";
       } else {
-        $selectsql = "Select * from tbl_route";
+        $selectsql = "Select * from tbl_route ORDER BY route_id DESC";
       }
     } else {
-      $selectsql = "Select * from tbl_route";
+      $selectsql = "Select * from tbl_route ORDER BY route_id DESC";
     }
 
 

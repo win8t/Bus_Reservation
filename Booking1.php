@@ -232,17 +232,17 @@ function setMinDate() {
                                     $date = $_POST['date'];
                                     $origin = $_POST['origin'];
                                     $destination = $_POST['destination'];
-                                        $selectsql = "Select * from bus_reserve_view where 
+                                        $selectsql = "Select * from sched_reserve_view where 
                                             `Departure Area`  = '" . $origin . "' 
                                             AND  `Departure Date` = '" . $date . "'   
                                             AND `Destination` = '" . $destination . "' 
                                             ";
                                     } else {
                                         
-                                        $selectsql = "Select * from bus_reserve_view";
+                                        $selectsql = "Select * from sched_reserve_view";
                                     }
                             } else {
-                                $selectsql = "Select * from bus_reserve_view";
+                                $selectsql = "Select * from sched_reserve_view";
                             }
 
 

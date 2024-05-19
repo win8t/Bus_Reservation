@@ -259,12 +259,12 @@
             OR route_id LIKE '%" . $search . "%' 
             OR departure_date LIKE'%" . $search . "%' 
             OR departure_time LIKE'%" . $search . "%' 
-            OR available_seats LIKE'%" . $search . "%' ";
+            OR available_seats LIKE'%" . $search . "%'  ORDER BY schedule_id DESC";
             } else {
-                $selectsql = "Select * from tbl_schedule";
+                $selectsql = "Select * from tbl_schedule  ORDER BY schedule_id DESC";
             }
         } else {
-            $selectsql = "Select * from tbl_schedule";
+            $selectsql = "Select * from tbl_schedule ORDER BY schedule_id DESC";
         }
 
 
