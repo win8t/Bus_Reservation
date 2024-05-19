@@ -93,9 +93,9 @@ if (isset($_POST['booking'])) {
       Swal.fire({
         position: "center",
         icon: "success",
-        title: "Your seat has been reserved ",
+        title: "Please proceed to payment!",
         showConfirmButton: false,
-        timer: 1500
+        timer: 4000
       });
     </script>
 <?php

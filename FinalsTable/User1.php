@@ -11,7 +11,7 @@
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <link rel="stylesheet" href="sidebar9.css">
+  <link rel="stylesheet" href="sidebar10.css">
 
 </head>
 
@@ -146,7 +146,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
 
-              <form action="User1.php" method="post">
+              <form action="User1.php" method="post" novalidate class ="needs-validation">
                 <div class="modal-body">
 
                   <div class="row form-outline">
@@ -179,6 +179,8 @@
                     <div class="col">
                       <input type="text" id="" name="username" class="form-control" />
                       <label class="form-label" for="">Username</label>
+                      <div class="invalid-feedback text-start">Enter your username.</div>
+                      <div class="valid-feedback text-start">Entered username name.</div> 
                     </div>
 
                     <!-- Password input -->
@@ -198,6 +200,7 @@
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="submit" name="add" class="btn btn-primary">Add</button>
+                  <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
                 </div>
               </form>
             </div>
@@ -321,7 +324,7 @@
         ?>
         <!-- form-->
 
-        <form action="User1.php" method="post">
+        <form action="User1.php" method="post" novalidate class ="needs-validation">
         <h5 class="hd-text text-center pb-2 fs-5" id="title">User Editing Form</h5>
           <div class="row form-outline">
             <!-- Full Name input -->
@@ -447,7 +450,27 @@
 
 </div>
 
+<script>
+(() => {
+  'use strict'
 
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  const forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+      
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})() 
+</script>
 </body>
 
 </html>

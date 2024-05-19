@@ -26,7 +26,7 @@
 
         //login based on role
 
-        $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' and otp = NULL and status = 'Active'";
+        $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' and status = 'Active'";
 
         $loginresult = $con->query($loginsql);
         if ($loginresult->num_rows == 1) {
