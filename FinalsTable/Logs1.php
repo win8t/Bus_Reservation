@@ -147,13 +147,13 @@
                 log_id LIKE '%" . $search . "%' 
                 OR user_id LIKE '%" . $search . "%' 
                 OR action LIKE'%" . $search . "%' 
-                OR DateTime LIKE'%" . $search . "%'";
+                OR DateTime LIKE'%" . $search . "%'  ORDER BY log_id DESC";
 
             } else {
-              $selectsql = "Select * from tbl_logs";
+              $selectsql = "Select * from tbl_logs  ORDER BY log_id DESC";
             }
           } else {
-            $selectsql = "Select * from tbl_logs";
+            $selectsql = "Select * from tbl_logs ORDER BY log_id DESC";
           }
          
           

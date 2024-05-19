@@ -22,8 +22,16 @@ session_start();
     ?>
     <?php  ?>
     <script>
-        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        function swapValues() {
+            event.preventDefault();
+            // Get the selected values of origin and destination
+            var originValue = document.getElementById('origin').value;
+            var destinationValue = document.getElementById('destination').value;
+
+            // Swap the values
+            document.getElementById('origin').value = destinationValue;
+            document.getElementById('destination').value = originValue;
+        }
     </script>
     <script>
         function setMinDate() {
@@ -78,7 +86,8 @@ session_start();
             </div>
             <form action="Logout.php" method="post">
                 <button class="book-login-button mt-4 border-0" type="submit" name="logout" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-                <i class="bi bi-person-circle"></i><?php echo " ".$_SESSION['username']; ?>
+
+                    <i class="bi bi-person-circle"></i><?php echo " " . $_SESSION['username']; ?>
                 </button>
             </form>
         </div>
@@ -191,7 +200,8 @@ session_start();
 
 
                                     <label class="input-group-text" for="origin">Origin</label>
-                                    <button class="input-group-text" id="basic-addon2" onclick="swapValues()"><i class="bi bi-arrow-left-right"></i></button>
+<button class="input-group-text" id="basic-addon2" onclick="swapValues()" type="button"><i class="bi bi-arrow-left-right"></i></button>
+
 
                                     <label class="input-group-text" for="destination">Destination</label>
                                     <select id="destination" class="form-select" aria-describedby="basic-addon2" name="destination" required>
@@ -242,18 +252,18 @@ session_start();
                                     $date = $_POST['date'];
                                     $origin = $_POST['origin'];
                                     $destination = $_POST['destination'];
-                                    $selectsql = "Select * from bus_reserve_view where 
+                                    $selectsql = "Select * from sched_reserve_view where 
                                             `Departure Area`  = '" . $origin . "' 
                                             AND  `Departure Date` = '" . $date . "'   
                                             AND `Destination` = '" . $destination . "' 
                                             AND `Available Seats` > 0
-                                            AND `Departure Date` >= CURDATE()";
+                                            AND `Departure Date` >= CURDATE() ORDER BY `Departure Date` DESC";
                                 } else {
 
-                                    $selectsql = "Select * from bus_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0";
+                                    $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
                                 }
                             } else {
-                                $selectsql = "Select * from bus_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0";
+                                $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
                             }
 
 
@@ -266,7 +276,7 @@ session_start();
                             if ($result->num_rows > 0) {
                                 echo "<div class='bg-row-book p-5 rounded'>";
                                 echo "<div class = 'table-responsive bdr'>";
-                                echo "<table class='table table-striped text-center table-bordered w-100 border border-2 border-success-subtle align-middle mx-auto'>";
+                                echo "<table class='table mt-3 table-striped text-center table-bordered w-100 border border-2 border-success-subtle align-middle mx-auto'>";
                                 echo "<tr>";
                                 echo "</tr>";
                                 echo "<thead class ='table-success'>";
@@ -276,7 +286,7 @@ session_start();
                                 echo "<th> Bus Type </th>";
                                 echo "<th> Departure Date </th>";
                                 echo "<th> Depature Time </th>";
-                                echo "<th> Arrival Time </th>";
+                              
                                 echo "<th> Departure Area </th>";
                                 echo "<th> Destination </th>";
                                 echo "<th> Total Seats </th>";
@@ -294,7 +304,7 @@ session_start();
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
                                     echo "<td>" . date_format(date_create($maltfielddata['Departure Time']), 'g:i A') . "</td>";
-                                    echo "<td>" . date_format(date_create($maltfielddata['Arrival Time']), 'g:i A') . "</td>";
+            
 
                                     echo "<td>" . $maltfielddata['Departure Area'] . "</td>";
                                     echo "<td>" . $maltfielddata['Destination'] . "</td>";
@@ -342,10 +352,7 @@ session_start();
                                                 <input type="hidden" name="book_dtime" value="<?php echo date_format(date_create($maltfielddata['Departure Time']), 'H:i'); ?>" class="form-control" />
                                             </div>
 
-                                            <div class="col">
-                                                <input type="hidden" name="book_atime" value="<?php echo date_format(date_create($maltfielddata['Arrival Time']), 'H:i') ?>" class="form-control" />
-
-                                            </div>
+                                      
                                         </div>
 
                                         <div class="row form-outline">
@@ -438,7 +445,9 @@ session_start();
                             } else {
                                 echo "<div class='row'>";
                                 echo "<div class='col'>";
-                                echo "<br>There is no booking at this time";
+                                echo "<div class='bg-row-book p-3 rounded pb-4'>";
+                                echo "<br><h4 class='text-center text-white shadow p-4 rounded'>There is no booking at this time</h4>";
+                                echo "</div>";
                                 echo "</div>";
                                 echo "</div>";
                             }

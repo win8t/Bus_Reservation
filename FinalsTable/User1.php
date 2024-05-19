@@ -220,12 +220,12 @@
                 OR username LIKE'%" . $search . "%' 
                 OR password LIKE'%" . $search . "%' 
                 OR email LIKE'%" . $search . "%'
-                OR Status LIKE'%" . $search . "%' ";
+                OR Status LIKE'%" . $search . "%'  ORDER BY user_id DESC";
       } else {
-        $selectsql = "Select * from tbl_user";
+        $selectsql = "Select * from tbl_user  ORDER BY user_id DESC";
       }
     } else {
-      $selectsql = "Select * from tbl_user";
+      $selectsql = "Select * from tbl_user  ORDER BY user_id DESC";
     }
 
 

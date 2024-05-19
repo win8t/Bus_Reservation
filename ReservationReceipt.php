@@ -59,7 +59,6 @@ $receipt_num = $_POST['book_num'];
 $receipt_type = $_POST['book_type'];
 $receipt_ddate = $_POST['book_ddate'];
 $receipt_dtime = $_POST['book_dtime'];
-$receipt_atime = $_POST['book_atime'];
 $receipt_depart = $_POST['book_depart'];
 $receipt_desti = $_POST['book_desti'];
 $receipt_route = $receipt_depart." to ".$receipt_desti;
@@ -76,9 +75,9 @@ $receipt_fullname = $receipt_f_name." ".$receipt_m_name." ".$receipt_l_name;
 $receipt_c_number = $_POST['c_number'];
 $receipt_seatnum = $_POST['seatnum'];
 $seatnum = $_SESSION['seatnum'] = $receipt_seatnum;
+$receipt_payment = "Undecided";
 
-
-$receipt_status = "<h5 class ='mt-1'>Reserved</h5>";
+$receipt_status = "<h5 class ='mt-1'>Pending</h5>";
 
 if (isset($_POST['booking'])) {
 
@@ -101,29 +100,31 @@ if (isset($_POST['booking'])) {
     </script>
 <?php
 
-
+    date_default_timezone_set("Asia/Manila");
     $receipt_data = array(
-      "Ticket ID" => $ticket_id,
+      "Ticket Number" => $ticket_id,
+      "Reservation Date" => date("Y-m-d h:i:s"),
       "Bus Number" => $receipt_num,
       "Bus Type" => $receipt_type,
       "Departure Date" => $receipt_ddate,
       "Departure Time" => $receipt_dtime,
-    /*  "Departure" => $receipt_depart,
-      "Destination" => $receipt_desti, */
-      "Route Name" => $receipt_route,
+      "Departure" => $receipt_depart,
+      "Destination" => $receipt_desti,
+     
       "Passenger Name" => $receipt_fullname,
       "Contact Number" => $receipt_c_number,
       "Chosen Seat Number" => $receipt_seatnum,
       "Status" => $receipt_status,
+      "Payment Method" => $receipt_payment,
       "Price" => $receipt_price,
 
     );
 
 
-    echo "<div class ='container-fluid bg-row w-75 p-4 rounded '>";
+    echo "<div class ='container-fluid bg-row w-50 p-4 rounded '>";
     echo "<div class ='table-responsive bdr'>";
     echo "<p class='display-5 text-center text-white'>Booking Information</p>";
-    echo "<table class='table table-bordered table-hover mx-auto'>";
+    echo "<table class='table table-sm table-bordered table-hover mx-auto'>";
     echo "<thead class ='table-dark'>";
     echo "<th class ='col-6'> Bus Reservation Receipt </th>";
     echo "<th class ='col-6'> Details </th>";
@@ -147,7 +148,7 @@ if (isset($_POST['booking'])) {
     echo "<button id='printButton' class='btn w-50'>Print</button>";
     echo "</div>";
     echo "<div class ='col'>";
-    echo "<a id='backButton' class='btn w-50' href='BookingLog.php'>Check Status</a>";
+    echo "<a id='backButton' class='btn w-50' href='Payment.php'>Payment</a>";
     echo "</div>";
 
     echo "</div>";
