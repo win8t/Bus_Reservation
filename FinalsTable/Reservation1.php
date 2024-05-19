@@ -346,7 +346,6 @@
                 <form method="post" action="Reservation1.php">
                     <input type="hidden" name="res_del" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" />
                     <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['reservation_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['reservation_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['reservation_id']; ?>">Edit</button>
-                    <button class='btn btn-danger delete-button' name='delete'>Delete</button>
                 </form>
                 <?php
                 echo "</td>";
@@ -458,45 +457,6 @@
             echo "</div>";
         }
 
-        //Delete Button
-        if (isset($_POST['delete'])) {
-            $reserve_delete = $_POST['res_del']; // Retrieve the user_id from the form
-
-            // Use prepared statements to prevent SQL injection
-            $deletesql = "DELETE FROM tbl_reservation WHERE reservation_id = ?";
-            $stmt = $con->prepare($deletesql);
-            $stmt->bind_param("i", $reserve_delete); // Assuming user_id is an integer
-            $resultdel = $stmt->execute();
-
-
-            //check if successfully deleted
-            if ($resultdel == True) {
-            ?>
-                <script>
-                    Swal.fire({
-                        title: "Are you sure?",
-                        text: "You won't be able to revert this!",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes, delete it!"
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            });
-                        }
-                    });
-                </script>
-            <?php
-            } else {
-                //if not, check query error details
-                echo $con->error;
-            }
-        }
         //Update Button
 
 

@@ -380,7 +380,6 @@
         <form method="post" action="Bus1.php">
           <input type="hidden" name="bus_del" value="<?php echo $fielddata['bus_id']; ?>" class="form-control" />
           <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['bus_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['bus_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['bus_id']; ?>">Edit</button>
-          <button class='btn btn-danger delete-button' name='delete'>Delete</button>
         </form>
         <?php
         echo "</td>";
@@ -521,44 +520,6 @@
       echo "<br>No record found!";
       echo "</div>";
       echo "</div>";
-    }
-
-    //Delete Button
-    if (isset($_POST['delete'])) {
-      $busID = $_POST['bus_del'];
-
-      $deletesql = "DELETE FROM tbl_bus WHERE bus_id = ?";
-      $stmt = $con->prepare($deletesql);
-      $stmt->bind_param("i", $busID);
-      $resultdel = $stmt->execute();
-
-      // Check if successfully deleted
-      if ($resultdel == True) {
-      ?>
-        <script>
-          Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
-          }).then((result) => {
-            if (result.isConfirmed) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your file has been deleted.",
-                icon: "success"
-              });
-            }
-          });
-        </script>
-      <?php
-      } else {
-        // If not, check query error details
-        echo $con->error;
-      }
     }
 
     //Update Button

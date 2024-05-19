@@ -24,7 +24,7 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-function send_ver($user, $email, $otp)
+function send_ver($email, $otp)
 {
 
     
@@ -55,7 +55,7 @@ function send_ver($user, $email, $otp)
         //Content
         $mail->isHTML(true);  // Set email format to HTML
         $mail->Subject = "ALPS Reset Password";
-        $mail->Body    = "Hello, " . $full . "!" ."<br> This is your password reset code: " . $otp;
+        $mail->Body    = "This is your password reset code: " . $otp;
 
         $mail->send();
 ?>

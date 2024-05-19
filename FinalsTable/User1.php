@@ -309,7 +309,6 @@
         <form method="post" action="User1.php">
           <input type="hidden" name="user_del" value="<?php echo $fielddata['user_id']; ?>" class="form-control" />
           <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['user_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['user_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['user_id']; ?>">Edit</button>
-          <button class='btn btn-danger delete-button' name='delete'>Delete</button>
         </form>
         <?php
         echo "</td>";
@@ -395,45 +394,6 @@
       echo "</div>";
     }
 
-    //Delete Button
-    if (isset($_POST['delete'])) {
-      $user_delete = $_POST['user_del']; // Retrieve the user_id from the form
-
-      // Use prepared statements to prevent SQL injection
-      $deletesql = "DELETE FROM tbl_user WHERE user_id = ?";
-      $stmt = $con->prepare($deletesql);
-      $stmt->bind_param("i", $user_delete); // Assuming user_id is an integer
-      $resultdel = $stmt->execute();
-
-
-      //check if successfully deleted
-      if ($resultdel == True) {
-?>
-  <script>
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success"
-        });
-      }
-    });
-  </script>
-<?php
-      } else {
-        //if not, check query error details
-        echo $con->error;
-      }
-    }
     //Update Button
 
     require_once "dbconnect.php";

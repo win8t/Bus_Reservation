@@ -5,11 +5,13 @@ session_start();
 if (isset($_POST['logout1'])) {
     if (isset($_SESSION['user_id'])) {
         $userID = $_SESSION['user_id'];
+        $full = $_SESSION['full_name'];
+        $role = $_SESSION['role'];
 
         // Prepare the SQL statement
-        $logoutsql = "INSERT INTO tbl_logs(user_id, action, DateTime) VALUES (?, 'Logged Out', NOW())";
+        $logoutsql = "INSERT INTO tbl_logs(user_id, full_name, role, action, DateTime) 
+        VALUES ($userID, '$full', '$role','Logged Out', NOW())";
         $stmt = $con->prepare($logoutsql);
-        $stmt->bind_param("i", $userID);
 
         // Execute the statement
         if ($stmt->execute()) {

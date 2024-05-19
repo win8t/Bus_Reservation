@@ -76,7 +76,6 @@ require "dbconnect.php";
         <li>
           <i class="bi bi-box-arrow-right"></i>
           <button type="submit" name="logout1" style="background:none; border:none; cursor:pointer; text:inherit; padding:0;">Log Out</button>
-        </li>
       </form>
     </ul>
   </aside>
