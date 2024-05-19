@@ -312,7 +312,7 @@ body {
 }
 
 .bg-row {
-  background-color: rgb(7, 44, 75);
+  background-color: #072c4b;
   box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
   -webkit-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
   -moz-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
@@ -332,7 +332,7 @@ th {
 }
 .table-striped>tbody>tr:nth-child(odd)>td:hover, 
 .table-striped>tbody>tr:nth-child(odd)>th:hover {
-   background-color: rgb(238, 241, 255);
+   background-color: #eef1ff;
    color:rgb(15, 11, 70);
    font-family:FontBold;
  }
@@ -357,3 +357,38 @@ box-shadow: -2px 2px 30px 9px rgba(0, 0, 0, 0.179) inset;
   overflow: hidden !important;
  
 }
+
+.modal-dialog {
+  max-height: 100vh; /* Adjust as needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.modal-content {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #eef1ff !important;
+}
+
+.modal-body {
+  background-color: #eef1ff !important;
+  overflow-y: auto;
+  flex-grow: 1;
+
+  
+}
+.modal-header {
+  background-color: #072c4b !important;
+  color:white;
+}
+
+.btn-close {
+  background-color: #eef1ff; /* Ensure background is transparent */
+  opacity:1; /* Remove any border */
+}
+

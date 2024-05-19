@@ -11,7 +11,7 @@
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="sidebar9.css">
+    <link rel="stylesheet" href="sidebar10.css">
 
 </head>
 
@@ -143,17 +143,17 @@
             //to check the search box if empty or not 
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
-              $selectsql = "Select * from tbl_logs where 
+              $selectsql = "Select * from logs_view where 
                 full_name LIKE '%" . $search . "%' 
                 OR role LIKE'%" . $search . "%' 
                 OR action LIKE'%" . $search . "%' 
                 OR DateTime LIKE'%" . $search . "%'  ORDER BY log_id DESC";
 
             } else {
-              $selectsql = "Select * from tbl_logs  ORDER BY log_id DESC";
+              $selectsql = "Select * from logs_view  ORDER BY log_id DESC";
             }
           } else {
-            $selectsql = "Select * from tbl_logs ORDER BY log_id DESC";
+            $selectsql = "Select * from logs_view ORDER BY log_id DESC";
           }
          
           
@@ -178,7 +178,7 @@
 
             while ($fielddata = $result->fetch_assoc()) {
               echo "<tr>";
-              echo "<td>" . $fielddata['full_name'] . "</td>";
+              echo "<td>" . $fielddata['username'] . "</td>";
               echo "<td>" . $fielddata['role'] . "</td>";
               echo "<td>" . $fielddata['action'] . "</td>";
               echo "<td>" . date_format(date_create($fielddata['DateTime']), 'Y-m-d g:i A') . "</td>";
