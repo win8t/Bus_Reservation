@@ -17,6 +17,7 @@ $bus_types = array(
         "Executive Luxury"
     );
 $status = array(
+        "Pending",
         "Reserved",
         "Cancelled",
         "Boarded"

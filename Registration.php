@@ -67,10 +67,9 @@
                                 <div class="invalid-feedback text-start">Enter your full name.</div>
                                 <div class="valid-feedback text-start">Entered full name.</div> -->
 
-                                <input type="text" class="form-control" name="m_name" id="floatingInput" required>
+                                <input type="text" class="form-control" name="m_name" id="floatingInput">
                                 <label for="floatingInput" class="link-text">Middle Name<span class ="text-danger">*</span></label>
-                                <div class="invalid-feedback text-start">Enter your middle name.</div>
-                                <div class="valid-feedback text-start">Entered middle name.</div> 
+                               
                                 
                             </div>
                         </div>
