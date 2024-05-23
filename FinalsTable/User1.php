@@ -1,6 +1,7 @@
 <?php
-  session_start();
-  require "dbconnect.php";
+require "dbconnect.php";
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
+  require_once 'email_registration.php';
 ?>
 <html lang="en">
 
@@ -15,7 +16,7 @@
 
 </head>
 
-<body class ="hd-text">
+<body class="hd-text">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -63,21 +64,21 @@
       </li>
       <li>
         <i class="bi bi-calendar3"></i>
-        <a href="Schedule1.php">Schedule</a>
+        <a href="Schedule2.php">Schedule</a>
       </li>
       <li>
         <i class="bi bi-calendar-date"></i>
-        <a href="Reservation1.php">Reservation</a>
+        <a href="Reservation2.php">Reservation</a>
       </li>
       <li class="disabled border border-light my-2">
         <hr class="">
       </li>
 
       <form action="Logout1.php" method="post">
-      <li>
+        <li>
           <i class="bi bi-box-arrow-right"></i>
           <button type="submit" name="logout1" style="background:none; border:none; cursor:pointer; text:inherit; padding:0;">Log Out</button>
-      </li>
+        </li>
       </form>
     </ul>
 
@@ -146,16 +147,29 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
 
-              <form action="User1.php" method="post" novalidate class ="needs-validation">
+              <form action="User1.php" method="post" novalidate class="needs-validation">
                 <div class="modal-body">
 
                   <div class="row form-outline">
-
+                  
                     <!-- Full Name input -->
                     <div class="col">
-                      <input type="text" name="full_name" id="" class="form-control" />
-                      <label class="form-label" for="">Fullname</label>
+                    <label class="form-label text-secondary" for="">First Name</label>
+                      <input type="text" name="f_name" id="" class="form-control" />
+                      
                     </div>
+                    <div class="col">
+                    <label class="form-label text-secondary" for="">Middle Name</label>
+                      <input type="text" name="m_name" id="" class="form-control" />
+                      
+                    </div>
+                    <div class="col">
+
+                    <label class="form-label text-secondary" for="">Last Name</label>
+                      <input type="text" name="l_name" id="" class="form-control" />
+                      
+                    </div>
+                    <label class="form-label" for="">Full Name</label>
                   </div>
 
                   <!-- Role input -->
@@ -180,13 +194,17 @@
                       <input type="text" id="" name="username" class="form-control" />
                       <label class="form-label" for="">Username</label>
                       <div class="invalid-feedback text-start">Enter your username.</div>
-                      <div class="valid-feedback text-start">Entered username name.</div> 
+                      <div class="valid-feedback text-start">Entered username name.</div>
                     </div>
 
                     <!-- Password input -->
                     <div class="col">
                       <input type="password" name="password" id="" class="form-control" />
                       <label class="form-label" for="">Password</label>
+                    </div>
+                    <div class="col">
+                      <input type="password" name="confirmpass" id="" class="form-control" />
+                      <label class="form-label" for="">Confirm Password</label>
                     </div>
                   </div>
 
@@ -210,6 +228,7 @@
     </div>
 
     <?php
+    
     //Search Button
     if (isset($_POST['searchbutton'])) {
 
@@ -235,45 +254,61 @@
 
     //Add Button
     if (isset($_POST['add'])) {
-      $name = $_POST['full_name'];
+      $fname = $_POST['f_name'];
+      $lname = $_POST['l_name'];
+      $mname = $_POST['m_name'];
+      $full = $fname . " " . $mname . " " . $lname;
       $role = $_POST['role'];
       $username = $_POST['username'];
       $password = md5($_POST['password']);
+      $confirmpass = md5($_POST['confirmpass']);
       $email = $_POST['email'];
+      $otp = rand(000000, 999999);
 
-      $insertsql = "Insert into tbl_user (full_name,role,username,password,email)
-            values ('$name','$role','$username','$password','$email')
-            ";
-
-      $result = $con->query($insertsql);
-
-
-      //check if successfully added
-      if ($result == True) {
-    ?>
-        <script>
-          Swal.fire({
-            title: "Do you want to add this user?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Add",
-            denyButtonText: `Don't Add`
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire("Saved!", "", "success");
-            } else if (result.isDenied) {
-              Swal.fire("Changes are not saved", "", "info");
-            }
-          });
-        </script>
-      <?php
-      } else {
-        //if not inserted, check query error details
-        echo $con->error;
-      }
-    }
+      $usersql = "select * from tbl_user where username = '$username'";
+      $user_result = $con->query($usersql);
   
+      if ($user_result->num_rows == 0) {
+  
+          if ($password == $confirmpass) {
+          $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp,status)
+          values('$full', '$role', '$username','$password', '$email',$otp, 'Inactive')";
+  
+          $result = $con->query($insertsql);
+  
+          if ($result == True) {?>
+            
+          <?php
+          send_verification($full,$email,$otp);
+          } else {
+              echo $con->error;
+          }
+      } else {
+          ?>
+          <script>
+              Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Password mismatch!",
+                  timer: 3000
+              });
+          </script>
+          <?php
+      }
+          
+      } else { ?>
+          <script>
+              Swal.fire({
+                  icon: "error",
+                  title: "Oops...",
+                  text: "Username already exists. Please choose a different username.",
+                  timer: 1500
+              });
+          </script>
+  <?php  }
+  }
+  
+
     $result = $con->query($selectsql);
 
     //check table if there is a record
@@ -289,7 +324,6 @@
       echo "<th> Full Name </th>";
       echo "<th> Role </th>";
       echo "<th> Username </th>";
-      echo "<th> Password </th>";
       echo "<th> Email </th>";
       echo "<th> Status </th>";
       echo "<th> Action </th>";
@@ -298,13 +332,12 @@
 
 
       while ($fielddata = $result->fetch_assoc()) {
-        
+
         echo "<tr>";
         echo "<td>" . $fielddata['user_id'] . "</td>";
         echo "<td>" . $fielddata['full_name'] . "</td>";
         echo "<td>" . $fielddata['role'] . "</td>";
         echo "<td>" . $fielddata['username'] . "</td>";
-        echo "<td>" . $fielddata['password'] . "</td>";
         echo "<td>" . $fielddata['email'] . "</td>";
         echo "<td>" . $fielddata['status'] . "</td>";
         echo "<td class ='pt-3 pb-0'>";
@@ -324,8 +357,8 @@
         ?>
         <!-- form-->
 
-        <form action="User1.php" method="post" novalidate class ="needs-validation">
-        <h5 class="hd-text text-center pb-2 fs-5" id="title">User Editing Form</h5>
+        <form action="User1.php" method="post" novalidate class="needs-validation">
+          <h5 class="hd-text text-center pb-2 fs-5" id="title">User Editing Form</h5>
           <div class="row form-outline">
             <!-- Full Name input -->
             <div class="col">
@@ -361,17 +394,14 @@
             </div>
 
             <!-- Password input -->
-            <div class="col">
-              <input type="password" name="update_password" id="" value="<?php echo $fielddata['password']; ?>" class="form-control" />
-              <label class="form-label" for="">Password</label>
-            </div>
-          </div>
-
-          <!-- Email input -->
-          <div class="form-outline">
+            <div class="col form-outline">
             <input type="email" name="update_email" id="" class="form-control" value="<?php echo $fielddata['email']; ?>" />
             <label class="form-label" for="">Email</label>
           </div>
+          </div>
+
+          <!-- Email input -->
+         
 
           <div class="row form-outline text-center pt-1">
             <div class="col">
@@ -412,7 +442,7 @@
 
 
       $updatesql = "UPDATE tbl_user SET user_id = $user_update, full_name = '$name_update', 
-              role = '$role_update', username = '$username_update', password = '$password_update', 
+              role = '$role_update', username = '$username_update',  
               email = '$email_update' WHERE user_id = $user_update";
 
       $resultup = $con->query($updatesql);
@@ -451,25 +481,25 @@
 </div>
 
 <script>
-(() => {
-  'use strict'
+  (() => {
+    'use strict'
 
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.needs-validation')
 
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+      form.addEventListener('submit', event => {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
 
-      form.classList.add('was-validated')
-    }, false)
-  })
-})() 
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+  })()
 </script>
 </body>
 

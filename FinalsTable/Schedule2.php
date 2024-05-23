@@ -22,6 +22,24 @@ require "dbconnect.php";
     <?php require "BusArrays.php"; ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function setMinDate() {
+            // Get current date in Philippine time zone
+            var philippineDate = new Date();
+            var philippineOffset = 8 * 60; // Philippine time zone offset in minutes (UTC+8)
+            var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
+            var philippineTime = new Date(utc + (60000 * philippineOffset));
+
+            // Format date in yyyy-mm-dd format
+            var formattedDate = philippineTime.toLocaleDateString('en-CA');
+
+            // Set the minimum date and change input type to date
+            document.getElementById("tripDate").setAttribute('type', 'date');
+            document.getElementById("tripDate").setAttribute('min', formattedDate);
+            document.getElementById("editTripDate").setAttribute('type', 'date');
+            document.getElementById("editTripDate").setAttribute('min', formattedDate);
+        }
+    </script>
 
 
     <aside class="sidebar d-flex flex-container">
@@ -235,7 +253,7 @@ require "dbconnect.php";
                                     <!-- Departure Date input -->
                                     <div class="row form-outline">
                                         <div class="col">
-                                            <input type="date" name="departure_date" id="" class="form-control" />
+                                            <input type="date" name="departure_date" id="editTripDate" class="form-control" onfocus="setMinDate()" />
                                             <label class="form-label" for="">Departure Date</label>
                                         </div>
                                         <!-- Departure Time input -->
@@ -307,15 +325,14 @@ require "dbconnect.php";
 
                 // Check if dep_loc and desti have the same route_id
                 if ($dep_route_id === $dest_route_id) {
-                    /*   $routeID = $dep_route_id; */
+           
                     $route_name = $dep_loc . " to " . $desti;
                     $busNum = $_POST['bus_num'];
-                    /*   $busType = $_POST['bus_type']; */
+                  
                     $departureDate = $_POST['departure_date'];
                     $departureTime = $_POST['departure_time'];
-                    /*    $totalSeats = $_POST['total_seats']; */
                     $availableSeats = $_POST['available_seats'];
-                    /*   $price = $_POST['price']; */
+               
 
                     $bus_check = $con->query("SELECT bus_id FROM tbl_bus WHERE bus_number = '$busNum' AND departure_location = '$dep_loc' AND destination ='$desti'");
                     if ($bus_check->num_rows > 0) {
@@ -326,7 +343,9 @@ require "dbconnect.php";
                             ?> </div> <?php
                                     }
                                 } else {
+                                    ?> <div class="alert alert-warning" role="alert"> <?php
                                     throw new Exception("Departure location or destination does not exist for the specified bus number.");
+                                    ?> </div> <?php
                                 }
 
                         $route_check = $con->query("SELECT route_id FROM tbl_route WHERE route_name = '$route_name'");
@@ -396,6 +415,7 @@ require "dbconnect.php";
                         echo "<table class='table table-striped text-center table-bordered w-100 border border-2  border-primary-subtle align-middle mx-auto'>";
                         echo "<thead class ='table-dark'>";
                         echo "<tr>";
+                        echo "<th> Schedule ID </th>";
                         echo "<th> Bus Number </th>";
                         echo "<th> Bus Type </th>";
                         echo "<th> Departure Date </th>";
@@ -405,7 +425,7 @@ require "dbconnect.php";
                         echo "<th> Destination </th>";
                         echo "<th> Total Seats </th>";
                         echo "<th> Available Seats </th>";
-                        echo "<th> Price </th>";
+                        echo "<th> Price (₱) </th>";
                         echo "<th> Action </th>";
                         echo "</tr>";
                         echo "</thead>";
@@ -413,13 +433,13 @@ require "dbconnect.php";
 
                         while ($fielddata = $result->fetch_assoc()) {
                             echo "<tr>";
-                            "<td>" . $fielddata['Schedule ID'] . "</td>";
+                            echo "<td>" . $fielddata['Schedule ID'] . "</td>";
                             "<td>" . $fielddata['Route ID'] . "</td>";
                             "<td>" . $fielddata['Bus ID'] . "</td>";
                             echo "<td>" . $fielddata['Bus Number'] . "</td>";
                             echo "<td>" . $fielddata['Bus Type'] . "</td>";
                             echo "<td>" . $fielddata['Departure Date'] . "</td>";
-                            echo "<td>" . date_format(date_create($fielddata['Departure Time']), 'h:i A') . "</td>";
+                            echo "<td>" . date_format(date_create($fielddata['Departure Time']), 'g:i A') . "</td>";
 
 
                             echo "<td>" . $fielddata['Departure Area'] . "</td>";
@@ -467,7 +487,7 @@ require "dbconnect.php";
                     <!-- Departure Date input -->
                     <div class="row form-outline">
                         <div class="col">
-                            <input type="date" name="update_departureDate" value="<?php echo $fielddata['Departure Date']; ?>" class="form-control" />
+                            <input type="date" name="update_departureDate" value="<?php echo $fielddata['Departure Date']; ?>" id="tripDate" class="form-control" onfocus="setMinDate()" />
                             <label class="form-label" for="">Departure Date</label>
                         </div>
                         <!-- Departure Time input -->

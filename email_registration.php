@@ -65,7 +65,8 @@ function send_verification($full, $email, $otp)
                 willClose: () => {
                     Swal.close();
                     setTimeout(function() {
-                        window.location.href = "otp.php";
+                       <?php set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); ?>
+                       window.location.href = "/FINALS PROJECT/otp.php";
                     }, 500);
                 }
             });

@@ -66,11 +66,11 @@
       </li>
       <li>
         <i class="bi bi-calendar3"></i>
-        <a href="Schedule1.php">Schedule</a>
+        <a href="Schedule2.php">Schedule</a>
       </li>
       <li>
         <i class="bi bi-calendar-date"></i>
-        <a href="Reservation1.php">Reservation</a>
+        <a href="Reservation2.php">Reservation</a>
       </li>
       <li class="disabled border border-light my-2">
         <hr class="">
@@ -380,8 +380,8 @@
       echo "<th> Departure Location </th>";
       echo "<th> Destination </th>";
       echo "<th> Distance (km) </th>";
-      echo "<th> Duration </th>";
-      echo "<th> Price </th>";
+      echo "<th> Duration (hrs) </th>";
+      echo "<th> Price (₱)</th>";
       echo "<th> Action </th>";
       echo "</tr>";
       echo "</thead>";
