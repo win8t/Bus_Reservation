@@ -263,52 +263,40 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
       $password = md5($_POST['password']);
       $confirmpass = md5($_POST['confirmpass']);
       $email = $_POST['email'];
-      $otp = rand(000000, 999999);
 
-      $usersql = "select * from tbl_user where username = '$username'";
-      $user_result = $con->query($usersql);
-  
-      if ($user_result->num_rows == 0) {
-  
-          if ($password == $confirmpass) {
-          $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp,status)
-          values('$full', '$role', '$username','$password', '$email',$otp, 'Inactive')";
-  
-          $result = $con->query($insertsql);
-  
-          if ($result == True) {?>
-            
-          <?php
-          send_verification($full,$email,$otp);
-          } else {
-              echo $con->error;
-          }
+      $insertsql = "Insert into tbl_user (full_name,role,username,password,email)
+            values ('$name','$role','$username','$password','$email')
+            ";
+
+      $result = $con->query($insertsql);
+
+
+      //check if successfully added
+      if ($result == True) {
+    ?>
+        <script>
+          Swal.fire({
+            title: "Do you want to add this user?",
+            showDenyButton: true,
+            showCancelButton: true,
+            confirmButtonText: "Add",
+            denyButtonText: `Don't Add`
+          }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+              Swal.fire("Saved!", "", "success");
+            } else if (result.isDenied) {
+              Swal.fire("Changes are not saved", "", "info");
+            }
+          });
+        </script>
+      <?php
       } else {
-          ?>
-          <script>
-              Swal.fire({
-                  icon: "error",
-                  title: "Oops...",
-                  text: "Password mismatch!",
-                  timer: 3000
-              });
-          </script>
-          <?php
+        //if not inserted, check query error details
+        echo $con->error;
       }
-          
-      } else { ?>
-          <script>
-              Swal.fire({
-                  icon: "error",
-                  title: "Oops...",
-                  text: "Username already exists. Please choose a different username.",
-                  timer: 1500
-              });
-          </script>
-  <?php  }
-  }
+    }
   
-
     $result = $con->query($selectsql);
 
     //check table if there is a record
@@ -383,6 +371,9 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
                 <input class="form-check-input" type="radio" name="update_role" id="inlineRadio2" value="Employee" <?php if ($fielddata['role'] === 'Employee') echo 'checked'; ?> />
                 <label class="form-check-label" for="inlineRadio2">Employee</label>
               </div>
+              <div class="form-check form-check-inline">
+                <input type="hidden" id="" name="update_role" value="<?php if ($fielddata['role'] === 'Customer') echo 'Customer'; ?>" />
+              </div>
             </div>
           </div>
 
@@ -394,7 +385,14 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
             </div>
 
             <!-- Password input -->
-            <div class="col form-outline">
+            <div class="col">
+              <input type="password" name="update_password" id="" value="<?php echo $fielddata['password']; ?>" class="form-control" />
+              <label class="form-label" for="">Password</label>
+            </div>
+          </div>
+
+          <!-- Email input -->
+          <div class="form-outline">
             <input type="email" name="update_email" id="" class="form-control" value="<?php echo $fielddata['email']; ?>" />
             <label class="form-label" for="">Email</label>
           </div>
@@ -436,16 +434,13 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
       $name_update = $_POST['update_name'];
       $role_update = $_POST['update_role'];
       $username_update = $_POST['update_username'];
-      $password_update = md5($_POST['update_password']);
       $email_update = $_POST['update_email'];
 
-
-
       $updatesql = "UPDATE tbl_user SET user_id = $user_update, full_name = '$name_update', 
-              role = '$role_update', username = '$username_update',  
+              role = '$role_update', username = '$username_update', password = '$password_update', 
               email = '$email_update' WHERE user_id = $user_update";
 
-      $resultup = $con->query($updatesql);
+      $resultup = $con->query($updatesql);  
 
       //check if successfully updated
       if ($resultup == True) {
