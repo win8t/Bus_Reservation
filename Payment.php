@@ -1,86 +1,149 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-  <link href="bootstrap.min.css" rel="stylesheet" />
-  <link href="stylez.css" rel="stylesheet" />
-  <style>
-    body {
-      background-image: linear-gradient(to right, #000000b6, #00000006, #000000b6), url("Alps2.jpg");
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      background-size: cover;
-    }
+    <link href="bootstrap.min.css" rel="stylesheet" />
+    <link href="styled.css" rel="stylesheet" />
+    <style>
+        body {
+            background-image: linear-gradient(to right, #000000b6, #00000006, #000000b6), url("Alps2.jpg");
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-size: cover;
+        }
 
-    .table-container {
-      margin-top: 20%;
-      /* Adjust as needed */
-    }
+        .table-container {
+            margin-top: 20%;
+            /* Adjust as needed */
+        }
 
-    .table {
-      width: 100% !important;
-      border: 2px solid;
-      border-radius: 5%;
-      text-align: center;
-      vertical-align: middle;
-    }
+        .table {
+            width: 100% !important;
+            border: 2px solid;
+            border-radius: 5%;
+            text-align: center;
+            vertical-align: middle;
+        }
 
-    th {
-      background-image: linear-gradient(#1717178c, #29292947), url('./FinalsTable/Sidebar.jpg');
-    }
+        th {
+            background-image: linear-gradient(#1717178c, #29292947), url('./FinalsTable/Sidebar.jpg');
+        }
 
-    td {
-      background-color: #FFF !important;
-    }
-  </style>
+        td {
+            background-color: #FFF !important;
+        }
+    </style>
 </head>
 
 <body>
-  <script src="bootstrap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
 <?php
+
 echo "<div class ='container-fluid bg-row w-75 p-4 rounded '>";
+
+echo "<div class='row bg-info-subtle rounded-2 mx-auto'>";
+echo "<h4 class ='text-center display-4 mt-2'><strong>Payment Details</strong></h4>";
+echo "<p class ='text-center'>Please select your payment method below.</p>";
+echo "</div>";
+
 echo "<div class='row'>";
 
-echo  "<div class='col p-4  bg-light rounded-2 m-2'>";
-?>
 
+echo  "<div class='col p-4  bg-info-subtle rounded-2 m-2'>";
+?>
+<h4 class='text-center'>Payment Breakdown</h4>
+<hr>
 <?php
+if (isset($_POST['pay'])) {
+    $pay_ticket = $_POST['ticket_pay'];
+    $price_ticket = $_POST['receipt_price'];
+    $passenger = $_POST['passenger'];
+
+    $_SESSION['ticket_pay'] = $ticket;
+
+    echo "<div class ='table-responsive p-2 mb-0 rounded-2'>";
+    echo "<table class ='table border border-dark border-2 rounded-2 table-dark mt-3'>";
+
+    echo "<tr>";
+    echo "<th> Ticket ID </th>";
+    echo "<td class='text-dark'><b>" .  $pay_ticket . "</b></td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<th> Passenger Name</th>";
+    echo "<td class='text-dark'>" . $passenger . "</td>";
+    echo "</tr>";
+
+    echo "<tr>";
+    echo "<th> Price </th>";
+    echo "<td class='text-success h3'>" . $price_ticket . "</td>";
+    echo "</tr>";
+    echo "</table>";
+    echo   "</div>";
+}
 echo   "</div>";
 
 echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
 ?>
-<h4>Payment Breakdown</h4>
-<?php
-if (isset($_POST['pay'])) {
-$pay_ticket = $_POST['ticket_pay'];
 
-$pay_sql = "";
-}
-?>
+<h4 class='text-center'>Payment Method</h4>
 <hr>
+<form action="Payment.php" method="post">
+    <div class="bg-rowPay rounded-2 p-4">
+        <select name="method" id="" class="form-select w-50 mb-3 mx-auto mt-3">
+            <option default disabled selected value="">Select your payment</option>
+            <option value="Cash">Cash</option>
+            <option value="E-wallet">E-wallet (GCash) </option>
+        </select>
+        <div class="row text-center">
+            <div class="col">
+                <button type="submit" name="paying" class="btn w-25 rounded-4 btn-primary mt-1">Confirm</button>
+            </div>
+        </div>
+    </div>
 
-<h4>Payment Method</h4>
-<form action="Payment.php" method="post"></form>
-
-<button  type="submit" name="pay" class="btn w-25 rounded-4 btn-primary">Pay</button>
+</form>
 <?php
 echo  "</div>";
-
 echo "</div>";
-
 echo "</div'>";
 
+if (isset($_POST['paying'])) {
+    $paymethod = $_POST['method'];
+    switch ($paymethod) {
+        case "Cash":
+?>
+            <script>
+                var cashier = Math.floor(Math.random() * 5) + 1;
 
+                // Display the SweetAlert popup
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Please proceed to Cashier " + cashier + ".",
+                    showConfirmButton: false,
+                    timer: 4500
+                }).then(() => {
+                    window.location.href = 'BookingLog.php';
+                });
+            </script>
+<?php
+            break;
+        case "E-wallet":
+            header("Location:GCash.php");
+            break;
+    }
+}
 ?>
 
 
