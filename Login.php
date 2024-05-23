@@ -53,11 +53,11 @@
             $con->query($logsql);
 
             if ($role == "Admin") {
-                header("location: \FINAL_ALPS_BUS\FinalsTable\Overview1.php");
+                header("location: \Bus_Reservation\FinalsTable\Overview1.php");
             } else if ($role == "Customer") {
                 header("location: HomeLog.php");
             } else if ($role == "Employee") {
-                header("location: \FINAL_ALPS_BUS\FinalsTable\Reservation1.php");
+                header("location: \Bus_Reservation\FinalsTable\Reservation1.php");
             } ?>
             <script>
                 Swal.fire({

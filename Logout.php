@@ -30,7 +30,7 @@ if (isset($_POST['logout'])) {
         session_destroy();
 
         // Redirect to the login page or another page
-        header("Location: \FINAL_ALPS_BUS\Login.php");
+        header("Location: \Bus_Reservation\Login.php");
         exit();
     }
 }
