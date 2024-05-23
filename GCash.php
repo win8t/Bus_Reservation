@@ -1,4 +1,5 @@
 <html lang="en">
+    <?php session_start(); ?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,7 +36,7 @@
                     </div>
                 </div>
 
-                <form action="otp.php" method="post" novalidate class ="needs-validation">
+                <form action="GCash.php" method="post" novalidate class ="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <!-- OTP input -->
@@ -93,33 +94,43 @@
 
 </html>
 <?php
-require "dbconnect.php";
+require_once "dbconnect.php";
 
-if (isset($_POST['ver'])) {
-   //user input
+if (isset($_POST['ver'])) {  
+   
    $refnum = $_POST['refnum'];
+   $pay_ticket = $_SESSION['ticket_pay']; 
 
-   $refsql = "Select * from tbl_reservation where reference_num = '".$refnum."'";
-   $result = $con->query($refsql);
+  
+   $sql = "UPDATE tbl_reservation SET reference_num = ? WHERE ticket_number = ?";
+   $stmt = $con->prepare($sql);
+   $stmt->bind_param('ss', $refnum, $pay_ticket);
+   $stmt->execute();
 
-   if ($result->num_rows == 1 ) {
+   $refsql = "SELECT * FROM tbl_reservation WHERE reference_num = ?";
+   $stmt = $con->prepare($refsql);
+   $stmt->bind_param('s', $refnum);
+   $stmt->execute();
+   $result = $stmt->get_result();
 
-    $updatesql = "UPDATE tbl_reservation SET status = 'Reserved' WHERE ticket_number = '".$otpinput."'";
-    $con->query($updatesql);
-    
-    header("location: Login.php");
+   if ($result->num_rows == 1) {
+       $updatesql = "UPDATE tbl_reservation SET status = 'Reserved' WHERE ticket_number = ?";
+       $stmt = $con->prepare($updatesql);
+       $stmt->bind_param('s', $pay_ticket);
+       $stmt->execute();
 
+       header("Location: BookingLog.php");
+       exit(); 
    } else {
-
-    ?>
-    <script>
-        Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Something went wrong!",
-            });
-    </script>
-    <?php
+       ?>
+       <script>
+           Swal.fire({
+               icon: "error",
+               title: "Oops...",
+               text: "Something went wrong!",
+           });
+       </script>
+       <?php
    }
    
 }
