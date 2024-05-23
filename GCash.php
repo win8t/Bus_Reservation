@@ -98,13 +98,18 @@ require "dbconnect.php";
 if (isset($_POST['ver'])) {
    //user input
    $refnum = $_POST['refnum'];
+   $_SESSION['ticket_pay'] = $ticket;
 
-   $refsql = "Select * from tbl_reservation where reference_num = '".$refnum."'";
-   $result = $con->query($refsql);
+   $sql = "UPDATE tbl_reservation SET reference_num = '".$refnum."' WHERE ticket_number = '".$ticket."'";
+   $result=$con->query($sql);
 
    if ($result->num_rows == 1 ) {
+    $fielddata = $result->fetch_assoc();
 
-    $updatesql = "UPDATE tbl_reservation SET status = 'Reserved' WHERE ticket_number = '".$otpinput."'";
+    $ticket = $fielddata['ticket_pay'];
+    $_SESSION['ticket_pay'] = $ticket;
+
+    $updatesql = "UPDATE tbl_reservation SET status = 'Reserved' WHERE ticket_number = '".$ticket."'";
     $con->query($updatesql);
     
     header("location: Login.php");
