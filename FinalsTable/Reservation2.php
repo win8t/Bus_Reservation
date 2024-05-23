@@ -18,7 +18,7 @@ require "dbconnect.php";
 
 <body class="hd-text">
     <?php
-
+    date_default_timezone_set("Asia/Manila");
     set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
     require_once 'SeatFunction.php';
 
@@ -189,7 +189,7 @@ require "dbconnect.php";
                                     echo "<th> Destination </th>";
                                     echo "<th> Total Seats </th>";
                                     echo "<th> Available Seats </th>";
-                                    echo "<th> Price </th>";
+                                    echo "<th> Price (₱) </th>";
                                     echo "<th> Reserve </th>";
                                     echo "</tr>";
                                     echo "</thead>";
@@ -224,6 +224,7 @@ require "dbconnect.php";
                                 ?>
                                         <div class="row  form-outline">
                                             <form action="\FINALS PROJECT\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');">
+                                            <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
                                                 <!-- Full Name input -->
                                                 <div class="col">
                                                     <input type="hidden" name="book_id" value="<?php echo $maltfielddata['Schedule ID'] ?>" class="form-control" readonly />
@@ -235,6 +236,10 @@ require "dbconnect.php";
                                                 </div>
                                                 <div class="col">
                                                     <input type="hidden" name="book_type" value="<?php echo $maltfielddata['Bus Type']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                                <div class="col">
+                                                    <input type="hidden" name="r_date" value="<?php echo date("Y-m-d H:i:s") ?>" class="form-control" readonly />
 
                                                 </div>
                                         </div>
@@ -291,13 +296,15 @@ require "dbconnect.php";
                                                 <input type="text" id="" name="f_name" class="form-control" />
 
                                             </div>
-                                            <div class="col">
-                                                <label class="form-label text-secondary" for="">Last Name</label>
-                                                <input type="text" id="" name="l_name" class="form-control" />
-                                            </div>
+                                           
                                             <div class="col">
                                                 <label class="form-label text-secondary" for="">Middle Name</label>
                                                 <input type="text" id="" name="m_name" class="form-control" />
+                                            </div>
+
+                                            <div class="col">
+                                                <label class="form-label text-secondary" for="">Last Name</label>
+                                                <input type="text" id="" name="l_name" class="form-control" />
                                             </div>
 
                                             <label class="form-label" for="">Passenger Name</label>
@@ -450,6 +457,7 @@ require "dbconnect.php";
             echo "<table class='table  table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
             echo "<thead class ='table-dark'>";
             echo "<tr>";
+            echo "<th> Reservation Number </th>";
             echo "<th> Ticket Number </th>";
             echo "<th> Bus Number </th>";
             echo "<th> Departure Date </th>";
@@ -458,7 +466,7 @@ require "dbconnect.php";
             echo "<th> Contact Information </th>";
             echo "<th> Seat Number </th>";
             echo "<th> Reservation Date </th>";
-            echo "<th> Price </th>";
+            echo "<th> Price (₱)</th>";
             echo "<th> Payment Method </th>";
             echo "<th> Reference Number </th>";
             echo "<th> Status </th>";
@@ -469,14 +477,14 @@ require "dbconnect.php";
 
             while ($fielddata = $result->fetch_assoc()) {
                 echo "<tr>";
-                "<td>" . $fielddata['reservation_id'] . "</td>";
+                echo "<td>" . $fielddata['reservation_id'] . "</td>";
                 "<td>" . $fielddata['schedule_id'] . "</td>";
                 "<td>" . $fielddata['bus_id'] . "</td>";
                 "<td>" . $fielddata['route_id'] . "</td>";
                 echo "<td>" . $fielddata['ticket_number'] . "</td>";
                 echo "<td>" . $fielddata['bus_number'] . "</td>";
                 echo "<td>" . $fielddata['departure_date'] . "</td>";
-                echo "<td>" . $fielddata['departure_time'] . "</td>";
+                echo "<td>" .  date_format(date_create($fielddata['departure_time']), 'g:i A') . "</td>";
                 echo "<td>" . $fielddata['passenger_name'] . "</td>";
                 echo "<td>" . $fielddata['contact_information'] . "</td>";
                 echo "<td>" . $fielddata['seat_number'] . "</td>";

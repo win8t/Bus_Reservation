@@ -63,11 +63,11 @@
       </li>
       <li>
         <i class="bi bi-calendar3"></i>
-        <a href="Schedule1.php">Schedule</a>
+        <a href="Schedule2.php">Schedule</a>
       </li>
       <li>
         <i class="bi bi-calendar-date"></i>
-        <a href="Reservation1.php">Reservation</a>
+        <a href="Reservation2.php">Reservation</a>
       </li>
       <li class="disabled border border-light my-2">
         <hr class="">
@@ -168,6 +168,7 @@
             echo "<table class='table table-striped text-center  table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto''>";
             echo "<thead class ='table-dark'>";
             echo "<tr class ='tble-bg'>";
+            echo "<th> Log ID </th>";
             echo "<th> User </th>";
             echo "<th> Role </th>";
             echo "<th> Action </th>";
@@ -178,6 +179,7 @@
 
             while ($fielddata = $result->fetch_assoc()) {
               echo "<tr>";
+              echo "<td>" . $fielddata['log_id'] . "</td>";
               echo "<td>" . $fielddata['username'] . "</td>";
               echo "<td>" . $fielddata['role'] . "</td>";
               echo "<td>" . $fielddata['action'] . "</td>";

@@ -17,6 +17,7 @@ session_start();
 
 <body>
     <?php
+    date_default_timezone_set("Asia/Manila");
     require_once "FinalsTable\BusArrays.php";
     require_once "SeatFunction.php";
     ?>
@@ -291,7 +292,7 @@ session_start();
                                 echo "<th> Destination </th>";
                                 echo "<th> Total Seats </th>";
                                 echo "<th> Available Seats </th>";
-                                echo "<th> Price </th>";
+                                echo "<th> Price (₱) </th>";
                                 echo "<th> Reserve </th>";
                                 echo "</tr>";
                                 echo "</thead>";
@@ -339,6 +340,10 @@ session_start();
                                                 <input type="hidden" name="book_type" value="<?php echo $maltfielddata['Bus Type']; ?>" class="form-control" readonly />
 
                                             </div>
+                                            <div class="col">
+                                                    <input type="hidden" name="r_date" value="<?php echo date("Y-m-d h:i:s") ?>" class="form-control" readonly />
+
+                                                </div>
                                         </div>
 
                                         <!-- Role input -->
@@ -394,14 +399,17 @@ session_start();
                                                 <input type="text" id="" name="f_name" class="form-control" />
 
                                             </div>
-                                            <div class="col">
-                                                <label class="form-label text-secondary" for="">Last Name</label>
-                                                <input type="text" id="" name="l_name" class="form-control" />
-                                            </div>
+
                                             <div class="col">
                                                 <label class="form-label text-secondary" for="">Middle Name</label>
                                                 <input type="text" id="" name="m_name" class="form-control" />
                                             </div>
+                                            
+                                            <div class="col">
+                                                <label class="form-label text-secondary" for="">Last Name</label>
+                                                <input type="text" id="" name="l_name" class="form-control" />
+                                            </div>
+                                          
 
                                             <label class="form-label" for="">Passenger Name</label>
                                         </div>
