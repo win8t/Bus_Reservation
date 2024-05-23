@@ -59,21 +59,30 @@ echo   "</div>";
 
 echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
 ?>
+<h4>Payment Breakdown</h4>
+<?php
+if (isset($_POST['pay'])) {
+$pay_ticket = $_POST['ticket_pay'];
 
+$pay_sql = "";
+}
+?>
+<hr>
+
+<h4>Payment Method</h4>
+<form action="Payment.php" method="post"></form>
+
+<button  type="submit" name="pay" class="btn w-25 rounded-4 btn-primary">Pay</button>
 <?php
 echo  "</div>";
 
 echo "</div>";
+
 echo "</div'>";
 
 
 ?>
 
-<script>
-  document.getElementById('printButton').addEventListener('click', function() {
-    window.print();
-  });
-</script>
 
 </body>
 
