@@ -153,7 +153,10 @@ if (isset($_POST['booking'])) {
     echo "<button id='printButton' class='btn w-50'>Print</button>";
     echo "</div>";
     echo "<div class ='col'>";
-    echo "<a id='backButton' class='btn w-50' href='Payment.php'>Payment</a>";
+    echo "<form action='Payment.php' method ='post'>";
+    echo "<input type='hidden' class='form-control' name='ticket_pay' value=".$ticket_id." >";
+    echo "<button id='backButton' name='pay' class='btn w-50'>Payment</button>";
+    echo "</form>";
     echo "</div>";
 
     echo "</div>";
