@@ -34,16 +34,16 @@
 
       <li>
         <i class="bi bi-table"></i>
-        <a href="Overview1.php">Overview</a>
+        <a href="Overview2.php">Overview</a>
       </li>
 
       <li>
         <i class="bi bi-person-circle"></i>
-        <a href="User1.php">User</a>
+        <a href="User2.php">User</a>
       </li>
       <li class="active">
         <i class="bi bi-card-list"></i>
-        <a  class="active" href="Logs1.php">Logs</a>
+        <a  class="active" href="Logs2.php">Logs</a>
       </li>
 
       <li class="disabled border border-light my-2">
@@ -55,11 +55,11 @@
 
       <li>
         <i class="bi bi-bus-front"></i>
-        <a href="Bus1.php">Bus</a>
+        <a href="Bus2.php">Bus</a>
       </li>
       <li>
         <i class="bi bi-sign-turn-right-fill"></i>
-        <a href="Route1.php">Route</a>
+        <a href="Route2.php">Route</a>
       </li>
       <li>
         <i class="bi bi-calendar3"></i>

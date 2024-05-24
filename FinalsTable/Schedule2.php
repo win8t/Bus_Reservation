@@ -57,16 +57,16 @@ include "logger.php";
 
             <li>
                 <i class="bi bi-table"></i>
-                <a href="Overview1.php">Overview</a>
+                <a href="Overview2.php">Overview</a>
             </li>
 
             <li>
                 <i class="bi bi-person-circle"></i>
-                <a href="User1.php">User</a>
+                <a href="User2.php">User</a>
             </li>
             <li>
                 <i class="bi bi-card-list"></i>
-                <a href="Logs1.php">Logs</a>
+                <a href="Logs2.php">Logs</a>
             </li>
 
             <li class="disabled border border-light my-2">
@@ -78,11 +78,11 @@ include "logger.php";
 
             <li>
                 <i class="bi bi-bus-front"></i>
-                <a href="Bus1.php">Bus</a>
+                <a href="Bus2.php">Bus</a>
             </li>
             <li>
                 <i class="bi bi-sign-turn-right-fill"></i>
-                <a href="Route1.php">Route</a>
+                <a href="Route2.php">Route</a>
             </li>
             <li class="active">
                 <i class="bi bi-calendar3"></i>
@@ -357,29 +357,26 @@ include "logger.php";
 
                                 $con->commit();
                                 if ($sched_res) { // Changed to check $sched_res
-                                    echo "<script>
-                        Swal.fire({
-                            title: 'Do you want to add this user?',
-                            showDenyButton: true,
-                            showCancelButton: true,
-                            confirmButtonText: 'Add',
-                            denyButtonText: 'Don\'t Add'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                Swal.fire('Saved!', '', 'success');
-                            } else if (result.isDenied) {
-                                Swal.fire('Changes are not saved', '', 'info');
-                            }
-                        });
-                    </script>";
-                    $action = 'Added Schedule';
-                    logActivity($con, $userID, $action);
+                    ?>
+                                    <script>
+                                        Swal.fire({
+                                            position: "center",
+                                            icon: "success",
+                                            title: "Schedule has been inserted.",
+                                            showConfirmButton: false,
+                                            timer: 1500
+                                        });
+                                    </script>
+
+                                <?php
+                                    $action = 'Added Schedule';
+                                    logActivity($con, $userID, $action);
                                 } else {
                                     //if not inserted, check query error details
                                     echo $con->error;
                                 }
                             } else {
-                    ?> <div class="alert alert-warning" role="alert">
+                                ?> <div class="alert alert-warning" role="alert">
                                     <?php throw new Exception("Departure location and Destination must have the same ID."); ?>
                                 </div> <?php
                                     }
@@ -623,8 +620,8 @@ include "logger.php";
                     });
                 </script>
         <?php
-        $action = 'Update Schedule';
-   logActivity($con, $userID, $action);
+                $action = 'Update Schedule';
+                logActivity($con, $userID, $action);
             } else {
                 //if not, check query error details
                 echo $con->error;

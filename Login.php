@@ -10,7 +10,7 @@
     <title>Alps Login</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="stylezstt.css" rel="stylesheet" />
+    <link href="stylez.css" rel="stylesheet" />
 </head>
 
 <body class="login-content-container7">
@@ -46,11 +46,11 @@
             $con->query($logsql);
 
             if ($role == "Admin") {
-                header("location: .\FinalsTable\Overview1.php");
+                header("location: .\FinalsTable\Overview2.php");
             } else if ($role == "Customer") {
                 header("location: HomeLog.php");
             } else if ($role == "Employee") {
-                header("location: .\FinalsTable\Reservation1.php");
+                header("location: .\FinalsTable\Bus1.php");
             } ?>
             <script>
                 Swal.fire({

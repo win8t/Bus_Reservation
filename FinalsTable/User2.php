@@ -1,6 +1,6 @@
 <?php
 require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
 require_once 'email_registration.php';
 include "logger.php";
 ?>
@@ -18,7 +18,7 @@ include "logger.php";
 </head>
 
 <body class="hd-text">
-  
+
 
 
   <aside class="sidebar d-flex flex-container">
@@ -35,16 +35,16 @@ include "logger.php";
 
       <li>
         <i class="bi bi-table"></i>
-        <a href="Overview1.php">Overview</a>
+        <a href="Overview2.php">Overview</a>
       </li>
 
       <li class="active">
         <i class="bi bi-person-circle"></i>
-        <a class="active" href="User1.php">User</a>
+        <a class="active" href="User2.php">User</a>
       </li>
       <li>
         <i class="bi bi-card-list"></i>
-        <a href="Logs1.php">Logs</a>
+        <a href="Logs2.php">Logs</a>
       </li>
 
       <li class="disabled border border-light my-2">
@@ -56,11 +56,11 @@ include "logger.php";
 
       <li>
         <i class="bi bi-bus-front"></i>
-        <a href="Bus1.php">Bus</a>
+        <a href="Bus2.php">Bus</a>
       </li>
       <li>
         <i class="bi bi-sign-turn-right-fill"></i>
-        <a href="Route1.php">Route</a>
+        <a href="Route2.php">Route</a>
       </li>
       <li>
         <i class="bi bi-calendar3"></i>
@@ -92,7 +92,7 @@ include "logger.php";
 
         <div class="row bg-row mx-auto p-1 m-1 rounded">
 
-          <form action="User1.php" method="post">
+          <form action="User2.php" method="post">
 
             <div class="input-group w-50 pt-4">
               <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
@@ -147,107 +147,107 @@ include "logger.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
 
-              
-                <div class="modal-body">
-                <form action="User1.php" method="post" novalidate class="needs-validation">
+
+              <div class="modal-body">
+                <form action="User2.php" method="post" novalidate class="needs-validation">
                   <div class="row form-outline">
-                  <label class="form-label" for="">Full Name</label>
-                  
+                    <label class="form-label" for="">Full Name</label>
+
                     <!-- Full Name input -->
                     <div class="col">
-                    <label class="form-label text-secondary" for="">First Name</label>
-                      <input type="text" name="f_name" id="" class="form-control" required/>
+                      <label class="form-label text-secondary" for="">First Name</label>
+                      <input type="text" name="f_name" id="" class="form-control" required />
                       <div class="invalid-feedback text-start">Enter your first name.</div>
                       <div class="valid-feedback text-start">Entered first name.</div>
-                      
+
                     </div>
                     <div class="col">
-                    <label class="form-label text-secondary" for="">Middle Name</label>
-                      <input type="text" name="m_name" id="" class="form-control"/>
-              
-                      
+                      <label class="form-label text-secondary" for="">Middle Name</label>
+                      <input type="text" name="m_name" id="" class="form-control" />
+
+
                     </div>
                     <div class="col">
 
-                    <label class="form-label text-secondary" for="">Last Name</label>
-                      <input type="text" name="l_name" id="" class="form-control" required/>
+                      <label class="form-label text-secondary" for="">Last Name</label>
+                      <input type="text" name="l_name" id="" class="form-control" required />
                       <div class="invalid-feedback text-start">Enter your last name.</div>
                       <div class="valid-feedback text-start">Entered last name.</div>
-                      
+
                     </div>
-       
+
                   </div>
 
                   <!-- Role input -->
                   <div class="form-outline my-2">
-                    
+
                     <label class="form-label">Role</span>
-              
-                      
-                    <div class="btn-group mx-5" id="btn-group-3">
-                      <div class="form-check form-check-inline ">
-                        <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Admin" required/>
-                        <label class="form-check-label" for="inlineRadio1">Admin</label>
-               
+
+
+                      <div class="btn-group mx-5" id="btn-group-3">
+                        <div class="form-check form-check-inline ">
+                          <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Admin" required />
+                          <label class="form-check-label" for="inlineRadio1">Admin</label>
+
+                        </div>
+
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Employee" required />
+                          <label class="form-check-label" for="inlineRadio2">Employee</label>
+
+
+                        </div>
+
                       </div>
 
-                      <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Employee" required/>
-                        <label class="form-check-label" for="inlineRadio2">Employee</label>
-                 
-                        
-                      </div>
-                      
-                    </div>
-                    
                   </div>
 
                   <!-- Username input -->
                   <div class="row form-outline">
                     <div class="col">
-                    <label class="form-label" for="">Username</label>
+                      <label class="form-label" for="">Username</label>
                       <input type="text" id="" name="username" class="form-control" required />
-              
+
                       <div class="invalid-feedback text-start">Enter your username.</div>
                       <div class="valid-feedback text-start">Entered username.</div>
                     </div>
 
                     <!-- Password input -->
                     <div class="col">
-                    <label class="form-label" for="">Password</label>
+                      <label class="form-label" for="">Password</label>
                       <input type="password" name="pass" id="" class="form-control" required />
-                      
+
                       <div class="invalid-feedback text-start">Enter your password.</div>
                       <div class="valid-feedback text-start">Entered password</div>
                     </div>
                     <div class="col">
-                    <label class="form-label" for="">Confirm Password</label>
+                      <label class="form-label" for="">Confirm Password</label>
                       <input type="password" name="confirmpass" id="" class="form-control" required />
-               
+
                       <div class="invalid-feedback text-start">Reenter your password.</div>
-                  
+
                     </div>
                   </div>
 
                   <!-- Email input -->
                   <div class="row form-outline mt-2">
                     <div class="col">
-                    <label class="form-label" for="">Email</label>
-                    <input type="email" name="email" id="" class="form-control" required/>
-      
-                    <div class="invalid-feedback text-start m-0 ">Enter your email.</div>
+                      <label class="form-label" for="">Email</label>
+                      <input type="email" name="email" id="" class="form-control" required />
+
+                      <div class="invalid-feedback text-start m-0 ">Enter your email.</div>
                       <div class="valid-feedback text-start">Entered email.</div>
                     </div>
-                   
+
                   </div>
 
                   <!-- Save button -->
-              
-                <div class="modal-footer d-flex justify-content-center">
-                  <button type="submit" name="add" class="btn btn-primary">Add</button>
-                  <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
-                </div>
-              </form>
+
+                  <div class="modal-footer d-flex justify-content-center">
+                    <button type="submit" name="add" class="btn btn-primary">Add</button>
+                    <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -256,7 +256,7 @@ include "logger.php";
     </div>
 
     <?php
-    
+
     //Search Button
     if (isset($_POST['searchbutton'])) {
 
@@ -289,51 +289,50 @@ include "logger.php";
       $password = md5($_POST['pass']);
       $confirmpass = md5($_POST['confirmpass']);
       $email = $_POST['email'];
-       $otp = rand(000000, 999999);
+      $otp = rand(000000, 999999);
 
       $usersql = "select * from tbl_user where username = '$username'";
       $user_result = $con->query($usersql);
 
       if ($user_result->num_rows == 0) {
-          if ($password == $confirmpass) {
+        if ($password == $confirmpass) {
           $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp,status)
           values('$full', '$role', '$username','$password', '$email',$otp, 'Inactive')";
 
           $result = $con->query($insertsql);
 
-            if ($result == True) {?>
-  
-            <?php
+          if ($result == True) { ?>
+
+          <?php
             $action = 'Added User';
             logActivity($con, $userID, $action);
-            
-            send_verification($full,$email,$otp);
-            } else {
-                echo $con->error;
-            }
-          } else {
-                    ?>
-                    <script>
-                        Swal.fire({
-                            icon: "error",
-                            title: "Oops...",
-                            text: "Password mismatch!",
-                            timer: 3000
-                        });
-                    </script>
-                    <?php
-                }
 
-        } else { ?>
-            <script>
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops...",
-                    text: "Username already exists. Please choose a different username.",
-                    timer: 1500
-                });
-            </script>
-    <?php  }
+            send_verification($full, $email, $otp);
+          } else {
+            echo $con->error;
+          }
+        } else {
+          ?>
+          <script>
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Password mismatch!",
+              timer: 3000
+            });
+          </script>
+        <?php
+        }
+      } else { ?>
+        <script>
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Username already exists. Please choose a different username.",
+            timer: 1500
+          });
+        </script>
+      <?php  }
     }
 
     $result = $con->query($selectsql);
@@ -369,7 +368,7 @@ include "logger.php";
         echo "<td>" . $fielddata['status'] . "</td>";
         echo "<td class ='pt-3 pb-0'>";
       ?>
-        <form method="post" action="User1.php">
+        <form method="post" action="User2.php">
           <input type="hidden" name="user_del" value="<?php echo $fielddata['user_id']; ?>" class="form-control" />
           <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['user_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['user_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['user_id']; ?>">Edit</button>
         </form>
@@ -384,7 +383,7 @@ include "logger.php";
         ?>
         <!-- form-->
 
-        <form action="User1.php" method="post">
+        <form action="User2.php" method="post">
           <h5 class="hd-text text-center pb-2 fs-5" id="title">User Editing Form</h5>
           <div class="row form-outline">
             <!-- Full Name input -->
@@ -433,7 +432,7 @@ include "logger.php";
               <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
             </div>
           </div>
-          </div>
+  </div>
   </div>
   </form>
 <?php
@@ -458,11 +457,11 @@ include "logger.php";
       $user_update = $_POST['update_id'];
       $name_update = $_POST['update_name'];
       $role_update = $_POST['update_role'];
-      
-      if($role_update != "Admin" && $role_update != "Employee"){
+
+      if ($role_update != "Admin" && $role_update != "Employee") {
         $role_update = "Customer";
-    }
-    
+      }
+
 
       $username_update = $_POST['update_username'];
       $email_update = $_POST['update_email'];
@@ -470,35 +469,28 @@ include "logger.php";
       $updatesql = "update tbl_user SET user_id = $user_update, full_name = '$name_update', role = '$role_update', username = '$username_update', 
               email = '$email_update' WHERE user_id = $user_update";
 
-      $resultup = $con->query($updatesql);  
+      $resultup = $con->query($updatesql);
 
       //check if successfully updated
       if ($resultup == True) {
 ?>
   <script>
     Swal.fire({
-      title: "Do you want to update?",
-      showDenyButton: true,
-      showCancelButton: true,
-      confirmButtonText: "Update",
-      denyButtonText: `Don't Update`
-    }).then((result) => {
-      /* Read more about isConfirmed, isDenied below */
-      if (result.isConfirmed) {
-        Swal.fire("Updated!", "", "success");
-      } else if (result.isDenied) {
-        Swal.fire("Changes are not updated", "", "info");
-      }
+      position: "center",
+      icon: "success",
+      title: "Update has been successful. Please refresh the page.",
+      showConfirmButton: false,
+      timer: 1500
     });
   </script>
 <?php
-    $action = 'Update User';
-   logActivity($con, $userID, $action);
+        $action = 'Update User';
+        logActivity($con, $userID, $action);
       } else {
         //if not, check query error details
         echo $con->error;
       }
-  }
+    }
 
 
 
@@ -507,10 +499,10 @@ include "logger.php";
 
 </div>
 
-<script src ="../passvalidation.js"> </script>
+<script src="../passvalidation.js"> </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>
