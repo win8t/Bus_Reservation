@@ -1,6 +1,5 @@
 <?php
 session_start();
-require "dbconnect.php";
 ?>
 <html lang="en">
 
@@ -63,11 +62,11 @@ require "dbconnect.php";
       </li>
       <li>
         <i class="bi bi-calendar3"></i>
-        <a href="Schedule1.php">Schedule</a>
+        <a href="Schedule2.php">Schedule</a>
       </li>
       <li>
         <i class="bi bi-calendar-date"></i>
-        <a href="Reservation1.php">Reservation</a>
+        <a href="Reservation2.php">Reservation</a>
       </li>
       <li class="disabled border border-light my-2">
         <hr class="">
@@ -135,7 +134,7 @@ require "dbconnect.php";
                   Total Users Record:
                   <?php
 
-                  $user_count_query = "select * from tbl_user";
+                  $user_count_query = "select * from tbl_user where status = 'Active'";
                   $user_query = mysqli_query($con, $user_count_query);
                   if ($user_total = mysqli_num_rows($user_query)) {
                     echo '<h3 class = "text-center mt-2 mx-3 hd-text">' . $user_total . '</h3>';
@@ -163,7 +162,7 @@ require "dbconnect.php";
                   Total Logs Record:
                   <?php
 
-                  $log_count_query = "select * from tbl_logs";
+                  $log_count_query = "select * from logs_view";
                   $log_query = mysqli_query($con, $log_count_query);
                   if ($log_total = mysqli_num_rows($log_query)) {
                     echo '<h4 class = "text-center mt-2 mx-3 hd-text">' . $log_total . '</h4>';
@@ -241,7 +240,7 @@ require "dbconnect.php";
                   Total Schedule Record:
                   <?php
 
-                  $sched_count_query = "select * from tbl_schedule";
+                  $sched_count_query = "select * from sched_reserve_view";
                   $sched_query = mysqli_query($con, $sched_count_query);
                   if ($sched_total = mysqli_num_rows($sched_query)) {
                     echo '<h4 class = "text-center mt-2 mx-3 hd-text">' . $bus_total . '</h4>';
@@ -266,10 +265,10 @@ require "dbconnect.php";
                   Total Reservation Details:
                   <?php
 
-                  $reserve_count_query = "select * from tbl_reservation";
+                  $reserve_count_query = "select * from reservation_booking_view";
                   $reserve_query = mysqli_query($con, $reserve_count_query);
                   if ($reserve_total = mysqli_num_rows($reserve_query)) {
-                    echo '<h4 class = "text-center mt-2 mx-3 hd-text">' . $bus_total . '</h4>';
+                    echo '<h4 class = "text-center mt-2 mx-3 hd-text">' . $reserve_total . '</h4>';
                   } else {
                     echo '<h4 class = "text-center mt-2 mx-3 hd-text">0 </h4>';
                   }

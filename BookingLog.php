@@ -548,7 +548,7 @@ session_start();
             <div class="d-flex flex-row row-12">
                 <div class="col-12 book-content-container8  bus-align pt-5">
                     <h2 class="text-center">Bus Routes</h2>
-                    <p class="about-para text-center ">Different bus types to accomodate your every need.</p>
+                    <p class="about-para text-center ">Various bus routes for your travel experience.</p>
                 </div>
 
             </div>
@@ -759,7 +759,7 @@ session_start();
                 </div>
                 <div class="col-2 content-container7 bg-info-subtle p-3 bus-align">
                     <h2 class="text-start">Bus Terminal </h2>
-                    <p class="about-para text-start">Different bus types to accomodate your every need.</p>
+                    <p class="about-para text-start">Various terminals for accessibility and efficiency of travel.</p>
                 </div>
 
             </div>

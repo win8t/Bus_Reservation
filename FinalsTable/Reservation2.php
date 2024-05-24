@@ -133,10 +133,9 @@ require "dbconnect.php";
                                         var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
                                         document.getElementById('datetime').textContent = dateTimeString;
                                     }
-                                    // Update the date and time every second
+
                                     setInterval(updateDateTime, 1000);
 
-                                    // Initial update
                                     updateDateTime();
                                 </script>
                             </div>
@@ -321,7 +320,7 @@ require "dbconnect.php";
                                                 <!-- Password input -->
                                                 <div class="col">
                                                     <label class="form-label" for="">Contact Number</label>
-                                                    <input type="number" name="c_number" id="" class="form-control" required />
+                                                    <input type="number" name="c_number" id="" class="form-control" min="0" required />
 
                                                     <div class="invalid-feedback text-start">Enter your contact.</div>
                                                     <div class="valid-feedback text-start">Contact information entered.</div>
@@ -385,7 +384,7 @@ require "dbconnect.php";
         //Search Button
         if (isset($_POST['searchbutton'])) {
 
-            //to check the search box if empty or not 
+
             if ($_POST['search'] != NULL) {
                 $search = $_POST['search'];
                 $selectsql = "Select * from reservation_booking_view where 
@@ -414,56 +413,9 @@ require "dbconnect.php";
             $selectsql = "Select * from reservation_booking_view ORDER BY reservation_id DESC";
         }
 
-
-        //Add Button
-        /*  if (isset($_POST['add'])) {
-
-            $scheduleID = $_POST['schedule_id'];
-            $passengerName = $_POST['passenger_name'];
-            $contact = $_POST['contact_information'];
-            $seatNum = $_POST['seat_number'];
-            $reservationDate = $_POST['reservation_date'];
-            $status = $_POST['status'];
-
-
-            $insertsql = "Insert into tbl_reservation (schedule_id,passenger_name,contact_information,seat_number,reservation_date,status)
-        values ($scheduleID,'$passengerName',$contact,$seatNum,'$reservationDate','$status')
-        ";
-
-            $result = $con->query($insertsql);
-
-
-            //check if successfully added
-            if ($result == True) {
-        ?> 
-                <script>
-                    Swal.fire({
-                        title: "Do you want to add this user?",
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: "Add",
-                        denyButtonText: `Don't Add`
-                    }).then((result) => {
-                         Read more about isConfirmed, isDenied below
-                        if (result.isConfirmed) {
-                            Swal.fire("Saved!", "", "success");
-                        } else if (result.isDenied) {
-                            Swal.fire("Changes are not saved", "", "info");
-                        }
-                    });
-                </script>
-            <?php
-            } else {
-                //if not inserted, check query error details
-                echo $con->error;
-            }
-        }
-*/
-
         $result = $con->query($selectsql);
 
-        //check table if there is a record
-        //num_rows - will return the no of rows inside a table
+
         if ($result->num_rows > 0) {
             echo "<div class=' bg-row mt-2 p-5 rounded'>";
             echo "<div class='bdr table-responsive'>";
@@ -553,7 +505,6 @@ require "dbconnect.php";
 
                     <!-- Contact Number -->
                     <input type="hidden" name="update_contactInformation" value="<?php echo $fielddata['contact_information']; ?>" class="form-control" readonly />
-                    <!--   <label class="form-label" for="">Contact Number</label> -->
 
                     <div class="row form-outline">
                         <div class="col">
