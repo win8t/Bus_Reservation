@@ -173,7 +173,7 @@
             echo "<th> Role </th>";
             echo "<th> Action </th>";
             echo "<th> DateTime </th>";
-            echo "</thead>";;
+            echo "</thead>";
    
             echo "</tr>";
 

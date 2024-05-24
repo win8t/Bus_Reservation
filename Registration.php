@@ -14,9 +14,7 @@
 </head>
 
 <body class="login-content-container7">
-    <script src="scripts.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
 
 
     <div class="container-fluid d-flex flex-container">
@@ -68,7 +66,7 @@
                                 <div class="valid-feedback text-start">Entered full name.</div> -->
 
                                 <input type="text" class="form-control" name="m_name" id="floatingInput">
-                                <label for="floatingInput" class="link-text">Middle Name<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Middle Name</label>
                                
                                 
                             </div>
@@ -134,7 +132,7 @@
                                 <input type="password" class="form-control" name="confirmpass" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Confirm Password<span class ="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please re-enter your password.</div>
-                                <div class="valid-feedback text-start">Re-entered password</div>
+                                <div class="valid-feedback text-start">Re-entered pasword</div>
                             </div>
                         </div>
 
@@ -162,31 +160,6 @@
     </div>
     </div>
 
-<script>
-(() => {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      
-
-      form.classList.add('was-validated')
-    }, false)
-  })
-})() 
-</script>
-    
-</body>
-
-</html>
 
 <?php
 include "email_registration.php";
@@ -247,3 +220,11 @@ if (isset($_POST['sub'])) {
 <?php  }
 }
 ?>
+ <script src="scripts.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="passvalidation.js"></script>
+    
+    </body>
+    
+    </html>
