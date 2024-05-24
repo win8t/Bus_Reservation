@@ -186,7 +186,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                   <div class="row form-outline">
                     <div class="col">
                       <label class="form-label" for="">Bus Number</label>
-                      <input type="text" name="bus_number" id="" class="form-control" required />
+                      <input type="text" name="bus_number" id="" class="form-control" min="0" required />
                       <div class="invalid-feedback text-start">Enter its bus number.</div>
                       <div class="valid-feedback text-start">Bus number entered.</div>
 
@@ -217,7 +217,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                   <div class="row form-outline mt-2">
                     <div class="col">
                       <label class="form-label" for="">Seating Capacity</label>
-                      <input type="number" name="seating_capacity" id="" class="form-control" required />
+                      <input type="number" name="seating_capacity" id="" class="form-control" min="0" required />
                       <div class="invalid-feedback text-start">Enter its seating capacity name.</div>
                       <div class="valid-feedback text-start">Seating capacity entered.</div>
 
@@ -507,7 +507,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
           <!-- Seating Capacity input -->
           <div class="row form-outline">
             <div class="col">
-              <input type="number" name="update_capacity" value="<?php echo $fielddata['seating_capacity']; ?>" class="form-control" />
+              <input type="number" name="update_capacity" value="<?php echo $fielddata['seating_capacity']; ?>" class="form-control" min="0"/>
               <label class="form-label" for="">Seating Capacity</label>
             </div>
 

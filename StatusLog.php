@@ -174,7 +174,7 @@ echo "<h2 class = 'about-login mx-auto text-center'> ALPS RESERVATION DETAILS VI
                     <div class="row text-center">
                         <div class="col">
                             <button type="button" value="PrintBooking" id="printsButton" class="shadows btn btn-success mx-2 w-25 rounded-4"> Print </button>
-                            <button type="submit" value="CancelBooking" name="cancel" class="shadows btn btn-danger w-25 rounded-4"> Cancel Booking </button>
+                            <button type="submit" value="CancelBooking" name="cancel" class="shadows btn btn-danger w-25 rounded-4"  onsubmit="return confirm('Are you sure you want to cancel?');"> Cancel Booking </button>
                         </div>
                     </div>
                 </form>

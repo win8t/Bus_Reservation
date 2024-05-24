@@ -240,7 +240,7 @@
                     <label class="form-label" for="distance">Distance (in km)</label>
                       <div class="input-group">
                         
-                        <input type="number" name="distance" class="form-control" aria-label="Distance (in km)" placeholder="Distance" required>
+                        <input type="number" name="distance" class="form-control" aria-label="Distance (in km)" placeholder="Distance" min="0" required>
                         <span class="input-group-text hd-text">km</span>
                         <div class="invalid-feedback text-start">Set distance.</div>
                        <div class="valid-feedback text-start">Distance has been set.</div>
@@ -298,7 +298,7 @@
                     <label class="form-label" for="price">Price</label>
                       <div class="input-group">
                         <span class="input-group-text hd-text">₱</span>
-                        <input type="number" name="price" class="form-control" aria-label="Price" placeholder="Price" required>
+                        <input type="number" name="price" class="form-control" aria-label="Price" placeholder="Price" min="0" required>
                         <div class="invalid-feedback text-start">Set price.</div>
                        <div class="valid-feedback text-start">Price has been set.</div>
                       </div>
@@ -489,7 +489,7 @@
           <div class="row form-outline">
             <div class="col">
               <div class="input-group">
-                <input type="number" name="update_distance" value="<?php echo $fielddata['distance']; ?>" class="form-control" />
+                <input type="number" name="update_distance" value="<?php echo $fielddata['distance']; ?>" min="0" class="form-control" />
                 <span class="input-group-text hd-text">km</span>
 
               </div>
@@ -499,7 +499,7 @@
             <div class="col">
               <div class="input-group">
                 <span class="input-group-text hd-text">₱</span>
-                <input type="number" name="update_price" value="<?php echo $fielddata['price']; ?>" class="form-control" />
+                <input type="number" name="update_price" value="<?php echo $fielddata['price']; ?>" min="0" class="form-control" />
               </div>
               <label class="form-label" for="">Price</label>
 
