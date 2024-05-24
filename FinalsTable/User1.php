@@ -1,6 +1,6 @@
 <?php
 require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
   require_once 'email_registration.php';
 ?>
 <html lang="en">
@@ -433,10 +433,6 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
             <input type="email" name="update_email" id="" class="form-control" value="<?php echo $fielddata['email']; ?>" />
             <label class="form-label" for="">Email</label>
           </div>
-          </div>
-
-          <!-- Email input -->
-         
 
           <div class="row form-outline text-center pt-1">
             <div class="col">
