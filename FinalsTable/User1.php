@@ -1,6 +1,6 @@
 <?php
 require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
   require_once 'email_registration.php';
 ?>
 <html lang="en">
@@ -271,10 +271,10 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
                 OR email LIKE'%" . $search . "%'
                 OR Status LIKE'%" . $search . "%'  ORDER BY user_id DESC";
       } else {
-        $selectsql = "Select * from tbl_user  ORDER BY user_id DESC";
+        $selectsql = "Select * from tbl_user where status = 'active' ORDER BY user_id DESC";
       }
     } else {
-      $selectsql = "Select * from tbl_user  ORDER BY user_id DESC";
+      $selectsql = "Select * from tbl_user where status = 'active' ORDER BY user_id DESC";
     }
 
 

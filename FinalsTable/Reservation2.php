@@ -19,7 +19,7 @@ require "dbconnect.php";
 <body class="hd-text">
     <?php
     date_default_timezone_set("Asia/Manila");
-    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
     require_once 'SeatFunction.php';
 
     require_once "BusArrays.php";

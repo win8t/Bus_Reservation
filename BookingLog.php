@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Alps Booking Reservation</title>
-    <link href=stylez.css rel="stylesheet" />
+    <link href=stylezst.css rel="stylesheet" />
 
 
 </head>
