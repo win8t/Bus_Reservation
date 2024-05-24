@@ -9,8 +9,8 @@ if (isset($_POST['logout'])) {
         $role = $_SESSION['role'];
 
         // Prepare the SQL statement
-        $logoutsql = "INSERT INTO tbl_logs(user_id, full_name, role, action, DateTime) 
-        VALUES ($userID, '$full', '$role', 'Logged Out', NOW())";
+        $logoutsql = "INSERT INTO tbl_logs(user_id,action, DateTime) 
+        VALUES ($userID,'Logged Out', NOW())";
         $stmt = $con->prepare($logoutsql);
 
         // Execute the statement
@@ -30,7 +30,7 @@ if (isset($_POST['logout'])) {
         session_destroy();
 
         // Redirect to the login page or another page
-        header("Location: \Bus_Reservation\Login.php");
+        header("Location: Login.php");
         exit();
     }
 }

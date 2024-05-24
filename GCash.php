@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -35,7 +36,7 @@
                     </div>
                 </div>
 
-                <form action="otp.php" method="post" novalidate class ="needs-validation">
+                <form action="GCash.php" method="post" novalidate class ="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <!-- OTP input -->
@@ -98,18 +99,18 @@ require "dbconnect.php";
 if (isset($_POST['ver'])) {
    //user input
    $refnum = $_POST['refnum'];
-   $_SESSION['ticket_pay'] = $ticket;
+   $_SESSION['ticket_pay'] = $pay_ticket;
 
-   $sql = "UPDATE tbl_reservation SET reference_num = '".$refnum."' WHERE ticket_number = '".$ticket."'";
-   $result=$con->query($sql);
+   $sql = "UPDATE tbl_reservation SET reference_num = '$refnum' WHERE ticket_number = '$pay_ticket'";
+   $result = $con->query($sql);
 
    if ($result->num_rows == 1 ) {
     $fielddata = $result->fetch_assoc();
 
-    $ticket = $fielddata['ticket_pay'];
-    $_SESSION['ticket_pay'] = $ticket;
+    $pay_ticket = $fielddata['ticket_pay'];
+    $_SESSION['ticket_pay'] = $pay_ticket;
 
-    $updatesql = "UPDATE tbl_reservation SET status = 'Reserved' WHERE ticket_number = '".$ticket."'";
+    $updatesql = "UPDATE tbl_reservation SET status = 'Reserved' WHERE ticket_number = '$pay_ticket'";
     $con->query($updatesql);
     
     header("location: Login.php");

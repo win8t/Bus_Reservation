@@ -1,5 +1,5 @@
+<?php session_start(); require "dbconnect.php"; ?>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,7 +69,7 @@ if (isset($_POST['pay'])) {
     $price_ticket = $_POST['receipt_price'];
     $passenger = $_POST['passenger'];
 
-    $_SESSION['ticket_pay'] = $ticket;
+    $_SESSION['ticket_pay'] = $pay_ticket;
 
     echo "<div class ='table-responsive p-2 mb-0 rounded-2'>";
     echo "<table class ='table border border-dark border-2 rounded-2 table-dark mt-3'>";

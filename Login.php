@@ -32,32 +32,25 @@
         if ($loginresult->num_rows == 1) {
             $fielddata = $loginresult->fetch_assoc();
 
-            $full = $fielddata['full_name'];
-            $_SESSION['full_name'] = $full;
-
             $role = $fielddata['role'];
             $_SESSION['role'] = $role;
 
             $user = $fielddata['username'];
             $_SESSION['username'] = $user;
 
-            $pass = $fielddata['pass'];
-            $_SESSION['pass'] = $pass;
-
             $userID = $fielddata['user_id'];
             $_SESSION['user_id'] = $userID;
 
-
-            $logsql = "Insert into tbl_logs (user_id,full_name,role,action,DateTime)
-            values($userID,'$full','$role','Logged In',NOW())";
+            $logsql = "Insert into tbl_logs (user_id,action,DateTime)
+            values($userID,'Logged In',NOW())";
             $con->query($logsql);
 
             if ($role == "Admin") {
-                header("location: \Bus_Reservation\FinalsTable\Overview1.php");
+                header("location: .\FinalsTable\Overview1.php");
             } else if ($role == "Customer") {
                 header("location: HomeLog.php");
             } else if ($role == "Employee") {
-                header("location: \Bus_Reservation\FinalsTable\Reservation1.php");
+                header("location: .\FinalsTable\Reservation1.php");
             } ?>
             <script>
                 Swal.fire({
