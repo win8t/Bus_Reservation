@@ -531,7 +531,6 @@ svg {
 /*Login */
 .banner-area {
   height: 100vh;
-  animation: animate 15s cubic-bezier(0.42, 0, 0.58, 1) infinite;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
   background-color: #c5fff1;
   transition: all 0.5s ease-in-out;
@@ -540,29 +539,29 @@ svg {
   transform: scale(1.08);
   transform-origin: -20%;
 }
-/*
+
 @keyframes animate {
   0% {
-    background-color: #e1defb;
+    background-color: #d5ebf1;
   }
 
   25% {
-    background-color: #efdefe;
+    background-color: #defef7;
   }
 
   50% {
-    background-color: #e1ddfa;
+    background-color: #dbfbee;
   }
 
   75% {
-    background-color: #d8eff7;
+    background-color: #befbf4;
   }
   100% {
-    background-color: #e1defb;
+    background-color: #d5ebf1;
   }
 
 
-}*/
+}
 
 .login-content-container7 {
   position: relative;
@@ -1119,5 +1118,45 @@ box-shadow: -2px 2px 30px 9px rgba(0, 56, 6, 0.164) inset;
 }
 
 .status-body {
-  background-color: #e5f6f9;
+  animation: animate 15s cubic-bezier(0.42, 0, 0.58, 1) infinite;
+}
+
+.bg-row-status {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  background: linear-gradient(to left, #6bbaff, #a8ffdf);
+
+}
+
+.gradient-input {
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  background: linear-gradient(to right, #6bbaff, #a8ffdf);
+  border: none;
+  color: white;
+  font-family: FontBold;
+  font-size: 25px;
+  border: #000 2px solid !important;
+}
+
+.gradient-search {
+  background: linear-gradient(to right, #08053c, #29539c, #08053c);
+  border: none;
+  color: rgb(255, 255, 255);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.gradient-search:hover {
+  background: linear-gradient(to right, #08053c, #08053c, #08053c);
+  border: none;
+  color: rgb(255, 255, 255);
+  font-family: FontBold;
+  font-size: 16px;
+  transition: 0.3 ease-in-out;
+}
+
+.gradient-input {
+  text-align: center;
+}
+
+.shadows {
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }

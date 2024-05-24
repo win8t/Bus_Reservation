@@ -6,7 +6,7 @@
   <title>Document</title>
 
   <link href="bootstrap.min.css" rel="stylesheet" />
-  <link href="stylez.css" rel="stylesheet" />
+  <link href="stylezst.css" rel="stylesheet" />
   <style>
     body {
       background-image: linear-gradient(to right, #000000b6, #00000006, #000000b6), url("Alps2.jpg");

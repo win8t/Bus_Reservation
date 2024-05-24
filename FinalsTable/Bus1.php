@@ -16,6 +16,25 @@ require "dbconnect.php";
 </head>
 
 <body class="hd-text">
+<script>
+        function setMinDate() {
+            // Get current date in Philippine time zone
+            var philippineDate = new Date();
+            var philippineOffset = 8 * 60; // Philippine time zone offset in minutes (UTC+8)
+            var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
+            var philippineTime = new Date(utc + (60000 * philippineOffset));
+
+            // Format date in yyyy-mm-dd format
+            var formattedDate = philippineTime.toLocaleDateString('en-CA');
+
+            // Set the minimum date and change input type to date
+            document.getElementById("tripDate").setAttribute('type', 'date');
+            document.getElementById("tripDate").setAttribute('min', formattedDate);
+
+            document.getElementById("tripDate1").setAttribute('type', 'date');
+            document.getElementById("tripDate1").setAttribute('min', formattedDate);
+        }
+    </script>
   <?php
   require_once "BusArrays.php";
   ?>
@@ -213,21 +232,21 @@ require "dbconnect.php";
                       <label class="form-label" for="departure_location">Departure Location</label>
                       <select id="departure_location" class="form-select" name="departure_location" required>
                         <?php
-                        // Query to retrieve distinct destination_location values from tbl_route
-                        $route_query = "SELECT DISTINCT departure_location FROM tbl_route";
+       
+                        $route_query = "SELECT route_id, departure_location FROM tbl_route";
                         $route_result = $con->query($route_query);
 
-                        // Check if there are rows returned
                         if ($route_result->num_rows > 0) {
-                          echo '<option default disabled selected value="">Origin</option>';
+                          echo '<option default disabled selected value="">Choose a location</option>';
 
-                          // Loop through the results and create options
-                          while ($row = $route_result->fetch_assoc()) {
-                            $departure_location = $row['departure_location'];
-                            echo '<option value="' . $departure_location . '">' . $departure_location . '</option>';
+                        
+                          while ($loc = $route_result->fetch_assoc()) {
+                            $departure_location = $loc['departure_location'];
+                            $r_id = $loc['route_id'];
+                            echo '<option value="' . $departure_location . '">'. "R".$r_id." - ".$departure_location . '</option>';
                           }
                         } else {
-                          // If no rows are returned, display a default option
+                   
                           echo '<option value="" disabled>No destinations found</option>';
                         }
                         ?>
@@ -245,22 +264,20 @@ require "dbconnect.php";
                       <label class="form-label" for="destination">Destination</label>
                       <select id="destination" class="form-select" name="destination" required>
                         <?php
-
-                       // Query to retrieve distinct destination_location values from tbl_route
-                       $route_query = "SELECT DISTINCT destination FROM tbl_route";
+                       $route_query = "SELECT  route_id, destination FROM tbl_route";
                        $route_result = $con->query($route_query);
 
-                       // Check if there are rows returned
+                  
                        if ($route_result->num_rows > 0) {
-                         echo '<option default disabled selected value="">Destination</option>';
+                         echo '<option default disabled selected value="">Choose a destination</option>';
 
-                         // Loop through the results and create options
-                         while ($row = $route_result->fetch_assoc()) {
-                           $destinations = $row['destination'];
-                           echo '<option value="' . $destinations . '">' . $destinations . '</option>';
+                         while ($dest = $route_result->fetch_assoc()) {
+                            $r_id = $dest['route_id'];
+                           $destinations = $dest['destination'];
+                           echo '<option value="' . $destinations . '">' . "R".$r_id." - ". $destinations . '</option>';
                          }
                        } else {
-                         // If no rows are returned, display a default option
+               
                          echo '<option value="" disabled>No destinations found</option>';
                        }
 
@@ -278,7 +295,7 @@ require "dbconnect.php";
                   <div class="row form-outline mt-2">
                     <div class="col-6">
                       <label class="form-label" for="">Departure Time</label>
-                      <input type="datetime-local" name="departure_time" id="" class="form-control" required />
+                      <input type="datetime-local" name="departure_time" id="tripDate" class="form-control" onfocus="setMinDate()" required />
                       <div class="invalid-feedback text-start">Set departure time .</div>
                       <div class="valid-feedback text-start">Departure time selected.</div>
                     </div>
@@ -286,7 +303,7 @@ require "dbconnect.php";
                     <!-- Arrival Time input -->
                     <div class="col-6">
                       <label class="form-label" for="">Arrival Time</label>
-                      <input type="datetime-local" name="arrival_time" id="" class="form-control" required />
+                      <input type="datetime-local" name="arrival_time" id="tripDate1" class="form-control" onfocus="setMinDate()" required />
                       <div class="invalid-feedback text-start">Set arrival time .</div>
                       <div class="valid-feedback text-start">Arrival time selected.</div>
 
@@ -345,39 +362,45 @@ require "dbconnect.php";
       $destination = $_POST['destination'];
       $departureTime = $_POST['departure_time'];
       $arrivalTime = $_POST['arrival_time'];
-
-      $insertsql = "Insert into tbl_bus (bus_number,bus_type,seating_capacity,driver_name,departure_location,destination,departure_time,arrival_time)
-        values ('$busNum','$busType',$seatCap,'$driverName','$departureLoc','$destination','$departureTime','$arrivalTime')
-        ";
-
-      $result = $con->query($insertsql);
-
-
-      //check if successfully added
-      if ($result == True) {
-    ?>
-        <script>
-          Swal.fire({
-            title: "Do you want to add this user?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Add",
-            denyButtonText: `Don't Add`
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire("Saved!", "", "success");
-            } else if (result.isDenied) {
-              Swal.fire("Changes are not saved", "", "info");
-            }
-          });
-        </script>
-      <?php
-      } else {
-        //if not inserted, check query error details
-        echo $con->error;
+  
+      try {
+          // Check if the route exists for the specified departure location and destination
+          $routeCheckQuery = "SELECT route_id FROM tbl_route WHERE departure_location = '$departureLoc' AND destination = '$destination'";
+          $routeCheckResult = $con->query($routeCheckQuery);
+  
+          if ($routeCheckResult->num_rows == 0) {
+              throw new Exception("Route does not exist. Match a route with its respective ID");
+          }
+  
+          // Insert the bus details into the database
+          $insertsql = "INSERT INTO tbl_bus (bus_number, bus_type, seating_capacity, driver_name, departure_location, destination, departure_time, arrival_time)
+              VALUES ('$busNum', '$busType', $seatCap, '$driverName', '$departureLoc', '$destination', '$departureTime', '$arrivalTime')";
+  
+          $result = $con->query($insertsql);
+  
+          if ($result === TRUE) {
+             ?> <script>
+   
+              // Display the SweetAlert popup
+              Swal.fire({
+                  position: "center",
+                  icon: "success",
+                  title: "Successfully added",
+                  showConfirmButton: false,
+                  timer: 4500
+              });
+          </script> <?php
+          } else {
+              echo "<script>
+                  alert('Error: " . $con->error . "');
+                  window.history.back();
+              </script>";
+          }
+      } catch (Exception $e) {
+          // Handle the exception
+          echo "<div class='alert alert-warning' role='alert'>" . $e->getMessage() . "</div>";
       }
-    }
+  }
 
 
 
@@ -435,7 +458,7 @@ require "dbconnect.php";
         ?>
         <!-- form-->
 
-        <form action="Bus1.php" method="post">
+        <form action="Bus1.php" method="post" novalidate class="needs-validation">
           <h5 class="hd-text text-center pb-2 fs-5" id="title">Bus Editing Form</h5>
 
           <!-- Bus ID input -->
@@ -482,33 +505,18 @@ require "dbconnect.php";
               <label class="form-label" for="">Driver Name</label>
             </div>
           </div>
-
+ 
+          
           <!-- Departure Location input -->
           <div class="row form-outline">
             <div class="col">
-            
-
-
+            <input type="text" name="update_location" value="<?php echo $fielddata['departure_location']; ?>" class="form-control" />
               <label class="form-label" for="update_location">Departure Location</label>
             </div>
 
             <!-- Destination input -->
             <div class="col">
-              <select id="update_destination" class="form-select" name="update_destination" required>
-                <?php
-
-
-                foreach ($destinations as $group_label => $options) {
-                  echo '<optgroup label="' . $group_label . '">';
-                  foreach ($options as $option) {
-                    $selected = ($fielddata['destination'] === $option) ? 'selected' : '';
-                    echo '<option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
-                  }
-                  echo '</optgroup>';
-                }
-                ?>
-
-              </select>
+            <input type="text" name="update_destination" value="<?php echo $fielddata['destination']; ?>" class="form-control" />
               <label class="form-label" for="destination">Destination</label>
             </div>
           </div>
