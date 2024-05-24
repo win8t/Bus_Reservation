@@ -222,9 +222,10 @@ require "dbconnect.php";
                                         echo "<div class='w-50 mx-auto text-auto'>";
 
                                 ?>
-                                        <div class="row  form-outline">
-                                            <form action="\FINALS PROJECT\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');">
-                                            <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
+                                        <form action="\FINALS PROJECT\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');" novalidate class="needs-validation">
+                                            <div class="row  form-outline">
+
+                                                <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
                                                 <!-- Full Name input -->
                                                 <div class="col">
                                                     <input type="hidden" name="book_id" value="<?php echo $maltfielddata['Schedule ID'] ?>" class="form-control" readonly />
@@ -242,94 +243,105 @@ require "dbconnect.php";
                                                     <input type="hidden" name="r_date" value="<?php echo date("Y-m-d H:i:s") ?>" class="form-control" readonly />
 
                                                 </div>
-                                        </div>
+                                            </div>
 
-                                        <!-- Role input -->
-                                        <div class="row form-outline mb-2">
-                                            <div class="col">
-                                                <input type="hidden" name="book_ddate" value="<?php echo $maltfielddata['Departure Date']; ?>" class="form-control" />
+                                            <!-- Role input -->
+                                            <div class="row form-outline mb-2">
+                                                <div class="col">
+                                                    <input type="hidden" name="book_ddate" value="<?php echo $maltfielddata['Departure Date']; ?>" class="form-control" />
+
+                                                </div>
+
+                                                <div class="col">
+                                                    <input type="hidden" name="book_dtime" value="<?php echo date_format(date_create($maltfielddata['Departure Time']), 'H:i'); ?>" class="form-control" />
+                                                </div>
+
 
                                             </div>
 
-                                            <div class="col">
-                                                <input type="hidden" name="book_dtime" value="<?php echo date_format(date_create($maltfielddata['Departure Time']), 'H:i'); ?>" class="form-control" />
+                                            <div class="row form-outline">
+                                                <!-- Full Name input -->
+                                                <div class="col">
+                                                    <input type="hidden" name="book_depart" value="<?php echo $maltfielddata['Departure Area']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                                <div class="col">
+                                                    <input type="hidden" name="book_desti" value="<?php echo $maltfielddata['Destination']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-outline">
+                                                <!-- Full Name input -->
+                                                <div class="col">
+                                                    <input type="hidden" name="book_price" value="<?php echo number_format($maltfielddata['Price']); ?>" class="form-control" readonly />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-outline">
+                                                <!-- Full Name input -->
+                                                <div class="col">
+                                                    <input type="hidden" name="book_tseats" value="<?php echo $maltfielddata['Total Seats']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                                <div class="col">
+                                                    <input type="hidden" name="book_aseats" value="<?php echo $maltfielddata['Available Seats']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row text-start form-outline mb-2">
+                                                <label class="form-label" for="">Passenger Name</label>
+                                                <div class="col">
+                                                    <label class="form-label text-secondary" for="">First Name</label>
+                                                    <input type="text" id="" name="f_name" class="form-control" required />
+                                                    <div class="invalid-feedback text-start">Enter your first name.</div>
+                                                    <div class="valid-feedback text-start">First name entered.</div>
+
+                                                </div>
+
+                                                <div class="col">
+                                                    <label class="form-label text-secondary" for="">Middle Name</label>
+                                                    <input type="text" id="" name="m_name" class="form-control" />
+                                                </div>
+
+                                                <div class="col">
+                                                    <label class="form-label text-secondary" for="">Last Name</label>
+                                                    <input type="text" id="" name="l_name" class="form-control" required />
+                                                    <div class="invalid-feedback text-start">Enter your last name.</div>
+                                                    <div class="valid-feedback text-start">Last name entered.</div>
+                                                </div>
+
+
                                             </div>
 
 
-                                        </div>
+                                            <div class="row text-start form-outline">
+                                                <!-- Password input -->
+                                                <div class="col">
+                                                    <label class="form-label" for="">Contact Number</label>
+                                                    <input type="number" name="c_number" id="" class="form-control" required />
 
-                                        <div class="row form-outline">
-                                            <!-- Full Name input -->
-                                            <div class="col">
-                                                <input type="hidden" name="book_depart" value="<?php echo $maltfielddata['Departure Area']; ?>" class="form-control" readonly />
+                                                    <div class="invalid-feedback text-start">Enter your contact.</div>
+                                                    <div class="valid-feedback text-start">Contact information entered.</div>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label" for="">Seat</label>
+                                                    <?php
 
-                                            </div>
-                                            <div class="col">
-                                                <input type="hidden" name="book_desti" value="<?php echo $maltfielddata['Destination']; ?>" class="form-control" readonly />
+                                                    seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con);
+                                                    ?>
+                                                    <div class='invalid-feedback text-start'>Choose your seat number.</div>
+                                                    <div class='valid-feedback text-start'>Seat selected.</div>
 
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-outline">
-                                            <!-- Full Name input -->
-                                            <div class="col">
-                                                <input type="hidden" name="book_price" value="<?php echo number_format($maltfielddata['Price']); ?>" class="form-control" readonly />
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-outline">
-                                            <!-- Full Name input -->
-                                            <div class="col">
-                                                <input type="hidden" name="book_tseats" value="<?php echo $maltfielddata['Total Seats']; ?>" class="form-control" readonly />
+                                                </div>
 
                                             </div>
-                                            <div class="col">
-                                                <input type="hidden" name="book_aseats" value="<?php echo $maltfielddata['Available Seats']; ?>" class="form-control" readonly />
-
-                                            </div>
-                                        </div>
-
-                                        <div class="row text-start form-outline mb-2">
-                                            <div class="col">
-                                                <label class="form-label text-secondary" for="">First Name</label>
-                                                <input type="text" id="" name="f_name" class="form-control" />
-
-                                            </div>
-                                           
-                                            <div class="col">
-                                                <label class="form-label text-secondary" for="">Middle Name</label>
-                                                <input type="text" id="" name="m_name" class="form-control" />
-                                            </div>
-
-                                            <div class="col">
-                                                <label class="form-label text-secondary" for="">Last Name</label>
-                                                <input type="text" id="" name="l_name" class="form-control" />
-                                            </div>
-
-                                            <label class="form-label" for="">Passenger Name</label>
-                                        </div>
-
-
-                                        <div class="row text-start form-outline">
-                                            <!-- Password input -->
-                                            <div class="col">
-                                                <input type="number" name="c_number" id="" class="form-control" />
-                                                <label class="form-label" for="">Contact Number</label>
-                                            </div>
-                                            <div class="col">
-                                                <?php
-
-                                                seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con);
-                                                ?>
-                                                <label class="form-label" for="">Seat</label>
-
-                                            </div>
-                                        </div>
 
 
 
-                                        <!-- Save button -->
+                                            <!-- Save button -->
                             </div>
                             <div class="row form-outline text-center pt-1 pb-4">
                                 <div class="col">
@@ -513,54 +525,54 @@ require "dbconnect.php";
                 <form action="Reservation2.php" method="post">
                     <h5 class="hd-text text-center pb-2 fs-5" id="title">Reservation Editing Form</h5>
 
-                    
-                        <div class="col">
-                            <!-- Reservation ID input -->
-                            <input type="hidden" name="update_reservationID" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" readonly />
-                  
-                        </div>
-                        <div class="col">
-                            <!-- Reservation ID input -->
-                            <input type="hidden" name="update_scheduleID" value="<?php echo $fielddata['schedule_id']; ?>" class="form-control" readonly />
-            
-                        </div>
-                        <div class="col">
-                            <!-- Reservation ID input -->
-                            <input type="hidden" name="update_busid" value="<?php echo $fielddata['bus_id']; ?>" class="form-control" readonly />
-                
-                        </div>
-                        <div class="col">
-                            <!-- Reservation ID input -->
-                            <input type="hidden" name="update_routeid" value="<?php echo $fielddata['route_id']; ?>" class="form-control" readonly />
-                        
-                        </div>
-                  
 
-             <!-- Contact Number -->
-             <input type="hidden" name="update_contactInformation" value="<?php echo $fielddata['contact_information']; ?>" class="form-control" readonly/>
-                            <!--   <label class="form-label" for="">Contact Number</label> -->
+                    <div class="col">
+                        <!-- Reservation ID input -->
+                        <input type="hidden" name="update_reservationID" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" readonly />
 
-                        <div class="row form-outline">
-                        <div class="col">
-                            <!-- Passenger Name input -->
-                            <input type="text" id="" name="update_passengerName" value="<?php echo $fielddata['passenger_name']; ?>" class="form-control" readonly/>
-                       <label class="form-label" for="">Passenger Name</label> 
-                          
-                           
-            </div>
-            </div>
+                    </div>
+                    <div class="col">
+                        <!-- Reservation ID input -->
+                        <input type="hidden" name="update_scheduleID" value="<?php echo $fielddata['schedule_id']; ?>" class="form-control" readonly />
+
+                    </div>
+                    <div class="col">
+                        <!-- Reservation ID input -->
+                        <input type="hidden" name="update_busid" value="<?php echo $fielddata['bus_id']; ?>" class="form-control" readonly />
+
+                    </div>
+                    <div class="col">
+                        <!-- Reservation ID input -->
+                        <input type="hidden" name="update_routeid" value="<?php echo $fielddata['route_id']; ?>" class="form-control" readonly />
+
+                    </div>
+
+
+                    <!-- Contact Number -->
+                    <input type="hidden" name="update_contactInformation" value="<?php echo $fielddata['contact_information']; ?>" class="form-control" readonly />
+                    <!--   <label class="form-label" for="">Contact Number</label> -->
 
                     <div class="row form-outline">
-                        
+                        <div class="col">
+                            <!-- Passenger Name input -->
+                            <input type="text" id="" name="update_passengerName" value="<?php echo $fielddata['passenger_name']; ?>" class="form-control" readonly />
+                            <label class="form-label" for="">Passenger Name</label>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row form-outline">
+
 
                         <div class="col">
                             <!-- Seat Number -->
-                            <input type="text" id="" name="update_seatNumber" value="<?php echo  $fielddata['seat_number']; ?>" class="form-control" readonly/>
+                            <input type="text" id="" name="update_seatNumber" value="<?php echo  $fielddata['seat_number']; ?>" class="form-control" readonly />
                             <label class="form-label" for="">Seat Number</label>
                         </div>
 
-                           <!-- Status input -->
-                           <div class="col">
+                        <!-- Status input -->
+                        <div class="col">
                             <select name="update_status" id="status" class="form-select">
                                 <?php
                                 echo '<option value="" disabled>Select the status</option>';
@@ -576,15 +588,15 @@ require "dbconnect.php";
                         </div>
                     </div>
 
-                     
 
 
-                        <!-- Save button -->
-                        <div class="row form-outline text-center pt-1">
-                            <div class="col">
-                                <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
-                            </div>
+
+                    <!-- Save button -->
+                    <div class="row form-outline text-center pt-1">
+                        <div class="col">
+                            <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
                         </div>
+                    </div>
                 </form>
 
             <?php
@@ -603,7 +615,7 @@ require "dbconnect.php";
             echo "</div>";
         }
 
-      
+
         //Update Button
 
 
@@ -652,6 +664,7 @@ require "dbconnect.php";
 
     </div>
 
+    <script src="../formvalidation.js"> </script>
 </body>
 
 </html>

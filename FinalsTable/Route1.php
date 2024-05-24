@@ -152,55 +152,71 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
 
-              <form action="Route1.php" method="post">
+             
                 <div class="modal-body">
-
+                <form action="Route1.php" method="post" novalidate class ="needs-validation">
                   <!-- Route Name input -->
-                  <div class="row form-outline">
+                  <div class="row form-outline mt-2">
                     <div class="col">
-                      <select name="route_name" id="route_name" class="form-select">
+
+                    <label class="form-label" for="route_name">Route Name (ex. Naga to PITX)</label>
+
+                    <input type="text" name="route_name" class="form-control" required />
+                    <!--  <select name="route_name" id="route_name" class="form-select">
                         <option value="" selected disabled>Select Route</option>
                         <?php
-                        foreach ($routes as $route => $subroutes) {
+                     /*   foreach ($routes as $route => $subroutes) {
                           echo '<optgroup label="' . $route . '">';
                           foreach ($subroutes as $subroute) {
                             echo '<option value="' . $subroute . '">' . $subroute . '</option>';
                           }
                           echo '</optgroup>';
-                        }
+                        } */
                         ?>
-                      </select>
-                      <label class="form-label" for="route_name">Route Name</label>
+                      </select> -->
+                      <div class="invalid-feedback text-start">Set route.</div>
+                       <div class="valid-feedback text-start">Route has been set.</div>
+                      
 
                     </div>
                   </div>
                   <!-- Departure Location input -->
-                  <div class="row form-outline">
+                  <div class="row form-outline mt-2">
+                    
                     <div class="col">
-                      <select id="departure_location" class="form-select" name="departure_location" required>
+                    <label class="form-label" for="departure_location">Departure Location</label>
+                    <input type="text" name="departure_location" class="form-control" required/>
+                    <div class="invalid-feedback text-start">Set departure location.</div>
+                       <div class="valid-feedback text-start">Departure location has been set.</div>
+                    <!--  <select id="departure_location" class="form-select" name="departure_location" required>
                         <?php
-                        echo '<option default disabled selected value="">Origin</option>';
+                     /*   echo '<option default disabled selected value="">Origin</option>';
 
                         foreach ($origins as $group_label => $origin) {
                           echo '<optgroup label="' . $group_label . '">';
                           echo '<option value="' . $origin . '">' . $origin . '</option>';
                           echo '</optgroup>';
                         }
-
+*/
                         ?>
-                      </select>
+                      </select> -->
+                    
 
 
-                      <label class="form-label" for="departure_location">Departure Location</label>
+                      
                     </div>
 
 
                     <!-- Destination input -->
 
                     <div class="col">
-                      <select id="destination" class="form-select" name="destination" required>
+                    <label class="form-label" for="destination">Destination</label>
+                    <input type="text" name="destination" class="form-control" required/>
+                    <div class="invalid-feedback text-start">Set destination.</div>
+                       <div class="valid-feedback text-start">Destination has been set.</div>
+                   <!-- <select id="destination" class="form-select" name="destination" required>
                         <?php
-
+/*
                         echo '<option default disabled selected value="">Destination</option>';
 
                         foreach ($destinations as $group_label => $locations) {
@@ -210,21 +226,26 @@
                           }
                           echo '</optgroup>';
                         }
-
+*/
                         ?>
-                      </select>
-                      <label class="form-label" for="destination">Destination</label>
+                      </select> -->
+                     
                     </div>
                   </div>
-                  <div class="row form-outline">
+                  <div class="row form-outline mt-2">
 
                     <!-- Distance input -->
                     <div class="col">
+                    <label class="form-label" for="distance">Distance (in km)</label>
                       <div class="input-group">
+                        
                         <input type="number" name="distance" class="form-control" aria-label="Distance (in km)" placeholder="Distance" required>
                         <span class="input-group-text hd-text">km</span>
+                        <div class="invalid-feedback text-start">Set distance.</div>
+                       <div class="valid-feedback text-start">Distance has been set.</div>
                       </div>
-                      <label class="form-label" for="distance">Distance (in km)</label>
+             
+                      
                     </div>
                   </div>
 
@@ -236,12 +257,14 @@
                         <label class="form-label" for="">Duration</label>
                       </div>
                 -->
-                  <div class="row form-outline mb-2">
-
+                  <div class="row form-outline mt-2">
+                  <label class="form-label" for="">Duration</label>
                     <div class="col">
                       <div class="input-group">
                         <input type="number" name="hrduration" class="form-control" min="0" placeholder="0" required>
                         <span class="input-group-text hd-text">Hrs</span>
+                        <div class="invalid-feedback text-start">Set hours.</div>
+                       <div class="valid-feedback text-start">Hours has been set.</div>
                       </div>
 
                     </div>
@@ -249,6 +272,8 @@
                       <div class="input-group">
                         <input type="number" name="minduration" class="form-control" min="0" max="59" placeholder="0" required>
                         <span class="input-group-text hd-text">Mins</span>
+                        <div class="invalid-feedback text-start">Set minutes.</div>
+                       <div class="valid-feedback text-start">Minutes has been set.</div>
                       </div>
 
                     </div>
@@ -256,22 +281,27 @@
                       <div class="input-group">
                         <input type="number" name="secduration" class="form-control" min="0" max="59" placeholder="0" required>
                         <span class="input-group-text hd-text">Secs</span>
+                        <div class="invalid-feedback text-start">Set seconds.</div>
+                       <div class="valid-feedback text-start">Seconds has been set.</div>
                       </div>
 
                     </div>
-                    <label class="form-label" for="">Duration</label>
+                    
                   </div>
 
 
-                  <div class="row form-outline">
+                  <div class="row form-outline mt-2">
 
                     <!-- Price input -->
                     <div class="col">
+                    <label class="form-label" for="price">Price</label>
                       <div class="input-group">
                         <span class="input-group-text hd-text">₱</span>
                         <input type="number" name="price" class="form-control" aria-label="Price" placeholder="Price" required>
+                        <div class="invalid-feedback text-start">Set price.</div>
+                       <div class="valid-feedback text-start">Price has been set.</div>
                       </div>
-                      <label class="form-label" for="price">Price</label>
+                     
 
                     </div>
                   </div>
@@ -428,18 +458,8 @@
           <!-- Route Name input -->
           <div class="row form-outline">
             <div class="col">
-              <select name="update_routeName" class="form-select">
-                <?php
-                foreach ($routes as $route => $subroutes) {
-                  echo "<optgroup label='$route'>";
-                  foreach ($subroutes as $subroute) {
-                    $selected = ($fielddata['route_name'] === $subroute) ? 'selected' : '';
-                    echo "<option value='$subroute' $selected>$subroute</option>";
-                  }
-                  echo '</optgroup>';
-                }
-                ?>
-              </select>
+            <input type="text" name="update_routeName" class="form-control" value="<?php echo $fielddata['route_name']; ?>" />
+             
               <label class="form-label" for="update_routeName">Route Name</label>
 
             </div>
@@ -448,40 +468,15 @@
           <!-- Departure Location input -->
           <div class="row form-outline">
             <div class="col">
-              <select id="update_departureLoc" class="form-select" name="update_departureLoc" required>
-                <?php
-                echo '<option default disabled selected value="">Origin</option>';
-
-                foreach ($origins as $group_label => $origin) {
-                  echo '<optgroup label="' . $group_label . '">';
-                  $selected = ($fielddata['departure_location'] === $origin) ? 'selected' : '';
-                  echo '<option value="' . $origin . '" ' . $selected . '>' . $origin . '</option>';
-                  echo '</optgroup>';
-                }
-                ?>
-
-              </select>
+            <input type="text" name="update_departureLoc" class="form-control" value="<?php echo $fielddata['departure_location']; ?>" />
+             
               <label class="form-label" for="">Departure Location</label>
             </div>
 
             <!-- Destination input -->
             <div class="col">
-
-              <select id="update_destination" class="form-select" name="update_destination" required>
-                <?php
-
-
-                foreach ($destinations as $group_label => $options) {
-                  echo '<optgroup label="' . $group_label . '">';
-                  foreach ($options as $option) {
-                    $selected = ($fielddata['destination'] === $option) ? 'selected' : '';
-                    echo '<option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
-                  }
-                  echo '</optgroup>';
-                }
-                ?>
-
-              </select>
+            <input type="text" name="update_destination" class="form-control" value="<?php echo $fielddata['destination']; ?>" />
+            
               <label class="form-label" for="destination">Destination</label>
 
             </div>
@@ -624,7 +619,7 @@
 
   </div>
 
-
+  <script src="../formvalidation.js"> </script>
 </body>
 
 </html>
