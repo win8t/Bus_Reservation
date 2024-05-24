@@ -216,14 +216,14 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
                     <label class="form-label" for="">Password</label>
                       <input type="password" name="pass" id="" class="form-control" required />
                       
-                      <div class="invalid-feedback text-start">Please enter your password.</div>
+                      <div class="invalid-feedback text-start">Enter your password.</div>
                       <div class="valid-feedback text-start">Entered password</div>
                     </div>
                     <div class="col">
                     <label class="form-label" for="">Confirm Password</label>
                       <input type="password" name="confirmpass" id="" class="form-control" required />
                
-                      <div class="invalid-feedback text-start">Please re-enter your password.</div>
+                      <div class="invalid-feedback text-start">Reenter your password.</div>
                   
                     </div>
                   </div>
@@ -408,9 +408,6 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
                 <input class="form-check-input" type="radio" name="update_role" id="inlineRadio2" value="Employee" <?php if ($fielddata['role'] === 'Employee') echo 'checked'; ?> />
                 <label class="form-check-label" for="inlineRadio2">Employee</label>
               </div>
-              <div class="form-check form-check-inline">
-                <input type="hidden" id="" name="update_role" value="<?php if ($fielddata['role'] === 'Customer') echo 'Customer'; ?>" />
-              </div>
             </div>
           </div>
 
@@ -421,11 +418,6 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
               <label class="form-label" for="">Username</label>
             </div>
 
-            <!-- Password input -->
-            <div class="col">
-              <input type="password" name="update_password" id="" value="<?php echo $fielddata['password']; ?>" class="form-control" />
-              <label class="form-label" for="">Password</label>
-            </div>
           </div>
 
           <!-- Email input -->
@@ -439,7 +431,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
               <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
             </div>
           </div>
-
+          </div>
   </div>
   </form>
 <?php
@@ -466,11 +458,16 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
       $user_update = $_POST['update_id'];
       $name_update = $_POST['update_name'];
       $role_update = $_POST['update_role'];
+      
+      if($role_update != "Admin" && $role_update != "Employee"){
+        $role_update = "Customer";
+    }
+    
+
       $username_update = $_POST['update_username'];
       $email_update = $_POST['update_email'];
 
-      $updatesql = "UPDATE tbl_user SET user_id = $user_update, full_name = '$name_update', 
-              role = '$role_update', username = '$username_update', password = '$password_update', 
+      $updatesql = "update tbl_user SET user_id = $user_update, full_name = '$name_update', role = '$role_update', username = '$username_update', 
               email = '$email_update' WHERE user_id = $user_update";
 
       $resultup = $con->query($updatesql);  

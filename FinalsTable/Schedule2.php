@@ -171,9 +171,9 @@ require "dbconnect.php";
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                            <form action="Schedule2.php" method="post">
+                          
                                 <div class="modal-body">
-
+                                <form action="Schedule2.php" method="post" novalidate class="needs-validation">
                                     <div class="row form-outline">
                                         <!-- Schedule ID input -->
                                         <!-- <div class="col">
@@ -183,11 +183,13 @@ require "dbconnect.php";
 
                                         <div class="col">
                                             <!-- Bus ID input -->
+                                            <label class="form-label" for="bus_num">Bus Number</label>
+                                            
 
-                                            <select name="bus_num" class="form-select">
+                                            <select name="bus_num" class="form-select" required>
                                                 <?php
 
-                                                $sqlfk = "SELECT DISTINCT bus_number FROM tbl_bus"; // Change routes_table to your actual table name
+                                                $sqlfk = "SELECT DISTINCT bus_number, bus_id FROM tbl_bus"; // Change routes_table to your actual table name
 
                                                 // Execute query
                                                 $bus_fk = $con->query($sqlfk);
@@ -195,8 +197,9 @@ require "dbconnect.php";
                                                 // Check if any results returned
                                                 if ($bus_fk->num_rows > 0) {
                                                     // Output data of each row
+                                                    echo "<option selected disabled value=''>Choose a bus number</option>";
                                                     while ($busFK = $bus_fk->fetch_assoc()) {
-                                                        echo "<option value='" . $busFK['bus_number']  . "'>" . $busFK['bus_number'] . "</option>";
+                                                        echo "<option value='" . $busFK['bus_number']  . "'>" .  "B".$busFK['bus_id']." - ".$busFK['bus_number'] . "</option> ";
                                                     }
                                                 } else {
                                                     echo "<option value=''>No busses found</option>";
@@ -204,22 +207,25 @@ require "dbconnect.php";
                                                 ?>
 
                                             </select>
-                                            <label class="form-label" for="bus_num">Bus Number</label>
+                                            <div class="invalid-feedback text-start">Select a Bus Number.</div>
+                                             <div class="valid-feedback text-start">Bus Number selected.</div>
+                                            
                                         </div>
        
                                     </div>
-                                    <div class="row form-outline">
+                                    <div class="row form-outline mt-2">
                                         <div class="col">
-
-                                            <select name="dep_loc" class="form-select">
+                                        <label class="form-label" for="route_id">Departure Area</label>
+                                            <select name="dep_loc" class="form-select" required>
                                                 <?php
 
                                                 $sqlfk = "SELECT bus_id, departure_location FROM tbl_bus";
                                                 $route_fk = $con->query($sqlfk);
 
                                                 if ($route_fk->num_rows > 0) {
+                                                    echo "<option selected disabled value=''>Choose an area</option>";
                                                     while ($routeFK = $route_fk->fetch_assoc()) {
-                                                        echo "<option value='".$routeFK['bus_id'] . "-" . $routeFK['departure_location'] . "'>" . "R".$routeFK['bus_id'] . " - " . $routeFK['departure_location'] . "</option>";
+                                                        echo "<option value='".$routeFK['bus_id'] . "-" . $routeFK['departure_location'] . "'>" . "B".$routeFK['bus_id'] . " - " . $routeFK['departure_location'] . "</option>";
                                                     }
                                                 } else {
                                                     echo "<option value=''>No routes found</option>";
@@ -227,18 +233,21 @@ require "dbconnect.php";
                                                 ?>
 
                                             </select>
-                                            <label class="form-label" for="route_id">Departure Area</label>
+                                            <div class="invalid-feedback text-start">Select a departure area.</div>
+                                             <div class="valid-feedback text-start">Departure area selected.</div>
+                                           
                                         </div>
                                         <div class="col">
-
-                                            <select name="desti" class="form-select">
+                                        <label class="form-label" for="route_id">Destination</label>
+                                            <select name="desti" class="form-select" required>
                                                 <?php
                                                 $sqlfk = "SELECT bus_id, destination FROM tbl_bus";
                                                 $route_fk = $con->query($sqlfk);
 
                                                 if ($route_fk->num_rows > 0) {
+                                                    echo "<option selected disabled value=''>Choose a destination</option>";
                                                     while ($routeFK = $route_fk->fetch_assoc()) {
-                                                        echo "<option value='" . $routeFK['bus_id'] . "-" . $routeFK['destination'] . "'>" . "R". $routeFK['bus_id'] . " - " . $routeFK['destination'] . "</option>";
+                                                        echo "<option value='" . $routeFK['bus_id'] . "-" . $routeFK['destination'] . "'>" . "B". $routeFK['bus_id'] . " - " . $routeFK['destination'] . "</option>";
                                                     }
                                                 } else {
                                                     echo "<option value=''>No routes found</option>";
@@ -246,30 +255,38 @@ require "dbconnect.php";
                                                 ?>
 
                                             </select>
-                                            <label class="form-label" for="route_id">Destination</label>
+                                            <div class="invalid-feedback text-start">Select a destination.</div>
+                                             <div class="valid-feedback text-start">Destination selected.</div>
+                                            
                                         </div>
                                     </div>
 
                                     <!-- Departure Date input -->
-                                    <div class="row form-outline">
+                                    <div class="row form-outline mt-2">
                                         <div class="col">
-                                            <input type="date" name="departure_date" id="editTripDate" class="form-control" onfocus="setMinDate()" />
-                                            <label class="form-label" for="">Departure Date</label>
+                                        <label class="form-label" for="">Departure Date</label>
+                                            <input type="date" name="departure_date" id="editTripDate" class="form-control" onfocus="setMinDate()" required/>
+                                            <div class="invalid-feedback text-start">Set departure date.</div>
+                                             <div class="valid-feedback text-start">Departure date selected.</div>
                                         </div>
                                         <!-- Departure Time input -->
                                         <div class="col">
-                                            <input type="time" name="departure_time" id="" class="form-control" />
-                                            <label class="form-label" for="">Departure Time</label>
+                                        <label class="form-label" for="">Departure Time</label>
+                                            <input type="time" name="departure_time" id="" class="form-control" required/>
+                                            <div class="invalid-feedback text-start">Set departure time.</div>
+                                             <div class="valid-feedback text-start">Departure time selected.</div>
                                         </div>
                                     </div>
 
                                     <!-- Available Seats input -->
-                                    <div class="row form-outline">
+                                    <div class="row form-outline mt-2">
                            
 
                                         <div class="col">
-                                            <input type="number" name="available_seats" id="" class="form-control" />
-                                            <label class="form-label" for="">Available Seats</label>
+                                        <label class="form-label" for="">Available Seats</label>
+                                            <input type="number" name="available_seats" id="" class="form-control" required/>
+                                            <div class="invalid-feedback text-start">Enter avaialble seats.</div>
+                                             <div class="valid-feedback text-start">Available seats entered.</div>
                                         </div>
 
                                     </div>
@@ -605,7 +622,7 @@ require "dbconnect.php";
 
     </div>
 
-
+    <script src ="../formvalidation.js"> </script>
 </body>
 
 </html>

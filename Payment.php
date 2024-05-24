@@ -1,12 +1,5 @@
 <?php session_start(); require "dbconnect.php"; ?>
 <html lang="en">
-<<<<<<< HEAD
-=======
-    <?php
-     session_start();
-     require_once "dbconnect.php"; ?>
-
->>>>>>> main
 <head>
     
     <meta charset="UTF-8">
