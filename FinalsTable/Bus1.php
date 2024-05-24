@@ -17,24 +17,31 @@ require "dbconnect.php";
 
 <body class="hd-text">
 <script>
-        function setMinDate() {
-            // Get current date in Philippine time zone
-            var philippineDate = new Date();
-            var philippineOffset = 8 * 60; // Philippine time zone offset in minutes (UTC+8)
-            var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
-            var philippineTime = new Date(utc + (60000 * philippineOffset));
+function setMinDate() {
+    var currentDate = new Date();
+    var philippineOffset = 8 * 60;
+    var utc = currentDate.getTime() + (currentDate.getTimezoneOffset() * 60000);
+    var philippineTime = new Date(utc + (60000 * philippineOffset));
 
-            // Format date in yyyy-mm-dd format
-            var formattedDate = philippineTime.toLocaleDateString('en-CA');
+    // Format datetime in yyyy-mm-ddTHH:MM format
+    var year = philippineTime.getFullYear();
+    var month = String(philippineTime.getMonth() + 1).padStart(2, '0');
+    var day = String(philippineTime.getDate()).padStart(2, '0');
+    var hours = String(philippineTime.getHours()).padStart(2, '0');
+    var minutes = String(philippineTime.getMinutes()).padStart(2, '0');
+    var formattedDatetime = `${year}-${month}-${day}T${hours}:${minutes}`;
 
-            // Set the minimum date and change input type to date
-            document.getElementById("tripDate").setAttribute('type', 'date');
-            document.getElementById("tripDate").setAttribute('min', formattedDate);
+    // Set the minimum date for both tripDate and tripDate1 elements
+    var tripDateElements = document.querySelectorAll('#tripDate, #tripDate1');
+    tripDateElements.forEach(element => {
+        element.setAttribute('min', formattedDatetime);
+    });
+}
 
-            document.getElementById("tripDate1").setAttribute('type', 'date');
-            document.getElementById("tripDate1").setAttribute('min', formattedDate);
-        }
-    </script>
+document.getElementById('tripDate').addEventListener('focus', setMinDate);
+document.getElementById('tripDate1').addEventListener('focus', setMinDate);
+</script>
+
   <?php
   require_once "BusArrays.php";
   ?>

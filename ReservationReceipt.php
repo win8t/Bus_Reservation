@@ -6,7 +6,7 @@
   <title>Document</title>
 
   <link href="bootstrap.min.css" rel="stylesheet" />
-  <link href="stylezst.css" rel="stylesheet" />
+  <link href="stylez.css" rel="stylesheet" />
   <style>
     body {
       background-image: linear-gradient(to right, #000000b6, #00000006, #000000b6), url("Alps2.jpg");
@@ -110,6 +110,7 @@ if (isset($_POST['booking'])) {
     $reservation_datetime = new DateTime($reserve_date);
     $reservation_datetime->setTimezone(new DateTimeZone('Asia/Manila'));
     $reservation_date_formatted = $reservation_datetime->format('Y-m-d g:i A');
+    
 
     $receipt_data = array(
       "Ticket Number" => "<h3 class ='mt-1'>" . $ticket_id . "</h5>",
