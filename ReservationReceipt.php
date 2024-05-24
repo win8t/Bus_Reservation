@@ -52,6 +52,7 @@ date_default_timezone_set("Asia/Manila");
 session_start();
 require_once "FinalsTable\BusArrays.php";
 require_once "dbconnect.php";
+include "logger.php";
 
 
 $ticket_id = "ALPSBR" . rand(1000, 9999);
@@ -100,6 +101,8 @@ if (isset($_POST['booking'])) {
       });
     </script>
 <?php
+    $action = 'Booked';
+    logActivity($con, $userID, $action);
 
     $reservationsql = "Insert into tbl_reservation (schedule_id, ticket_number, passenger_name ,contact_information,seat_number,reservation_date, payment_method, status)
     values ('$receipt_id','$ticket_id','$receipt_fullname','$receipt_c_number','$receipt_seatnum','$reserve_date','$receipt_payment','$receipt_status')

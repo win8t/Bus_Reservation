@@ -1,6 +1,7 @@
 <?php
   session_start();
   require "dbconnect.php";
+  include "logger.php";
 ?>
 <html lang="en">
 
@@ -388,6 +389,8 @@
           });
         </script>
       <?php
+      $action = 'Added Route';
+      logActivity($con, $userID, $action);
       } else {
         //if not inserted, check query error details
         echo $con->error;
@@ -606,6 +609,8 @@
           });
         </script>
     <?php
+    $action = 'Update Route';
+    logActivity($con, $userID, $action);
       } else {
         //if not, check query error details
         echo $con->error;

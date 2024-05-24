@@ -6,7 +6,7 @@
     <title>Alps OTP</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="stylez.css" rel="stylesheet" />
+    <link href="stylezstt.css" rel="stylesheet" />
 </head>
 
 <body class="login-content-container7">
@@ -70,6 +70,7 @@
 
 <?php
 require_once "dbconnect.php";
+include "logger.php";
 
 if (isset($_POST['ver'])) {  
    
@@ -93,6 +94,9 @@ if (isset($_POST['ver'])) {
        $stmt = $con->prepare($updatesql);
        $stmt->bind_param('s', $pay_ticket);
        $stmt->execute();
+
+       $action = 'E-Wallet Payment';
+       logActivity($con, $userID, $action);
 
        header("Location: BookingLog.php");
        exit(); 

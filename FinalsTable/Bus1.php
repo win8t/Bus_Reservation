@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "dbconnect.php";
+include "logger.php";
 ?>
 <html lang="en">
 
@@ -390,6 +391,10 @@ require "dbconnect.php";
                   timer: 4500
               });
           </script> <?php
+
+          $action = 'Added Bus';
+          logActivity($con, $userID, $action);
+
           } else {
               echo "<script>
                   alert('Error: " . $con->error . "');
@@ -601,6 +606,8 @@ require "dbconnect.php";
           });
         </script>
     <?php
+    $action = 'Updated Bus';
+    logActivity($con, $userID, $action);
       } else {
         //if not, check query error details
         echo $con->error;

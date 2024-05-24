@@ -1,5 +1,6 @@
 <?php
 require "dbconnect.php";
+include "logger.php";
 session_start();
 ?>
 <html lang="en">
@@ -240,6 +241,8 @@ if (isset($_POST['cancel'])) {
         } else {
             echo "Error updating seat and/or bus capacity: " . $con->error;
         }
+    $action = 'Cancelled Booking';
+    logActivity($con, $userID, $action);
     } else {
         echo "Error cancelling reservation: " . $con->error;
     }
