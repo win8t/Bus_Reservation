@@ -50,8 +50,7 @@ session_start();
             document.getElementById("tripDate").setAttribute('min', formattedDate);
         }
     </script>
-    <script src="scripts.js"></script>
-    <script src="bootstrap.bundle.min.js"></script>
+   
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-book">
         <div class="container-fluid">
@@ -201,7 +200,7 @@ session_start();
 
 
                                     <label class="input-group-text" for="origin">Origin</label>
-<button class="input-group-text" id="basic-addon2" onclick="swapValues()" type="button"><i class="bi bi-arrow-left-right"></i></button>
+                                    <button class="input-group-text" id="basic-addon2" onclick="swapValues()" type="button"><i class="bi bi-arrow-left-right"></i></button>
 
 
                                     <label class="input-group-text" for="destination">Destination</label>
@@ -231,7 +230,7 @@ session_start();
 
                         </div>
                         <div class="col-1 text-center ">
-                            <input type="submit" value="Search" name="searchbutton" class="btn btn-primary w-100">
+                            <input type="submit" value="Search" name="searchbutton" class="btn btn-success rounded-5 w-100">
                         </div>
                         </form>
                     </div>
@@ -287,7 +286,7 @@ session_start();
                                 echo "<th> Bus Type </th>";
                                 echo "<th> Departure Date </th>";
                                 echo "<th> Depature Time </th>";
-                              
+
                                 echo "<th> Departure Area </th>";
                                 echo "<th> Destination </th>";
                                 echo "<th> Total Seats </th>";
@@ -305,7 +304,7 @@ session_start();
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
                                     echo "<td>" . date_format(date_create($maltfielddata['Departure Time']), 'g:i A') . "</td>";
-            
+
 
                                     echo "<td>" . $maltfielddata['Departure Area'] . "</td>";
                                     echo "<td>" . $maltfielddata['Destination'] . "</td>";
@@ -324,7 +323,7 @@ session_start();
                                     echo "<div class='w-50 mx-auto text-auto'>";
 
                             ?>
-                                    <form action="ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');">
+                                    <form action="ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?'); " novalidate class="needs-validation">
                                         <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
                                         <div class="row  form-outline">
                                             <!-- Full Name input -->
@@ -341,9 +340,9 @@ session_start();
 
                                             </div>
                                             <div class="col">
-                                                    <input type="hidden" name="r_date" value="<?php echo date("Y-m-d h:i:s") ?>" class="form-control" readonly />
+                                                <input type="hidden" name="r_date" value="<?php echo date("Y-m-d h:i:s") ?>" class="form-control" readonly />
 
-                                                </div>
+                                            </div>
                                         </div>
 
                                         <!-- Role input -->
@@ -357,7 +356,7 @@ session_start();
                                                 <input type="hidden" name="book_dtime" value="<?php echo date_format(date_create($maltfielddata['Departure Time']), 'H:i'); ?>" class="form-control" />
                                             </div>
 
-                                      
+
                                         </div>
 
                                         <div class="row form-outline">
@@ -394,9 +393,12 @@ session_start();
 
                                         <!-- Username input -->
                                         <div class="row text-start form-outline mb-2">
+                                        <label class="form-label" for="">Passenger Name</label>
                                             <div class="col">
                                                 <label class="form-label text-secondary" for="">First Name</label>
-                                                <input type="text" id="" name="f_name" class="form-control" />
+                                                <input type="text" id="" name="f_name" class="form-control" required />
+                                                <div class="invalid-feedback text-start">Enter your first name.</div>
+                                                <div class="valid-feedback text-start">First name entered.</div>
 
                                             </div>
 
@@ -404,28 +406,37 @@ session_start();
                                                 <label class="form-label text-secondary" for="">Middle Name</label>
                                                 <input type="text" id="" name="m_name" class="form-control" />
                                             </div>
-                                            
+
                                             <div class="col">
                                                 <label class="form-label text-secondary" for="">Last Name</label>
-                                                <input type="text" id="" name="l_name" class="form-control" />
+                                                <input type="text" id="" name="l_name" class="form-control" required />
+                                                <div class="invalid-feedback text-start">Enter your last name.</div>
+                                                <div class="valid-feedback text-start">Last name entered.</div>
                                             </div>
-                                          
 
-                                            <label class="form-label" for="">Passenger Name</label>
+
+                                            
                                         </div>
 
 
                                         <div class="row text-start form-outline">
                                             <!-- Password input -->
                                             <div class="col">
-                                                <input type="number" name="c_number" id="" class="form-control" />
-                                                <label class="form-label" for="">Contact Number</label>
+                                            <label class="form-label" for="">Contact Number</label>
+                                                <input type="number" name="c_number" id="" class="form-control" min="0" required />
+                                                
+
+                                                <div class="invalid-feedback text-start">Enter your contact.</div>
+                                                    <div class="valid-feedback text-start">Contact information entered.</div>
                                             </div>
                                             <div class="col">
+                                            <label class="form-label" for="">Seat</label>
                                                 <?php
                                                 seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con);
                                                 ?>
-                                                <label class="form-label" for="">Seat</label>
+                                                <div class='invalid-feedback text-start'>Choose your seat number.</div>
+                                                    <div class='valid-feedback text-start'>Seat selected.</div>
+                                                
 
                                             </div>
                                         </div>
@@ -434,7 +445,7 @@ session_start();
                                         <!-- Seat input -->
 
 
-                                        <div class="row form-outline text-center pt-1 pb-4">
+                                        <div class="row form-outline text-center pt-1 pb-4 mt-3">
                                             <div class="col">
                                                 <button type="submit" name="booking" value="Book" class="btn btn-success">Confirm Booking</button>
                                             </div>
@@ -870,7 +881,9 @@ session_start();
     </div>
 
     </div>
-
+    <script src="formvalidation.js"> </script>
+    <script src="scripts.js"></script>
+    <script src="bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

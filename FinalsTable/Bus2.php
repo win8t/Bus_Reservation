@@ -57,26 +57,47 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
     </div>
     <ul class="links">
 
-      
+      <li class="disabled">
+        <h4 class="">Main Menu</h4>
+      </li>
+
+
+      <li>
+        <i class="bi bi-table"></i>
+        <a href="Overview2.php">Overview</a>
+      </li>
+
+      <li>
+        <i class="bi bi-person-circle"></i>
+        <a href="User2.php">User</a>
+      </li>
+      <li>
+        <i class="bi bi-card-list"></i>
+        <a href="Logs2.php">Logs</a>
+      </li>
+
+      <li class="disabled border border-light my-2">
+        <hr class="">
+      </li>
       <li class="disabled">
         <h4 class="">Bus Menu</h4>
       </li>
 
       <li class="active">
         <i class="bi bi-bus-front"></i>
-        <a class="active" href="Bus1.php">Bus</a>
+        <a class="active" href="Bus2.php">Bus</a>
       </li>
       <li>
         <i class="bi bi-sign-turn-right-fill"></i>
-        <a href="Route1.php">Route</a>
+        <a href="Route2.php">Route</a>
       </li>
       <li>
         <i class="bi bi-calendar3"></i>
-        <a href="Schedule1.php">Schedule</a>
+        <a href="Schedule2.php">Schedule</a>
       </li>
       <li>
         <i class="bi bi-calendar-date"></i>
-        <a href="Reservation1.php">Reservation</a>
+        <a href="Reservation2.php">Reservation</a>
       </li>
       <li class="disabled border border-light my-2">
         <hr class="">
@@ -103,7 +124,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
         <div class="row bg-row mx-auto p-1 m-1 rounded">
 
-          <form action="Bus1.php" method="post">
+          <form action="Bus2.php" method="post">
 
             <div class="input-group w-50 pt-4">
               <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
@@ -158,7 +179,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form action="Bus1.php" method="post" novalidate class="needs-validation">
+                <form action="Bus2.php" method="post" novalidate class="needs-validation">
 
 
                   <!-- Bus ID input -->
@@ -434,7 +455,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
         echo "<td>" . date_format(date_create($fielddata['arrival_time']), 'Y-m-d g:i A') . "</td>";
         echo "<td class ='pt-3 pb-0'>";
       ?>
-        <form method="post" action="Bus1.php">
+        <form method="post" action="Bus2.php">
           <input type="hidden" name="bus_del" value="<?php echo $fielddata['bus_id']; ?>" class="form-control" />
           <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['bus_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['bus_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['bus_id']; ?>">Edit</button>
         </form>
@@ -449,7 +470,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
         ?>
         <!-- form-->
 
-        <form action="Bus1.php" method="post" novalidate class="needs-validation">
+        <form action="Bus2.php" method="post" novalidate class="needs-validation">
           <h5 class="hd-text text-center pb-2 fs-5" id="title">Bus Editing Form</h5>
 
           <!-- Bus ID input -->

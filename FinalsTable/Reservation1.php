@@ -1,22 +1,28 @@
 <?php
-  session_start();
-  require "dbconnect.php";
+session_start();
+require "dbconnect.php";
+include "logger.php";
 ?>
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Panel</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <link rel="stylesheet" href="sidebar9.css">
+    <link rel="stylesheet" href="sidebar10.css">
 
 </head>
 
-<body class ="hd-text">
+<body class="hd-text">
     <?php
+    date_default_timezone_set("Asia/Manila");
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
+    require_once 'SeatFunction.php';
+
     require_once "BusArrays.php";
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -30,28 +36,8 @@
         </div>
         <ul class="links">
 
-            <li class="disabled">
-                <h4 class="">Main Menu</h4>
-            </li>
-
-
-            <li>
-                <i class="bi bi-table"></i>
-                <a href="Overview1.php">Overview</a>
-            </li>
-
-            <li>
-                <i class="bi bi-person-circle"></i>
-                <a href="User1.php">User</a>
-            </li>
-            <li>
-                <i class="bi bi-card-list"></i>
-                <a href="Logs1.php">Logs</a>
-            </li>
-
-            <li class="disabled border border-light my-2">
-                <hr class="">
-            </li>
+        
+      
             <li class="disabled">
                 <h4 class="">Bus Menu</h4>
             </li>
@@ -77,10 +63,10 @@
             </li>
 
             <form action="Logout1.php" method="post">
-            <li>
-                <i class="bi bi-box-arrow-right"></i>
-                <button type="submit" name="logout1" style="background:none; border:none; cursor:pointer; text:inherit; padding:0;">Log Out</button>
-            </li>
+                <li>
+                    <i class="bi bi-box-arrow-right"></i>
+                    <button type="submit" name="logout1" style="background:none; border:none; cursor:pointer; text:inherit; padding:0;">Log Out</button>
+                </li>
             </form>
         </ul>
 
@@ -128,10 +114,9 @@
                                         var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
                                         document.getElementById('datetime').textContent = dateTimeString;
                                     }
-                                    // Update the date and time every second
+
                                     setInterval(updateDateTime, 1000);
 
-                                    // Initial update
                                     updateDateTime();
                                 </script>
                             </div>
@@ -145,96 +130,230 @@
                 </button>
 
                 <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-fullscreen">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title fs-5" id="title">Reservation Details Form</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
                             </div>
 
-                            <form action="Reservation1.php" method="post">
-                                <div class="modal-body">
-
-                                    <div class="row form-outline">
-                                        <div class="col">
-                                            <!-- Schedule ID input -->
-                                            <!-- <input type="number" name="schedule_id" id="" class="form-control" />
-                        <label class="form-label" for="">Schedule ID</label> -->
-                                            <select name="schedule_id" class="form-select">
-                                                <?php
-
-                                                $sqlfk = "SELECT schedule_id, departure_date, departure_time FROM tbl_schedule"; // Change routes_table to your actual table name
-
-                                                // Execute query
-                                                $sched_fk = $con->query($sqlfk);
-
-                                                // Check if any results returned
-                                                if ($sched_fk->num_rows > 0) {
-                                                    // Output data of each row
-                                                    while ($schedFK = $sched_fk->fetch_assoc()) {
-                                                        echo "<option value='" . $schedFK['schedule_id'] . "'>" . $schedFK['schedule_id'] . " (" . $schedFK['departure_date'] . " " . date_format(date_create($schedFK['departure_time']), 'g:i A') .  ")" . "</option>";
-                                                    }
-                                                } else {
-                                                    echo "<option value=''>No schedules found</option>";
-                                                }
-                                                ?>
-
-                                            </select>
-                                            <label class="form-label" for="schedule_id">Schedule ID</label>
-                                        </div>
-
-                                        <div class=" col">
-                                            <!-- Passenger Name input -->
-                                            <input type="text" id="" name="passenger_name" class="form-control" />
-                                            <label class="form-label" for="">Passenger Name</label>
-                                        </div>
-                                    </div>
 
 
-                                    <div class="row form-outline">
-                                        <div class="col">
-                                            <!-- Contact Number -->
-                                            <input type="number" name="contact_information" id="" class="form-control" min="0" />
-                                            <label class="form-label" for="">Contact Number</label>
-                                        </div>
+                            <div class="modal-body">
 
-                                        <div class="col">
-                                            <!-- Seat Number -->
-                                            <input type="number" id="" name="seat_number" class="form-control" min="0" />
-                                            <label class="form-label" for="">Seat Number</label>
-                                        </div>
-                                    </div>
 
-                                    <div class="row form-outline">
-                                        <div class="col-6">
-                                            <!-- Reservation Date -->
-                                            <input type="datetime-local" name="reservation_date" id="" class="form-control" />
-                                            <label class="form-label" for="">Reservation Date</label>
-                                        </div>
+                                <?php
+                                $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
 
-                                        <!-- Status input -->
-                                        <div class="col-6">
-                                            <select name="status" id="status" class="form-select">
-                                                <?php
-                                                echo '<option value="" selected disabled>Select the status</option>';
 
-                                                foreach ($status as $statuses) {
-                                                    echo '<option value="' . $statuses . '">' . $statuses . '</option>';
-                                                }
-                                                ?>
-                                            </select>
-                                            <label class="form-label" for="">Status</label>
-                                        </div>
 
-                                    </div>
+                                $result = $con->query($selectsql);
 
-                                    <!-- Save button -->
+                                $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
+                                if ($result->num_rows > 0) {
+                                    echo "<div class=' p-5 rounded'>";
+                                    echo "<div class = 'table-responsive'>";
+                                    echo "<table class='table  table-striped bdr text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
+                                    echo "<tr>";
+                                    echo "</tr>";
+                                    echo "<thead class ='table-dark'>";
+                                    echo "<tr>";
+                                    /* echo "<th > Schedule ID </th>"; */
+                                    echo "<th> Bus Number </th>";
+                                    echo "<th> Bus Type </th>";
+                                    echo "<th> Departure Date </th>";
+                                    echo "<th> Depature Time </th>";
+
+                                    echo "<th> Departure Area </th>";
+                                    echo "<th> Destination </th>";
+                                    echo "<th> Total Seats </th>";
+                                    echo "<th> Available Seats </th>";
+                                    echo "<th> Price (₱) </th>";
+                                    echo "<th> Reserve </th>";
+                                    echo "</tr>";
+                                    echo "</thead>";
+
+
+
+                                    while ($maltfielddata = $result->fetch_assoc()) {
+                                        echo "<tr>";
+                                        "<td>" . $maltfielddata['Schedule ID'] . "</td>";
+                                        echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
+                                        echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
+                                        echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
+                                        echo "<td>" . date_format(date_create($maltfielddata['Departure Time']), 'g:i A') . "</td>";
+
+
+                                        echo "<td>" . $maltfielddata['Departure Area'] . "</td>";
+                                        echo "<td>" . $maltfielddata['Destination'] . "</td>";
+                                        echo "<td>" . $maltfielddata['Total Seats'] . "</td>";
+                                        echo "<td>" . $maltfielddata['Available Seats'] . "</td>";
+                                        echo "<td>" . number_format($maltfielddata['Price']) . "</td>";
+                                        echo "<td>";
+
+                                        echo "<button class='btn btn-success' type='button' data-bs-toggle='collapse' data-bs-target='#collapseExample" . $maltfielddata['Schedule ID'] . "' aria-expanded='false' 
+                                     aria-controls='collapseExample" . $maltfielddata['Schedule ID'] . "' $buttonDisabled>Book</button>";
+
+                                        echo "</td>";
+                                        echo "</tr>";
+                                        echo "<tr class='collapse' id='collapseExample" . $maltfielddata['Schedule ID'] . "'>";
+                                        echo "<td colspan=15>";
+                                        echo "<div class='w-50 mx-auto text-auto'>";
+
+                                ?>
+                                        <form action="\FINAL_ALPS_BUS\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');" novalidate class="needs-validation">
+                                            <div class="row  form-outline">
+
+                                                <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
+                                                <!-- Full Name input -->
+                                                <div class="col">
+                                                    <input type="hidden" name="book_id" value="<?php echo $maltfielddata['Schedule ID'] ?>" class="form-control" readonly />
+
+                                                </div>
+                                                <div class="col">
+                                                    <input type="hidden" name="book_num" value="<?php echo $maltfielddata['Bus Number']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                                <div class="col">
+                                                    <input type="hidden" name="book_type" value="<?php echo $maltfielddata['Bus Type']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                                <div class="col">
+                                                    <input type="hidden" name="r_date" value="<?php echo date("Y-m-d H:i:s") ?>" class="form-control" readonly />
+
+                                                </div>
+                                            </div>
+
+                                            <!-- Role input -->
+                                            <div class="row form-outline mb-2">
+                                                <div class="col">
+                                                    <input type="hidden" name="book_ddate" value="<?php echo $maltfielddata['Departure Date']; ?>" class="form-control" />
+
+                                                </div>
+
+                                                <div class="col">
+                                                    <input type="hidden" name="book_dtime" value="<?php echo date_format(date_create($maltfielddata['Departure Time']), 'H:i'); ?>" class="form-control" />
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="row form-outline">
+                                                <!-- Full Name input -->
+                                                <div class="col">
+                                                    <input type="hidden" name="book_depart" value="<?php echo $maltfielddata['Departure Area']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                                <div class="col">
+                                                    <input type="hidden" name="book_desti" value="<?php echo $maltfielddata['Destination']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-outline">
+                                                <!-- Full Name input -->
+                                                <div class="col">
+                                                    <input type="hidden" name="book_price" value="<?php echo number_format($maltfielddata['Price']); ?>" class="form-control" readonly />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row form-outline">
+                                                <!-- Full Name input -->
+                                                <div class="col">
+                                                    <input type="hidden" name="book_tseats" value="<?php echo $maltfielddata['Total Seats']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                                <div class="col">
+                                                    <input type="hidden" name="book_aseats" value="<?php echo $maltfielddata['Available Seats']; ?>" class="form-control" readonly />
+
+                                                </div>
+                                            </div>
+
+                                            <div class="row text-start form-outline mb-2">
+                                                <label class="form-label" for="">Passenger Name</label>
+                                                <div class="col">
+                                                    <label class="form-label text-secondary" for="">First Name</label>
+                                                    <input type="text" id="" name="f_name" class="form-control" required />
+                                                    <div class="invalid-feedback text-start">Enter your first name.</div>
+                                                    <div class="valid-feedback text-start">First name entered.</div>
+
+                                                </div>
+
+                                                <div class="col">
+                                                    <label class="form-label text-secondary" for="">Middle Name</label>
+                                                    <input type="text" id="" name="m_name" class="form-control" />
+                                                </div>
+
+                                                <div class="col">
+                                                    <label class="form-label text-secondary" for="">Last Name</label>
+                                                    <input type="text" id="" name="l_name" class="form-control" required />
+                                                    <div class="invalid-feedback text-start">Enter your last name.</div>
+                                                    <div class="valid-feedback text-start">Last name entered.</div>
+                                                </div>
+
+
+                                            </div>
+
+
+                                            <div class="row text-start form-outline">
+                                                <!-- Password input -->
+                                                <div class="col">
+                                                    <label class="form-label" for="">Contact Number</label>
+                                                    <input type="number" name="c_number" id="" class="form-control" min="0" required />
+
+                                                    <div class="invalid-feedback text-start">Enter your contact.</div>
+                                                    <div class="valid-feedback text-start">Contact information entered.</div>
+                                                </div>
+                                                <div class="col">
+                                                    <label class="form-label" for="">Seat</label>
+                                                    <?php
+
+                                                    seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con);
+                                                    ?>
+                                                    <div class='invalid-feedback text-start'>Choose your seat number.</div>
+                                                    <div class='valid-feedback text-start'>Seat selected.</div>
+
+                                                </div>
+
+                                            </div>
+
+
+
+                                            <!-- Save button -->
+                            </div>
+                            <div class="row form-outline text-center pt-1 pb-4">
+                                <div class="col">
+                                    <button type="submit" name="booking" value="Book" class="btn btn-success">Confirm Booking</button>
                                 </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button type="submit" name="add" class="btn btn-primary">Add</button>
-                                </div>
+                            </div>
                             </form>
+
                         </div>
+
+
+                <?php
+                                        echo "</div>";
+                                        echo "</td>";
+                                        echo "</tr>";
+                                    }
+                                    echo "</table>";
+                                    echo "<div class='modal-footer d-flex rounded justify-content-center'>";
+                                    echo "<button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>";
+                                    echo  "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                } else {
+                                    echo "<div class='row'>";
+                                    echo "<div class='col'>";
+                                    echo "<div class='bg-row-book p-3 rounded pb-4'>";
+                                    echo "<br><h4 class='text-center text-white shadow p-4 rounded'>There is no booking at this time</h4>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                    echo "</div>";
+                                }
+                ?>
                     </div>
                 </div>
             </div>
@@ -246,86 +365,57 @@
         //Search Button
         if (isset($_POST['searchbutton'])) {
 
-            //to check the search box if empty or not 
+
             if ($_POST['search'] != NULL) {
                 $search = $_POST['search'];
-                $selectsql = "Select * from tbl_reservation where 
+                $selectsql = "Select * from reservation_booking_view where 
             reservation_id LIKE '%" . $search . "%' 
             OR schedule_id LIKE '%" . $search . "%' 
+            OR bus_id LIKE '%" . $search . "%' 
+            OR route_id LIKE '%" . $search . "%' 
+            OR ticket_number LIKE '%" . $search . "%' 
+            OR bus_number LIKE '%" . $search . "%' 
+            OR route_name LIKE '%" . $search . "%' 
+            OR departure_date LIKE '%" . $search . "%' 
+            OR departure_time LIKE '%" . $search . "%' 
             OR passenger_name LIKE'%" . $search . "%' 
             OR contact_information LIKE'%" . $search . "%' 
             OR seat_number LIKE'%" . $search . "%' 
+            OR reservation_date LIKE'%" . $search . "%' 
+            OR price LIKE'%" . $search . "%' 
+            OR payment_method LIKE'%" . $search . "%' 
+            OR reference_num LIKE'%" . $search . "%' 
             OR status LIKE'%" . $search . "%'  
             OR reservation_date LIKE'%" . $search . "%'  ORDER BY reservation_id DESC";
             } else {
-                $selectsql = "Select * from tbl_reservation ORDER BY reservation_id DESC";
+                $selectsql = "Select * from reservation_booking_view ORDER BY reservation_id DESC";
             }
         } else {
-            $selectsql = "Select * from tbl_reservation ORDER BY reservation_id DESC";
+            $selectsql = "Select * from reservation_booking_view ORDER BY reservation_id DESC";
         }
-
-
-        //Add Button
-        if (isset($_POST['add'])) {
-
-            $scheduleID = $_POST['schedule_id'];
-            $passengerName = $_POST['passenger_name'];
-            $contact = $_POST['contact_information'];
-            $seatNum = $_POST['seat_number'];
-            $reservationDate = $_POST['reservation_date'];
-            $status = $_POST['status'];
-
-
-            $insertsql = "Insert into tbl_reservation (schedule_id,passenger_name,contact_information,seat_number,reservation_date,status)
-        values ($scheduleID,'$passengerName',$contact,$seatNum,'$reservationDate','$status')
-        ";
-
-            $result = $con->query($insertsql);
-
-
-            //check if successfully added
-            if ($result == True) {
-        ?>
-                <script>
-                    Swal.fire({
-                        title: "Do you want to add this user?",
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: "Add",
-                        denyButtonText: `Don't Add`
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            Swal.fire("Saved!", "", "success");
-                        } else if (result.isDenied) {
-                            Swal.fire("Changes are not saved", "", "info");
-                        }
-                    });
-                </script>
-            <?php
-            } else {
-                //if not inserted, check query error details
-                echo $con->error;
-            }
-        }
-
 
         $result = $con->query($selectsql);
 
-        //check table if there is a record
-        //num_rows - will return the no of rows inside a table
+
         if ($result->num_rows > 0) {
-            echo "<div class=' bg-row p-5 rounded'>";
+            echo "<div class=' bg-row mt-2 p-5 rounded'>";
             echo "<div class='bdr table-responsive'>";
             echo "<table class='table  table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
             echo "<thead class ='table-dark'>";
             echo "<tr>";
             echo "<th> Reservation ID </th>";
-            echo "<th> Schedule ID </th>";
+            echo "<th> Ticket Number </th>";
+            echo "<th> Bus Number </th>";
+            echo "<th> Route Name </th>";
+            echo "<th> Departure Date </th>";
+            echo "<th> Departure Time </th>";
             echo "<th> Passenger Name </th>";
             echo "<th> Contact Information </th>";
             echo "<th> Seat Number </th>";
             echo "<th> Reservation Date </th>";
+            echo "<th> Price (₱)</th>";
+            echo "<th> Payment Method </th>";
+            echo "<th> Reference Number </th>";
             echo "<th> Status </th>";
             echo "<th> Action </th>";
             echo "</tr>";
@@ -335,14 +425,24 @@
             while ($fielddata = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $fielddata['reservation_id'] . "</td>";
-                echo "<td>" . $fielddata['schedule_id'] . "</td>";
+                "<td>" . $fielddata['schedule_id'] . "</td>";
+                "<td>" . $fielddata['bus_id'] . "</td>";
+                "<td>" . $fielddata['route_id'] . "</td>";
+                echo "<td>" . $fielddata['ticket_number'] . "</td>";
+                echo "<td>" . $fielddata['bus_number'] . "</td>";
+                echo "<td>" . $fielddata['route_name'] . "</td>";
+                echo "<td>" . $fielddata['departure_date'] . "</td>";
+                echo "<td>" .  date_format(date_create($fielddata['departure_time']), 'g:i A') . "</td>";
                 echo "<td>" . $fielddata['passenger_name'] . "</td>";
                 echo "<td>" . $fielddata['contact_information'] . "</td>";
                 echo "<td>" . $fielddata['seat_number'] . "</td>";
                 echo "<td>" . date_format(date_create($fielddata['reservation_date']), 'Y-m-d g:i A') . "</td>";
+                echo "<td>" . $fielddata['price'] . "</td>";
+                echo "<td>" . $fielddata['payment_method'] . "</td>";
+                echo "<td>" . $fielddata['reference_num'] . "</td>";
                 echo "<td>" . $fielddata['status'] . "</td>";
                 echo "<td class ='pt-3 pb-0'>";
-            ?>
+        ?>
                 <form method="post" action="Reservation1.php">
                     <input type="hidden" name="res_del" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" />
                     <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['reservation_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['reservation_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['reservation_id']; ?>">Edit</button>
@@ -353,7 +453,7 @@
 
                 // Collapse
                 echo "<tr>";
-                echo "<td colspan='8' class ='tble-bg'>";
+                echo "<td colspan='17' class ='tble-bg'>";
                 echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['reservation_id'] . "'>";
                 ?>
                 <!-- form-->
@@ -361,61 +461,51 @@
                 <form action="Reservation1.php" method="post">
                     <h5 class="hd-text text-center pb-2 fs-5" id="title">Reservation Editing Form</h5>
 
+
+                    <div class="col">
+                        <!-- Reservation ID input -->
+                        <input type="hidden" name="update_reservationID" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" readonly />
+
+                    </div>
+                    <div class="col">
+                        <!-- Reservation ID input -->
+                        <input type="hidden" name="update_scheduleID" value="<?php echo $fielddata['schedule_id']; ?>" class="form-control" readonly />
+
+                    </div>
+                    <div class="col">
+                        <!-- Reservation ID input -->
+                        <input type="hidden" name="update_busid" value="<?php echo $fielddata['bus_id']; ?>" class="form-control" readonly />
+
+                    </div>
+                    <div class="col">
+                        <!-- Reservation ID input -->
+                        <input type="hidden" name="update_routeid" value="<?php echo $fielddata['route_id']; ?>" class="form-control" readonly />
+
+                    </div>
+
+
+                    <!-- Contact Number -->
+                    <input type="hidden" name="update_contactInformation" value="<?php echo $fielddata['contact_information']; ?>" class="form-control" readonly />
+
                     <div class="row form-outline">
                         <div class="col">
-                            <!-- Reservation ID input -->
-                            <input type="number" name="update_reservationID" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" readonly />
-                            <label class="form-label" for="">Reservation ID</label>
-                        </div>
-
-                        <div class="col">
-                            
-                            <!-- Schedule ID input -->
-                            <!--  <input type="number" name="update_scheduleID" value="<?php echo $fielddata['schedule_id']; ?>" class="form-control" />
-                    <label class="form-label" for="">Schedule ID</label> -->
-                            <select name="update_scheduleID" class="form-select">
-                                <?php
-                                $sched_query = "SELECT schedule_id, departure_date, departure_time FROM tbl_schedule";
-                                $sched_result = $con->query($sched_query);
-
-                                if ($sched_result->num_rows > 0) {
-                                    while ($sched_data = $sched_result->fetch_assoc()) {
-                                        $selected = ($sched_data['schedule_id'] == $fielddata['schedule_id']) ? "selected" : "";
-                                        echo "<option value='" . $sched_data['schedule_id'] . "' $selected>" . $sched_data['schedule_id'] . " (" . $sched_data['departure_date'] . " " . date_format(date_create($sched_data['departure_time']), 'g:i A') .  ")" .  "</option>";
-                                    }
-                                }
-                                ?>
-                            </select>
-                            <label class="form-label" for="">Schedule ID</label>
-                        </div>
-
-                        <div class=" col">
                             <!-- Passenger Name input -->
-                            <input type="text" id="" name="update_passengerName" value="<?php echo $fielddata['passenger_name']; ?>" class="form-control" />
+                            <input type="text" id="" name="update_passengerName" value="<?php echo $fielddata['passenger_name']; ?>" class="form-control" readonly />
                             <label class="form-label" for="">Passenger Name</label>
+
+
                         </div>
                     </div>
 
                     <div class="row form-outline">
-                        <div class="col">
-                            <!-- Contact Number -->
-                            <input type="number" name="update_contactInformation" value="<?php echo $fielddata['contact_information']; ?>" class="form-control" />
-                            <label class="form-label" for="">Contact Number</label>
-                        </div>
+
 
                         <div class="col">
                             <!-- Seat Number -->
-                            <input type="text" id="" name="update_seatNumber" value="<?php echo  $fielddata['seat_number']; ?>" class="form-control" />
+                            <input type="text" id="" name="update_seatNumber" value="<?php echo  $fielddata['seat_number']; ?>" class="form-control" readonly />
                             <label class="form-label" for="">Seat Number</label>
                         </div>
-                    </div>
 
-                    <div class="row form-outline">
-                        <div class="col">
-                            <!-- Reservation Date -->
-                            <input type="datetime-local" name="update_reservationDate" value="<?php echo $fielddata['reservation_date']; ?>" class="form-control" />
-                            <label class="form-label" for="">Reservation Date</label>
-                        </div>
                         <!-- Status input -->
                         <div class="col">
                             <select name="update_status" id="status" class="form-select">
@@ -431,14 +521,17 @@
                             </select>
                             <label class="form-label" for="">Status</label>
                         </div>
+                    </div>
 
 
-                        <!-- Save button -->
-                        <div class="row form-outline text-center pt-1">
-                            <div class="col">
-                                <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
-                            </div>
+
+
+                    <!-- Save button -->
+                    <div class="row form-outline text-center pt-1">
+                        <div class="col">
+                            <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
                         </div>
+                    </div>
                 </form>
 
             <?php
@@ -457,22 +550,19 @@
             echo "</div>";
         }
 
+
         //Update Button
 
 
         if (isset($_POST['updating'])) {
             $reservationID_update = $_POST['update_reservationID'];
             $scheduleID_update = $_POST['update_scheduleID'];
-            $passengerName_update = $_POST['update_passengerName'];
-            $contact_update = $_POST['update_contactInformation'];
-            $seatNum_update = $_POST['update_seatNumber'];
-            $reservationDate_update = $_POST['update_reservationDate'];
+            $busID_update = $_POST['update_busid'];
+            $routeID_update = $_POST['update_routeid'];
             $status_update = $_POST['update_status'];
 
-            $updatesql = "UPDATE tbl_reservation SET reservation_id = $reservationID_update, schedule_id = $scheduleID_update,
-        passenger_name = '$passengerName_update', contact_information = $contact_update, seat_number = $seatNum_update,
-        reservation_date = '$reservationDate_update', status = '$status_update'
-        WHERE reservation_id = $reservationID_update";
+            $updatesql = "UPDATE tbl_reservation SET status = '$status_update'
+        WHERE reservation_id = $reservationID_update AND schedule_id = $scheduleID_update";
 
             $resultup = $con->query($updatesql);
 
@@ -496,6 +586,8 @@
                     });
                 </script>
         <?php
+            $action = 'Updated Reservation';
+            logActivity($con, $userID, $action);
             } else {
                 //if not, check query error details
                 echo $con->error;
@@ -509,6 +601,7 @@
 
     </div>
 
+    <script src="../formvalidation.js"> </script>
 </body>
 
 </html>

@@ -20,7 +20,7 @@ include "logger.php";
 <body class="hd-text">
     <?php
     date_default_timezone_set("Asia/Manila");
-    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
     require_once 'SeatFunction.php';
 
     require_once "BusArrays.php";
@@ -43,16 +43,16 @@ include "logger.php";
 
             <li>
                 <i class="bi bi-table"></i>
-                <a href="Overview1.php">Overview</a>
+                <a href="Overview2.php">Overview</a>
             </li>
 
             <li>
                 <i class="bi bi-person-circle"></i>
-                <a href="User1.php">User</a>
+                <a href="User2.php">User</a>
             </li>
             <li>
                 <i class="bi bi-card-list"></i>
-                <a href="Logs1.php">Logs</a>
+                <a href="Logs2.php">Logs</a>
             </li>
 
             <li class="disabled border border-light my-2">
@@ -64,11 +64,11 @@ include "logger.php";
 
             <li>
                 <i class="bi bi-bus-front"></i>
-                <a href="Bus1.php">Bus</a>
+                <a href="Bus2.php">Bus</a>
             </li>
             <li>
                 <i class="bi bi-sign-turn-right-fill"></i>
-                <a href="Route1.php">Route</a>
+                <a href="Route2.php">Route</a>
             </li>
             <li>
                 <i class="bi bi-calendar3"></i>

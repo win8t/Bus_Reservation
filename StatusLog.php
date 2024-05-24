@@ -1,6 +1,7 @@
 <?php
 require "dbconnect.php";
-include "logger.php";
+/*set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
+include "FinalsTable\logger.php"; */
 session_start();
 ?>
 <html lang="en">
@@ -263,4 +264,5 @@ if (isset($_POST['cancel'])) {
     }
 }
 echo "</div>";
+
 ?>

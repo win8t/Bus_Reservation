@@ -31,27 +31,47 @@
     </div>
     <ul class="links">
 
+      <li class="disabled">
+        <h4 class="">Main Menu</h4>
+      </li>
 
-      
+
+      <li>
+        <i class="bi bi-table"></i>
+        <a href="Overview2.php">Overview</a>
+      </li>
+
+      <li>
+        <i class="bi bi-person-circle"></i>
+        <a href="User2.php">User</a>
+      </li>
+      <li>
+        <i class="bi bi-card-list"></i>
+        <a href="Logs2.php">Logs</a>
+      </li>
+
+      <li class="disabled border border-light my-2">
+        <hr class="">
+      </li>
       <li class="disabled">
         <h4 class="">Bus Menu</h4>
       </li>
 
       <li>
         <i class="bi bi-bus-front"></i>
-        <a href="Bus1.php">Bus</a>
+        <a href="Bus2.php">Bus</a>
       </li>
       <li class="active">
         <i class="bi bi-sign-turn-right-fill"></i>
-        <a class="active" href="Route1.php">Route</a>
+        <a class="active" href="Route2.php">Route</a>
       </li>
       <li>
         <i class="bi bi-calendar3"></i>
-        <a href="Schedule1.php">Schedule</a>
+        <a href="Schedule2.php">Schedule</a>
       </li>
       <li>
         <i class="bi bi-calendar-date"></i>
-        <a href="Reservation1.php">Reservation</a>
+        <a href="Reservation2.php">Reservation</a>
       </li>
       <li class="disabled border border-light my-2">
         <hr class="">
@@ -78,7 +98,7 @@
 
         <div class="row bg-row mx-auto p-1 m-1 rounded">
 
-          <form action="Route1.php" method="post">
+          <form action="Route2.php" method="post">
 
             <div class="input-group w-50 pt-4">
               <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
@@ -135,7 +155,7 @@
 
              
                 <div class="modal-body">
-                <form action="Route1.php" method="post" novalidate class ="needs-validation">
+                <form action="Route2.php" method="post" novalidate class ="needs-validation">
                   <!-- Route Name input -->
                   <div class="row form-outline mt-2">
                     <div class="col">
@@ -411,7 +431,7 @@
         echo "<td>" . number_format($fielddata['price']) . "</td>";
         echo "<td class ='pt-3 pb-0'>";
       ?>
-        <form method="post" action="Route1.php">
+        <form method="post" action="Route2.php">
           <input type="hidden" name="route_del" value="<?php echo $fielddata['route_id']; ?>" class="form-control" />
 
           <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['route_id']; ?>">Edit</button>
@@ -427,7 +447,7 @@
         ?>
         <!-- form-->
 
-        <form action="Route1.php" method="post">
+        <form action="Route2.php" method="post">
           <h5 class="hd-text text-center pb-2 fs-5" id="title">Route Editing Form</h5>
 
           <!-- Route ID input -->
