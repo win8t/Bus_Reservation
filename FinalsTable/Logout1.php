@@ -30,7 +30,8 @@ if (isset($_POST['logout1'])) {
         session_destroy();
 
         // Redirect to the login page or another page
-        header("Location: ..\Login.php");
+        set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+        header("Location: /FINAL_ALPS_BUS/Login.php");
         exit();
     }
 }

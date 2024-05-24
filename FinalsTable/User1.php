@@ -1,7 +1,8 @@
 <?php
 require "dbconnect.php";
 set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
-  require_once 'email_registration.php';
+require_once 'email_registration.php';
+include "logger.php";
 ?>
 <html lang="en">
 
@@ -277,8 +278,6 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
       $selectsql = "Select * from tbl_user  ORDER BY user_id DESC";
     }
 
-
-
     //Add Button
     if (isset($_POST['add'])) {
       $fname = $_POST['f_name'];
@@ -296,7 +295,6 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
       $user_result = $con->query($usersql);
 
       if ($user_result->num_rows == 0) {
-
           if ($password == $confirmpass) {
           $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp,status)
           values('$full', '$role', '$username','$password', '$email',$otp, 'Inactive')";
@@ -306,6 +304,9 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
             if ($result == True) {?>
   
             <?php
+            $action = 'Added User';
+            logActivity($con, $userID, $action);
+            
             send_verification($full,$email,$otp);
             } else {
                 echo $con->error;
@@ -334,6 +335,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
             </script>
     <?php  }
     }
+
     $result = $con->query($selectsql);
 
     //check table if there is a record
@@ -452,8 +454,6 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
 
     //Update Button
 
-    require_once "dbconnect.php";
-
     if (isset($_POST['updating'])) {
       $user_update = $_POST['update_id'];
       $name_update = $_POST['update_name'];
@@ -492,11 +492,13 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
     });
   </script>
 <?php
+    $action = 'Update User';
+   logActivity($con, $userID, $action);
       } else {
         //if not, check query error details
         echo $con->error;
       }
-    }
+  }
 
 
 
