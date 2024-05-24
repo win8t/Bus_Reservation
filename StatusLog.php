@@ -3,22 +3,40 @@ require "dbconnect.php";
 session_start();
 ?>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Alps Booking Reservation</title>
-    <link href=stylez.css rel="stylesheet" />
+    <title>Alps Booking Reservation</title>
+    <link href="stylezstt.css" rel="stylesheet" />
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            margin: 0;
+            overflow: hidden;
+        }
 
+        th {
+            background-image: linear-gradient(#1717178c, #29292947), url('./FinalsTable/Sidebar.jpg');
+        }
 
+        td {
+            background-color: #FFF !important;
+        }
+    </style>
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<body class ="status-body">
-<?php
+<body class="status-body">
+    <?php
     date_default_timezone_set("Asia/Manila");
     ?>
-    <?php  ?>
+
     <script>
         function swapValues() {
             event.preventDefault();
@@ -32,14 +50,13 @@ session_start();
         }
     </script>
 
-<script src="scripts.js"></script>
+    <script src="scripts.js"></script>
     <script src="bootstrap.bundle.min.js"></script>
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-book bg-info-subtle">
         <div class="container-fluid">
             <a class="navbar-brand me-auto ml-1 pe-none" href="#" aria-disabled="true" tabindex="-1">
                 <img src="Alps.png" alt="" class="logo img-fluid">
-
             </a>
 
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -59,31 +76,173 @@ session_start();
                         <li class="nav-item">
                             <a class="nav-link active mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Status</a>
                         </li>
-                        <!--
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-shop"></i> Transit</a>
-                        </li> -->
                     </ul>
                 </div>
-
             </div>
             <form action="Logout.php" method="post">
-                <button class="book-status-button  mt-4 border-0" type="submit" name="logout" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-
+                <button class="book-status-button mt-4 border-0" type="submit" name="logout" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                     <i class="bi bi-person-circle"></i><?php echo " " . $_SESSION['username']; ?>
                 </button>
             </form>
         </div>
     </nav>
 
-
-
-    
 </body>
+
 </html>
 
 <?php
+echo "<div class ='container-fluid bg-info-subtle shadow-sm rounded-3 w-75 p-4'>";
+echo "<h2 class = 'about-login mx-auto text-center'> ALPS RESERVATION DETAILS VIEWING </h2>";
+?>
 
+<div class="row mx-auto justify-content-center p-1 m-1 rounded">
+    <div class="col text-center">
+        <!-- Date Time - Local -->
+        <div class="row rounded p-2">
+            <div id="datetime" class="h4 text-dark about-text"></div>
+            <script>
+                function updateDateTime() {
+                    var now = new Date();
+                    var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                    ];
+                    var dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                    var month = monthNames[now.getMonth()];
+                    var day = now.getDate();
+                    var year = now.getFullYear();
+                    var dayOfWeek = dayNames[now.getDay()];
+                    var time = now.toLocaleTimeString();
+                    var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
+                    document.getElementById('datetime').textContent = dateTimeString;
+                }
+                // Update the date and time every second
+                setInterval(updateDateTime, 1000);
 
+                // Initial update
+                updateDateTime();
+            </script>
+        </div>
+    </div>
 
+</div>   
+
+    <?php
+    if (isset($_POST['searchresbutton'])) {
+        $tickets_number = $_POST['search'];
+    
+
+        $selectsql = "SELECT * FROM reservation_booking_view WHERE ticket_number = '$tickets_number'";
+        $status_result = $con->query($selectsql);
+        echo "<div class ='container-fluid bg-row-status w-75 p-5 rounded mb-3'>";
+
+        if ($status_result->num_rows > 0) {
+
+            echo "<div class ='table-responsive bdr m-3'>";
+            echo "<table class='table table-sm table-bordered border-primary-subtle table-hover mx-auto'>";
+            echo "<thead class ='table-dark text-center'><tr>";
+            echo "<th>Ticket Number</th>";
+            echo "<th>Passenger Name</th>";
+            echo "<th>Bus Number</th>";
+            echo "<th>Seat Number</th>";
+            echo "<th>Departure Time</th>";
+            echo "<th>Departure Date</th>";
+            echo "<th>Status</th>";
+            echo "</tr></thead>";
+            echo "<tbody class ='text-center'>";
+            while ($fielddata = $status_result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $fielddata['ticket_number'] . "</td>";
+                echo "<td>" . $fielddata['passenger_name'] . "</td>";
+                echo "<td>" . $fielddata['bus_number'] . "</td>";
+                echo "<td>" . $fielddata['seat_number'] . "</td>";
+                echo "<td>" . date_format(date_create($fielddata['departure_time']), 'g:i A') . "</td>";
+                echo "<td>" . $fielddata['departure_date'] . "</td>";
+                echo "<td>" . $fielddata['status'] . "</td>";
+                echo "</tr>";
+                echo "</tbody></table>";
+                echo "</div>";
+                // Cancellation form inside the loop
+    ?>
+                <form action="StatusLog.php" method="post">
+                    <input type="hidden" name="ticket_number" value="<?php echo $fielddata['ticket_number']; ?>">
+                    <input type="hidden" name="seat" value="<?php echo $fielddata['seat_number']; ?>">
+                    <div class="row text-center">
+                        <div class="col">
+                            <button type="button" value="PrintBooking" id="printsButton" class="shadows btn btn-success mx-2 w-25 rounded-4"> Print </button>
+                            <button type="submit" value="CancelBooking" name="cancel" class="shadows btn btn-danger w-25 rounded-4"> Cancel Booking </button>
+                        </div>
+                    </div>
+                </form>
+    <?php
+            }
+        } else {
+            echo "<div class='row mt-3'>";
+            echo "<div class='col'>";
+            echo "<h2 class ='text-center display-7'><b>No reservation found for ticket number: " . $tickets_number . "</b></h2>";
+            echo "</div>";
+            echo "</div>";
+        }
+        echo "</div>";
+    }
+    ?>
+    <form action="StatusLog.php" method="post" class="text-center">
+        <div class="row">
+            <div class="col">
+                <input type="text" name="search" id="" class="form-control rounded-5 p-3 w-75 mx-auto gradient-input border-0" aria-label="Input group example" aria-describedby="btnGroupAddon2" placeholder="Enter your Ticket Number here!">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="submit" value="Search" name="searchresbutton" class="rounded-pill w-25 mt-4 btn text-white border-0 mt-1 gradient-search">
+            </div>
+        </div>
+    </form>
+</div>
+
+<?php
+echo "</div'>";
+?>
+<script>
+    document.getElementById('printsButton').addEventListener('click', function() {
+        window.print();
+    });
+</script>
+<?php
+if (isset($_POST['cancel'])) {
+    $ticket_number = $_POST['ticket_number'];
+    $seat_num = $_POST['seat'];
+
+    echo  $ticket_number;
+    echo  $seat_num;
+
+    $sqlcancel = "UPDATE tbl_reservation SET status = 'Cancelled' WHERE ticket_number ='$ticket_number'";
+    $result_cancel = $con->query($sqlcancel);
+
+    if ($result_cancel) {
+        $seatsql1 = "UPDATE tbl_reservation 
+                 SET seat_number = NULL 
+                 WHERE ticket_number ='$ticket_number' AND status ='Cancelled'";
+
+        $seatsql2 = "UPDATE tbl_schedule 
+                 SET available_seats = available_seats + 1 
+                 WHERE schedule_id IN (
+                     SELECT DISTINCT schedule_id 
+                     FROM tbl_reservation 
+                     WHERE ticket_number ='$ticket_number' AND status ='Cancelled'
+                 )";
+
+        $result_seat_update = $con->query($seatsql1);
+        $result_capacity_update = $con->query($seatsql2);
+
+        if ($result_seat_update && $result_capacity_update) {
+            echo "Reservation cancelled successfully. Seat and bus capacity updated.";
+        } else {
+            echo "Error updating seat and/or bus capacity: " . $con->error;
+        }
+    } else {
+        echo "Error cancelling reservation: " . $con->error;
+    }
+}
+echo "</div>";
 ?>

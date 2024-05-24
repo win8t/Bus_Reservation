@@ -158,10 +158,14 @@ require "dbconnect.php";
 
                 </div>
 
+
+
                 </form>
                 <button type="button" id="formDetailsBtn" class="btn btn-color mt-1 hd-text" data-bs-toggle="modal" data-bs-target="#formDetails">
                     Add Schedule Details <!-- add icon -->
                 </button>
+
+
 
                 <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -171,8 +175,8 @@ require "dbconnect.php";
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                          
-                                <div class="modal-body">
+
+                            <div class="modal-body">
                                 <form action="Schedule2.php" method="post" novalidate class="needs-validation">
                                     <div class="row form-outline">
                                         <!-- Schedule ID input -->
@@ -184,7 +188,7 @@ require "dbconnect.php";
                                         <div class="col">
                                             <!-- Bus ID input -->
                                             <label class="form-label" for="bus_num">Bus Number</label>
-                                            
+
 
                                             <select name="bus_num" class="form-select" required>
                                                 <?php
@@ -199,7 +203,7 @@ require "dbconnect.php";
                                                     // Output data of each row
                                                     echo "<option selected disabled value=''>Choose a bus number</option>";
                                                     while ($busFK = $bus_fk->fetch_assoc()) {
-                                                        echo "<option value='" . $busFK['bus_number']  . "'>" .  "B".$busFK['bus_id']." - ".$busFK['bus_number'] . "</option> ";
+                                                        echo "<option value='" . $busFK['bus_number']  . "'>" .  "B" . $busFK['bus_id'] . " - " . $busFK['bus_number'] . "</option> ";
                                                     }
                                                 } else {
                                                     echo "<option value=''>No busses found</option>";
@@ -208,14 +212,14 @@ require "dbconnect.php";
 
                                             </select>
                                             <div class="invalid-feedback text-start">Select a Bus Number.</div>
-                                             <div class="valid-feedback text-start">Bus Number selected.</div>
-                                            
+                                            <div class="valid-feedback text-start">Bus Number selected.</div>
+
                                         </div>
-       
+
                                     </div>
                                     <div class="row form-outline mt-2">
                                         <div class="col">
-                                        <label class="form-label" for="route_id">Departure Area</label>
+                                            <label class="form-label" for="route_id">Departure Area</label>
                                             <select name="dep_loc" class="form-select" required>
                                                 <?php
 
@@ -225,7 +229,7 @@ require "dbconnect.php";
                                                 if ($route_fk->num_rows > 0) {
                                                     echo "<option selected disabled value=''>Choose an area</option>";
                                                     while ($routeFK = $route_fk->fetch_assoc()) {
-                                                        echo "<option value='".$routeFK['bus_id'] . "-" . $routeFK['departure_location'] . "'>" . "B".$routeFK['bus_id'] . " - " . $routeFK['departure_location'] . "</option>";
+                                                        echo "<option value='" . $routeFK['bus_id'] . "-" . $routeFK['departure_location'] . "'>" . "B" . $routeFK['bus_id'] . " - " . $routeFK['departure_location'] . "</option>";
                                                     }
                                                 } else {
                                                     echo "<option value=''>No routes found</option>";
@@ -234,11 +238,11 @@ require "dbconnect.php";
 
                                             </select>
                                             <div class="invalid-feedback text-start">Select a departure area.</div>
-                                             <div class="valid-feedback text-start">Departure area selected.</div>
-                                           
+                                            <div class="valid-feedback text-start">Departure area selected.</div>
+
                                         </div>
                                         <div class="col">
-                                        <label class="form-label" for="route_id">Destination</label>
+                                            <label class="form-label" for="route_id">Destination</label>
                                             <select name="desti" class="form-select" required>
                                                 <?php
                                                 $sqlfk = "SELECT bus_id, destination FROM tbl_bus";
@@ -247,7 +251,7 @@ require "dbconnect.php";
                                                 if ($route_fk->num_rows > 0) {
                                                     echo "<option selected disabled value=''>Choose a destination</option>";
                                                     while ($routeFK = $route_fk->fetch_assoc()) {
-                                                        echo "<option value='" . $routeFK['bus_id'] . "-" . $routeFK['destination'] . "'>" . "B". $routeFK['bus_id'] . " - " . $routeFK['destination'] . "</option>";
+                                                        echo "<option value='" . $routeFK['bus_id'] . "-" . $routeFK['destination'] . "'>" . "B" . $routeFK['bus_id'] . " - " . $routeFK['destination'] . "</option>";
                                                     }
                                                 } else {
                                                     echo "<option value=''>No routes found</option>";
@@ -256,55 +260,143 @@ require "dbconnect.php";
 
                                             </select>
                                             <div class="invalid-feedback text-start">Select a destination.</div>
-                                             <div class="valid-feedback text-start">Destination selected.</div>
-                                            
+                                            <div class="valid-feedback text-start">Destination selected.</div>
+
                                         </div>
                                     </div>
 
                                     <!-- Departure Date input -->
                                     <div class="row form-outline mt-2">
                                         <div class="col">
-                                        <label class="form-label" for="">Departure Date</label>
-                                            <input type="date" name="departure_date" id="editTripDate" class="form-control" onfocus="setMinDate()" required/>
+                                            <label class="form-label" for="">Departure Date</label>
+                                            <input type="date" name="departure_date" id="editTripDate" class="form-control" onfocus="setMinDate()" required />
                                             <div class="invalid-feedback text-start">Set departure date.</div>
-                                             <div class="valid-feedback text-start">Departure date selected.</div>
+                                            <div class="valid-feedback text-start">Departure date selected.</div>
                                         </div>
                                         <!-- Departure Time input -->
                                         <div class="col">
-                                        <label class="form-label" for="">Departure Time</label>
-                                            <input type="time" name="departure_time" id="" class="form-control" required/>
+                                            <label class="form-label" for="">Departure Time</label>
+                                            <input type="time" name="departure_time" id="" class="form-control" required />
                                             <div class="invalid-feedback text-start">Set departure time.</div>
-                                             <div class="valid-feedback text-start">Departure time selected.</div>
+                                            <div class="valid-feedback text-start">Departure time selected.</div>
                                         </div>
                                     </div>
 
                                     <!-- Available Seats input -->
                                     <div class="row form-outline mt-2">
-                           
+
 
                                         <div class="col">
-                                        <label class="form-label" for="">Available Seats</label>
-                                            <input type="number" name="available_seats" id="" class="form-control" required/>
+                                            <label class="form-label" for="">Available Seats</label>
+                                            <input type="number" name="available_seats" id="" class="form-control" required />
                                             <div class="invalid-feedback text-start">Enter avaialble seats.</div>
-                                             <div class="valid-feedback text-start">Available seats entered.</div>
+                                            <div class="valid-feedback text-start">Available seats entered.</div>
                                         </div>
 
                                     </div>
-             
+
                                     <!-- Save button -->
-                                </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button type="submit" name="add" class="btn btn-primary">Add</button>
-                                    <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
-                                </div>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="submit" name="add" class="btn btn-primary">Add</button>
+                                <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
+                            </div>
                             </form>
                         </div>
                     </div>
                 </div>
+
+
+            </div>
+            <div class="row">
+                <div class="col">
+                    <?php
+                    //Add Button
+                    if (isset($_POST['add'])) {
+                        try {
+                            list($dep_route_id, $dep_loc) = explode('-', $_POST['dep_loc']);
+                            list($dest_route_id, $desti) = explode('-', $_POST['desti']);
+
+                            // Check if dep_loc and desti have the same route_id
+                            if ($dep_route_id === $dest_route_id) {
+                                $route_name = $dep_loc . " to " . $desti;
+                                $busNum = $_POST['bus_num'];
+                                $departureDate = $_POST['departure_date'];
+                                $departureTime = $_POST['departure_time'];
+                                $availableSeats = $_POST['available_seats'];
+
+                                try {
+                                    $bus_check = $con->query("SELECT bus_id FROM tbl_bus WHERE bus_number = '$busNum' AND departure_location = '$dep_loc' AND destination ='$desti'");
+                                    if ($bus_check->num_rows > 0) {
+                                        $busID = $bus_check->fetch_assoc()['bus_id'];
+                                        if (!$busID) {
+                                            throw new Exception("Departure location or destination does not exist for the specified bus number.");
+                                        }
+                                    } else {
+                                        throw new Exception("Departure location or destination does not exist for the specified bus number.");
+                                    }
+
+                                    $route_check = $con->query("SELECT route_id FROM tbl_route WHERE route_name = '$route_name'");
+                                    if ($route_check->num_rows > 0) {
+                                        $routeID = $route_check->fetch_assoc()['route_id'];
+                                        if (!$routeID) {
+                                            throw new Exception("Departure location or destination does not exist for the specified bus number.");
+                                        }
+                                    } else {
+                                        throw new Exception("Departure location or destination does not exist for the specified bus number.");
+                                    }
+                                } catch (Exception $e) {
+                                    // Handle the exception gracefully, e.g., log it, display a user-friendly message, etc.
+                                    echo "<div class='alert alert-warning' role='alert'>" . $e->getMessage() . "</div>";
+                                }
+
+                                $sched_ins = $con->prepare("INSERT INTO tbl_schedule (bus_id, route_id, departure_date, departure_time, available_seats) VALUES (?, ?, ?, ?, ?)");
+                                $sched_ins->bind_param("iissi", $busID, $routeID, $departureDate, $departureTime, $availableSeats);
+                                $sched_res = $sched_ins->execute(); // Changed $schedres to $sched_res
+
+                                $con->commit();
+                                if ($sched_res) { // Changed to check $sched_res
+                                    echo "<script>
+                        Swal.fire({
+                            title: 'Do you want to add this user?',
+                            showDenyButton: true,
+                            showCancelButton: true,
+                            confirmButtonText: 'Add',
+                            denyButtonText: 'Don\'t Add'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                Swal.fire('Saved!', '', 'success');
+                            } else if (result.isDenied) {
+                                Swal.fire('Changes are not saved', '', 'info');
+                            }
+                        });
+                    </script>";
+                                } else {
+                                    //if not inserted, check query error details
+                                    echo $con->error;
+                                }
+                            } else {
+                    ?> <div class="alert alert-warning" role="alert">
+                                    <?php throw new Exception("Departure location and Destination must have the same ID."); ?>
+                                </div> <?php
+                                    }
+                                } catch (Exception $e) {
+                                    $con->rollback();
+                                    echo "Failed to add schedule: " . $e->getMessage();
+                                }
+
+                                //check if successfully added
+                            }
+
+                                        ?>
+                </div>
             </div>
         </div>
 
+
         <?php
+
+
 
         //Search Button
         if (isset($_POST['searchbutton'])) {
@@ -333,152 +425,67 @@ require "dbconnect.php";
 
 
 
-        //Add Button
-        if (isset($_POST['add'])) {
-
-            try {
-                list($dep_route_id, $dep_loc) = explode('-', $_POST['dep_loc']);
-                list($dest_route_id, $desti) = explode('-', $_POST['desti']);
-
-                // Check if dep_loc and desti have the same route_id
-                if ($dep_route_id === $dest_route_id) {
-           
-                    $route_name = $dep_loc . " to " . $desti;
-                    $busNum = $_POST['bus_num'];
-                  
-                    $departureDate = $_POST['departure_date'];
-                    $departureTime = $_POST['departure_time'];
-                    $availableSeats = $_POST['available_seats'];
-               
-
-                    $bus_check = $con->query("SELECT bus_id FROM tbl_bus WHERE bus_number = '$busNum' AND departure_location = '$dep_loc' AND destination ='$desti'");
-                    if ($bus_check->num_rows > 0) {
-                        $busID = $bus_check->fetch_assoc()['bus_id'];
-                        if (!$busID) {
-                            ?> <div class="alert alert-warning" role="alert"> <?php
-                            throw new Exception("Departure location or destination does not exist for the specified bus number.");
-                            ?> </div> <?php
-                                    }
-                                } else {
-                                    ?> <div class="alert alert-warning" role="alert"> <?php
-                                    throw new Exception("Departure location or destination does not exist for the specified bus number.");
-                                    ?> </div> <?php
-                                }
-
-                        $route_check = $con->query("SELECT route_id FROM tbl_route WHERE route_name = '$route_name'");
-                        if ($route_check->num_rows > 0) {
-                                $routeID = $route_check->fetch_assoc()['route_id'];
-                                if (!$routeID) {
-                                    ?> <div class="alert alert-warning" role="alert"> <?php
-                                    throw new Exception("Departure location or destination does not exist for the specified bus number.");
-                                    ?> </div> <?php
-                                    }
-                                } else {
-                                    ?> <div class="alert alert-warning" role="alert"> <?php
-                                    throw new Exception("Departure location or destination does not exist for the specified bus number.");
-                                    ?> </div> <?php
-                                }
-
-                                // Insert the schedule into the database
-                                // Insert the schedule into the database
-                                $sched_ins = $con->prepare("INSERT INTO tbl_schedule (bus_id, route_id, departure_date, departure_time, available_seats) VALUES (?, ?, ?, ?, ?)");
-                                $sched_ins->bind_param("iissi", $busID, $routeID, $departureDate, $departureTime, $availableSeats);
-                                $sched_res = $sched_ins->execute(); // Changed $schedres to $sched_res
-
-                                $con->commit();
-                                if ($sched_res) { // Changed to check $sched_res
-                                    echo "<script>
-        Swal.fire({
-            title: 'Do you want to add this user?',
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: 'Add',
-            denyButtonText: 'Don\'t Add'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire('Saved!', '', 'success');
-            } else if (result.isDenied) {
-                Swal.fire('Changes are not saved', '', 'info');
-            }
-        });
-    </script>";
-                                } else {
-                                    //if not inserted, check query error details
-                                    echo $con->error;
-                                }
-                            } else {
-                                    ?> <div class="alert alert-warning" role="alert">
-                        <?php throw new Exception("Departure location and Destination must have the same ID."); ?>
-                    </div> <?php
-
-                            }
-                        } catch (Exception $e) {
-                            $con->rollback();
-                            echo "Failed to add schedule: " . $e->getMessage();
-                        }
-
-                        //check if successfully added
-
-                    }
 
 
-                    $result = $con->query($selectsql);
-
-                    //check table if there is a record
-                    //num_rows - will return the no of rows inside a table
-                    if ($result->num_rows > 0) {
-                        echo "<div class=' bg-row p-5 rounded'>";
-                        echo "<div class='bdr table-responsive'>";
-                        echo "<table class='table table-striped text-center table-bordered w-100 border border-2  border-primary-subtle align-middle mx-auto'>";
-                        echo "<thead class ='table-dark'>";
-                        echo "<tr>";
-                        echo "<th> Schedule ID </th>";
-                        echo "<th> Bus Number </th>";
-                        echo "<th> Bus Type </th>";
-                        echo "<th> Departure Date </th>";
-                        echo "<th> Departure Time </th>";
-
-                        echo "<th> Departure Area </th>";
-                        echo "<th> Destination </th>";
-                        echo "<th> Total Seats </th>";
-                        echo "<th> Available Seats </th>";
-                        echo "<th> Price (₱) </th>";
-                        echo "<th> Action </th>";
-                        echo "</tr>";
-                        echo "</thead>";
 
 
-                        while ($fielddata = $result->fetch_assoc()) {
-                            echo "<tr>";
-                            echo "<td>" . $fielddata['Schedule ID'] . "</td>";
-                            "<td>" . $fielddata['Route ID'] . "</td>";
-                            "<td>" . $fielddata['Bus ID'] . "</td>";
-                            echo "<td>" . $fielddata['Bus Number'] . "</td>";
-                            echo "<td>" . $fielddata['Bus Type'] . "</td>";
-                            echo "<td>" . $fielddata['Departure Date'] . "</td>";
-                            echo "<td>" . date_format(date_create($fielddata['Departure Time']), 'g:i A') . "</td>";
+        $result = $con->query($selectsql);
+
+        //check table if there is a record
+        //num_rows - will return the no of rows inside a table
+        if ($result->num_rows > 0) {
+            echo "<div class=' bg-row p-5 rounded'>";
+            echo "<div class='bdr table-responsive'>";
+            echo "<table class='table table-striped text-center table-bordered w-100 border border-2  border-primary-subtle align-middle mx-auto'>";
+            echo "<thead class ='table-dark'>";
+            echo "<tr>";
+            echo "<th> Schedule ID </th>";
+            echo "<th> Bus Number </th>";
+            echo "<th> Bus Type </th>";
+            echo "<th> Departure Date </th>";
+            echo "<th> Departure Time </th>";
+
+            echo "<th> Departure Area </th>";
+            echo "<th> Destination </th>";
+            echo "<th> Total Seats </th>";
+            echo "<th> Available Seats </th>";
+            echo "<th> Price (₱) </th>";
+            echo "<th> Action </th>";
+            echo "</tr>";
+            echo "</thead>";
 
 
-                            echo "<td>" . $fielddata['Departure Area'] . "</td>";
-                            echo "<td>" . $fielddata['Destination'] . "</td>";
-                            echo "<td>" . $fielddata['Total Seats'] . "</td>";
-                            echo "<td>" . $fielddata['Available Seats'] . "</td>";
-                            echo "<td>" . number_format($fielddata['Price']) . "</td>";
-                            echo "<td class ='pt-3 pb-0'>";
-                            ?>
+            while ($fielddata = $result->fetch_assoc()) {
+                echo "<tr>";
+                echo "<td>" . $fielddata['Schedule ID'] . "</td>";
+                "<td>" . $fielddata['Route ID'] . "</td>";
+                "<td>" . $fielddata['Bus ID'] . "</td>";
+                echo "<td>" . $fielddata['Bus Number'] . "</td>";
+                echo "<td>" . $fielddata['Bus Type'] . "</td>";
+                echo "<td>" . $fielddata['Departure Date'] . "</td>";
+                echo "<td>" . date_format(date_create($fielddata['Departure Time']), 'g:i A') . "</td>";
+
+
+                echo "<td>" . $fielddata['Departure Area'] . "</td>";
+                echo "<td>" . $fielddata['Destination'] . "</td>";
+                echo "<td>" . $fielddata['Total Seats'] . "</td>";
+                echo "<td>" . $fielddata['Available Seats'] . "</td>";
+                echo "<td>" . number_format($fielddata['Price']) . "</td>";
+                echo "<td class ='pt-3 pb-0'>";
+        ?>
                 <form method="post" action="Schedule2.php">
                     <input type="hidden" name="schel_del" value="<?php echo $fielddata['Schedule ID']; ?>" class="form-control" />
                     <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['Schedule ID']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['Schedule ID']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['Schedule ID']; ?>">Edit</button>
-                
+
                 </form>
                 <?php
-                            echo "</td>";
-                            echo "</tr>";
+                echo "</td>";
+                echo "</tr>";
 
-                            // Collapse
-                            echo "<tr>";
-                            echo "<td colspan='12' class ='tble-bg'>";
-                            echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['Schedule ID'] . "'>";
+                // Collapse
+                echo "<tr>";
+                echo "<td colspan='12' class ='tble-bg'>";
+                echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['Schedule ID'] . "'>";
                 ?>
                 <!-- form-->
 
@@ -536,41 +543,45 @@ require "dbconnect.php";
                     </div>
                 </form>
             <?php
-                            echo "</div>";
-                            echo "</td>";
-                            echo "</tr>";
-                        }
+                echo "</div>";
+                echo "</td>";
+                echo "</tr>";
+            }
 
-                        echo "</table>";
-                        echo "</div>";
-                        echo "</div>";
-                    } else {
-                        echo "<div class='row'>";
-                        echo "<div class='col'>";
-                        echo "<br>No record found!";
-                        echo "</div>";
-                        echo "</div>";
-                    }
-
-
-
-                    //Update Button
-
-
-                    if (isset($_POST['updating'])) {
-                        $scheduleID_update = $_POST['update_scheduleID'];
-                        $busID_update = $_POST['update_busID'];
-                        $routeID_update = $_POST['update_routeID'];
-
-                        $departureDate_update = $_POST['update_departureDate'];
-                        $departureTime_update = date_format(date_create($_POST['update_departureTime']), 'Y-m-d H:i:s');
+            echo "</table>";
+            echo "</div>";
+            echo "</div>";
+        } else {
+            echo "<div class='row'>";
+            echo "<div class='col'>";
+            echo "<br>No record found!";
+            echo "</div>";
+            echo "</div>";
+        }
 
 
 
-                        $availableSeats_update = $_POST['update_availableSeats'];
 
-                        // Using prepared statements for security and reliability
-                        $update_schedule_query = $con->prepare("
+
+
+
+        //Update Button
+
+
+        if (isset($_POST['updating'])) {
+            $scheduleID_update = $_POST['update_scheduleID'];
+            $busID_update = $_POST['update_busID'];
+            $routeID_update = $_POST['update_routeID'];
+
+            $departureDate_update = $_POST['update_departureDate'];
+            $departureTime_update = date_format(date_create($_POST['update_departureTime']), 'Y-m-d H:i:s');
+
+
+
+            $availableSeats_update = $_POST['update_availableSeats'];
+
+            // Using prepared statements for security and reliability
+            $update_schedule_query = $con->prepare("
         UPDATE tbl_schedule 
         SET 
             departure_date = ?, 
@@ -579,18 +590,18 @@ require "dbconnect.php";
         WHERE 
             schedule_id = ?
     ");
-                        $update_schedule_query->bind_param("sisi", $departureDate_update, $availableSeats_update, $departureTime_update, $scheduleID_update);
+            $update_schedule_query->bind_param("sisi", $departureDate_update, $availableSeats_update, $departureTime_update, $scheduleID_update);
 
 
-                        $result_sched = $update_schedule_query->execute();
+            $result_sched = $update_schedule_query->execute();
 
-                        /*   $updatesql = "UPDATE tbl_schedule SET schedule_id = $scheduleID_update, bus_id = $busID_update,
+            /*   $updatesql = "UPDATE tbl_schedule SET schedule_id = $scheduleID_update, bus_id = $busID_update,
             route_id = $routeID_update, departure_date = '$departureDate_update', departure_time = '$departureTime_update',
             available_seats = $availableSeats_update WHERE schedule_id = $scheduleID_update";
             $resultup = $con->query($updatesql); */
 
-                        //check if successfully updated
-                        if ($result_sched && $result_bus && $result_route == True) {
+            //check if successfully updated
+            if ($result_sched && $result_bus && $result_route == True) {
             ?>
                 <script>
                     Swal.fire({
@@ -609,11 +620,11 @@ require "dbconnect.php";
                     });
                 </script>
         <?php
-                        } else {
-                            //if not, check query error details
-                            echo $con->error;
-                        }
-                    }
+            } else {
+                //if not, check query error details
+                echo $con->error;
+            }
+        }
 
 
 
@@ -622,7 +633,7 @@ require "dbconnect.php";
 
     </div>
 
-    <script src ="../formvalidation.js"> </script>
+    <script src="../formvalidation.js"> </script>
 </body>
 
 </html>

@@ -272,10 +272,10 @@ include "logger.php";
                 OR email LIKE'%" . $search . "%'
                 OR Status LIKE'%" . $search . "%'  ORDER BY user_id DESC";
       } else {
-        $selectsql = "Select * from tbl_user  ORDER BY user_id DESC";
+        $selectsql = "Select * from tbl_user where status = 'active' ORDER BY user_id DESC";
       }
     } else {
-      $selectsql = "Select * from tbl_user  ORDER BY user_id DESC";
+      $selectsql = "Select * from tbl_user where status = 'active' ORDER BY user_id DESC";
     }
 
     //Add Button
