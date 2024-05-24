@@ -276,14 +276,37 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
 
           $result = $con->query($insertsql);
 
-          if ($result == True) {?>
-
-          <?php
-          send_verification($full,$email,$otp);
+            if ($result == True) {?>
+  
+            <?php
+            send_verification($full,$email,$otp);
+            } else {
+                echo $con->error;
+            }
           } else {
-              echo $con->error;
-          }
+                    ?>
+                    <script>
+                        Swal.fire({
+                            icon: "error",
+                            title: "Oops...",
+                            text: "Password mismatch!",
+                            timer: 3000
+                        });
+                    </script>
+                    <?php
+                }
 
+        } else { ?>
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Username already exists. Please choose a different username.",
+                    timer: 1500
+                });
+            </script>
+    <?php  }
+    }
     $result = $con->query($selectsql);
 
     //check table if there is a record
