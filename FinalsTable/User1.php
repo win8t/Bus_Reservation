@@ -263,40 +263,27 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
       $password = md5($_POST['password']);
       $confirmpass = md5($_POST['confirmpass']);
       $email = $_POST['email'];
+       $otp = rand(000000, 999999);
 
-      $insertsql = "Insert into tbl_user (full_name,role,username,password,email)
-            values ('$name','$role','$username','$password','$email')
-            ";
+      $usersql = "select * from tbl_user where username = '$username'";
+      $user_result = $con->query($usersql);
 
-      $result = $con->query($insertsql);
+      if ($user_result->num_rows == 0) {
 
+          if ($password == $confirmpass) {
+          $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp,status)
+          values('$full', '$role', '$username','$password', '$email',$otp, 'Inactive')";
 
-      //check if successfully added
-      if ($result == True) {
-    ?>
-        <script>
-          Swal.fire({
-            title: "Do you want to add this user?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Add",
-            denyButtonText: `Don't Add`
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire("Saved!", "", "success");
-            } else if (result.isDenied) {
-              Swal.fire("Changes are not saved", "", "info");
-            }
-          });
-        </script>
-      <?php
-      } else {
-        //if not inserted, check query error details
-        echo $con->error;
-      }
-    }
-  
+          $result = $con->query($insertsql);
+
+          if ($result == True) {?>
+
+          <?php
+          send_verification($full,$email,$otp);
+          } else {
+              echo $con->error;
+          }
+
     $result = $con->query($selectsql);
 
     //check table if there is a record
