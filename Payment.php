@@ -150,6 +150,8 @@ if (isset($_POST['paying'])) {
                 });
             </script>
 <?php
+            $action = 'Over-the-Counter Payment';
+            logActivity($con, $userID, $action);
             break;
         case "E-wallet":
             $updatesql = "UPDATE tbl_reservation SET payment_method = ? WHERE ticket_number = ?";

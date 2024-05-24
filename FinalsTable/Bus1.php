@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "dbconnect.php";
+include "logger.php";
 ?>
 <html lang="en">
 
@@ -397,6 +398,10 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                   timer: 4500
               });
           </script> <?php
+
+          $action = 'Added Bus';
+          logActivity($con, $userID, $action);
+
           } else {
               echo "<script>
                   alert('Error: " . $con->error . "');
@@ -608,6 +613,8 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
           });
         </script>
     <?php
+    $action = 'Updated Bus';
+    logActivity($con, $userID, $action);
       } else {
         //if not, check query error details
         echo $con->error;

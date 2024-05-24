@@ -3,6 +3,7 @@
 session_start();
 
 require "dbconnect.php";
+include "logger.php";
 
 ?>
 <html lang="en">
@@ -371,6 +372,8 @@ require "dbconnect.php";
                             }
                         });
                     </script>";
+                    $action = 'Added Schedule';
+                    logActivity($con, $userID, $action);
                                 } else {
                                     //if not inserted, check query error details
                                     echo $con->error;
@@ -620,6 +623,8 @@ require "dbconnect.php";
                     });
                 </script>
         <?php
+        $action = 'Update Schedule';
+   logActivity($con, $userID, $action);
             } else {
                 //if not, check query error details
                 echo $con->error;

@@ -1,6 +1,7 @@
 <?php
 session_start();
 require "dbconnect.php";
+include "logger.php";
 ?>
 <html lang="en">
 
@@ -19,7 +20,7 @@ require "dbconnect.php";
 <body class="hd-text">
     <?php
     date_default_timezone_set("Asia/Manila");
-    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
     require_once 'SeatFunction.php';
 
     require_once "BusArrays.php";
@@ -222,7 +223,7 @@ require "dbconnect.php";
                                         echo "<div class='w-50 mx-auto text-auto'>";
 
                                 ?>
-                                        <form action="\FINALS PROJECT\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');" novalidate class="needs-validation">
+                                        <form action="\FINAL_ALPS_BUS\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');" novalidate class="needs-validation">
                                             <div class="row  form-outline">
 
                                                 <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
@@ -654,6 +655,8 @@ require "dbconnect.php";
                     });
                 </script>
         <?php
+            $action = 'Updated Reservation';
+            logActivity($con, $userID, $action);
             } else {
                 //if not, check query error details
                 echo $con->error;
