@@ -218,7 +218,7 @@ require "dbconnect.php";
                                         echo "</td>";
                                         echo "</tr>";
                                         echo "<tr class='collapse' id='collapseExample" . $maltfielddata['Schedule ID'] . "'>";
-                                        echo "<td colspan='12'>";
+                                        echo "<td colspan='14'>";
                                         echo "<div class='w-50 mx-auto text-auto'>";
 
                                 ?>
@@ -457,7 +457,7 @@ require "dbconnect.php";
             echo "<table class='table  table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
             echo "<thead class ='table-dark'>";
             echo "<tr>";
-            echo "<th> Reservation Number </th>";
+            echo "<th> Reservation ID </th>";
             echo "<th> Ticket Number </th>";
             echo "<th> Bus Number </th>";
             echo "<th> Departure Date </th>";
@@ -505,7 +505,7 @@ require "dbconnect.php";
 
                 // Collapse
                 echo "<tr>";
-                echo "<td colspan='13' class ='tble-bg'>";
+                echo "<td colspan='14' class ='tble-bg'>";
                 echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['reservation_id'] . "'>";
                 ?>
                 <!-- form-->
