@@ -1,6 +1,14 @@
 <?php session_start(); require "dbconnect.php"; ?>
 <html lang="en">
+<<<<<<< HEAD
+=======
+    <?php
+     session_start();
+     require_once "dbconnect.php"; ?>
+
+>>>>>>> main
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -65,6 +73,7 @@ echo  "<div class='col p-4  bg-info-subtle rounded-2 m-2'>";
 <hr>
 <?php
 if (isset($_POST['pay'])) {
+    
     $pay_ticket = $_POST['ticket_pay'];
     $price_ticket = $_POST['receipt_price'];
     $passenger = $_POST['passenger'];
@@ -105,6 +114,7 @@ echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
             <option value="Cash">Cash</option>
             <option value="E-wallet">E-wallet (GCash) </option>
         </select>
+        <input type="hidden" name="pay_ticket" id="" value=<?php echo $_SESSION['ticket_pay'] ?>>
         <div class="row text-center">
             <div class="col">
                 <button type="submit" name="paying" class="btn w-25 rounded-4 btn-primary mt-1">Confirm</button>
@@ -120,8 +130,17 @@ echo "</div'>";
 
 if (isset($_POST['paying'])) {
     $paymethod = $_POST['method'];
+    $payticket = $_POST['pay_ticket'];
     switch ($paymethod) {
         case "Cash":
+            $updatesql = "UPDATE tbl_reservation SET payment_method = ? WHERE ticket_number = ?";
+            $stmt = $con->prepare($updatesql);
+        
+            // Bind parameters and execute the statement
+            $stmt->bind_param('ss', $paymethod, $payticket);
+            $stmt->execute();
+
+
 ?>
             <script>
                 var cashier = Math.floor(Math.random() * 5) + 1;
@@ -140,6 +159,13 @@ if (isset($_POST['paying'])) {
 <?php
             break;
         case "E-wallet":
+            $updatesql = "UPDATE tbl_reservation SET payment_method = ? WHERE ticket_number = ?";
+            $stmt = $con->prepare($updatesql);
+        
+            // Bind parameters and execute the statement
+            $stmt->bind_param('ss', $paymethod, $payticket);
+            $stmt->execute();
+
             header("Location:GCash.php");
             break;
     }
