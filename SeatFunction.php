@@ -42,9 +42,10 @@ function seattype($bus_type, $schedule_id, $con) {
         while ($row = mysqli_fetch_assoc($select_result)) {
             $booked_seats[] = $row['seat_number'];
         }
-        echo '<select name="seatnum" class="form-select">';
+        echo '<select name="seatnum" class="form-select" required>';
+        echo "<option selected disabled value=''>Please choose your seat</option>";
         for ($seat = 1; $seat <= $num_seats; $seat++) {
-            // Skip the booked seats
+            
             if (array_search($seat, $booked_seats) === false) {
                 echo "<option value='$seat'>$seat</option>";
             }            

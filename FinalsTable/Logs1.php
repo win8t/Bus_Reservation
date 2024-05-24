@@ -180,7 +180,7 @@
             while ($fielddata = $result->fetch_assoc()) {
               echo "<tr>";
               echo "<td>" . $fielddata['log_id'] . "</td>";
-              echo "<td>" . $fielddata['username'] . "</td>";
+              echo "<td>" . $fielddata['full_name'] . "</td>";
               echo "<td>" . $fielddata['role'] . "</td>";
               echo "<td>" . $fielddata['action'] . "</td>";
               echo "<td>" . date_format(date_create($fielddata['DateTime']), 'Y-m-d g:i A') . "</td>";

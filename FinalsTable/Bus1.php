@@ -1,6 +1,6 @@
 <?php
-  session_start();
-  require "dbconnect.php";
+session_start();
+require "dbconnect.php";
 ?>
 <html lang="en">
 
@@ -15,7 +15,7 @@
 
 </head>
 
-<body class ="hd-text">
+<body class="hd-text">
   <?php
   require_once "BusArrays.php";
   ?>
@@ -77,10 +77,10 @@
       </li>
 
       <form action="Logout1.php" method="post">
-      <li>
+        <li>
           <i class="bi bi-box-arrow-right"></i>
           <button type="submit" name="logout1" style="background:none; border:none; cursor:pointer; text:inherit; padding:0;">Log Out</button>
-      </li>
+        </li>
       </form>
     </ul>
 
@@ -152,18 +152,22 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
-                <form action="Bus1.php" method="post">
+                <form action="Bus1.php" method="post" novalidate class="needs-validation">
 
 
                   <!-- Bus ID input -->
                   <div class="row form-outline">
                     <div class="col">
-                      <input type="text" name="bus_number" id="" class="form-control" required />
                       <label class="form-label" for="">Bus Number</label>
+                      <input type="text" name="bus_number" id="" class="form-control" required />
+                      <div class="invalid-feedback text-start">Enter its bus number.</div>
+                      <div class="valid-feedback text-start">Bus number entered.</div>
+
                     </div>
 
                     <!-- Bus Number input -->
                     <div class="col">
+                      <label class="form-label" for="">Bus Type</label>
                       <select name="bus_type" id="bus_type" class="form-select" required>
                         <?php
 
@@ -176,77 +180,116 @@
                         ?>
 
                       </select>
-                      <label class="form-label" for="">Bus Type</label>
+                      <div class="invalid-feedback text-start">Select its bus type.</div>
+                      <div class="valid-feedback text-start">Bus type selected.</div>
+
                     </div>
                   </div>
 
                   <!-- Seating Capacity input -->
-                  <div class="row form-outline">
+                  <div class="row form-outline mt-2">
                     <div class="col">
-                      <input type="number" name="seating_capacity" id="" class="form-control" required />
                       <label class="form-label" for="">Seating Capacity</label>
+                      <input type="number" name="seating_capacity" id="" class="form-control" required />
+                      <div class="invalid-feedback text-start">Enter its seating capacity name.</div>
+                      <div class="valid-feedback text-start">Seating capacity entered.</div>
+
+
                     </div>
 
                     <!-- Driver Name input -->
                     <div class="col">
-                      <input type="text" name="driver_name" id="" class="form-control" required />
                       <label class="form-label" for="">Driver Name</label>
+                      <input type="text" name="driver_name" id="" class="form-control" required />
+                      <div class="invalid-feedback text-start">Enter driver's name.</div>
+                      <div class="valid-feedback text-start">Driver name entered.</div>
+
                     </div>
                   </div>
 
                   <!-- Departure Location input -->
-                  <div class="row form-outline">
+                  <div class="row form-outline mt-2">
                     <div class="col">
+                      <label class="form-label" for="departure_location">Departure Location</label>
                       <select id="departure_location" class="form-select" name="departure_location" required>
                         <?php
-                        echo '<option default disabled selected value="">Origin</option>';
+                        // Query to retrieve distinct destination_location values from tbl_route
+                        $route_query = "SELECT DISTINCT departure_location FROM tbl_route";
+                        $route_result = $con->query($route_query);
 
-                        foreach ($origins as $group_label => $origin) {
-                          echo '<optgroup label="' . $group_label . '">';
-                          echo '<option value="' . $origin . '">' . $origin . '</option>';
-                          echo '</optgroup>';
+                        // Check if there are rows returned
+                        if ($route_result->num_rows > 0) {
+                          echo '<option default disabled selected value="">Origin</option>';
+
+                          // Loop through the results and create options
+                          while ($row = $route_result->fetch_assoc()) {
+                            $departure_location = $row['departure_location'];
+                            echo '<option value="' . $departure_location . '">' . $departure_location . '</option>';
+                          }
+                        } else {
+                          // If no rows are returned, display a default option
+                          echo '<option value="" disabled>No destinations found</option>';
                         }
-
                         ?>
                       </select>
 
+                      <div class="invalid-feedback text-start">Enter departure location.</div>
+                      <div class="valid-feedback text-start">Departure location entered.</div>
 
-                      <label class="form-label" for="departure_location">Departure Location</label>
+
+
                     </div>
 
                     <!-- Destination input -->
                     <div class="col">
+                      <label class="form-label" for="destination">Destination</label>
                       <select id="destination" class="form-select" name="destination" required>
                         <?php
 
-                        echo '<option default disabled selected value="">Destination</option>';
+                       // Query to retrieve distinct destination_location values from tbl_route
+                       $route_query = "SELECT DISTINCT destination FROM tbl_route";
+                       $route_result = $con->query($route_query);
 
-                        foreach ($destinations as $group_label => $locations) {
-                          echo '<optgroup label="' . $group_label . '">';
-                          foreach ($locations as $location) {
-                            echo '<option value="' . $location . '">' . $location . '</option>';
-                          }
-                          echo '</optgroup>';
-                        }
+                       // Check if there are rows returned
+                       if ($route_result->num_rows > 0) {
+                         echo '<option default disabled selected value="">Destination</option>';
+
+                         // Loop through the results and create options
+                         while ($row = $route_result->fetch_assoc()) {
+                           $destinations = $row['destination'];
+                           echo '<option value="' . $destinations . '">' . $destinations . '</option>';
+                         }
+                       } else {
+                         // If no rows are returned, display a default option
+                         echo '<option value="" disabled>No destinations found</option>';
+                       }
 
                         ?>
 
+
                       </select>
-                      <label class="form-label" for="destination">Destination</label>
+                      <div class="invalid-feedback text-start">Enter destination .</div>
+                      <div class="valid-feedback text-start">Destination entered.</div>
+
                     </div>
                   </div>
 
                   <!-- Departure Time input -->
-                  <div class="row form-outline">
-                    <div class="col">
-                      <input type="datetime-local" name="departure_time" id="" class="form-control" required />
+                  <div class="row form-outline mt-2">
+                    <div class="col-6">
                       <label class="form-label" for="">Departure Time</label>
+                      <input type="datetime-local" name="departure_time" id="" class="form-control" required />
+                      <div class="invalid-feedback text-start">Set departure time .</div>
+                      <div class="valid-feedback text-start">Departure time selected.</div>
                     </div>
 
                     <!-- Arrival Time input -->
-                    <div class="col">
-                      <input type="datetime-local" name="arrival_time" id="" class="form-control" required />
+                    <div class="col-6">
                       <label class="form-label" for="">Arrival Time</label>
+                      <input type="datetime-local" name="arrival_time" id="" class="form-control" required />
+                      <div class="invalid-feedback text-start">Set arrival time .</div>
+                      <div class="valid-feedback text-start">Arrival time selected.</div>
+
                     </div>
                   </div>
 
@@ -283,7 +326,6 @@
         OR destination LIKE'%" . $search . "%'
         OR departure_time LIKE'%" . $search . "%'
         OR arrival_time LIKE'%" . $search . "%'  ORDER BY bus_id DESC";
-
       } else {
         $selectsql = "Select * from tbl_bus ORDER BY bus_id DESC";
       }
@@ -341,11 +383,11 @@
 
 
     $result = $con->query($selectsql);
-  
+
     //check table if there is a record
     //num_rows - will return the no of rows inside a table
     if ($result->num_rows > 0) {
-     
+
       echo "<div class=' bg-row p-5 rounded'>";
       echo "<div class='bdr table-responsive'>";
       echo "<table class='table table-striped text-center   table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
@@ -444,21 +486,7 @@
           <!-- Departure Location input -->
           <div class="row form-outline">
             <div class="col">
-              <select id="update_location" class="form-select" name="update_location" required>
-                <?php
-
-
-                echo '<option default disabled selected value="">Origin</option>';
-
-                foreach ($origins as $group_label => $origin) {
-                  echo '<optgroup label="' . $group_label . '">';
-                  $selected = ($fielddata['departure_location'] === $origin) ? 'selected' : '';
-                  echo '<option value="' . $origin . '" ' . $selected . '>' . $origin . '</option>';
-                  echo '</optgroup>';
-                }
-                ?>
-
-              </select>
+            
 
 
               <label class="form-label" for="update_location">Departure Location</label>
@@ -578,7 +606,7 @@
 
   </div>
 
-
+  <script src="../formvalidation.js"> </script>
 </body>
 
 </html>
