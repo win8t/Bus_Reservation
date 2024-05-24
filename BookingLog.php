@@ -72,10 +72,10 @@ session_start();
                             <a class="nav-link mx-lg-2 mx-auto" href="HomeLog.php"><i class="bi bi-house-fill"></i> Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
+                            <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="BookingLog.php"><i class="bi bi-journal-album"></i> Book</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Status</a>
+                            <a class="nav-link mx-lg-2 mx-auto" href="StatusLog.php"><i class="bi bi-bus-front"></i> Status</a>
                         </li>
                         <!--
                         <li class="nav-item">

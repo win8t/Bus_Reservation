@@ -35,13 +35,13 @@ session_start();
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-center flex-grow-1 pe-5">
             <li class="nav-item">
-              <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="Home.php"><i class="bi bi-house-fill"></i> Home</a>
+              <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="HomeLog.php"><i class="bi bi-house-fill"></i> Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="BookingLog.php"><i class="bi bi-journal-album"></i> Book</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Status</a>
+              <a class="nav-link mx-lg-2 mx-auto" href="StatusLog.php"><i class="bi bi-bus-front"></i> Status</a>
             </li>
             <!-- <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>

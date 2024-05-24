@@ -17,8 +17,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
 </head>
 
 <body class="hd-text">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
 
 
   <aside class="sidebar d-flex flex-container">
@@ -147,80 +146,108 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
 
-              <form action="User1.php" method="post" novalidate class="needs-validation">
+              
                 <div class="modal-body">
-
+                <form action="User1.php" method="post" novalidate class="needs-validation">
                   <div class="row form-outline">
+                  <label class="form-label" for="">Full Name</label>
                   
                     <!-- Full Name input -->
                     <div class="col">
                     <label class="form-label text-secondary" for="">First Name</label>
-                      <input type="text" name="f_name" id="" class="form-control" />
+                      <input type="text" name="f_name" id="" class="form-control" required/>
+                      <div class="invalid-feedback text-start">Enter your first name.</div>
+                      <div class="valid-feedback text-start">Entered first name.</div>
                       
                     </div>
                     <div class="col">
                     <label class="form-label text-secondary" for="">Middle Name</label>
-                      <input type="text" name="m_name" id="" class="form-control" />
+                      <input type="text" name="m_name" id="" class="form-control"/>
+              
                       
                     </div>
                     <div class="col">
 
                     <label class="form-label text-secondary" for="">Last Name</label>
-                      <input type="text" name="l_name" id="" class="form-control" />
+                      <input type="text" name="l_name" id="" class="form-control" required/>
+                      <div class="invalid-feedback text-start">Enter your last name.</div>
+                      <div class="valid-feedback text-start">Entered last name.</div>
                       
                     </div>
-                    <label class="form-label" for="">Full Name</label>
+       
                   </div>
 
                   <!-- Role input -->
-                  <div class="form-outline mb-2">
-                    <span class="form-label">Role</span>
+                  <div class="form-outline my-2">
+                    
+                    <label class="form-label">Role</span>
+              
+                      
                     <div class="btn-group mx-5" id="btn-group-3">
                       <div class="form-check form-check-inline ">
-                        <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Admin" />
+                        <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Admin" required/>
                         <label class="form-check-label" for="inlineRadio1">Admin</label>
+               
                       </div>
 
                       <div class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Employee" />
+                        <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Employee" required/>
                         <label class="form-check-label" for="inlineRadio2">Employee</label>
+                 
+                        
                       </div>
+                      
                     </div>
+                    
                   </div>
 
                   <!-- Username input -->
                   <div class="row form-outline">
                     <div class="col">
-                      <input type="text" id="" name="username" class="form-control" />
-                      <label class="form-label" for="">Username</label>
+                    <label class="form-label" for="">Username</label>
+                      <input type="text" id="" name="username" class="form-control" required />
+              
                       <div class="invalid-feedback text-start">Enter your username.</div>
-                      <div class="valid-feedback text-start">Entered username name.</div>
+                      <div class="valid-feedback text-start">Entered username.</div>
                     </div>
 
                     <!-- Password input -->
                     <div class="col">
-                      <input type="password" name="password" id="" class="form-control" />
-                      <label class="form-label" for="">Password</label>
+                    <label class="form-label" for="">Password</label>
+                      <input type="password" name="pass" id="" class="form-control" required />
+                      
+                      <div class="invalid-feedback text-start">Please enter your password.</div>
+                      <div class="valid-feedback text-start">Entered password</div>
                     </div>
                     <div class="col">
-                      <input type="password" name="confirmpass" id="" class="form-control" />
-                      <label class="form-label" for="">Confirm Password</label>
+                    <label class="form-label" for="">Confirm Password</label>
+                      <input type="password" name="confirmpass" id="" class="form-control" required />
+               
+                      <div class="invalid-feedback text-start">Please re-enter your password.</div>
+                  
                     </div>
                   </div>
 
                   <!-- Email input -->
-                  <div class="form-outline">
-                    <input type="email" name="email" id="" class="form-control" />
+                  <div class="row form-outline mt-2">
+                    <div class="col">
                     <label class="form-label" for="">Email</label>
+                    <input type="email" name="email" id="" class="form-control" required/>
+      
+                    <div class="invalid-feedback text-start m-0 ">Enter your email.</div>
+                      <div class="valid-feedback text-start">Entered email.</div>
+                    </div>
+                   
                   </div>
 
                   <!-- Save button -->
-                </div>
+              
                 <div class="modal-footer d-flex justify-content-center">
                   <button type="submit" name="add" class="btn btn-primary">Add</button>
                   <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
                 </div>
               </form>
+              </div>
             </div>
           </div>
         </div>
@@ -260,7 +287,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
       $full = $fname . " " . $mname . " " . $lname;
       $role = $_POST['role'];
       $username = $_POST['username'];
-      $password = md5($_POST['password']);
+      $password = md5($_POST['pass']);
       $confirmpass = md5($_POST['confirmpass']);
       $email = $_POST['email'];
        $otp = rand(000000, 999999);
@@ -355,7 +382,7 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
         ?>
         <!-- form-->
 
-        <form action="User1.php" method="post" novalidate class="needs-validation">
+        <form action="User1.php" method="post">
           <h5 class="hd-text text-center pb-2 fs-5" id="title">User Editing Form</h5>
           <div class="row form-outline">
             <!-- Full Name input -->
@@ -485,27 +512,10 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS P
 
 </div>
 
-<script>
-  (() => {
-    'use strict'
+<script src ="../passvalidation.js"> </script>
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
-
-    // Loop over them and prevent submission
-    Array.from(forms).forEach(form => {
-      form.addEventListener('submit', event => {
-        if (!form.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-
-
-        form.classList.add('was-validated')
-      }, false)
-    })
-  })()
-</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

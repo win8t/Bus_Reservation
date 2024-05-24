@@ -11,9 +11,7 @@
 </head>
 
 <body class="login-content-container7">
-    <script src="scripts.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 
     <div class="container-fluid d-flex flex-container">
@@ -42,8 +40,10 @@
                         <div class="col-md-6">
                             <!-- OTP input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="text" class="form-control" name="refnum" id="floatingInput" required>
+                                <input type="text" class="form-control" name="refnum" id="floatingInput" required />
                                 <label for="floatingInput" class="link-text">Reference Number<span class ="text-danger">*</span></label>
+                                <div class="invalid-feedback text-start">Enter your Reference Number.</div>
+                                <div class="valid-feedback text-start">Reference Number entered.</div> 
                             </div>
                             
                         </div>
@@ -69,31 +69,6 @@
     </div>
     </div>
 
-<script>
-(() => {
-  'use strict'
-
-  // Fetch all the forms we want to apply custom Bootstrap validation styles to
-  const forms = document.querySelectorAll('.needs-validation')
-
-  // Loop over them and prevent submission
-  Array.from(forms).forEach(form => {
-    form.addEventListener('submit', event => {
-      if (!form.checkValidity()) {
-        event.preventDefault()
-        event.stopPropagation()
-      }
-      
-
-      form.classList.add('was-validated')
-    }, false)
-  })
-})() 
-</script>
-    
-</body>
-
-</html>
 <?php
 require_once "dbconnect.php";
 
@@ -135,4 +110,12 @@ if (isset($_POST['ver'])) {
    }
    
 }
+
 ?>
+    <script src="formvalidation.js"></script>
+    <script src="scripts.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

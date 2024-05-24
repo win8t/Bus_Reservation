@@ -1096,3 +1096,28 @@ box-shadow: -2px 2px 30px 9px rgba(0, 56, 6, 0.164) inset;
   width: 100% !important;
 }
  }
+
+ /* status css */
+
+ .book-status-button {
+  font-family: FontReg;
+
+  background-color: #1e7eb1;
+  color: #ffffff;
+
+  font-size: 20px;
+  padding: 8px 20px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: 0.3s background-color;
+}
+
+.book-status-button:hover {
+  color: #000;
+  background-color: #cdfaff;
+  font-family: FontBold;
+}
+
+.status-body {
+  background-color: #e5f6f9;
+}
