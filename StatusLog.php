@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alps Booking Reservation</title>
-    <link href="stylezstt.css" rel="stylesheet" />
+    <link href="stylez.css" rel="stylesheet" />
     <style>
         body {
             display: flex;
@@ -30,9 +30,10 @@ session_start();
     </style>
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-<body class="status-body">
+<body class="status-body hd-text">
     <?php
     date_default_timezone_set("Asia/Manila");
     ?>
@@ -134,7 +135,7 @@ echo "<h2 class = 'about-login mx-auto text-center'> ALPS RESERVATION DETAILS VI
 
         $selectsql = "SELECT * FROM reservation_booking_view WHERE ticket_number = '$tickets_number'";
         $status_result = $con->query($selectsql);
-        echo "<div class ='container-fluid bg-row-status w-75 p-5 rounded mb-3'>";
+        echo "<div class ='container-fluid bg-row-status w-100 p-5 rounded mb-3'>";
 
         if ($status_result->num_rows > 0) {
 
@@ -144,6 +145,7 @@ echo "<h2 class = 'about-login mx-auto text-center'> ALPS RESERVATION DETAILS VI
             echo "<th>Ticket Number</th>";
             echo "<th>Passenger Name</th>";
             echo "<th>Bus Number</th>";
+            echo "<th>Route Name</th>";
             echo "<th>Seat Number</th>";
             echo "<th>Departure Time</th>";
             echo "<th>Departure Date</th>";
@@ -155,6 +157,7 @@ echo "<h2 class = 'about-login mx-auto text-center'> ALPS RESERVATION DETAILS VI
                 echo "<td>" . $fielddata['ticket_number'] . "</td>";
                 echo "<td>" . $fielddata['passenger_name'] . "</td>";
                 echo "<td>" . $fielddata['bus_number'] . "</td>";
+                echo "<td>" . $fielddata['route_name'] . "</td>";
                 echo "<td>" . $fielddata['seat_number'] . "</td>";
                 echo "<td>" . date_format(date_create($fielddata['departure_time']), 'g:i A') . "</td>";
                 echo "<td>" . $fielddata['departure_date'] . "</td>";
@@ -213,9 +216,6 @@ if (isset($_POST['cancel'])) {
     $ticket_number = $_POST['ticket_number'];
     $seat_num = $_POST['seat'];
 
-    echo  $ticket_number;
-    echo  $seat_num;
-
     $sqlcancel = "UPDATE tbl_reservation SET status = 'Cancelled' WHERE ticket_number ='$ticket_number'";
     $result_cancel = $con->query($sqlcancel);
 
@@ -236,7 +236,22 @@ if (isset($_POST['cancel'])) {
         $result_capacity_update = $con->query($seatsql2);
 
         if ($result_seat_update && $result_capacity_update) {
-            echo "Reservation cancelled successfully. Seat and bus capacity updated.";
+         ?>   <script>
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Booking cancelled",
+                showConfirmButton: false,
+                timer: 3000,
+                willClose: () => {
+                    Swal.close();
+                    setTimeout(function() {
+
+                       window.location.href = "BookingLog.php";
+                    }, 500);
+                }
+            });
+        </script> <?php
         } else {
             echo "Error updating seat and/or bus capacity: " . $con->error;
         }

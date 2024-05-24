@@ -218,7 +218,7 @@ require "dbconnect.php";
                                         echo "</td>";
                                         echo "</tr>";
                                         echo "<tr class='collapse' id='collapseExample" . $maltfielddata['Schedule ID'] . "'>";
-                                        echo "<td colspan='14'>";
+                                        echo "<td colspan=15>";
                                         echo "<div class='w-50 mx-auto text-auto'>";
 
                                 ?>
@@ -395,6 +395,7 @@ require "dbconnect.php";
             OR route_id LIKE '%" . $search . "%' 
             OR ticket_number LIKE '%" . $search . "%' 
             OR bus_number LIKE '%" . $search . "%' 
+            OR route_name LIKE '%" . $search . "%' 
             OR departure_date LIKE '%" . $search . "%' 
             OR departure_time LIKE '%" . $search . "%' 
             OR passenger_name LIKE'%" . $search . "%' 
@@ -472,6 +473,7 @@ require "dbconnect.php";
             echo "<th> Reservation ID </th>";
             echo "<th> Ticket Number </th>";
             echo "<th> Bus Number </th>";
+            echo "<th> Route Name </th>";
             echo "<th> Departure Date </th>";
             echo "<th> Departure Time </th>";
             echo "<th> Passenger Name </th>";
@@ -495,6 +497,7 @@ require "dbconnect.php";
                 "<td>" . $fielddata['route_id'] . "</td>";
                 echo "<td>" . $fielddata['ticket_number'] . "</td>";
                 echo "<td>" . $fielddata['bus_number'] . "</td>";
+                echo "<td>" . $fielddata['route_name'] . "</td>";
                 echo "<td>" . $fielddata['departure_date'] . "</td>";
                 echo "<td>" .  date_format(date_create($fielddata['departure_time']), 'g:i A') . "</td>";
                 echo "<td>" . $fielddata['passenger_name'] . "</td>";
@@ -517,7 +520,7 @@ require "dbconnect.php";
 
                 // Collapse
                 echo "<tr>";
-                echo "<td colspan='14' class ='tble-bg'>";
+                echo "<td colspan='17' class ='tble-bg'>";
                 echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['reservation_id'] . "'>";
                 ?>
                 <!-- form-->
