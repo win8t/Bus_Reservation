@@ -145,10 +145,11 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
             </div>
 
         </div>
-
         </form>
+
+        <!-- Modal Bootstrap -->
         <button type="button" id="formDetailsBtn" class="btn btn-color hd-text mt-1 " data-bs-toggle="modal" data-bs-target="#formDetails">
-          Add Bus Details <!-- add icon -->
+          Add Bus Details
         </button>
 
         <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
@@ -315,7 +316,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
     <?php
 
 
-    //button function
+    //Search Button
     if (isset($_POST['searchbutton'])) {
 
       //to check the search box if empty or not 
@@ -337,8 +338,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
     } else {
       $selectsql = "Select * from tbl_bus ORDER BY bus_id DESC";
     }
-
-
 
     //Add Button
     if (isset($_POST['add'])) {
@@ -394,9 +393,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
       }
   }
 
-
-
-
     $result = $con->query($selectsql);
 
     //check table if there is a record
@@ -448,7 +444,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
         echo "<td colspan='12' class ='tble-bg'>";
         echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['bus_id'] . "'>";
         ?>
-        <!-- form-->
+        <!-- Form for Editing-->
 
         <form action="Bus1.php" method="post" novalidate class="needs-validation">
           <h5 class="hd-text text-center pb-2 fs-5" id="title">Bus Editing Form</h5>
@@ -552,8 +548,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
     }
 
     //Update Button
-
-
     if (isset($_POST['updating'])) {
       $busID_update = $_POST['update_id'];
       $busNum_update = $_POST['update_number'];
@@ -592,16 +586,14 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
             }
           });
         </script>
-    <?php
-    $action = 'Updated Bus';
-    logActivity($con, $userID, $action);
-      } else {
-        //if not, check query error details
-        echo $con->error;
-      }
+      <?php
+      $action = 'Updated Bus';
+      logActivity($con, $userID, $action);
+        } else {
+          //if not, check query error details
+          echo $con->error;
+        }
     }
-
-
 
     ?>
   </div>

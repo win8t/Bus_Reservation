@@ -31,7 +31,6 @@
         <h4 class="">Main Menu</h4>
       </li>
 
-
       <li>
         <i class="bi bi-table"></i>
         <a href="Overview2.php">Overview</a>
@@ -134,10 +133,9 @@
             
         </div>
         </div>
-                <?php
-          require_once "dbconnect.php";
+      <?php
 
-          //button function
+          //Search Button
           if (isset($_POST['searchbutton'])) {
 
             //to check the search box if empty or not 
@@ -156,10 +154,8 @@
             $selectsql = "Select * from logs_view ORDER BY log_id DESC";
           }
          
-          
           $result = $con->query($selectsql);
           
-
           //check table if there is a record
           //num_rows - will return the no of rows inside a table
           if ($result->num_rows > 0) {
@@ -198,7 +194,7 @@
             echo "</div>";
           }
 
-          ?>
+      ?>
             </div>
         </div>
     </div>

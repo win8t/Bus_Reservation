@@ -11,7 +11,6 @@
   <title>User Panel</title>
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
   <link rel="stylesheet" href="sidebar10.css">
 
 </head>
@@ -23,7 +22,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
   <aside class="sidebar d-flex flex-container">
     <div class="logo">
       <img src="AlpsLogo.jpg" alt="Alps">
@@ -31,8 +29,6 @@
     </div>
     <ul class="links">
 
-
-      
       <li class="disabled">
         <h4 class="">Bus Menu</h4>
       </li>
@@ -65,31 +61,23 @@
       </form>
     </ul>
 
-
   </aside>
   <div class="container-fluid">
-
-
-
 
     <div class="row ">
       <div class="col pb-2 ">
         <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">ROUTE DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
-
+        
         <div class="row bg-row mx-auto p-1 m-1 rounded">
-
           <form action="Route1.php" method="post">
-
             <div class="input-group w-50 pt-4">
               <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
               <input type="search" name="search" id="" class="form-control rounded mx-1" aria-label="Input group example" aria-describedby="btnGroupAddon2">
-
-
               <div class="col-3 ">
-
                 <input type="submit" value="Search" name="searchbutton" class="h-100 btn btn-primary mx-1  hd-text" class="form-control">
               </div>
             </div>
+
             <div class="col">
               <!-- Date Time - Local -->
               <div class="row rounded pt-2 pb-0 ">
@@ -117,10 +105,10 @@
                 </script>
               </div>
             </div>
-
-        </div>
-
+          </div>
         </form>
+
+        <!-- Modal Bootstrap -->
         <button type="button" id="formDetailsBtn" class="btn btn-color mt-1 hd-text" data-bs-toggle="modal" data-bs-target="#formDetails">
           Add Route Details <!-- add icon -->
         </button>
@@ -133,111 +121,50 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
 
-             
-                <div class="modal-body">
+              <div class="modal-body">
                 <form action="Route1.php" method="post" novalidate class ="needs-validation">
                   <!-- Route Name input -->
                   <div class="row form-outline mt-2">
                     <div class="col">
-
-                    <label class="form-label" for="route_name">Route Name (ex. Naga to PITX)</label>
-
-                    <input type="text" name="route_name" class="form-control" required />
-                    <!--  <select name="route_name" id="route_name" class="form-select">
-                        <option value="" selected disabled>Select Route</option>
-                        <?php
-                     /*   foreach ($routes as $route => $subroutes) {
-                          echo '<optgroup label="' . $route . '">';
-                          foreach ($subroutes as $subroute) {
-                            echo '<option value="' . $subroute . '">' . $subroute . '</option>';
-                          }
-                          echo '</optgroup>';
-                        } */
-                        ?>
-                      </select> -->
+                      <label class="form-label" for="route_name">Route Name (ex. Naga to PITX)</label>
+                      <input type="text" name="route_name" class="form-control" required />
                       <div class="invalid-feedback text-start">Set route.</div>
                        <div class="valid-feedback text-start">Route has been set.</div>
-                      
-
                     </div>
                   </div>
+
                   <!-- Departure Location input -->
                   <div class="row form-outline mt-2">
-                    
                     <div class="col">
-                    <label class="form-label" for="departure_location">Departure Location</label>
-                    <input type="text" name="departure_location" class="form-control" required/>
-                    <div class="invalid-feedback text-start">Set departure location.</div>
-                       <div class="valid-feedback text-start">Departure location has been set.</div>
-                    <!--  <select id="departure_location" class="form-select" name="departure_location" required>
-                        <?php
-                     /*   echo '<option default disabled selected value="">Origin</option>';
-
-                        foreach ($origins as $group_label => $origin) {
-                          echo '<optgroup label="' . $group_label . '">';
-                          echo '<option value="' . $origin . '">' . $origin . '</option>';
-                          echo '</optgroup>';
-                        }
-*/
-                        ?>
-                      </select> -->
-                    
-
-
-                      
+                      <label class="form-label" for="departure_location">Departure Location</label>
+                      <input type="text" name="departure_location" class="form-control" required/>
+                      <div class="invalid-feedback text-start">Set departure location.</div>
+                        <div class="valid-feedback text-start">Departure location has been set.</div>                      
                     </div>
 
-
                     <!-- Destination input -->
-
                     <div class="col">
                     <label class="form-label" for="destination">Destination</label>
                     <input type="text" name="destination" class="form-control" required/>
                     <div class="invalid-feedback text-start">Set destination.</div>
-                       <div class="valid-feedback text-start">Destination has been set.</div>
-                   <!-- <select id="destination" class="form-select" name="destination" required>
-                        <?php
-/*
-                        echo '<option default disabled selected value="">Destination</option>';
-
-                        foreach ($destinations as $group_label => $locations) {
-                          echo '<optgroup label="' . $group_label . '">';
-                          foreach ($locations as $location) {
-                            echo '<option value="' . $location . '">' . $location . '</option>';
-                          }
-                          echo '</optgroup>';
-                        }
-*/
-                        ?>
-                      </select> -->
-                     
+                       <div class="valid-feedback text-start">Destination has been set.</div>                     
                     </div>
                   </div>
-                  <div class="row form-outline mt-2">
 
+                  <div class="row form-outline mt-2">
                     <!-- Distance input -->
                     <div class="col">
-                    <label class="form-label" for="distance">Distance (in km)</label>
+                      <label class="form-label" for="distance">Distance (in km)</label>
                       <div class="input-group">
-                        
                         <input type="number" name="distance" class="form-control" aria-label="Distance (in km)" placeholder="Distance" min="0" required>
                         <span class="input-group-text hd-text">km</span>
                         <div class="invalid-feedback text-start">Set distance.</div>
                        <div class="valid-feedback text-start">Distance has been set.</div>
                       </div>
-             
-                      
                     </div>
                   </div>
 
-                  <!-- Duration input -->
-                  <!--
-                    <div class="row form-outline">
-                      <div class="col">
-                        <input type="time" name="duration" id="" class="form-control" />
-                        <label class="form-label" for="">Duration</label>
-                      </div>
-                -->
+                  <!-- Duration -->
                   <div class="row form-outline mt-2">
                   <label class="form-label" for="">Duration</label>
                     <div class="col">
@@ -265,14 +192,10 @@
                         <div class="invalid-feedback text-start">Set seconds.</div>
                        <div class="valid-feedback text-start">Seconds has been set.</div>
                       </div>
-
                     </div>
-                    
                   </div>
 
-
                   <div class="row form-outline mt-2">
-
                     <!-- Price input -->
                     <div class="col">
                     <label class="form-label" for="price">Price</label>
@@ -282,8 +205,6 @@
                         <div class="invalid-feedback text-start">Set price.</div>
                        <div class="valid-feedback text-start">Price has been set.</div>
                       </div>
-                     
-
                     </div>
                   </div>
 
@@ -302,8 +223,7 @@
 
     <?php
 
-
-    //button function
+    //Search Button
     if (isset($_POST['searchbutton'])) {
 
       //to check the search box if empty or not 
@@ -323,9 +243,6 @@
     } else {
       $selectsql = "Select * from tbl_route ORDER BY route_id DESC";
     }
-
-
-
 
     //Add Button
     if (isset($_POST['add'])) {
@@ -425,8 +342,8 @@
         echo "<td colspan='8' class ='tble-bg'>";
         echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['route_id'] . "'>";
         ?>
-        <!-- form-->
 
+        <!-- Form for Editing -->
         <form action="Route1.php" method="post">
           <h5 class="hd-text text-center pb-2 fs-5" id="title">Route Editing Form</h5>
 
@@ -442,9 +359,7 @@
           <div class="row form-outline">
             <div class="col">
             <input type="text" name="update_routeName" class="form-control" value="<?php echo $fielddata['route_name']; ?>" />
-             
               <label class="form-label" for="update_routeName">Route Name</label>
-
             </div>
           </div>
 
@@ -452,16 +367,13 @@
           <div class="row form-outline">
             <div class="col">
             <input type="text" name="update_departureLoc" class="form-control" value="<?php echo $fielddata['departure_location']; ?>" />
-             
               <label class="form-label" for="">Departure Location</label>
             </div>
 
             <!-- Destination input -->
             <div class="col">
             <input type="text" name="update_destination" class="form-control" value="<?php echo $fielddata['destination']; ?>" />
-            
               <label class="form-label" for="destination">Destination</label>
-
             </div>
           </div>
 
@@ -471,58 +383,46 @@
               <div class="input-group">
                 <input type="number" name="update_distance" value="<?php echo $fielddata['distance']; ?>" min="0" class="form-control" />
                 <span class="input-group-text hd-text">km</span>
-
               </div>
               <label class="form-label" for="">Distance (in km)</label>
             </div>
 
+            <!-- Price input -->
             <div class="col">
               <div class="input-group">
                 <span class="input-group-text hd-text">₱</span>
                 <input type="number" name="update_price" value="<?php echo $fielddata['price']; ?>" min="0" class="form-control" />
               </div>
               <label class="form-label" for="">Price</label>
-
             </div>
           </div>
 
           <!-- Duration input -->
-          <!--   <div class="col">
-                          <input type="time" name="update_duration" value="<?php /* echo  $fielddata['duration']; */ ?>" class="form-control" />
-                          <label class="form-label" for="">Duration</label>
-                      </div> -->
-
-
-          <!-- Price input -->
           <div class="row form-outline">
-
             <div class="col">
               <div class="input-group">
                 <input type="number" name="update_hrduration" id="update_hrduration" class="form-control" min="0" placeholder="0" value="<?php echo date_create_from_format('H:i:s', $fielddata['duration'])->format('G'); ?>" required />
                 <span class="input-group-text hd-text">Hrs</span>
-
               </div>
             </div>
+
             <div class="col">
               <div class="input-group">
                 <input type="number" name="update_minduration" id="update_minduration" class="form-control" min="0" max="59" placeholder="0" value="<?php echo date_create_from_format('H:i:s', $fielddata['duration'])->format('i'); ?>" required />
                 <span class="input-group-text hd-text">Mins</span>
-
               </div>
             </div>
+
             <div class="col">
               <div class="input-group">
                 <input type="number" name="update_secduration" id="update_secduration" class="form-control" min="0" max="59" placeholder="0" value="<?php echo date_create_from_format('H:i:s', $fielddata['duration'])->format('s'); ?>" required />
                 <span class="input-group-text hd-text">Secs</span>
-
-
               </div>
             </div>
             <label class="form-label" for="duration">Duration</label>
           </div>
 
-          <!-- Save button -->
-
+          <!-- Update button -->
           <div class="row form-outline text-center pt-1">
             <div class="col">
               <button type="submit" name="updating" value="Update" class="btn btn-success" onclick="return confirm('Are you sure you want to edit this?');">Update</button>
@@ -544,8 +444,8 @@
       echo "</div>";
       echo "</div>";
     }
-    //Update Button
 
+    //Update Button
     if (isset($_POST['updating'])) {
       $routeID_update = $_POST['update_routeID'];
       $routeName_update = $_POST['update_routeName'];
@@ -557,11 +457,7 @@
       $minduration_update = $_POST['update_minduration'];
       $secduration_update = $_POST['update_secduration'];
       $duration_update = $hrduration_update . ":" . $minduration_update . ":" . $secduration_update;
-
       $price_update = $_POST['update_price'];
-
-
-
 
       $updatesql = "UPDATE tbl_route SET route_id = $routeID_update, route_name = '$routeName_update',
             departure_location = '$departureLoc_update', destination = '$destination_update', distance = $distance_update,
@@ -596,9 +492,6 @@
         echo $con->error;
       }
     }
-
-
-
     ?>
   </div>
 
