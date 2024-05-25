@@ -337,7 +337,7 @@ include "logger.php";
                                 if ($sched_res) { // Changed to check $sched_res
                                     echo "<script>
                         Swal.fire({
-                            title: 'Do you want to add this user?',
+                            title: 'Do you want to add this schedule?',
                             showDenyButton: true,
                             showCancelButton: true,
                             confirmButtonText: 'Add',

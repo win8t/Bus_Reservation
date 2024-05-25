@@ -4,9 +4,6 @@ if (!isset($_SESSION)) {
     session_start();
 }
 require "dbconnect.php";
-if (!isset($_SESSION)) {
-    session_start();
-}
 $userID = $_SESSION['user_id'];
 
 function logActivity($con, $userID, $action) {
