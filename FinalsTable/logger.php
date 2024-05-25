@@ -1,4 +1,8 @@
 <?php
+
+if (!isset($_SESSION)) {
+    session_start();
+}
 require "dbconnect.php";
 $userID = $_SESSION['user_id'];
 // $action = 'Updated User';

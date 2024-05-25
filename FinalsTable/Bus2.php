@@ -550,7 +550,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
           <!-- Update button -->
           <div class="row form-outline text-center pt-1">
             <div class="col">
-              <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
+              <button type="submit" name="updating" value="Update" class="btn btn-success" onclick="return confirm('Are you sure you want to edit this?');">Update</button>
             </div>
           </div>
 

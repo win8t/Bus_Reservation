@@ -423,12 +423,6 @@ include "logger.php";
             $selectsql = "Select * from sched_reserve_view ORDER BY  `Schedule ID` DESC";
         }
 
-
-
-
-
-
-
         $result = $con->query($selectsql);
 
         //check table if there is a record
@@ -524,10 +518,7 @@ include "logger.php";
 
                     <!-- Available Seats input -->
                     <div class="row form-outline">
-                        <!--    <div class="col">
-                            <input type="number" name="update_totalSeats" value="<?php echo $fielddata['Total Seats']; ?>" class="form-control" />
-                            <label class="form-label" for="">Total Seats</label>
-                        </div> -->
+                      
                         <div class="col">
                             <input type="number" name="update_availableSeats" value="<?php echo $fielddata['Available Seats']; ?>" class="form-control" />
                             <label class="form-label" for="">Available Seats</label>
@@ -538,7 +529,7 @@ include "logger.php";
                     <!-- Submit -->
                     <div class="row form-outline text-center pt-1">
                         <div class="col">
-                            <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
+                            <button type="submit" name="updating" value="Update" class="btn btn-success" onclick="return confirm('Are you sure you want to edit this?');">Update</button>
                         </div>
                     </div>
                 </form>
@@ -594,11 +585,6 @@ include "logger.php";
 
 
             $result_sched = $update_schedule_query->execute();
-
-            /*   $updatesql = "UPDATE tbl_schedule SET schedule_id = $scheduleID_update, bus_id = $busID_update,
-            route_id = $routeID_update, departure_date = '$departureDate_update', departure_time = '$departureTime_update',
-            available_seats = $availableSeats_update WHERE schedule_id = $scheduleID_update";
-            $resultup = $con->query($updatesql); */
 
             //check if successfully updated
             if ($result_sched && $result_bus && $result_route == True) {
