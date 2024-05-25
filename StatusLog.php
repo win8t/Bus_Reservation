@@ -1,8 +1,8 @@
 <?php
 require "dbconnect.php";
-/*set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
-include "FinalsTable\logger.php"; */
-session_start();
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+include "logger.php";
+
 ?>
 <html lang="en">
 
