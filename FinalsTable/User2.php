@@ -199,6 +199,7 @@ include "logger.php";
                         </div>
 
                       </div>
+            
 
                   </div>
 
@@ -410,10 +411,13 @@ include "logger.php";
                 <label class="form-check-label" for="inlineRadio2">Employee</label>
               </div>
             </div>
+            <div class="form-text text-white">
+              Not choosing a role results to user role: Customer.
+            </div>
           </div>
 
           <!-- Username input -->
-          <div class="row form-outline">
+          <div class="row form-outline  mt-2">
             <div class="col">
               <input type="text" id="" name="update_username" value="<?php echo $fielddata['username']; ?>" class="form-control" />
               <label class="form-label" for="">Username</label>
@@ -429,7 +433,7 @@ include "logger.php";
 
           <div class="row form-outline text-center pt-1">
             <div class="col">
-              <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
+              <button type="submit" name="updating" value="Update" class="btn btn-success" onclick="return confirm('Are you sure you want to edit this?');">Update</button>
             </div>
           </div>
   </div>
@@ -500,7 +504,6 @@ include "logger.php";
 </div>
 
 <script src="../passvalidation.js"> </script>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>

@@ -515,6 +515,11 @@ include "logger.php";
 
 
                         </div>
+                        <div class="col">
+                            <!-- Seat Number -->
+                            <input type="text" id="" name="update_seatNumber" value="<?php echo  $fielddata['seat_number']; ?>" class="form-control" readonly />
+                            <label class="form-label" for="">Seat Number</label>
+                        </div>
                     </div>
 
                     <div class="row form-outline">
@@ -522,8 +527,12 @@ include "logger.php";
 
                         <div class="col">
                             <!-- Seat Number -->
-                            <input type="text" id="" name="update_seatNumber" value="<?php echo  $fielddata['seat_number']; ?>" class="form-control" readonly />
-                            <label class="form-label" for="">Seat Number</label>
+                            <select id="update_paymethod" name="update_paymethod" class="form-select">
+                                <option value="E-wallet" <?php echo ($fielddata['payment_method'] == 'E-wallet') ? 'selected' : ''; ?>>E-wallet</option>
+                                <option value="Cash" <?php echo ($fielddata['payment_method'] == 'Cash') ? 'selected' : ''; ?>>Cash</option>
+                            </select>
+
+                            <label class="form-label" for="">Pay Method</label>
                         </div>
 
                         <!-- Status input -->
@@ -549,7 +558,7 @@ include "logger.php";
                     <!-- Save button -->
                     <div class="row form-outline text-center pt-1">
                         <div class="col">
-                            <button type="submit" name="updating" value="Update" class="btn btn-success">Update</button>
+                            <button type="submit" name="updating" value="Update" class="btn btn-success" onclick="return confirm('Are you sure you want to edit this?');">Update</button>
                         </div>
                     </div>
                 </form>
@@ -580,14 +589,19 @@ include "logger.php";
             $busID_update = $_POST['update_busid'];
             $routeID_update = $_POST['update_routeid'];
             $status_update = $_POST['update_status'];
+            $pay_update = $_POST['update_paymethod'];
 
             $updatesql = "UPDATE tbl_reservation SET status = '$status_update'
         WHERE reservation_id = $reservationID_update AND schedule_id = $scheduleID_update";
 
+            $update1sql = "UPDATE tbl_reservation SET payment_method = '$pay_update'
+        WHERE reservation_id = $reservationID_update AND schedule_id = $scheduleID_update";
+
             $resultup = $con->query($updatesql);
+            $resultup1 = $con->query($update1sql);
 
             //check if successfully updated
-            if ($resultup == True) {
+            if ($resultup && $resultup1 == True) {
             ?>
                 <script>
                     Swal.fire({
@@ -606,8 +620,8 @@ include "logger.php";
                     });
                 </script>
         <?php
-            $action = 'Updated Reservation';
-            logActivity($con, $userID, $action);
+                $action = 'Updated Reservation';
+                logActivity($con, $userID, $action);
             } else {
                 //if not, check query error details
                 echo $con->error;

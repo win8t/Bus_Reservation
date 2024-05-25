@@ -8,7 +8,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Alps Booking Reservation</title>
-    <link href=stylez.css rel="stylesheet" />
+    <link href=stylezz.css rel="stylesheet" />
 
 
 </head>
@@ -46,11 +46,11 @@ session_start();
             var formattedDate = philippineTime.toLocaleDateString('en-CA');
 
             // Set the minimum date and change input type to date
-            document.getElementById("tripDate").setAttribute('type', 'date');
-            document.getElementById("tripDate").setAttribute('min', formattedDate);
+            document.getElementById("tripDate3").setAttribute('type', 'date');
+            document.getElementById("tripDate3").setAttribute('min', formattedDate);
         }
     </script>
-   
+
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-book">
         <div class="container-fluid">
@@ -178,63 +178,66 @@ session_start();
         <div class="book-content-container1 py-3"></div>
 
         <div class="d-flex content-container8  py-5 ">
-            <div class="booking-container p-3 w-100 rounded mx-auto">
+            <div class="booking-container p-3 w-100 rounded">
 
                 <div class="container-fluid w-100">
+                <form action="BookingLog.php" method="post" novalidate class="needs-validation">
                     <div class="row">
-                        <div class="col">
-                            <form action="BookingLog.php" method="post" novalidate class="needs-validation">
-                                <div class="input-group ">
+                        <div class="col-md-6">
+                           
+                                <div class="input-group">
+                                    
                                     <select id="origin" class="form-select" aria-describedby="basic-addon2" name="origin" required>
                                         <?php
-                                        echo '<option default disabled selected value="">Origin</option>';
-
-                                        foreach ($origins as $group_label => $origin) {
-                                            echo '<optgroup label="' . $group_label . '">';
-                                            $selected = ($fielddata['departure_location'] === $origin) ? 'selected' : '';
-                                            echo '<option value="' . $origin . '" ' . $selected . '>' . $origin . '</option>';
-                                            echo '</optgroup>';
+                                        $query = "SELECT DISTINCT `departure_location` FROM tbl_route";
+                                        $result = mysqli_query($con, $query);
+                                        if ($result) {
+                                            echo '<option default disabled selected value="">Origin</option>';
+                                            while ($loc = mysqli_fetch_assoc($result)) {
+                                                $origin = $loc['departure_location'];
+                                                echo '<option value="' . $origin . '">' . $origin . '</option>';
+                                            }
+                                        } else {
+                                            echo "Error: " . mysqli_error($con);
                                         }
                                         ?>
                                     </select>
-
-
                                     <label class="input-group-text" for="origin">Origin</label>
+
+                                   
+
+
                                     <button class="input-group-text" id="basic-addon2" onclick="swapValues()" type="button"><i class="bi bi-arrow-left-right"></i></button>
-
-
                                     <label class="input-group-text" for="destination">Destination</label>
                                     <select id="destination" class="form-select" aria-describedby="basic-addon2" name="destination" required>
                                         <?php
-
-
-                                        foreach ($destinations as $group_label => $options) {
-                                            echo '<optgroup label="' . $group_label . '">';
-                                            foreach ($options as $option) {
-                                                $selected = ($fielddata['destination'] === $option) ? 'selected' : '';
-                                                echo '<option value="' . $option . '" ' . $selected . '>' . $option . '</option>';
+                                        $query = "SELECT DISTINCT `destination` FROM tbl_route";
+                                        $result = mysqli_query($con, $query);
+                                        if ($result) {
+                                            echo '<option default disabled selected value="">Destination</option>';
+                                            while ($loc = mysqli_fetch_assoc($result)) {
+                                                $destination = $loc['destination'];
+                                                echo '<option value="' . $destination . '">' . $destination . '</option>';
                                             }
-                                            echo '</optgroup>';
+                                        } else {
+                                            echo "Error: " . mysqli_error($con);
                                         }
                                         ?>
-
                                     </select>
-
                                 </div>
-
                         </div>
-                        <div class="col-4">
-                            <input type="text" name="date" id="tripDate" class="form-control" placeholder="Trip Date" onfocus="setMinDate()" onblur="(this.type='text')" required>
+                        <div class="col-md-3">
+                            <input type="date" name="date" id="tripDate3" class="form-control" onfocus="setMinDate()" required />
                             <div class="invalid-feedback text-start">Please select a date.</div>
                             <div class="valid-feedback text-start">Departure date selected.</div>
-
                         </div>
-                        <div class="col-1 text-center ">
+                        <div class="col-md-3">
                             <input type="submit" value="Search" name="searchbutton" class="btn btn-success rounded-5 w-100">
                         </div>
                         </form>
                     </div>
                 </div>
+
 
                 <div class="container-fluid w-100 mt-3">
                     <div class="row">
@@ -269,10 +272,7 @@ session_start();
 
                             $result = $con->query($selectsql);
 
-                            //check table if there is a record
-                            //num_rows - will return the no of rows inside a table
                             $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
-                            $buttonTooltip = $buttonDisabled ? 'data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Tooltip on bottom"' : '';
                             if ($result->num_rows > 0) {
                                 echo "<div class='bg-row-book p-5 rounded'>";
                                 echo "<div class = 'table-responsive bdr'>";
@@ -285,7 +285,7 @@ session_start();
                                 echo "<th> Bus Number </th>";
                                 echo "<th> Bus Type </th>";
                                 echo "<th> Departure Date </th>";
-                                echo "<th> Depature Time </th>";
+                                echo "<th> Departure Time </th>";
 
                                 echo "<th> Departure Area </th>";
                                 echo "<th> Destination </th>";
@@ -312,7 +312,7 @@ session_start();
                                     echo "<td>" . $maltfielddata['Available Seats'] . "</td>";
                                     echo "<td>" . number_format($maltfielddata['Price']) . "</td>";
                                     echo "<td>";
-                                    echo "<div class ='$buttonTooltip'>";
+                                    echo "<div class =''>";
                                     echo "<button class='btn btn-success' type='button' data-bs-toggle='collapse' data-bs-target='#collapseExample" . $maltfielddata['Schedule ID'] . "' aria-expanded='false' 
                                      aria-controls='collapseExample" . $maltfielddata['Schedule ID'] . "' $buttonDisabled>Book</button>";
                                     echo "</div>";
@@ -393,7 +393,7 @@ session_start();
 
                                         <!-- Username input -->
                                         <div class="row text-start form-outline mb-2">
-                                        <label class="form-label" for="">Passenger Name</label>
+                                            <label class="form-label" for="">Passenger Name</label>
                                             <div class="col">
                                                 <label class="form-label text-secondary" for="">First Name</label>
                                                 <input type="text" id="" name="f_name" class="form-control" required />
@@ -415,28 +415,28 @@ session_start();
                                             </div>
 
 
-                                            
+
                                         </div>
 
 
                                         <div class="row text-start form-outline">
                                             <!-- Password input -->
                                             <div class="col">
-                                            <label class="form-label" for="">Contact Number</label>
+                                                <label class="form-label" for="">Contact Number</label>
                                                 <input type="number" name="c_number" id="" class="form-control" min="0" required />
-                                                
+
 
                                                 <div class="invalid-feedback text-start">Enter your contact.</div>
-                                                    <div class="valid-feedback text-start">Contact information entered.</div>
+                                                <div class="valid-feedback text-start">Contact information entered.</div>
                                             </div>
                                             <div class="col">
-                                            <label class="form-label" for="">Seat</label>
+                                                <label class="form-label" for="">Seat</label>
                                                 <?php
                                                 seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con);
                                                 ?>
                                                 <div class='invalid-feedback text-start'>Choose your seat number.</div>
-                                                    <div class='valid-feedback text-start'>Seat selected.</div>
-                                                
+                                                <div class='valid-feedback text-start'>Seat selected.</div>
+
 
                                             </div>
                                         </div>
@@ -465,7 +465,7 @@ session_start();
                                 echo "<div class='row'>";
                                 echo "<div class='col'>";
                                 echo "<div class='bg-row-book p-3 rounded pb-4'>";
-                                echo "<br><h4 class='text-center text-white shadow p-4 rounded'>There is no booking at this time</h4>";
+                                echo "<br><h4 class='text-center text-white p-4 rounded'>There is no booking at this time</h4>";
                                 echo "</div>";
                                 echo "</div>";
                                 echo "</div>";

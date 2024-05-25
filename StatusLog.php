@@ -128,81 +128,84 @@ echo "<h2 class = 'about-login mx-auto text-center'> ALPS RESERVATION DETAILS VI
         </div>
     </div>
 
-</div>   
+</div>
 
-    <?php
-    if (isset($_POST['searchresbutton'])) {
-        $tickets_number = $_POST['search'];
-    
+<?php
+if (isset($_POST['searchresbutton'])) {
+    $tickets_number = $_POST['search'];
 
-        $selectsql = "SELECT * FROM reservation_booking_view WHERE ticket_number = '$tickets_number'";
-        $status_result = $con->query($selectsql);
-        echo "<div class ='container-fluid bg-row-status w-100 p-5 rounded mb-3'>";
 
-        if ($status_result->num_rows > 0) {
+    $selectsql = "SELECT * FROM reservation_booking_view WHERE ticket_number = '$tickets_number'";
+    $status_result = $con->query($selectsql);
+    echo "<div class ='container-fluid bg-row-status w-100 p-5 rounded mb-3'>";
 
-            echo "<div class ='table-responsive bdr m-3'>";
-            echo "<table class='table table-sm table-bordered border-primary-subtle table-hover mx-auto'>";
-            echo "<thead class ='table-dark text-center'><tr>";
-            echo "<th>Ticket Number</th>";
-            echo "<th>Passenger Name</th>";
-            echo "<th>Bus Number</th>";
-            echo "<th>Route Name</th>";
-            echo "<th>Seat Number</th>";
-            echo "<th>Departure Time</th>";
-            echo "<th>Departure Date</th>";
-            echo "<th>Status</th>";
-            echo "</tr></thead>";
-            echo "<tbody class ='text-center'>";
-            while ($fielddata = $status_result->fetch_assoc()) {
-                echo "<tr>";
-                echo "<td>" . $fielddata['ticket_number'] . "</td>";
-                echo "<td>" . $fielddata['passenger_name'] . "</td>";
-                echo "<td>" . $fielddata['bus_number'] . "</td>";
-                echo "<td>" . $fielddata['route_name'] . "</td>";
-                echo "<td>" . $fielddata['seat_number'] . "</td>";
-                echo "<td>" . date_format(date_create($fielddata['departure_time']), 'g:i A') . "</td>";
-                echo "<td>" . $fielddata['departure_date'] . "</td>";
-                echo "<td>" . $fielddata['status'] . "</td>";
-                echo "</tr>";
-                echo "</tbody></table>";
-                echo "</div>";
-                // Cancellation form inside the loop
-    ?>
-                <form action="StatusLog.php" method="post">
-                    <input type="hidden" name="ticket_number" value="<?php echo $fielddata['ticket_number']; ?>">
-                    <input type="hidden" name="seat" value="<?php echo $fielddata['seat_number']; ?>">
-                    <div class="row text-center">
-                        <div class="col">
-                            <button type="button" value="PrintBooking" id="printsButton" class="shadows btn btn-success mx-2 w-25 rounded-4"> Print </button>
-                            <button type="submit" value="CancelBooking" name="cancel" class="shadows btn btn-danger w-25 rounded-4"  onsubmit="return confirm('Are you sure you want to cancel?');"> Cancel Booking </button>
-                        </div>
+    if ($status_result->num_rows > 0) {
+
+        echo "<div class ='table-responsive bdr m-3'>";
+        echo "<table class='table table-sm table-bordered border-primary-subtle table-hover mx-auto'>";
+        echo "<thead class ='table-dark text-center'><tr>";
+        echo "<th>Ticket Number</th>";
+        echo "<th>Passenger Name</th>";
+        echo "<th>Bus Number</th>";
+        echo "<th>Route Name</th>";
+        echo "<th>Seat Number</th>";
+        echo "<th>Departure Time</th>";
+        echo "<th>Departure Date</th>";
+        echo "<th>Status</th>";
+        echo "</tr></thead>";
+        echo "<tbody class ='text-center'>";
+        while ($fielddata = $status_result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $fielddata['ticket_number'] . "</td>";
+            "<td>" . $fielddata['payment_method'] . "</td>";
+            echo "<td>" . $fielddata['passenger_name'] . "</td>";
+            echo "<td>" . $fielddata['bus_number'] . "</td>";
+            echo "<td>" . $fielddata['route_name'] . "</td>";
+            echo "<td>" . $fielddata['seat_number'] . "</td>";
+            echo "<td>" . date_format(date_create($fielddata['departure_time']), 'g:i A') . "</td>";
+            echo "<td>" . $fielddata['departure_date'] . "</td>";
+            echo "<td>" . $fielddata['status'] . "</td>";
+            echo "</tr>";
+            echo "</tbody></table>";
+            echo "</div>";
+            // Cancellation form inside the loop
+?>
+            <form action="StatusLog.php" method="post">
+                <input type="hidden" name="ticket_number" value="<?php echo $fielddata['ticket_number']; ?>">
+                <input type="hidden" name="seat" value="<?php echo $fielddata['seat_number']; ?>">
+                <input type="hidden" name="method" value="<?php echo $fielddata['payment_method']; ?>">
+                <div class="row text-center">
+                    <div class="col">
+                        <button type="button" value="PrintBooking" id="printsButton" class="shadows btn btn-success mx-2 w-25 rounded-4"> Print </button>
+                        <button type="submit" value="CancelBooking" name="cancel" class="shadows btn btn-danger w-25 rounded-4" onclick="return confirm('Are you sure you want to cancel?');"> Cancel Booking </button>
+
                     </div>
-                </form>
-    <?php
-            }
-        } else {
-            echo "<div class='row mt-3'>";
-            echo "<div class='col'>";
-            echo "<h2 class ='text-center display-7'><b>No reservation found for ticket number: " . $tickets_number . "</b></h2>";
-            echo "</div>";
-            echo "</div>";
+                </div>
+            </form>
+<?php
         }
+    } else {
+        echo "<div class='row mt-3'>";
+        echo "<div class='col'>";
+        echo "<h2 class ='text-center display-7'><b>No reservation found for ticket number: " . $tickets_number . "</b></h2>";
+        echo "</div>";
         echo "</div>";
     }
-    ?>
-    <form action="StatusLog.php" method="post" class="text-center">
-        <div class="row">
-            <div class="col">
-                <input type="text" name="search" id="" class="form-control rounded-5 p-3 w-75 mx-auto gradient-input border-0" aria-label="Input group example" aria-describedby="btnGroupAddon2" placeholder="Enter your Ticket Number here!">
-            </div>
+    echo "</div>";
+}
+?>
+<form action="StatusLog.php" method="post" class="text-center">
+    <div class="row">
+        <div class="col">
+            <input type="text" name="search" id="" class="form-control rounded-5 p-3 w-75 mx-auto gradient-input border-0" aria-label="Input group example" aria-describedby="btnGroupAddon2" placeholder="Enter your Ticket Number here!">
         </div>
-        <div class="row">
-            <div class="col">
-                <input type="submit" value="Search" name="searchresbutton" class="rounded-pill w-25 mt-4 btn text-white border-0 mt-1 gradient-search">
-            </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <input type="submit" value="Search" name="searchresbutton" class="rounded-pill w-25 mt-4 btn text-white border-0 mt-1 gradient-search">
         </div>
-    </form>
+    </div>
+</form>
 </div>
 
 <?php
@@ -217,6 +220,7 @@ echo "</div'>";
 if (isset($_POST['cancel'])) {
     $ticket_number = $_POST['ticket_number'];
     $seat_num = $_POST['seat'];
+    $paymethod = $_POST['method'];
 
     $sqlcancel = "UPDATE tbl_reservation SET status = 'Cancelled' WHERE ticket_number ='$ticket_number'";
     $result_cancel = $con->query($sqlcancel);
@@ -238,31 +242,42 @@ if (isset($_POST['cancel'])) {
         $result_capacity_update = $con->query($seatsql2);
 
         if ($result_seat_update && $result_capacity_update) {
-         ?>   <script>
-            Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "Booking cancelled",
-                showConfirmButton: false,
-                timer: 3000,
-                willClose: () => {
-                    Swal.close();
-                    setTimeout(function() {
 
-                       window.location.href = "BookingLog.php";
-                    }, 500);
+            switch ($paymethod) {
+                case "Cash":
+?> <script>
+                        Swal.fire({
+                            title: "Your reservation has been cancelled.",
+                            icon: "success"
+                        }).then((result) => {
+                            if (true) {
+                                window.location.href = 'HomeLog.php';
+                            }
+                        });
+                    </script> <?php
+                                break;
+                            case "E-wallet":
+                                ?> <script>
+                        Swal.fire({
+                            title: "Your reservation has been cancelled.",
+                            text: "Your payment will be refunded.",
+                            icon: "success"
+                        }).then((result) => {
+                            if (true) {
+                                window.location.href = 'HomeLog.php';
+                            }
+                        });
+                    </script> <?php
+                        }
+                    } else {
+                        echo "Error updating seat and/or bus capacity: " . $con->error;
+                    }
+                    $action = 'Cancelled Booking';
+                    logActivity($con, $userID, $action);
+                } else {
+                    echo "Error cancelling reservation: " . $con->error;
                 }
-            });
-        </script> <?php
-        } else {
-            echo "Error updating seat and/or bus capacity: " . $con->error;
-        }
-    $action = 'Cancelled Booking';
-    logActivity($con, $userID, $action);
-    } else {
-        echo "Error cancelling reservation: " . $con->error;
-    }
-}
-echo "</div>";
+            }
+            echo "</div>";
 
-?>
+                                ?>
