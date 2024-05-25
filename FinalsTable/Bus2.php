@@ -185,10 +185,12 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                   <!-- Bus ID input -->
                   <div class="row form-outline">
                     <div class="col">
+                  
                       <label class="form-label" for="">Bus Number</label>
                       <input type="text" name="bus_number" id="" class="form-control" min="0" required />
                       <div class="invalid-feedback text-start">Enter its bus number.</div>
                       <div class="valid-feedback text-start">Bus number entered.</div>
+                  
 
                     </div>
 
@@ -259,6 +261,9 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                         }
                         ?>
                       </select>
+                      <div class="form-text">
+                        Routes should match (ex. R1 to R1).
+                      </div>
 
                       <div class="invalid-feedback text-start">Enter departure location.</div>
                       <div class="valid-feedback text-start">Departure location entered.</div>
@@ -388,16 +393,14 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
   
           if ($result === TRUE) {
              ?> <script>
-   
-              // Display the SweetAlert popup
-              Swal.fire({
-                  position: "center",
-                  icon: "success",
-                  title: "Successfully added",
-                  showConfirmButton: false,
-                  timer: 4500
-              });
-          </script> <?php
+             Swal.fire({
+                 position: "center",
+                 icon: "success",
+                 title: "Bus details has been inserted",
+                 showConfirmButton: false,
+                 timer: 4500
+             });
+         </script> <?php
 
           $action = 'Added Bus';
           logActivity($con, $userID, $action);
@@ -597,21 +600,14 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
       if ($resultup == True) {
       ?>
         <script>
-          Swal.fire({
-            title: "Do you want to update?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Update",
-            denyButtonText: `Don't Update`
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire("Updated!", "", "success");
-            } else if (result.isDenied) {
-              Swal.fire("Changes are not updated", "", "info");
-            }
-          });
-        </script>
+                   Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Update has been successful. Please refresh the page.",
+      showConfirmButton: false,
+      timer: 1500
+    });
+                </script>
     <?php
     $action = 'Updated Bus';
     logActivity($con, $userID, $action);

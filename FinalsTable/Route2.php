@@ -372,22 +372,15 @@
       //check if successfully added
       if ($result == True) {
     ?>
-        <script>
+         <script>
           Swal.fire({
-            title: "Do you want to add this user?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Add",
-            denyButtonText: `Don't Add`
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire("Saved!", "", "success");
-            } else if (result.isDenied) {
-              Swal.fire("Changes are not saved", "", "info");
-            }
-          });
-        </script>
+            position: 'center',
+            icon: 'success',
+            title: "Route has been inserted.",
+            showConfirmButton: false,
+            timer: 1500
+        });
+                    </script>
       <?php
       $action = 'Added Route';
       logActivity($con, $userID, $action);
@@ -592,22 +585,15 @@
       //check if successfully updated
       if ($resultup == True) {
       ?>
-        <script>
-          Swal.fire({
-            title: "Do you want to update?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Update",
-            denyButtonText: `Don't Update`
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire("Updated!", "", "success");
-            } else if (result.isDenied) {
-              Swal.fire("Changes are not updated", "", "info");
-            }
-          });
-        </script>
+         <script>
+                   Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Update has been successful. Please refresh the page.",
+      showConfirmButton: false,
+      timer: 1500
+    });
+                </script>
     <?php
     $action = 'Updated Route';
     logActivity($con, $userID, $action);

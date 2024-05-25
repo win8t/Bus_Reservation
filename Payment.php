@@ -1,7 +1,8 @@
 <?php 
 session_start(); 
 require "dbconnect.php"; 
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+/* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable'); */
+ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
 include "logger.php";
 
 ?>
@@ -106,13 +107,19 @@ echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
 
 <h4 class='text-center'>Payment Method</h4>
 <hr>
-<form action="Payment.php" method="post">
+<form action="Payment.php" method="post" novalidate class="needs-validation">
     <div class="bg-rowPay rounded-2 p-4">
-        <select name="method" id="" class="form-select w-50 mb-3 mx-auto mt-3">
+        
+        <select name="method" id="" class="form-select w-50 mb-3 mx-auto mt-3" required>
             <option default disabled selected value="">Select your payment</option>
             <option value="Cash">Cash</option>
             <option value="E-wallet">E-wallet (GCash) </option>
+            
         </select>
+        <div class="invalid-feedback text-center">Select a payment method.</div>
+        <div class="valid-feedback text-center">Payment method selected.</div>
+      
+
         <input type="hidden" name="pay_ticket" id="" value=<?php echo $_SESSION['ticket_pay'] ?>>
         <div class="row text-center">
             <div class="col">
@@ -173,7 +180,7 @@ if (isset($_POST['paying'])) {
 }
 ?>
 
-
+<script src="formvalidation.js"> </script>
 </body>
 
 </html>

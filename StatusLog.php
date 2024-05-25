@@ -1,6 +1,7 @@
 <?php
 require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+/* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable'); */
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
 include "logger.php";
 
 ?>
@@ -36,6 +37,7 @@ include "logger.php";
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <body class="status-body hd-text">
+
     <?php
     date_default_timezone_set("Asia/Manila");
     ?>
@@ -90,9 +92,6 @@ include "logger.php";
         </div>
     </nav>
 
-</body>
-
-</html>
 
 <?php
 echo "<div class ='container-fluid bg-info-subtle shadow-sm rounded-3 w-75 p-4'>";
@@ -194,10 +193,13 @@ if (isset($_POST['searchresbutton'])) {
     echo "</div>";
 }
 ?>
-<form action="StatusLog.php" method="post" class="text-center">
+<form action="StatusLog.php" method="post" class="text-center" novalidate class="needs-validation" >
     <div class="row">
         <div class="col">
-            <input type="text" name="search" id="" class="form-control rounded-5 p-3 w-75 mx-auto gradient-input border-0" aria-label="Input group example" aria-describedby="btnGroupAddon2" placeholder="Enter your Ticket Number here!">
+        <div class="invalid-feedback text-start">Please enter your ticket number.</div>
+                                <div class="valid-feedback text-start">Ticker number entered.</div>
+            <input type="text" name="search" id="" class="form-control rounded-5 p-3 w-75 mx-auto gradient-input border-0" aria-label="Input group example" aria-describedby="invalid-feedback" placeholder="Enter your Ticket Number here!" required>
+        
         </div>
     </div>
     <div class="row">
@@ -279,5 +281,9 @@ if (isset($_POST['cancel'])) {
                 }
             }
             echo "</div>";
+?>
 
-                                ?>
+<script src="formvalidation.js"> </script>
+</body>
+
+</html>

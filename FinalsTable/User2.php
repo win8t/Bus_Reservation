@@ -1,6 +1,7 @@
 <?php
 require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+/* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS'); */
+ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
 require_once 'email_registration.php';
 include "logger.php";
 ?>
@@ -486,7 +487,8 @@ include "logger.php";
       showConfirmButton: false,
       timer: 1500
     });
-  </script>
+   
+</script>
 <?php
         $action = 'Update User';
         logActivity($con, $userID, $action);

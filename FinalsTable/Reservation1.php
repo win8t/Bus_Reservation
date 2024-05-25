@@ -20,7 +20,8 @@ include "logger.php";
 <body class="hd-text">
     <?php
     date_default_timezone_set("Asia/Manila");
-    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+   /* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS'); */
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
     require_once 'SeatFunction.php';
 
     require_once "BusArrays.php";
@@ -651,21 +652,14 @@ include "logger.php";
             //check if successfully updated
             if ($resultup == True) {
             ?>
-                <script>
-                    Swal.fire({
-                        title: "Do you want to update?",
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: "Update",
-                        denyButtonText: `Don't Update`
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            Swal.fire("Updated!", "", "success");
-                        } else if (result.isDenied) {
-                            Swal.fire("Changes are not updated", "", "info");
-                        }
-                    });
+              <script>
+                   Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Update has been successful. Please refresh the page.",
+      showConfirmButton: false,
+      timer: 1500
+    });
                 </script>
         <?php
             $action = 'Updated Reservation';

@@ -14,9 +14,7 @@
 </head>
 
 <body class="login-content-container7">
-    <script src="scripts.js"></script>
-    <script src="bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
 
     <?php
     if (isset($_POST['sub'])) {
@@ -98,13 +96,15 @@
                     </div>
                 </div>
 
-                <form action="Login.php" method="post">
+                <form action="Login.php" method="post" novalidate class="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <!-- Username input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="text" class="form-control" name="user" id="floatingInput" placeholder="Malt">
+                                <input type="text" class="form-control" name="user" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Username</label>
+                                <div class="invalid-feedback text-start">Please enter a username.</div>
+                                <div class="valid-feedback text-start">Entered username.</div>
                             </div>
                         </div>
                     </div>
@@ -113,15 +113,17 @@
                         <div class="col-md-6">
                             <!-- Password input -->
                             <div class="form-floating mb-3 link-text">
-                                <input type="password" class="form-control" name="pass" id="floatingInput" placeholder="Cisco123!">
+                                <input type="password" class="form-control" name="pass" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Password</label>
+                                <div class="invalid-feedback text-start">Please enter a password.</div>
+                                <div class="valid-feedback text-start">Entered password</div>
                             </div>
                         </div>
                     </div>
 
                     <div class="row mb-4">
                         <div class="col d-flex justify-content-center ">
-                            <a href="ForgotPassword.php" class="link-text">Forgot Password?</a>
+                            <a href="ForgotPassword.php" class="link-text"><strong>Forgot Password?</strong></a>
                         </div>
                     </div>
 
@@ -153,14 +155,17 @@
                 </div>
                 <div class="row mb-4">
                     <div class="col d-flex justify-content-center">
-                        <a href="Registration.php" class="link-text">Don't Have an Account?</a>
+                        <a href="Registration.php" class="link-text"><strong>Don't Have an Account?</strong></a>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-
+    <script src="scripts.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="formvalidation.js"> </script>
 </body>
 
 </html>
