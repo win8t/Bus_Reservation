@@ -69,7 +69,8 @@
     </div>
 
 <?php
-require_once "dbconnect.php";
+require "dbconnect.php";
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
 include "logger.php";
 
 if (isset($_POST['ver'])) {  

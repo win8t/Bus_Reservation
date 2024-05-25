@@ -609,7 +609,7 @@
           });
         </script>
     <?php
-    $action = 'Update Route';
+    $action = 'Updated Route';
     logActivity($con, $userID, $action);
       } else {
         //if not, check query error details
