@@ -4,8 +4,10 @@ if (!isset($_SESSION)) {
     session_start();
 }
 require "dbconnect.php";
+if (!isset($_SESSION)) {
+    session_start();
+}
 $userID = $_SESSION['user_id'];
-// $action = 'Updated User';
 
 function logActivity($con, $userID, $action) {
     $logsql = $con->prepare("INSERT INTO tbl_logs (user_id, action, DateTime) VALUES (?, ?, NOW())");

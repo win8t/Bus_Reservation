@@ -1,6 +1,6 @@
 <?php
 require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
 require_once 'email_registration.php';
 include "logger.php";
 ?>
