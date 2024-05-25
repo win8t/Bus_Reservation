@@ -30,8 +30,9 @@ if (isset($_POST['logout1'])) {
         session_destroy();
 
         // Redirect to the login page or another page
-        set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
-        header("Location: /FINAL_ALPS_BUS/Login.php");
+       /* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS'); */
+        set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
+        header("Location: /FINALS PROJECT/Login.php");
         exit();
     }
 }

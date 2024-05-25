@@ -56,7 +56,8 @@ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_AL
 include "logger.php";
 include "email_ticket.php";
 
-$ticket_id = "ALPSBR" . rand(1000, 9999);
+$ticket_id = "ALPSBR" . rand(1000000, 9999999);
+$receipt_user = $_POST['usern'];
 $receipt_id = $_POST['book_id'];
 $receipt_num = $_POST['book_num'];
 $receipt_type = $_POST['book_type'];
@@ -84,90 +85,104 @@ $receipt_status = "Pending";
 
 if (isset($_POST['booking'])) {
 
-  $dec_seat = "UPDATE tbl_schedule SET available_seats = available_seats - 1 WHERE schedule_id = ? AND available_seats > 0";
-  $stmt = $con->prepare($dec_seat);
-  $stmt->bind_param("i", $receipt_id);
-  $dec_result = $stmt->execute();
+  // Retrieve user_id using email
+  $stmt = $con->prepare("SELECT user_id FROM tbl_user WHERE username = ? and status = 'Active'");
+  $stmt->bind_param("s", $receipt_user);
+  $stmt->execute();
+  $stmt->bind_result($user_id);
+  $stmt->fetch();
+  $stmt->close();
 
-  //check if successfully updated
-  if ($dec_result == True) {
+  if ($user_id) {
+    $dec_seat = "UPDATE tbl_schedule SET available_seats = available_seats - 1 WHERE schedule_id = ? AND available_seats > 0";
+    $stmt = $con->prepare($dec_seat);
+    $stmt->bind_param("i", $receipt_id);
+    $dec_result = $stmt->execute();
+
+    // Check if successfully updated
+    if ($dec_result == true) {
+?>
+      <script>
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Please proceed to payment!",
+          showConfirmButton: false,
+          timer: 4000
+        });
+      </script>
+<?php
+      $action = 'Booked';
+      logActivity($con, $user_id, $action);
+
+      $reservationsql = "INSERT INTO tbl_reservation (schedule_id, user_id, ticket_number, passenger_name, contact_information, seat_number, reservation_date, payment_method, status) 
+                         VALUES ('$receipt_id','$user_id', '$ticket_id', '$receipt_fullname', '$receipt_c_number', '$receipt_seatnum', '$reserve_date', '$receipt_payment', '$receipt_status')";
+
+      $reserved = $con->query($reservationsql);
+
+      $reservation_datetime = new DateTime($reserve_date);
+      $reservation_datetime->setTimezone(new DateTimeZone('Asia/Manila'));
+      $reservation_date_formatted = $reservation_datetime->format('Y-m-d g:i A');
+
+      $receipt_data = array(
+        "Ticket Number" => "<h3 class ='mt-1'>" . $ticket_id . "</h5>",
+        "Reservation Date" => $reservation_date_formatted,
+        "Bus Number" => $receipt_num,
+        "Bus Type" => $receipt_type,
+        "Departure Date & Time" => $receipt_ddate . " " . date_format(date_create($receipt_dtime), 'g:i A'),
+        "Route" => $receipt_depart . " to " . $receipt_desti,
+        "Passenger Name" => $receipt_fullname,
+        "Contact Number" => $receipt_c_number,
+        "Chosen Seat Number" => $receipt_seatnum,
+        "Status" => "<h5 class ='mt-1'>" . $receipt_status . "</h5>",
+        "Payment Method" => $receipt_payment,
+        "Price" => "<h3 class ='text-success'> ₱ " . $receipt_price  . "</h3>",
+      );
+
+      echo "<div class ='container-fluid bg-row w-75 p-4 rounded '>";
+      echo "<div class ='table-responsive bdr'>";
+      echo "<table class='table table-sm table-bordered border-primary-subtle table-hover mx-auto'>";
+      echo "<thead class ='table-dark'>";
+      echo "<th class ='col-12 h2 p-4' colspan='2'> Bus Reservation Details </th>";
+      echo "</thead>";
+      echo "<tbody class='table-group-divider border-primary-subtle tbl-body'>";
+
+      foreach ($receipt_data as $data => $reserve) {
+        echo "<tr>";
+        echo "<td class='h6'>" . $data . "</td>";
+        echo "<td>" . $reserve . "</td>";
+        echo "</tr>";
+      }
+
+      echo "</table>";
+      echo "</div>";
+      echo "<div class ='row'>";
+      echo "<div class ='col'>";
+      echo "<button id='printButton' class='btn w-50'>Print</button>";
+      echo "</div>";
+      echo "<div class ='col'>";
+      echo "<form action='Payment.php' method ='post'>";
+      echo "<input type='hidden' class='form-control' name='ticket_pay' value=".$ticket_id." >";
+      echo "<input type='hidden' class='form-control' name='passenger' value=".$receipt_fullname." >";
+      echo "<input type='hidden' class='form-control' name='receipt_price' value=".$receipt_price." >";
+      echo "<button id='backButton' name='pay' class='btn w-50'>Payment</button>";
+      echo "</form>";
+      echo "</div>";
+      echo "</div>";
+    }
+  } else {
+    // Handle case where email is not found in tbl_user
 ?>
     <script>
       Swal.fire({
         position: "center",
-        icon: "success",
-        title: "Please proceed to payment!",
+        icon: "error",
+        title: "Email not found!",
         showConfirmButton: false,
         timer: 4000
       });
     </script>
 <?php
-    $action = 'Booked';
-    logActivity($con, $userID, $action);
-
-    $reservationsql = "Insert into tbl_reservation (schedule_id, ticket_number, passenger_name ,contact_information,seat_number,reservation_date, payment_method, status)
-    values ('$receipt_id','$ticket_id','$receipt_fullname','$receipt_c_number','$receipt_seatnum','$reserve_date','$receipt_payment','$receipt_status')
-    ";
-
-    $reserved = $con->query($reservationsql);
-
-    $reservation_datetime = new DateTime($reserve_date);
-    $reservation_datetime->setTimezone(new DateTimeZone('Asia/Manila'));
-    $reservation_date_formatted = $reservation_datetime->format('Y-m-d g:i A');
-
-    // send_ticket($emailadd, $ticket_id);
-    
-    $receipt_data = array(
-      "Ticket Number" => "<h3 class ='mt-1'>" . $ticket_id . "</h5>",
-      "Reservation Date" => $reservation_date_formatted,
-      "Bus Number" => $receipt_num,
-      "Bus Type" => $receipt_type,
-      "Departure Date & Time" => $receipt_ddate . " " . date_format(date_create($receipt_dtime), 'g:i A'),
-      "Route" => $receipt_depart . " to " . $receipt_desti,
-      "Passenger Name" => $receipt_fullname,
-      "Contact Number" => $receipt_c_number,
-      "Chosen Seat Number" => $receipt_seatnum,
-      "Status" => "<h5 class ='mt-1'>" . $receipt_status . "</h5>",
-      "Payment Method" => $receipt_payment,
-      "Price" => "<h3 class ='text-success'> ₱ " . $receipt_price  . "</h3>",
-
-    );
-
-
-    echo "<div class ='container-fluid bg-row w-75 p-4 rounded '>";
-    echo "<div class ='table-responsive bdr'>";
-    echo "<table class='table table-sm table-bordered border-primary-subtle table-hover mx-auto'>";
-    echo "<thead class ='table-dark'>";
-    echo "<th class ='col-12 h2 p-4' colspan='2'> Bus Reservation Details </th>";
-    echo "</thead>";
-    echo "<tbody class='table-group-divider border-primary-subtle tbl-body'>";
-
-
-
-    foreach ($receipt_data as $data => $reserve) {
-      echo "<tr>";
-      echo "<td class='h6'>" . $data . "</td>";
-      echo "<td>" . $reserve . "</td>";
-      echo "</tr>";
-    }
-
-    echo "</table>";
-
-    echo "</div>";
-    echo "<div class ='row'>";
-    echo "<div class ='col'>";
-    echo "<button id='printButton' class='btn w-50'>Print</button>";
-    echo "</div>";
-    echo "<div class ='col'>";
-    echo "<form action='Payment.php' method ='post'>";
-    echo "<input type='hidden' class='form-control' name='ticket_pay' value=".$ticket_id." >";
-    echo "<input type='hidden' class='form-control' name='passenger' value=".$receipt_fullname." >";
-    echo "<input type='hidden' class='form-control' name='receipt_price' value=".$receipt_price." >";
-    echo "<button id='backButton' name='pay' class='btn w-50'>Payment</button>";
-    echo "</form>";
-    echo "</div>";
-
-    echo "</div>";
   }
 }
 ?>
