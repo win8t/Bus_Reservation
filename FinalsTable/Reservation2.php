@@ -2,6 +2,7 @@
 session_start();
 require "dbconnect.php";
 include "logger.php";
+
 ?>
 <html lang="en">
 
@@ -395,6 +396,7 @@ include "logger.php";
                                                 <div class="invalid-feedback text-start">Enter your last name.</div>
                                                 <div class="valid-feedback text-start">Last name entered.</div>
                                             </div>
+                                           
                                         </div>
 
                                         <div class="row form-outline">
@@ -407,11 +409,16 @@ include "logger.php";
                                                 <input type="hidden" name="book_desti" value="<?php echo $maltfielddata['Destination']; ?>" class="form-control" readonly />
                                             </div>
                                         </div>
-                                        </div>
+                                       
 
 
                                         <div class="row text-start form-outline">
                                             <!-- Password input -->
+                                            <div class="col">
+                                                <label class="form-label" for="">Username</label>
+                                                <input type="text" id="" name="usern" class="form-control"  value = <?php echo $_SESSION['username']; ?> readonly/>
+                                            </div>
+
                                             <div class="col">
                                                 <label class="form-label" for="">Contact Number</label>
                                                 <input type="number" name="c_number" id="" class="form-control" min="0" required />
@@ -419,6 +426,7 @@ include "logger.php";
                                                 <div class="invalid-feedback text-start">Enter your contact.</div>
                                                 <div class="valid-feedback text-start">Contact information entered.</div>
                                             </div>
+                                            
                                             <div class="col">
                                                 <label class="form-label" for="">Seat</label>
                                                 <?php
@@ -428,19 +436,12 @@ include "logger.php";
                                                 <div class='invalid-feedback text-start'>Choose your seat number.</div>
                                                 <div class='valid-feedback text-start'>Seat selected.</div>
 
-                                            <div class="col">
-                                                <label class="form-label text-secondary" for="">Middle Name</label>
-                                                <input type="text" id="" name="m_name" class="form-control" />
-                                            </div>
+                
 
                                         </div>
+                                        </div>
 
-                                        <!-- Contact Number -->
-                                        <div class="row text-start form-outline">
-                                            <div class="col">
-                                                <label class="form-label" for="">Contact Number</label>
-                                                <input type="number" name="c_number" id="" class="form-control" min="0" required />
-
+                                
                                         <!-- Save button -->
                         </div>
                         <div class="row form-outline text-center pt-1 pb-4">
@@ -520,16 +521,18 @@ include "logger.php";
     if ($result->num_rows > 0) {
         echo "<div class=' bg-row mt-2 p-5 rounded'>";
         echo "<div class='bdr table-responsive'>";
-        echo "<table class='table  table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
+        echo "<table class='table table-sm table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
         echo "<thead class ='table-dark'>";
         echo "<tr>";
         echo "<th> Reservation ID </th>";
         echo "<th> Ticket Number </th>";
+        echo "<th> Username </th>";
         echo "<th> Bus Number </th>";
         echo "<th> Route Name </th>";
         echo "<th> Departure Date </th>";
         echo "<th> Departure Time </th>";
         echo "<th> Passenger Name </th>";
+   
         echo "<th> Contact Information </th>";
         echo "<th> Seat Number </th>";
         echo "<th> Reservation Date </th>";
@@ -549,11 +552,13 @@ include "logger.php";
             "<td>" . $fielddata['bus_id'] . "</td>";
             "<td>" . $fielddata['route_id'] . "</td>";
             echo "<td>" . $fielddata['ticket_number'] . "</td>";
+            echo "<td>" . $fielddata['username'] . "</td>";
             echo "<td>" . $fielddata['bus_number'] . "</td>";
             echo "<td>" . $fielddata['route_name'] . "</td>";
             echo "<td>" . $fielddata['departure_date'] . "</td>";
             echo "<td>" .  date_format(date_create($fielddata['departure_time']), 'g:i A') . "</td>";
             echo "<td>" . $fielddata['passenger_name'] . "</td>";
+           
             echo "<td>" . $fielddata['contact_information'] . "</td>";
             echo "<td>" . $fielddata['seat_number'] . "</td>";
             echo "<td>" . date_format(date_create($fielddata['reservation_date']), 'Y-m-d g:i A') . "</td>";
