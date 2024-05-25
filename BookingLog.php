@@ -427,6 +427,10 @@ session_start();
                                     <div class="row text-start form-outline">
                                         <!-- Password input -->
                                         <div class="col">
+                                                <label class="form-label" for="">Username</label>
+                                                <input type="text" id="" name="usern" class="form-control"  value = <?php echo $_SESSION['username']; ?> readonly/>
+                                            </div>
+                                        <div class="col">
                                             <label class="form-label" for="">Contact Number</label>
                                             <input type="number" name="c_number" id="" class="form-control" min="0" required />
 
@@ -434,6 +438,7 @@ session_start();
                                             <div class="invalid-feedback text-start">Enter your contact.</div>
                                             <div class="valid-feedback text-start">Contact information entered.</div>
                                         </div>
+                                       
                                         <div class="col">
                                             <label class="form-label" for="">Seat</label>
                                             <?php

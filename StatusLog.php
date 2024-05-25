@@ -131,10 +131,11 @@ echo "<h2 class = 'about-login mx-auto text-center'> ALPS RESERVATION DETAILS VI
 
 <?php
 if (isset($_POST['searchresbutton'])) {
+    $user = $_SESSION['username'];
     $tickets_number = $_POST['search'];
 
 
-    $selectsql = "SELECT * FROM reservation_booking_view WHERE ticket_number = '$tickets_number'";
+    $selectsql = "SELECT * FROM reservation_booking_view WHERE ticket_number = '$tickets_number' AND username = '$user'";
     $status_result = $con->query($selectsql);
     echo "<div class ='container-fluid bg-row-status w-100 p-5 rounded mb-3'>";
 
@@ -144,7 +145,6 @@ if (isset($_POST['searchresbutton'])) {
         echo "<table class='table table-sm table-bordered border-primary-subtle table-hover mx-auto'>";
         echo "<thead class ='table-dark text-center'><tr>";
         echo "<th>Ticket Number</th>";
-        echo "<th>Passenger Name</th>";
         echo "<th>Bus Number</th>";
         echo "<th>Route Name</th>";
         echo "<th>Seat Number</th>";
@@ -157,7 +157,6 @@ if (isset($_POST['searchresbutton'])) {
             echo "<tr>";
             echo "<td>" . $fielddata['ticket_number'] . "</td>";
             "<td>" . $fielddata['payment_method'] . "</td>";
-            echo "<td>" . $fielddata['passenger_name'] . "</td>";
             echo "<td>" . $fielddata['bus_number'] . "</td>";
             echo "<td>" . $fielddata['route_name'] . "</td>";
             echo "<td>" . $fielddata['seat_number'] . "</td>";
@@ -186,7 +185,7 @@ if (isset($_POST['searchresbutton'])) {
     } else {
         echo "<div class='row mt-3'>";
         echo "<div class='col'>";
-        echo "<h2 class ='text-center display-7'><b>No reservation found for ticket number: " . $tickets_number . "</b></h2>";
+        echo "<h2 class ='text-center display-7'><b>No booking found for ".$user." being ticket number: " . $tickets_number . "</b></h2>";
         echo "</div>";
         echo "</div>";
     }
