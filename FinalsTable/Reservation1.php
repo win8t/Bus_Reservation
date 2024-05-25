@@ -141,10 +141,92 @@ include "logger.php";
 
 
                             <div class="modal-body">
+                            <form action="Reservation2.php" method="post" novalidate class="needs-validation">
+                                    <div class="row w-75 mx-auto">
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="">Route</label>
+                                            <div class="input-group has-validation">
 
+                                                <select id="origin" class="form-select" aria-describedby="origin-feedback" name="origin" >
+                                                    <?php
+                                                    $query = "SELECT DISTINCT `departure_location` FROM tbl_route";
+                                                    $result = mysqli_query($con, $query);
+                                                    if ($result) {
+                                                        echo '<option default disabled selected value="">Departure Area</option>';
+                                                        while ($loc = mysqli_fetch_assoc($result)) {
+                                                            $origin = $loc['departure_location'];
+                                                            echo '<option value="' . $origin . '">' . $origin . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo "Error: " . mysqli_error($con);
+                                                    }
+                                                    ?>
+                                                </select>
+
+                                                <label class="input-group-text" for="origin">Origin</label>
+
+                                                <button class="input-group-text bg-dark" id="basic-addon2" onclick="swapValues()" type="button"><i class="bi bi-arrow-left-right"></i></button>
+                                                <label class="input-group-text" for="destination">Destination</label>
+                                                <select id="destination" class="form-select" aria-describedby="destination-feedback" name="destination" >
+                                                    <?php
+                                                    $query = "SELECT DISTINCT `destination` FROM tbl_route";
+                                                    $result = mysqli_query($con, $query);
+                                                    if ($result) {
+                                                        echo '<option default disabled selected value="">Destination</option>';
+                                                        while ($loc = mysqli_fetch_assoc($result)) {
+                                                            $destination = $loc['destination'];
+                                                            echo '<option value="' . $destination . '">' . $destination . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo "Error: " . mysqli_error($con);
+                                                    }
+                                                    ?>
+                                                </select>
+
+                                                <div id="destination-feedback" class="invalid-feedback">Set your departure area and destination.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label" for="">Departure Date</label>
+                                            <input type="date" name="date" id="tripDate3" class="form-control" onfocus="setMinDate()"  />
+                                            <div class="invalid-feedback text-start">Please select a date.</div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label class="form-label" for="">Search Bookings</label>
+                                            <input type="submit" value="Search" name="searchresbutton" class="btn btn-success rounded-5 w-100">
+                                        </div>
+                                </form>
+                                
+                            </div>
 
                                 <?php
-                                $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
+                                  if (isset($_POST['searchresbutton'])) {
+                                    echo '<script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        var modal = new bootstrap.Modal(document.getElementById("formDetails"), {});
+                                        modal.show();
+                                    });
+                                </script>';
+    
+                                    //to check the search box if empty or not 
+                                    if ($_POST['date'] != NULL && $_POST['origin'] != NULL && $_POST['destination'] != NULL) {
+                                        $date = $_POST['date'];
+                                        $origin = $_POST['origin'];
+                                        $destination = $_POST['destination'];
+                                        $selectsql = "Select * from sched_reserve_view where 
+                                                    `Departure Area`  = '" . $origin . "' 
+                                                    AND  `Departure Date` = '" . $date . "'   
+                                                    AND `Destination` = '" . $destination . "' 
+                                                    AND `Available Seats` > 0
+                                                    AND `Departure Date` >= CURDATE() ORDER BY `Departure Date` DESC";
+                                    } else {
+        
+                                        $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
+                                    }
+                                } else {
+                                    $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
+                                }
 
 
 
