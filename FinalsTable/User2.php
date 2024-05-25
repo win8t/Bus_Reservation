@@ -4,6 +4,7 @@ require "dbconnect.php";
  set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
 require_once 'email_registration.php';
 include "logger.php";
+require_once 'email_registration.php';
 ?>
 <html lang="en">
 
@@ -13,15 +14,10 @@ include "logger.php";
   <title>User Panel</title>
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
   <link rel="stylesheet" href="sidebar10.css">
-
 </head>
 
 <body class="hd-text">
-
-
-
   <aside class="sidebar d-flex flex-container">
     <div class="logo">
       <img src="AlpsLogo.jpg" alt="Alps">
@@ -32,7 +28,6 @@ include "logger.php";
       <li class="disabled">
         <h4 class="">Main Menu</h4>
       </li>
-
 
       <li>
         <i class="bi bi-table"></i>
@@ -83,28 +78,25 @@ include "logger.php";
       </form>
     </ul>
 
-
   </aside>
+
   <div class="container-fluid">
 
     <div class="row ">
       <div class="col pb-2 ">
         <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">USER DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
-
+        
         <div class="row bg-row mx-auto p-1 m-1 rounded">
-
           <form action="User2.php" method="post">
-
             <div class="input-group w-50 pt-4">
               <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
               <input type="search" name="search" id="" class="form-control rounded mx-1" aria-label="Input group example" aria-describedby="btnGroupAddon2">
 
-
               <div class="col-3 ">
-
                 <input type="submit" value="Search" name="searchbutton" class="h-100 btn btn-primary mx-1  hd-text" class="form-control">
               </div>
             </div>
+
             <div class="col">
               <!-- Date Time - Local -->
               <div class="row rounded pt-2 pb-0 ">
@@ -132,12 +124,12 @@ include "logger.php";
                 </script>
               </div>
             </div>
-
         </div>
-
         </form>
+
+        <!-- Modal Bootstrap -->
         <button type="button" id="formDetailsBtn" class="btn hd-text btn-color my-2 mx-1" data-bs-toggle="modal" data-bs-target="#formDetails">
-          Add User Details <!-- add icon -->
+          Add User Details
         </button>
 
         <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
@@ -148,103 +140,85 @@ include "logger.php";
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
 
+            <div class="modal-body">
+              <form action="User2.php" method="post" novalidate class="needs-validation">
+                
+              <div class="row form-outline">
+                <label class="form-label" for="">Full Name</label>
 
-              <div class="modal-body">
-                <form action="User2.php" method="post" novalidate class="needs-validation">
-                  <div class="row form-outline">
-                    <label class="form-label" for="">Full Name</label>
-
-                    <!-- Full Name input -->
-                    <div class="col">
-                      <label class="form-label text-secondary" for="">First Name</label>
-                      <input type="text" name="f_name" id="" class="form-control" required />
-                      <div class="invalid-feedback text-start">Enter your first name.</div>
-                      <div class="valid-feedback text-start">Entered first name.</div>
-
-                    </div>
-                    <div class="col">
-                      <label class="form-label text-secondary" for="">Middle Name</label>
-                      <input type="text" name="m_name" id="" class="form-control" />
-
-
-                    </div>
-                    <div class="col">
-
-                      <label class="form-label text-secondary" for="">Last Name</label>
-                      <input type="text" name="l_name" id="" class="form-control" required />
-                      <div class="invalid-feedback text-start">Enter your last name.</div>
-                      <div class="valid-feedback text-start">Entered last name.</div>
-
-                    </div>
-
+                  <!-- Full Name input -->
+                  <div class="col">
+                    <label class="form-label text-secondary" for="">First Name</label>
+                    <input type="text" name="f_name" id="" class="form-control" required />
+                    <div class="invalid-feedback text-start">Enter your first name.</div>
+                    <div class="valid-feedback text-start">Entered first name.</div>
                   </div>
 
-                  <!-- Role input -->
-                  <div class="form-outline my-2">
+                  <div class="col">
+                    <label class="form-label text-secondary" for="">Middle Name</label>
+                    <input type="text" name="m_name" id="" class="form-control" />
+                  </div>
 
-                    <label class="form-label">Role</span>
+                  <div class="col">
+                    <label class="form-label text-secondary" for="">Last Name</label>
+                    <input type="text" name="l_name" id="" class="form-control" required />
+                    <div class="invalid-feedback text-start">Enter your last name.</div>
+                    <div class="valid-feedback text-start">Entered last name.</div>
+                  </div>
 
+              </div>
 
-                      <div class="btn-group mx-5" id="btn-group-3">
-                        <div class="form-check form-check-inline ">
-                          <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Admin" required />
-                          <label class="form-check-label" for="inlineRadio1">Admin</label>
-
-                        </div>
-
-                        <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Employee" required />
-                          <label class="form-check-label" for="inlineRadio2">Employee</label>
-
-
-                        </div>
-
+                <!-- Role input -->
+                <div class="form-outline my-2">
+                  <label class="form-label">Role</span>
+                    <div class="btn-group mx-5" id="btn-group-3">
+                      <div class="form-check form-check-inline ">
+                        <input class="form-check-input" type="radio" name="role" id="inlineRadio1" value="Admin" required />
+                        <label class="form-check-label" for="inlineRadio1">Admin</label>
                       </div>
-            
 
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="role" id="inlineRadio2" value="Employee" required />
+                        <label class="form-check-label" for="inlineRadio2">Employee</label>
+                      </div>
+                    </div>
+                </div>
+
+                <!-- Username input -->
+                <div class="row form-outline">
+                  <div class="col">
+                    <label class="form-label" for="">Username</label>
+                    <input type="text" id="" name="username" class="form-control" required />
+                    <div class="invalid-feedback text-start">Enter your username.</div>
+                    <div class="valid-feedback text-start">Entered username.</div>
                   </div>
 
-                  <!-- Username input -->
-                  <div class="row form-outline">
-                    <div class="col">
-                      <label class="form-label" for="">Username</label>
-                      <input type="text" id="" name="username" class="form-control" required />
-
-                      <div class="invalid-feedback text-start">Enter your username.</div>
-                      <div class="valid-feedback text-start">Entered username.</div>
-                    </div>
-
-                    <!-- Password input -->
-                    <div class="col">
-                      <label class="form-label" for="">Password</label>
-                      <input type="password" name="pass" id="" class="form-control" required />
-
-                      <div class="invalid-feedback text-start">Enter your password.</div>
-                      <div class="valid-feedback text-start">Entered password</div>
-                    </div>
-                    <div class="col">
-                      <label class="form-label" for="">Confirm Password</label>
-                      <input type="password" name="confirmpass" id="" class="form-control" required />
-
-                      <div class="invalid-feedback text-start">Reenter your password.</div>
-
-                    </div>
+                  <!-- Password input -->
+                  <div class="col">
+                    <label class="form-label" for="">Password</label>
+                    <input type="password" name="pass" id="" class="form-control" required />
+                    <div class="invalid-feedback text-start">Enter your password.</div>
+                    <div class="valid-feedback text-start">Entered password</div>
                   </div>
 
-                  <!-- Email input -->
-                  <div class="row form-outline mt-2">
-                    <div class="col">
-                      <label class="form-label" for="">Email</label>
-                      <input type="email" name="email" id="" class="form-control" required />
-
-                      <div class="invalid-feedback text-start m-0 ">Enter your email.</div>
-                      <div class="valid-feedback text-start">Entered email.</div>
-                    </div>
-
+                  <div class="col">
+                    <label class="form-label" for="">Confirm Password</label>
+                    <input type="password" name="confirmpass" id="" class="form-control" required />
+                    <div class="invalid-feedback text-start">Reenter your password.</div>
                   </div>
+                </div>
+
+                <!-- Email input -->
+                <div class="row form-outline mt-2">
+                  <div class="col">
+                    <label class="form-label" for="">Email</label>
+                    <input type="email" name="email" id="" class="form-control" required />
+                    <div class="invalid-feedback text-start m-0 ">Enter your email.</div>
+                    <div class="valid-feedback text-start">Entered email.</div>
+                  </div>
+                </div>
 
                   <!-- Save button -->
-
                   <div class="modal-footer d-flex justify-content-center">
                     <button type="submit" name="add" class="btn btn-primary">Add</button>
                     <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
@@ -383,16 +357,18 @@ include "logger.php";
         echo "<td colspan='8' class ='tble-bg'>";
         echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['user_id'] . "'>";
         ?>
-        <!-- form-->
 
+        <!-- Form for Editing -->
         <form action="User2.php" method="post">
           <h5 class="hd-text text-center pb-2 fs-5" id="title">User Editing Form</h5>
           <div class="row form-outline">
-            <!-- Full Name input -->
+            <!-- User ID input -->
             <div class="col">
               <input type="text" name="update_id" value="<?php echo $fielddata['user_id']; ?>" class="form-control" readonly />
               <label class="form-label" for="">User ID</label>
             </div>
+
+            <!-- Fullname input -->
             <div class="col">
               <input type="text" name="update_name" value="<?php echo $fielddata['full_name']; ?>" class="form-control">
               <label class="form-label" for="">Full Name</label>
@@ -407,11 +383,13 @@ include "logger.php";
                 <input class="form-check-input" type="radio" name="update_role" id="inlineRadio1" value="Admin" <?php if ($fielddata['role'] === 'Admin') echo 'checked'; ?> />
                 <label class="form-check-label" for="inlineRadio1">Admin</label>
               </div>
+
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="update_role" id="inlineRadio2" value="Employee" <?php if ($fielddata['role'] === 'Employee') echo 'checked'; ?> />
                 <label class="form-check-label" for="inlineRadio2">Employee</label>
               </div>
             </div>
+
             <div class="form-text text-white">
               Not choosing a role results to user role: Customer.
             </div>
@@ -423,7 +401,6 @@ include "logger.php";
               <input type="text" id="" name="update_username" value="<?php echo $fielddata['username']; ?>" class="form-control" />
               <label class="form-label" for="">Username</label>
             </div>
-
           </div>
 
           <!-- Email input -->
@@ -432,6 +409,7 @@ include "logger.php";
             <label class="form-label" for="">Email</label>
           </div>
 
+          <!-- Update button -->
           <div class="row form-outline text-center pt-1">
             <div class="col">
               <button type="submit" name="updating" value="Update" class="btn btn-success" onclick="return confirm('Are you sure you want to edit this?');">Update</button>
@@ -457,7 +435,6 @@ include "logger.php";
     }
 
     //Update Button
-
     if (isset($_POST['updating'])) {
       $user_update = $_POST['update_id'];
       $name_update = $_POST['update_name'];
@@ -466,7 +443,6 @@ include "logger.php";
       if ($role_update != "Admin" && $role_update != "Employee") {
         $role_update = "Customer";
       }
-
 
       $username_update = $_POST['update_username'];
       $email_update = $_POST['update_email'];
@@ -490,15 +466,13 @@ include "logger.php";
    
 </script>
 <?php
-        $action = 'Update User';
+        $action = 'Updated User';
         logActivity($con, $userID, $action);
       } else {
         //if not, check query error details
         echo $con->error;
       }
     }
-
-
 
 ?>
 </div>

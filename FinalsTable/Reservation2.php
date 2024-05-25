@@ -12,8 +12,6 @@ include "logger.php";
     <title>User Panel</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-
     <link rel="stylesheet" href="sidebar10.css">
 
 </head>
@@ -36,7 +34,6 @@ include "logger.php";
    /* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS'); */
    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
     require_once 'SeatFunction.php';
-
     require_once "BusArrays.php";
     ?>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -53,7 +50,6 @@ include "logger.php";
             <li class="disabled">
                 <h4 class="">Main Menu</h4>
             </li>
-
 
             <li>
                 <i class="bi bi-table"></i>
@@ -107,25 +103,17 @@ include "logger.php";
 
     </aside>
     <div class="container-fluid">
-
-
-
-
         <div class="row ">
             <div class="col pb-2 ">
                 <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">RESERVATION DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
 
                 <div class="row bg-row mx-auto p-1 m-1 rounded">
-
                     <form action="Reservation2.php" method="post">
-
                         <div class="input-group w-50 pt-4">
                             <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
                             <input type="search" name="search" id="" class="form-control rounded mx-1" aria-label="Input group example" aria-describedby="btnGroupAddon2">
 
-
                             <div class="col-3 ">
-
                                 <input type="submit" value="Search" name="searchbutton" class="h-100 btn btn-primary mx-1  hd-text" class="form-control">
                             </div>
                         </div>
@@ -159,8 +147,10 @@ include "logger.php";
                 </div>
 
                 </form>
+
+                <!-- Modal Bootstrap -->
                 <button type="button" id="formDetailsBtn" class="btn btn-color hd-text mt-1" data-bs-toggle="modal" data-bs-target="#formDetails">
-                    Add Reservation Details <!-- add icon -->
+                    Add Reservation Details
                 </button>
 
                 <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
@@ -170,10 +160,7 @@ include "logger.php";
                                 <h5 class="modal-title fs-5" id="title">Reservation Details Form</h5>
 
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
                             </div>
-
-
 
                             <div class="modal-body">
 
@@ -267,11 +254,6 @@ include "logger.php";
                                 $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
                             }
 
-                            
-    
-
-
-
                             $result = $con->query($selectsql);
 
                             $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
@@ -298,8 +280,6 @@ include "logger.php";
                                 echo "</tr>";
                                 echo "</thead>";
 
-
-
                                 while ($maltfielddata = $result->fetch_assoc()) {
                                     echo "<tr>";
                                     "<td>" . $maltfielddata['Schedule ID'] . "</td>";
@@ -307,7 +287,6 @@ include "logger.php";
                                     echo "<td>" . $maltfielddata['Bus Type'] . "</td>";
                                     echo "<td>" . $maltfielddata['Departure Date'] . "</td>";
                                     echo "<td>" . date_format(date_create($maltfielddata['Departure Time']), 'g:i A') . "</td>";
-
 
                                     echo "<td>" . $maltfielddata['Departure Area'] . "</td>";
                                     echo "<td>" . $maltfielddata['Destination'] . "</td>";
@@ -416,8 +395,18 @@ include "logger.php";
                                                 <div class="invalid-feedback text-start">Enter your last name.</div>
                                                 <div class="valid-feedback text-start">Last name entered.</div>
                                             </div>
+                                        </div>
 
-
+                                        <div class="row form-outline">
+                                            <!-- Departure Area -->
+                                            <div class="col">
+                                                <input type="hidden" name="book_depart" value="<?php echo $maltfielddata['Departure Area']; ?>" class="form-control" readonly />
+                                            </div>
+                                            <!-- Destination -->
+                                            <div class="col">
+                                                <input type="hidden" name="book_desti" value="<?php echo $maltfielddata['Destination']; ?>" class="form-control" readonly />
+                                            </div>
+                                        </div>
                                         </div>
 
 
@@ -439,11 +428,18 @@ include "logger.php";
                                                 <div class='invalid-feedback text-start'>Choose your seat number.</div>
                                                 <div class='valid-feedback text-start'>Seat selected.</div>
 
+                                            <div class="col">
+                                                <label class="form-label text-secondary" for="">Middle Name</label>
+                                                <input type="text" id="" name="m_name" class="form-control" />
                                             </div>
 
                                         </div>
 
-
+                                        <!-- Contact Number -->
+                                        <div class="row text-start form-outline">
+                                            <div class="col">
+                                                <label class="form-label" for="">Contact Number</label>
+                                                <input type="number" name="c_number" id="" class="form-control" min="0" required />
 
                                         <!-- Save button -->
                         </div>
@@ -574,7 +570,6 @@ include "logger.php";
             <?php
             echo "</td>";
             echo "</tr>";
-
             // Collapse
             echo "<tr>";
             echo "<td colspan='17' class ='tble-bg'>";
@@ -589,7 +584,6 @@ include "logger.php";
                 <div class="col">
                     <!-- Reservation ID input -->
                     <input type="hidden" name="update_reservationID" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" readonly />
-
                 </div>
                 <div class="col">
                     <!-- Reservation ID input -->
@@ -617,7 +611,6 @@ include "logger.php";
                         <input type="text" id="" name="update_passengerName" value="<?php echo $fielddata['passenger_name']; ?>" class="form-control" readonly />
                         <label class="form-label" for="">Passenger Name</label>
 
-
                     </div>
                     <div class="col">
                         <!-- Seat Number -->
@@ -625,7 +618,7 @@ include "logger.php";
                         <label class="form-label" for="">Seat Number</label>
                     </div>
                 </div>
-
+              
                 <div class="row form-outline">
 
 
@@ -655,9 +648,6 @@ include "logger.php";
                         <label class="form-label" for="">Status</label>
                     </div>
                 </div>
-
-
-
 
                 <!-- Save button -->
                 <div class="row form-outline text-center pt-1">
@@ -724,8 +714,6 @@ include "logger.php";
             echo $con->error;
         }
     }
-
-
 
     ?>
     </div>

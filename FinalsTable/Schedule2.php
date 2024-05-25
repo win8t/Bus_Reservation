@@ -599,7 +599,7 @@ include "logger.php";
     });
                 </script>
         <?php
-                $action = 'Update Schedule';
+                $action = 'Updated Schedule';
                 logActivity($con, $userID, $action);
             } else {
                 //if not, check query error details

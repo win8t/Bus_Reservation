@@ -1,5 +1,6 @@
 <?php
 session_start();
+require "dbconnect.php";
 ?>
 <html lang="en">
 
@@ -119,12 +120,10 @@ session_start();
 
         </div>
 
-
-
-        <?php require_once "dbconnect.php"; ?>
         <h1 class="hd-font bg-rowimg text-center text-light rounded p-3 mt-2 "> Total Records</h1>
         <div class="container-fluid mx-auto w-100 p-5 bg-row rounded">
 
+        <!-- Users Details -->
           <div class="row">
             <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
@@ -156,6 +155,7 @@ session_start();
 
             <div class="col-xl-3 col-md-6 mx-auto">
 
+            <!-- Logs Details -->
               <div class="card bg-dark text-white mb-4 shadow">
                 <div class="card-body hd-font d-flex align-items-center mx-auto h4"> <!-- Added align-items-center -->
                   <i class="bi bi-card-list"></i>
@@ -180,6 +180,8 @@ session_start();
                 </div>
               </div>
             </div>
+
+            <!-- Bus Details -->
             <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
                 <div class="card-body hd-font d-flex align-items-center mx-auto h4"> <!-- Added align-items-center -->
@@ -207,6 +209,8 @@ session_start();
               </div>
             </div>
           </div>
+
+          <!-- Route Details -->
           <div class="row">
             <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
@@ -233,6 +237,8 @@ session_start();
               </div>
 
             </div>
+
+            <!-- Schedule Details -->
             <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
                 <div class="card-body hd-font d-flex align-items-center mx-auto h4"> <!-- Added align-items-center -->
@@ -258,6 +264,8 @@ session_start();
               </div>
 
             </div>
+
+            <!-- Reservation Details -->
             <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
                 <div class="card-body hd-font d-flex align-items-center mx-auto h4"> <!-- Added align-items-center -->
@@ -285,8 +293,6 @@ session_start();
             </div>
           </div>
         </div>
-
-
 
       </div>
     </div>
