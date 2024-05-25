@@ -80,7 +80,7 @@
                     </div>
                 </div>
 
-                <form action="ResetPassword.php" method="post">
+                <form action="ResetPassword.php" method="post" novalidate class="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
                             <!-- Username input -->
@@ -123,7 +123,7 @@
 
         </div>
     </div>
-
+    <script src="formvalidation.js"> </script>
 </body>
 
 </html>
