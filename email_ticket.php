@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALPS OTP</title>
+    <title>ALPS Ticket Number</title>
 </head>
 
 <body>
@@ -12,6 +12,9 @@
 
 </html>
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
 require "dbconnect.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
@@ -20,7 +23,7 @@ use PHPMailer\PHPMailer\Exception;
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-function send_ticket($emailadd, $ticket_id)
+function send_ticket($username, $email, $ticket_id)
 {
 
     $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
@@ -44,13 +47,13 @@ function send_ticket($emailadd, $ticket_id)
         
         $mail->setFrom( 'dawnandal18@gmail.com', 'Alps Bus Booking Details');
 
-        $mail->setFrom('dawnandal18@gmail.com', 'Alps Bus Booking Details');
+        // $mail->setFrom('dawnandal18@gmail.com', 'Alps Bus Booking Details');
         
-        $mail->addAddress($emailadd);     // Add a recipient
+        $mail->addAddress($email);     // Add a recipient
         //Content
         $mail->isHTML(true);  // Set email format to HTML
         $mail->Subject = "Bus Ticket Number";
-        $mail->Body    = "Hello, " . $full . "!" ."<br> This your ticket number details: " . $ticket_id;
+        $mail->Body    = "Hello, " . $username . "!" ."<br> This your ticket number details: " . $ticket_id;
 
         $mail->send();
 ?>
@@ -58,7 +61,7 @@ function send_ticket($emailadd, $ticket_id)
             Swal.fire({
                 position: "center",
                 icon: "success",
-                title: "Please check your email for your ticket number receipt",
+                title: "Please check your email for your ticket number receipt.",
                 showConfirmButton: false,
                 timer: 1500,
             });

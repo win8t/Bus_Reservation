@@ -48,11 +48,14 @@
 
 </html>
 <?php
+if (!isset($_SESSION)) {
+  session_start();
+}
 date_default_timezone_set("Asia/Manila");
 require_once "FinalsTable\BusArrays.php";
 require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
-// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable'); 
+// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable'); 
 include "logger.php";
 include "email_ticket.php";
 
@@ -119,7 +122,7 @@ if (isset($_POST['booking'])) {
                          VALUES ('$receipt_id','$user_id', '$ticket_id', '$receipt_fullname', '$receipt_c_number', '$receipt_seatnum', '$reserve_date', '$receipt_payment', '$receipt_status')";
 
       $reserved = $con->query($reservationsql);
-
+      
       $reservation_datetime = new DateTime($reserve_date);
       $reservation_datetime->setTimezone(new DateTimeZone('Asia/Manila'));
       $reservation_date_formatted = $reservation_datetime->format('Y-m-d g:i A');
@@ -170,6 +173,10 @@ if (isset($_POST['booking'])) {
       echo "</div>";
       echo "</div>";
     }
+    // $_SESSION['username'] = $username;
+    // $_SESSION['email'] = $email;
+    $email = $_SESSION['email'];
+    send_ticket($username, $email, $ticket_id);
   } else {
     // Handle case where email is not found in tbl_user
 ?>
