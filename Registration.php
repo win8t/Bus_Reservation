@@ -1,6 +1,6 @@
 <?php
-  session_start();
-  require "dbconnect.php";
+session_start();
+require "dbconnect.php";
 ?>
 <html lang="en">
 
@@ -14,7 +14,7 @@
 </head>
 
 <body class="login-content-container7">
-   
+
 
 
     <div class="container-fluid d-flex flex-container">
@@ -38,52 +38,52 @@
                     </div>
                 </div>
 
-                <form action="Registration.php" method="post" novalidate class ="needs-validation">
+                <form action="Registration.php" method="post" novalidate class="needs-validation">
 
-                
-                <div class="row justify-content-center">
+
+                    <div class="row justify-content-center">
                         <div class="col-md-4">
                             <!-- Fullname input -->
                             <div class="form-floating mb-3 link-text">
-                            <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
+                                <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Enter your full name.</div>
                                 <div class="valid-feedback text-start">Entered full name.</div> -->
 
                                 <input type="text" class="form-control" name="f_name" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">First Name<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">First Name<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Enter your first name.</div>
-                                <div class="valid-feedback text-start">Entered first name.</div> 
-                                
+                                <div class="valid-feedback text-start">Entered first name.</div>
+
                             </div>
                         </div>
                         <div class="col-md-4">
                             <!-- Fullname input -->
                             <div class="form-floating mb-3 link-text">
-                            <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
+                                <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Enter your full name.</div>
                                 <div class="valid-feedback text-start">Entered full name.</div> -->
 
                                 <input type="text" class="form-control" name="m_name" id="floatingInput">
                                 <label for="floatingInput" class="link-text">Middle Name</label>
-                               
-                                
+
+
                             </div>
                         </div>
                         <div class="col-md-4">
                             <!-- Fullname input -->
                             <div class="form-floating mb-3 link-text">
-                            <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
+                                <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Enter your full name.</div>
                                 <div class="valid-feedback text-start">Entered full name.</div> -->
 
                                 <input type="text" class="form-control" name="l_name" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Last Name<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Last Name<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Enter your last name.</div>
-                                <div class="valid-feedback text-start">Entered last name.</div> 
-                                
+                                <div class="valid-feedback text-start">Entered last name.</div>
+
                             </div>
                         </div>
 
@@ -94,18 +94,18 @@
                             <!-- Username input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="text" class="form-control" name="user" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Username<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Username<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter a username.</div>
                                 <div class="valid-feedback text-start">Entered username.</div>
                             </div>
-                            
+
                         </div>
 
                         <div class="col-md-6">
                             <!-- Email input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="email" class="form-control" name="email" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Email<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Email<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter a valid email.</div>
                                 <div class="valid-feedback text-start">Entered valid email.</div>
                             </div>
@@ -121,7 +121,7 @@
                             <!-- Password input -->
                             <div class="form-floating mb-5 link-text">
                                 <input type="password" class="form-control" name="pass" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Password<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Password<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter a password.</div>
                                 <div class="valid-feedback text-start">Entered password</div>
                             </div>
@@ -130,7 +130,7 @@
                             <!-- Password Confirmation input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="password" class="form-control" name="confirmpass" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Confirm Password<span class ="text-danger">*</span></label>
+                                <label for="floatingInput" class="link-text">Confirm Password<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please re-enter your password.</div>
                                 <div class="valid-feedback text-start">Re-entered pasword</div>
                             </div>
@@ -161,70 +161,58 @@
     </div>
 
 
-<?php
-include "email_registration.php";
+    <?php
+    include "email_registration.php";
 
-//button function
-if (isset($_POST['sub'])) {
-    $first = $_POST['f_name'];
-    $last = $_POST['l_name'];
-    $mid = $_POST['m_name'];
-    $full = $first." ".$last." ".$mid;
-    $email = $_POST['email'];
-    $user = $_POST['user'];
-    $pass = md5($_POST['pass']);
-    $confirmpass = md5($_POST['confirmpass']);
-    $usertype = "Customer";
-    $otp = rand(000000, 999999);
+    //button function
+    if (isset($_POST['sub'])) {
+        $first = $_POST['f_name'];
+        $last = $_POST['l_name'];
+        $mid = $_POST['m_name'];
+        $full = $first . " " . $last . " " . $mid;
+        $email = $_POST['email'];
+        $user = $_POST['user'];
+        $pass = md5($_POST['pass']);
+        $confirmpass = md5($_POST['confirmpass']);
+        $usertype = "Customer";
+        $otp = rand(000000, 999999);
 
-    $usersql = "select * from tbl_user where username = '$user'";
-    $user_result = $con->query($usersql);
+        $usersql = "select * from tbl_user where username = '$user'";
+        $user_result = $con->query($usersql);
 
-    if ($user_result->num_rows == 0) {
+        if ($user_result->num_rows == 0) {
 
-        if ($pass == $confirmpass) {
-        $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp,status)
+            if ($pass == $confirmpass) {
+                $insertsql = "insert into tbl_user (full_name, role, username, password, email,otp,status)
         values('$full', '$usertype', '$user','$pass', '$email',$otp, 'Inactive')";
 
-        $result = $con->query($insertsql);
+                $result = $con->query($insertsql);
 
-        if ($result == True) {?>
-          
-        <?php
-        send_verification($full,$email,$otp);
-        } else {
-            echo $con->error;
-        }
-    } else {
-        ?>
-        <script>
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Password mismatch!",
-                timer: 3000
-            });
-        </script>
-        <?php
+                if ($result == True) { ?>
+
+                <?php
+                    send_verification($full, $email, $otp);
+                } else {
+                    echo $con->error;
+                }
+            } 
+        } else { ?>
+            <script>
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Username already exists. Please choose a different username.",
+                    timer: 3000
+                });
+            </script>
+    <?php  }
     }
-        
-    } else { ?>
-        <script>
-            Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Username already exists. Please choose a different username.",
-                timer: 1500
-            });
-        </script>
-<?php  }
-}
-?>
- <script src="scripts.js"></script>
+    ?>
+    <script src="scripts.js"></script>
     <script src="bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="passvalidation.js"></script>
-    
-    </body>
-    
-    </html>
+    <script src="passvalidation.js"></script>
+
+</body>
+
+</html>
