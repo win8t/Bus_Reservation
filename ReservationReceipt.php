@@ -49,12 +49,12 @@
 </html>
 <?php
 date_default_timezone_set("Asia/Manila");
-session_start();
 require_once "FinalsTable\BusArrays.php";
 require "dbconnect.php";
-/* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable'); */
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable'); 
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable'); 
 include "logger.php";
+include "email_ticket.php";
 
 $ticket_id = "ALPSBR" . rand(1000, 9999);
 $receipt_id = $_POST['book_id'];
@@ -114,8 +114,9 @@ if (isset($_POST['booking'])) {
     $reservation_datetime = new DateTime($reserve_date);
     $reservation_datetime->setTimezone(new DateTimeZone('Asia/Manila'));
     $reservation_date_formatted = $reservation_datetime->format('Y-m-d g:i A');
-    
 
+    // send_ticket($emailadd, $ticket_id);
+    
     $receipt_data = array(
       "Ticket Number" => "<h3 class ='mt-1'>" . $ticket_id . "</h5>",
       "Reservation Date" => $reservation_date_formatted,
