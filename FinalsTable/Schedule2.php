@@ -587,23 +587,16 @@ include "logger.php";
             $result_sched = $update_schedule_query->execute();
 
             //check if successfully updated
-            if ($result_sched && $result_bus && $result_route == True) {
+            if ($result_sched || $result_bus || $result_route == True) {
             ?>
                 <script>
-                    Swal.fire({
-                        title: "Do you want to update?",
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: "Update",
-                        denyButtonText: `Don't Update`
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            Swal.fire("Updated!", "", "success");
-                        } else if (result.isDenied) {
-                            Swal.fire("Changes are not updated", "", "info");
-                        }
-                    });
+                   Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Update has been successful. Please refresh the page.",
+      showConfirmButton: false,
+      timer: 1500
+    });
                 </script>
         <?php
                 $action = 'Updated Schedule';

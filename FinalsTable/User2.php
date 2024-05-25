@@ -1,8 +1,8 @@
 <?php
 require "dbconnect.php";
-// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
-// include "logger.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
+/* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS'); */
+ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
+require_once 'email_registration.php';
 include "logger.php";
 require_once 'email_registration.php';
 ?>
@@ -455,15 +455,16 @@ require_once 'email_registration.php';
       //check if successfully updated
       if ($resultup == True) {
 ?>
-      <script>
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Update has been successful. Please refresh the page.",
-          showConfirmButton: false,
-          timer: 1500
-        });
-      </script>
+  <script>
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Update has been successful. Please refresh the page.",
+      showConfirmButton: false,
+      timer: 1500
+    });
+   
+</script>
 <?php
         $action = 'Updated User';
         logActivity($con, $userID, $action);

@@ -19,7 +19,8 @@ include "logger.php";
 <body class="hd-text">
     <?php
     date_default_timezone_set("Asia/Manila");
-    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+   /* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS'); */
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
     require_once 'SeatFunction.php';
     require_once "BusArrays.php";
     ?>
@@ -132,35 +133,104 @@ include "logger.php";
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-                        <div class="modal-body">
-                            <?php
-                            $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
-                            $result = $con->query($selectsql);
+                            <div class="modal-body">
+                            <form action="Reservation2.php" method="post" novalidate class="needs-validation">
+                                    <div class="row w-75 mx-auto">
+                                        <div class="col-md-6">
+                                            <label class="form-label" for="">Route</label>
+                                            <div class="input-group has-validation">
 
-                            $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
-                            if ($result->num_rows > 0) {
-                                echo "<div class=' p-5 rounded'>";
-                                echo "<div class = 'table-responsive'>";
-                                echo "<table class='table  table-striped bdr text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
-                                echo "<tr>";
-                                echo "</tr>";
-                                echo "<thead class ='table-dark'>";
-                                echo "<tr>";
-                                echo "<th> Bus Number </th>";
-                                echo "<th> Bus Type </th>";
-                                echo "<th> Departure Date </th>";
-                                echo "<th> Depature Time </th>";
+                                                <select id="origin" class="form-select" aria-describedby="origin-feedback" name="origin" >
+                                                    <?php
+                                                    $query = "SELECT DISTINCT `departure_location` FROM tbl_route";
+                                                    $result = mysqli_query($con, $query);
+                                                    if ($result) {
+                                                        echo '<option default disabled selected value="">Departure Area</option>';
+                                                        while ($loc = mysqli_fetch_assoc($result)) {
+                                                            $origin = $loc['departure_location'];
+                                                            echo '<option value="' . $origin . '">' . $origin . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo "Error: " . mysqli_error($con);
+                                                    }
+                                                    ?>
+                                                </select>
 
-                                echo "<th> Departure Area </th>";
-                                echo "<th> Destination </th>";
-                                echo "<th> Total Seats </th>";
-                                echo "<th> Available Seats </th>";
-                                echo "<th> Price (₱) </th>";
-                                echo "<th> Reserve </th>";
-                                echo "</tr>";
-                                echo "</thead>";
+                                                <label class="input-group-text" for="origin">Origin</label>
 
-                                while ($maltfielddata = $result->fetch_assoc()) {
+                                                <button class="input-group-text bg-dark" id="basic-addon2" onclick="swapValues()" type="button"><i class="bi bi-arrow-left-right"></i></button>
+                                                <label class="input-group-text" for="destination">Destination</label>
+                                                <select id="destination" class="form-select" aria-describedby="destination-feedback" name="destination" >
+                                                    <?php
+                                                    $query = "SELECT DISTINCT `destination` FROM tbl_route";
+                                                    $result = mysqli_query($con, $query);
+                                                    if ($result) {
+                                                        echo '<option default disabled selected value="">Destination</option>';
+                                                        while ($loc = mysqli_fetch_assoc($result)) {
+                                                            $destination = $loc['destination'];
+                                                            echo '<option value="' . $destination . '">' . $destination . '</option>';
+                                                        }
+                                                    } else {
+                                                        echo "Error: " . mysqli_error($con);
+                                                    }
+                                                    ?>
+                                                </select>
+
+                                                <div id="destination-feedback" class="invalid-feedback">Set your departure area and destination.</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label class="form-label" for="">Departure Date</label>
+                                            <input type="date" name="date" id="tripDate3" class="form-control" onfocus="setMinDate()"  />
+                                            <div class="invalid-feedback text-start">Please select a date.</div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                            <label class="form-label" for="">Search Bookings</label>
+                                            <input type="submit" value="Search" name="searchresbutton" class="btn btn-success rounded-5 w-100">
+                                        </div>
+                                </form>
+                                
+                            </div>
+
+                                <?php
+                                  if (isset($_POST['searchresbutton'])) {
+                                    echo '<script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        var modal = new bootstrap.Modal(document.getElementById("formDetails"), {});
+                                        modal.show();
+                                    });
+                                </script>';
+    
+                                    //to check the search box if empty or not 
+                                    if ($_POST['date'] != NULL && $_POST['origin'] != NULL && $_POST['destination'] != NULL) {
+                                        $date = $_POST['date'];
+                                        $origin = $_POST['origin'];
+                                        $destination = $_POST['destination'];
+                                        $selectsql = "Select * from sched_reserve_view where 
+                                                    `Departure Area`  = '" . $origin . "' 
+                                                    AND  `Departure Date` = '" . $date . "'   
+                                                    AND `Destination` = '" . $destination . "' 
+                                                    AND `Available Seats` > 0
+                                                    AND `Departure Date` >= CURDATE() ORDER BY `Departure Date` DESC";
+                                    } else {
+        
+                                        $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
+                                    }
+                                } else {
+                                    $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
+                                }
+
+
+
+                                $result = $con->query($selectsql);
+
+                                $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
+                                if ($result->num_rows > 0) {
+                                    echo "<div class=' p-5 rounded'>";
+                                    echo "<div class = 'table-responsive'>";
+                                    echo "<table class='table  table-striped bdr text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
+
                                     echo "<tr>";
                                     "<td>" . $maltfielddata['Schedule ID'] . "</td>";
                                     echo "<td>" . $maltfielddata['Bus Number'] . "</td>";
@@ -524,21 +594,14 @@ include "logger.php";
             //check if successfully updated
             if ($resultup == True) {
             ?>
-                <script>
-                    Swal.fire({
-                        title: "Do you want to update?",
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: "Update",
-                        denyButtonText: `Don't Update`
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            Swal.fire("Updated!", "", "success");
-                        } else if (result.isDenied) {
-                            Swal.fire("Changes are not updated", "", "info");
-                        }
-                    });
+              <script>
+                   Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Update has been successful. Please refresh the page.",
+      showConfirmButton: false,
+      timer: 1500
+    });
                 </script>
         <?php
             $action = 'Updated Reservation';

@@ -243,6 +243,9 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
                       <div class="invalid-feedback text-start">Enter departure location.</div>
                       <div class="valid-feedback text-start">Departure location entered.</div>
+                      <div class="form-text">
+                        Routes should match (ex. R1 to R1).
+                      </div>
 
 
 
@@ -367,12 +370,10 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
   
           if ($result === TRUE) {
              ?> <script>
-   
-              // Display the SweetAlert popup
               Swal.fire({
                   position: "center",
                   icon: "success",
-                  title: "Successfully added",
+                  title: "Bus details has been inserted",
                   showConfirmButton: false,
                   timer: 4500
               });
@@ -571,28 +572,21 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
       if ($resultup == True) {
       ?>
         <script>
-          Swal.fire({
-            title: "Do you want to update?",
-            showDenyButton: true,
-            showCancelButton: true,
-            confirmButtonText: "Update",
-            denyButtonText: `Don't Update`
-          }).then((result) => {
-            /* Read more about isConfirmed, isDenied below */
-            if (result.isConfirmed) {
-              Swal.fire("Updated!", "", "success");
-            } else if (result.isDenied) {
-              Swal.fire("Changes are not updated", "", "info");
-            }
-          });
-        </script>
-      <?php
-      $action = 'Updated Bus';
-      logActivity($con, $userID, $action);
-        } else {
-          //if not, check query error details
-          echo $con->error;
-        }
+                   Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Update has been successful. Please refresh the page.",
+      showConfirmButton: false,
+      timer: 1500
+    });
+                </script>
+    <?php
+    $action = 'Updated Bus';
+    logActivity($con, $userID, $action);
+      } else {
+        //if not, check query error details
+        echo $con->error;
+      }
     }
 
     ?>

@@ -335,21 +335,15 @@ include "logger.php";
 
                                 $con->commit();
                                 if ($sched_res) { // Changed to check $sched_res
-                                    echo "<script>
-                        Swal.fire({
-                            title: 'Do you want to add this schedule?',
-                            showDenyButton: true,
-                            showCancelButton: true,
-                            confirmButtonText: 'Add',
-                            denyButtonText: 'Don\'t Add'
-                        }).then((result) => {
-                            if (result.isConfirmed) {
-                                Swal.fire('Saved!', '', 'success');
-                            } else if (result.isDenied) {
-                                Swal.fire('Changes are not saved', '', 'info');
-                            }
-                        });
-                    </script>";
+                           ?>      <script>
+                                    Swal.fire({
+                                        position: 'center',
+                                        icon: 'success',
+                                        title: "Schedule has been inserted.",
+                                        showConfirmButton: false,
+                                        timer: 1500
+                                      });
+                    </script> <?php
                     $action = 'Added Schedule';
                     logActivity($con, $userID, $action);
                                 } else {
@@ -582,23 +576,16 @@ include "logger.php";
             $resultup = $con->query($updatesql); */
 
             //check if successfully updated
-            if ($result_sched && $result_bus && $result_route == True) {
+            if ($result_sched || $result_bus || $result_route == True) {
             ?>
                 <script>
-                    Swal.fire({
-                        title: "Do you want to update?",
-                        showDenyButton: true,
-                        showCancelButton: true,
-                        confirmButtonText: "Update",
-                        denyButtonText: `Don't Update`
-                    }).then((result) => {
-                        /* Read more about isConfirmed, isDenied below */
-                        if (result.isConfirmed) {
-                            Swal.fire("Updated!", "", "success");
-                        } else if (result.isDenied) {
-                            Swal.fire("Changes are not updated", "", "info");
-                        }
-                    });
+                   Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "Update has been successful. Please refresh the page.",
+      showConfirmButton: false,
+      timer: 1500
+    });
                 </script>
         <?php
         $action = 'Updated Schedule';
