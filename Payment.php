@@ -159,13 +159,14 @@ if (isset($_POST['paying'])) {
                     showConfirmButton: false,
                     timer: 4500
                 }).then(() => {
-                    window.location.href = 'BookingLog.php';
+                    window.location.href = 'HomeLog.php';
                 });
             </script>
 <?php
             $action = 'Over-the-Counter Payment';
             logActivity($con, $userID, $action);
             break;
+
         case "E-wallet":
             $updatesql = "UPDATE tbl_reservation SET payment_method = ? WHERE ticket_number = ?";
             $stmt = $con->prepare($updatesql);

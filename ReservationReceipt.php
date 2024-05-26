@@ -89,10 +89,10 @@ $receipt_status = "Pending";
 if (isset($_POST['booking'])) {
 
   // Retrieve user_id using email
-  $stmt = $con->prepare("SELECT user_id FROM tbl_user WHERE username = ? and status = 'Active'");
+  $stmt = $con->prepare("SELECT user_id, email FROM tbl_user WHERE username = ? and status = 'Active'");
   $stmt->bind_param("s", $receipt_user);
   $stmt->execute();
-  $stmt->bind_result($user_id);
+  $stmt->bind_result($user_id,$email); // Retrieve both user_id and email
   $stmt->fetch();
   $stmt->close();
 
@@ -173,10 +173,8 @@ if (isset($_POST['booking'])) {
       echo "</div>";
       echo "</div>";
     }
-    // $_SESSION['username'] = $username;
-    // $_SESSION['email'] = $email;
-    $email = $_SESSION['email'];
-    send_ticket($username, $email, $ticket_id);
+
+    send_ticket($receipt_fullname, $email, $ticket_id);
   } else {
     // Handle case where email is not found in tbl_user
 ?>

@@ -265,7 +265,7 @@ session_start();
                                             AND  `Departure Date` = '" . $date . "'   
                                             AND `Destination` = '" . $destination . "' 
                                             AND `Available Seats` > 0
-                                            OR `Departure Date` >= CURDATE() ORDER BY `Departure Date` DESC";
+                                            AND `Departure Date` >= CURDATE() ORDER BY `Departure Date` DESC";
                             } else {
 
                                 $selectsql = "Select * from sched_reserve_view WHERE `Departure Date` >= CURDATE() AND `Available Seats` > 0 ORDER BY `Departure Date` DESC";
