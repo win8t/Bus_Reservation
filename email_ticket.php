@@ -53,7 +53,7 @@ function send_ticket($username, $email, $ticket_id)
         //Content
         $mail->isHTML(true);  // Set email format to HTML
         $mail->Subject = "Bus Ticket Number";
-        $mail->Body    = "Hello, " . $username . "!" ."<br> This your ticket number details: " . $ticket_id;
+        $mail->Body    = "Hello, " . $username . "!" ."<br> This is your ticket number details: " . $ticket_id;
 
         $mail->send();
 ?>
