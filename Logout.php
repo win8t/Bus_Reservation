@@ -29,6 +29,8 @@ if (isset($_POST['logout'])) {
         // Destroy the session
         session_destroy();
 
+        session_start();
+        $_SESSION['message'] = "You have been logged out successfully.";
         // Redirect to the login page or another page
         header("Location: Login.php");
         exit();

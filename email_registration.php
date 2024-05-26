@@ -12,7 +12,9 @@
 
 </html>
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+  }
 require "dbconnect.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
