@@ -100,8 +100,28 @@ if (isset($_POST['ver'])) {
        $action = 'E-Wallet Payment';
        logActivity($con, $userID, $action);
 
-       header("Location: BookingLog.php");
-       exit(); 
+       $selectrole = "SELECT role FROM tbl_user WHERE user_id = ?";
+       $stmt = $con->prepare($selectrole);
+       $stmt->bind_param('s', $userID);
+       $stmt->execute();
+       $stmt->bind_result($role);
+       $stmt->fetch();
+       $stmt->close();
+       
+       // Redirect based on the role
+       switch($role){
+           case "Admin":
+               header("Location: FinalsTable/Reservation2.php"); 
+               exit(); // Add exit to ensure the script stops executing after the redirect
+           case "Employee":
+               header("Location: FinalsTable/Reservation1.php");
+               exit(); 
+           case "Customer":
+               header("Location: HomeLog.php");
+               exit(); 
+       }
+
+     
    } else {
        ?>
        <script>
