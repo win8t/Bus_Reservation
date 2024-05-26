@@ -357,7 +357,7 @@ include "logger.php";
                                             <div class="row text-start form-outline mb-2">
                                                 <label class="form-label" for="">Passenger Name</label>
                                                 <div class="col">
-                                                    <label class="form-label text-secondary" for="">First Name</label>
+                                                    <label class="form-label text-secondary" for="">First Name<span class="text-danger">*</span></label>
                                                     <input type="text" id="" name="f_name" class="form-control" required />
                                                     <div class="invalid-feedback text-start">Enter your first name.</div>
                                                     <div class="valid-feedback text-start">First name entered.</div>
@@ -370,7 +370,7 @@ include "logger.php";
                                                 </div>
 
                                                 <div class="col">
-                                                    <label class="form-label text-secondary" for="">Last Name</label>
+                                                    <label class="form-label text-secondary" for="">Last Name<span class="text-danger">*</span></label>
                                                     <input type="text" id="" name="l_name" class="form-control" required />
                                                     <div class="invalid-feedback text-start">Enter your last name.</div>
                                                     <div class="valid-feedback text-start">Last name entered.</div>
@@ -388,7 +388,7 @@ include "logger.php";
                                             </div>
 
                                                 <div class="col">
-                                                    <label class="form-label" for="">Contact Number</label>
+                                                    <label class="form-label" for="">Contact Number<span class="text-danger">*</span></label>
                                                     <input type="number" name="c_number" id="" class="form-control" min="0" required />
 
                                                     <div class="invalid-feedback text-start">Enter your contact.</div>
@@ -397,7 +397,7 @@ include "logger.php";
                                               
 
                                                 <div class="col">
-                                                    <label class="form-label" for="">Seat</label>
+                                                    <label class="form-label" for="">Seat<span class="text-danger">*</span></label>
                                                     <?php
 
                                                     seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con);

@@ -169,7 +169,7 @@ require "dbconnect.php";
         $first = $_POST['f_name'];
         $last = $_POST['l_name'];
         $mid = $_POST['m_name'];
-        $full = $first . " " . $last . " " . $mid;
+        $full = $first . " " . $mid . " " . $last;
         $email = $_POST['email'];
         $user = $_POST['user'];
         $pass = md5($_POST['pass']);

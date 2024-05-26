@@ -126,7 +126,7 @@
                   <!-- Route Name input -->
                   <div class="row form-outline mt-2">
                     <div class="col">
-                      <label class="form-label" for="route_name">Route Name (ex. Naga to PITX)</label>
+                      <label class="form-label" for="route_name">Route Name (ex. Naga to PITX)<span class="text-danger">*</span></label>
                       <input type="text" name="route_name" class="form-control" required />
                       <div class="invalid-feedback text-start">Set route.</div>
                        <div class="valid-feedback text-start">Route has been set.</div>
@@ -136,7 +136,7 @@
                   <!-- Departure Location input -->
                   <div class="row form-outline mt-2">
                     <div class="col">
-                      <label class="form-label" for="departure_location">Departure Location</label>
+                      <label class="form-label" for="departure_location">Departure Location<span class="text-danger">*</span></label>
                       <input type="text" name="departure_location" class="form-control" required/>
                       <div class="invalid-feedback text-start">Set departure location.</div>
                         <div class="valid-feedback text-start">Departure location has been set.</div>                      
@@ -144,7 +144,7 @@
 
                     <!-- Destination input -->
                     <div class="col">
-                    <label class="form-label" for="destination">Destination</label>
+                    <label class="form-label" for="destination">Destination<span class="text-danger">*</span></label>
                     <input type="text" name="destination" class="form-control" required/>
                     <div class="invalid-feedback text-start">Set destination.</div>
                        <div class="valid-feedback text-start">Destination has been set.</div>                     
@@ -154,7 +154,7 @@
                   <div class="row form-outline mt-2">
                     <!-- Distance input -->
                     <div class="col">
-                      <label class="form-label" for="distance">Distance (in km)</label>
+                      <label class="form-label" for="distance">Distance (in km)<span class="text-danger">*</span></label>
                       <div class="input-group">
                         <input type="number" name="distance" class="form-control" aria-label="Distance (in km)" placeholder="Distance" min="0" required>
                         <span class="input-group-text hd-text">km</span>
@@ -166,7 +166,7 @@
 
                   <!-- Duration -->
                   <div class="row form-outline mt-2">
-                  <label class="form-label" for="">Duration</label>
+                  <label class="form-label" for="">Duration<span class="text-danger">*</span></label>
                     <div class="col">
                       <div class="input-group">
                         <input type="number" name="hrduration" class="form-control" min="0" placeholder="0" required>
@@ -198,7 +198,7 @@
                   <div class="row form-outline mt-2">
                     <!-- Price input -->
                     <div class="col">
-                    <label class="form-label" for="price">Price</label>
+                    <label class="form-label" for="price">Price<span class="text-danger">*</span></label>
                       <div class="input-group">
                         <span class="input-group-text hd-text">₱</span>
                         <input type="number" name="price" class="form-control" aria-label="Price" placeholder="Price" min="0" required>

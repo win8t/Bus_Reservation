@@ -166,7 +166,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                   <!-- Bus ID input -->
                   <div class="row form-outline">
                     <div class="col">
-                      <label class="form-label" for="">Bus Number</label>
+                      <label class="form-label" for="">Bus Number<span class="text-danger">*</span></label>
                       <input type="text" name="bus_number" id="" class="form-control" min="0" required />
                       <div class="invalid-feedback text-start">Enter its bus number.</div>
                       <div class="valid-feedback text-start">Bus number entered.</div>
@@ -175,7 +175,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
                     <!-- Bus Number input -->
                     <div class="col">
-                      <label class="form-label" for="">Bus Type</label>
+                      <label class="form-label" for="">Bus Type<span class="text-danger">*</span></label>
                       <select name="bus_type" id="bus_type" class="form-select" required>
                         <?php
 
@@ -197,7 +197,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                   <!-- Seating Capacity input -->
                   <div class="row form-outline mt-2">
                     <div class="col">
-                      <label class="form-label" for="">Seating Capacity</label>
+                      <label class="form-label" for="">Seating Capacity<span class="text-danger">*</span></label>
                       <input type="number" name="seating_capacity" id="" class="form-control" min="0" required />
                       <div class="invalid-feedback text-start">Enter its seating capacity name.</div>
                       <div class="valid-feedback text-start">Seating capacity entered.</div>
@@ -207,7 +207,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
                     <!-- Driver Name input -->
                     <div class="col">
-                      <label class="form-label" for="">Driver Name</label>
+                      <label class="form-label" for="">Driver Name<span class="text-danger">*</span></label>
                       <input type="text" name="driver_name" id="" class="form-control" required />
                       <div class="invalid-feedback text-start">Enter driver's name.</div>
                       <div class="valid-feedback text-start">Driver name entered.</div>
@@ -218,7 +218,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                   <!-- Departure Location input -->
                   <div class="row form-outline mt-2">
                     <div class="col">
-                      <label class="form-label" for="departure_location">Departure Location</label>
+                      <label class="form-label" for="departure_location">Departure Location<span class="text-danger">*</span></label>
                       <select id="departure_location" class="form-select" name="departure_location" required>
                         <?php
        
@@ -253,7 +253,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
                     <!-- Destination input -->
                     <div class="col">
-                      <label class="form-label" for="destination">Destination</label>
+                      <label class="form-label" for="destination">Destination<span class="text-danger">*</span></label>
                       <select id="destination" class="form-select" name="destination" required>
                         <?php
                        $route_query = "SELECT  route_id, destination FROM tbl_route";
@@ -286,7 +286,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                   <!-- Departure Time input -->
                   <div class="row form-outline mt-2">
                     <div class="col-6">
-                      <label class="form-label" for="">Departure Time</label>
+                      <label class="form-label" for="">Departure Time<span class="text-danger">*</span></label>
                       <input type="datetime-local" name="departure_time" id="tripDate" class="form-control" onfocus="setMinDate()" required />
                       <div class="invalid-feedback text-start">Set departure time .</div>
                       <div class="valid-feedback text-start">Departure time selected.</div>
@@ -294,7 +294,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
                     <!-- Arrival Time input -->
                     <div class="col-6">
-                      <label class="form-label" for="">Arrival Time</label>
+                      <label class="form-label" for="">Arrival Time<span class="text-danger">*</span></label>
                       <input type="datetime-local" name="arrival_time" id="tripDate1" class="form-control" onfocus="setMinDate()" required />
                       <div class="invalid-feedback text-start">Set arrival time .</div>
                       <div class="valid-feedback text-start">Arrival time selected.</div>

@@ -1,8 +1,8 @@
 <?php 
 session_start(); 
 require "dbconnect.php"; 
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
-//  set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
+//set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+  set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
 include "logger.php";
 
 ?>
@@ -111,7 +111,7 @@ echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
     <div class="bg-rowPay rounded-2 p-4">
         
         <select name="method" id="" class="form-select w-50 mb-3 mx-auto mt-3" required>
-            <option default disabled selected value="">Select your payment</option>
+            <option default disabled selected value="">Select your payment<span class="text-danger">*</span></option>
             <option value="Cash">Cash</option>
             <option value="E-wallet">E-wallet (GCash) </option>
             
