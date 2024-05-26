@@ -76,16 +76,20 @@
     ?>
 
     <div class="d-flex flex-container container-fluid ">
-
-
+    
         <div class="row login-container w-75 mx-auto">
             <div class="col-7 bg-info-subtle p-5 text-center mx-auto banner-shadow rounded">
 
 
                 <div class="row">
                     <div class="col">
-
-
+                    <?php
+                    if (isset($_SESSION['message'])) {
+                        echo '<div class="alert alert-warning" role="alert">' . $_SESSION['message'] . '</div>';
+                        // Unset the message after displaying it
+                        unset($_SESSION['message']);
+                    }
+                    ?>
 
                         <h2 class="display-2 about-login">Login</h2>
                     </div>
@@ -167,5 +171,4 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="formvalidation.js"> </script>
 </body>
-
 </html>

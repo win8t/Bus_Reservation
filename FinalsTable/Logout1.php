@@ -29,6 +29,9 @@ if (isset($_POST['logout1'])) {
         // Destroy the session
         session_destroy();
 
+        session_start();
+        $_SESSION['message'] = "You have been logged out successfully.";
+
         // Redirect to the login page or another page
        set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
         // set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
