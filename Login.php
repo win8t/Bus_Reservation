@@ -102,7 +102,7 @@
                             <!-- Username input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="text" class="form-control" name="user" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Username</label>
+                                <label for="floatingInput" class="link-text">Username<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter a username.</div>
                                 <div class="valid-feedback text-start">Entered username.</div>
                             </div>
@@ -114,7 +114,7 @@
                             <!-- Password input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="password" class="form-control" name="pass" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Password</label>
+                                <label for="floatingInput" class="link-text">Password<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Please enter a password.</div>
                                 <div class="valid-feedback text-start">Entered password</div>
                             </div>

@@ -166,7 +166,7 @@ include "logger.php";
 
                                         <div class="col">
                                             <!-- Bus ID input -->
-                                            <label class="form-label" for="bus_num">Bus Number</label>
+                                            <label class="form-label" for="bus_num">Bus Number<span class="text-danger">*</span></label>
 
 
                                             <select name="bus_num" class="form-select" required>
@@ -198,7 +198,7 @@ include "logger.php";
                                     </div>
                                     <div class="row form-outline mt-2">
                                         <div class="col">
-                                            <label class="form-label" for="route_id">Departure Area</label>
+                                            <label class="form-label" for="route_id">Departure Area<span class="text-danger">*</span></label>
                                             <select name="dep_loc" class="form-select" required>
                                                 <?php
 
@@ -221,7 +221,7 @@ include "logger.php";
 
                                         </div>
                                         <div class="col">
-                                            <label class="form-label" for="route_id">Destination</label>
+                                            <label class="form-label" for="route_id">Destination<span class="text-danger">*</span></label>
                                             <select name="desti" class="form-select" required>
                                                 <?php
                                                 $sqlfk = "SELECT bus_id, destination FROM tbl_bus";
@@ -247,14 +247,14 @@ include "logger.php";
                                     <!-- Departure Date input -->
                                     <div class="row form-outline mt-2">
                                         <div class="col">
-                                            <label class="form-label" for="">Departure Date</label>
+                                            <label class="form-label" for="">Departure Date<span class="text-danger">*</span></label>
                                             <input type="date" name="departure_date" id="editTripDate" class="form-control" onfocus="setMinDate()" required />
                                             <div class="invalid-feedback text-start">Set departure date.</div>
                                             <div class="valid-feedback text-start">Departure date selected.</div>
                                         </div>
                                         <!-- Departure Time input -->
                                         <div class="col">
-                                            <label class="form-label" for="">Departure Time</label>
+                                            <label class="form-label" for="">Departure Time<span class="text-danger">*</span></label>
                                             <input type="time" name="departure_time" id="" class="form-control" required />
                                             <div class="invalid-feedback text-start">Set departure time.</div>
                                             <div class="valid-feedback text-start">Departure time selected.</div>
@@ -266,7 +266,7 @@ include "logger.php";
 
 
                                         <div class="col">
-                                            <label class="form-label" for="">Available Seats</label>
+                                            <label class="form-label" for="">Available Seats<span class="text-danger">*</span></label>
                                             <input type="number" name="available_seats" id="" class="form-control" required />
                                             <div class="invalid-feedback text-start">Enter avaialble seats.</div>
                                             <div class="valid-feedback text-start">Available seats entered.</div>
