@@ -51,7 +51,7 @@ function send_verification($full, $email, $otp)
         //Content
         $mail->isHTML(true);  // Set email format to HTML
         $mail->Subject = "OTP Verification";
-        $mail->Body    = "Hello, " . $full . "!" ."<br> This your account verification code: " . $otp;
+        $mail->Body    = "Hello, " . $full . "!" ."<br> This is your account verification code: " . $otp;
 
         $mail->send();
 ?>

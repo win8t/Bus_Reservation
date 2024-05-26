@@ -1,7 +1,7 @@
 <?php
 require "dbconnect.php";
-/* set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable'); */
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
 include "logger.php";
 
 ?>
@@ -166,17 +166,24 @@ if (isset($_POST['searchresbutton'])) {
             echo "</tr>";
             echo "</tbody></table>";
             echo "</div>";
+
             // Cancellation form inside the loop
 ?>
             <form action="StatusLog.php" method="post">
                 <input type="hidden" name="ticket_number" value="<?php echo $fielddata['ticket_number']; ?>">
                 <input type="hidden" name="seat" value="<?php echo $fielddata['seat_number']; ?>">
                 <input type="hidden" name="method" value="<?php echo $fielddata['payment_method']; ?>">
+                <input type="hidden" name="status" value="<?php echo $fielddata['status']; ?>">
                 <div class="row text-center">
                     <div class="col">
-                        <button type="button" value="PrintBooking" id="printsButton" class="shadows btn btn-success mx-2 w-25 rounded-4"> Print </button>
-                        <button type="submit" value="CancelBooking" name="cancel" class="shadows btn btn-danger w-25 rounded-4" onclick="return confirm('Are you sure you want to cancel?');"> Cancel Booking </button>
+                    <?php if ($fielddata['status'] == 'Reserved' && $fielddata['payment_method'] == 'Cash' || $fielddata['status'] == 'Cancelled') {?>
 
+                            <button type="button" value="PrintBooking" id="printsButton" class="shadows btn btn-success mx-2 w-25 rounded-4"> Print </button>
+                    <?php
+                        } else {?>
+                            <button type="button" value="PrintBooking" id="printsButton" class="shadows btn btn-success mx-2 w-25 rounded-4"> Print </button>
+                            <button type="submit" value="CancelBooking" name="cancel" class="shadows btn btn-danger w-25 rounded-4" onclick="return confirm('Are you sure you want to cancel?');"> Cancel Booking </button>
+                        <?php } ?>
                     </div>
                 </div>
             </form>
