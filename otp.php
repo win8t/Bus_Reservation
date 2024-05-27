@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
+require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
@@ -14,19 +20,13 @@
     <script src="bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
     <div class="container-fluid d-flex flex-container">
-
 
         <div class="row login-container w-75 mx-auto">
             <div class="col-7 bg-info-subtle p-5 text-center mx-auto banner-shadow rounded">
 
-
                 <div class="row">
                     <div class="col">
-
-
-
                         <h2 class="display-2 about-login">OTP Verification</h2>
                     </div>
                 </div>
@@ -46,40 +46,24 @@
                                 <div class="invalid-feedback text-start">Please enter the OTP verification code.</div>
                                 <div class="valid-feedback text-start">Entered OTP verification code.</div>
                             </div>
-                            
                         </div>
-
-
                     </div>
-
 
                     <div class="row mb-4">
                         <div class="col text-center">
-                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-25 link-text">
+                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-25 link-text rounded-pill">
                         </div>
-                      
                     </div>
                 </form>
-
-
-
             </div>
-
         </div>
-
     </div>
     </div>
-
-    <script src="formvalidation.js"> </script>
-    
+<script src="formvalidation.js"> </script>
 </body>
-
 </html>
 <?php
-require "dbconnect.php";
-
 if (isset($_POST['ver'])) {
-   //user input
    $otpinput = $_POST['otp'];
 
    $otpsql = "Select * from tbl_user where otp = '".$otpinput."'";
@@ -91,15 +75,14 @@ if (isset($_POST['ver'])) {
     $con->query($updatesql);
     
     header("location: Login.php");
-
+    
    } else {
-
     ?>
     <script>
         Swal.fire({
             icon: "error",
             title: "Oops...",
-            text: "Something went wrong!",
+            text: "Invalid OTP! Please Try Again.",
             });
     </script>
     <?php

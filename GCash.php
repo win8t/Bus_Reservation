@@ -1,4 +1,12 @@
-<?php session_start(); ?>
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
+require "dbconnect.php";
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
+include "logger.php";
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,12 +18,7 @@
 </head>
 
 <body class="login-content-container7">
-
-
-
     <div class="container-fluid d-flex flex-container">
-
-
         <div class="row login-container w-75 mx-auto">
             <div class="col-7 bg-info-subtle p-5 text-center mx-auto banner-shadow rounded">
 
@@ -34,7 +37,7 @@
                 <form action="GCash.php" method="post" novalidate class ="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
-                            <!-- OTP input -->
+                            <!-- Reference Number input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="text" class="form-control" name="refnum" id="floatingInput" required />
                                 <label for="floatingInput" class="link-text">Reference Number<span class ="text-danger">*</span></label>
@@ -43,36 +46,24 @@
                             </div>
                         </div>
                     </div>
-
+                        <!-- Button function -->
                     <div class="row mb-3">
                         <div class="col text-center">
                             <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-25 link-text rounded-5">
                         </div>
-                      
                     </div>
                 </form>
-
-
-
             </div>
-
         </div>
-
     </div>
     </div>
 
 <?php
-require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
-// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
-include "logger.php";
-
 if (isset($_POST['ver'])) {  
    
    $refnum = $_POST['refnum'];
    $pay_ticket = $_SESSION['ticket_pay']; 
 
-  
    $sql = "UPDATE tbl_reservation SET reference_num = ? WHERE ticket_number = ?";
    $stmt = $con->prepare($sql);
    $stmt->bind_param('ss', $refnum, $pay_ticket);
@@ -101,11 +92,11 @@ if (isset($_POST['ver'])) {
        $stmt->fetch();
        $stmt->close();
        
-       // Redirect based on the role
+       // Role input
        switch($role){
            case "Admin":
                header("Location: FinalsTable/Reservation2.php"); 
-               exit(); // Add exit to ensure the script stops executing after the redirect
+               exit();
            case "Employee":
                header("Location: FinalsTable/Reservation1.php");
                exit(); 
@@ -113,8 +104,6 @@ if (isset($_POST['ver'])) {
                header("Location: HomeLog.php");
                exit(); 
        }
-
-     
    } else {
        ?>
        <script>
@@ -126,7 +115,6 @@ if (isset($_POST['ver'])) {
        </script>
        <?php
    }
-   
 }
 
 ?>

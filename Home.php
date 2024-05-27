@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
+require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
@@ -127,9 +133,6 @@
     </div>
   </div>
 
-
-
-
   <div class="home-fixed-container pt-4">
 
     <div class="col-12 content-container">
@@ -138,9 +141,6 @@
 
     <!-- blender -->
     <div class="content-container1 py-3 "></div>
-
-
-
 
     <div class="d-flex flex-row content-container align-items-stretch">
       <div class="col-6 content-container2   py-4">
@@ -151,7 +151,6 @@
         </div>
 
       </div>
-
 
       <div class="col-6 content-container2  py-4">
         <h2 class="about-text text-center pb-3 text-success"> Mission </h2>
@@ -171,10 +170,6 @@
         <h2 class="text-wrap  cont-text text-break ">Corporate Values</h2>
         <p class="crop-para">Learn about the values that we at ALPS abide by at all times.</p>
 
-
-
-
-
       </div>
 
       <div class="content-container3 bg-warning-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
@@ -184,8 +179,6 @@
             We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions, dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and implement new products and services par excellent.
           </div>
         </div>
-
-
 
       </div>
       <div class="content-container3 bg-success-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
@@ -214,11 +207,8 @@
             We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners with our customers.
           </div>
         </div>
-
       </div>
-
     </div>
-
 
     <div class="col-12 content-container6 bg-info-subtle py-5 me-auto mx-auto ">
       <h2 class="text-center about-text py-2 text-success">Frequently Asked Questions</h2>
@@ -315,11 +305,6 @@
           </div>
         </div>
       </div>
-
-
-
-
-
     </div>
 
     <div class="row-12 content-container4 pt-4">
@@ -409,25 +394,13 @@
                 <td class="text-start"><a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a></td>
               </tr>
             </table>
-
-
-
           </div>
         </div>
       </div>
 
     </div>
-    <div class="row-12 content-container7 p-4">
-
-    </div>
-
+    <div class="row-12 content-container7 p-4"></div>
   </div>
-
-
-
-
-
-
 </body>
 
 </html>

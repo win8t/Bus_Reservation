@@ -1,10 +1,18 @@
+<?php 
+session_start(); 
+require "dbconnect.php"; 
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+//   set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
+include "email_ticket.php";
+include "logger.php";
+?>
+
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alps Receipt</title>
-
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link href="stylez.css" rel="stylesheet" />
   <style>
@@ -47,16 +55,8 @@
 
 </html>
 <?php
-if (!isset($_SESSION)) {
-  session_start();
-}
-date_default_timezone_set("Asia/Manila");
 require_once "FinalsTable\BusArrays.php";
-require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
-//  set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable'); 
-include "logger.php";
-include "email_ticket.php";
+date_default_timezone_set("Asia/Manila");
 
 $ticket_id = "ALPSBR" . rand(1000000, 9999999);
 $receipt_user = $_POST['usern'];
@@ -86,11 +86,10 @@ $receipt_status = "Pending";
 
 if (isset($_POST['booking'])) {
 
-  // Retrieve user_id using email
   $stmt = $con->prepare("SELECT user_id, email FROM tbl_user WHERE username = ? and status = 'Active'");
   $stmt->bind_param("s", $receipt_user);
   $stmt->execute();
-  $stmt->bind_result($user_id,$email); // Retrieve both user_id and email
+  $stmt->bind_result($user_id,$email);
   $stmt->fetch();
   $stmt->close();
 
@@ -100,7 +99,6 @@ if (isset($_POST['booking'])) {
     $stmt->bind_param("i", $receipt_id);
     $dec_result = $stmt->execute();
 
-    // Check if successfully updated
     if ($dec_result == true) {
 ?>
       <script>
@@ -174,7 +172,6 @@ if (isset($_POST['booking'])) {
 
     send_ticket($receipt_fullname, $email, $ticket_id);
   } else {
-    // Handle case where email is not found in tbl_user
 ?>
     <script>
       Swal.fire({

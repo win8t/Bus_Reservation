@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
+require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
@@ -12,11 +18,6 @@
 
 </html>
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-  }
-require "dbconnect.php";
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

@@ -1,6 +1,8 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
 require "dbconnect.php";
-session_start();
 ?>
 
 <html lang="en">
@@ -8,7 +10,7 @@ session_start();
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Alps Home</title>
+  <title>Alps Home</title>
   <link href=stylez.css rel="stylesheet" />
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
@@ -43,12 +45,6 @@ session_start();
             <li class="nav-item">
               <a class="nav-link mx-lg-2 mx-auto" href="StatusLog.php"><i class="bi bi-bus-front"></i> Status</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-shop"></i> Transit</a>
-            </li> -->
           </ul>
         </div>
 
@@ -71,7 +67,6 @@ session_start();
             <h5 class="home-text-title">Welcome to ALPS Bus Reservation</h5>
             <p class="text-bg">
               It is the family's vision to grow and grow in the service of the commuting public.
-
             </p>
             <div class="row  caro-posi">
               <div class="col">
@@ -138,20 +133,13 @@ session_start();
     </div>
   </div>
 
-
-
-
   <div class="home-fixed-container pt-4">
-
     <div class="col-12 content-container">
       <p class="display-4 text-center border border-3 p-4 border-dark rounded"> ABOUT US </p>
     </div>
 
     <!-- blender -->
     <div class="content-container1 py-3 "></div>
-
-
-
 
     <div class="d-flex flex-row content-container align-items-stretch">
       <div class="col-6 content-container2   py-4">
@@ -182,10 +170,6 @@ session_start();
         <h2 class="text-wrap  cont-text text-break ">Corporate Values</h2>
         <p class="crop-para">Learn about the values that we at ALPS abide by at all times.</p>
 
-
-
-
-
       </div>
 
       <div class="content-container3 bg-warning-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
@@ -195,8 +179,6 @@ session_start();
             We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions, dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and implement new products and services par excellent.
           </div>
         </div>
-
-
 
       </div>
       <div class="content-container3 bg-success-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
@@ -225,9 +207,7 @@ session_start();
             We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners with our customers.
           </div>
         </div>
-
       </div>
-
     </div>
 
 
@@ -327,14 +307,10 @@ session_start();
         </div>
       </div>
 
-
-
-
-
     </div>
 
     <div class="row-12 content-container4 pt-4">
-      <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
+      <h1 class="text-center pt-5 cont-text ">Contact Us </h1>
       <p class="text-center about-para bg-info-subtle py-2">We are here to assist you!</p>
 
       <div class="d-flex flex-row content-container align-items-stretch">
@@ -349,11 +325,11 @@ session_start();
               </tr>
               <tr>
                 <td class="text-center pb-3">
-                  <strong> Want to visit our actual office? </strong>
+                  <strong>Want to visit our actual office? </strong>
                 </td>
               </tr>
               <tr>
-                <td class="justify-content-center"><i class="bi bi-geo-fill h3"></i> ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
+                <td class="justify-content-center"><i class="bi bi-geo-fill h3"></i>ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
               </tr>
             </table>
 
@@ -371,10 +347,9 @@ session_start();
               </tr>
               <tr>
                 <td colspan="2" class="text-center pb-3">
-                  <strong> Any inquiries should have a return address or phone number. </strong>
+                  <strong>Any inquiries should have a return address or phone number. </strong>
                 </td>
               </tr>
-
               <tr>
                 <th colspan="2">Phone</th>
               </tr>
@@ -393,14 +368,11 @@ session_start();
                 <td> info@alpsthebus.com</td>
               </tr>
             </table>
-
           </div>
         </div>
 
         <div class="col-4 content-container10 ">
           <div class="row  text-center py-5">
-
-
             <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
               <tr>
                 <th colspan="3">
@@ -420,25 +392,12 @@ session_start();
                 <td class="text-start"><a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a></td>
               </tr>
             </table>
-
-
-
           </div>
         </div>
       </div>
-
     </div>
-    <div class="row-12 content-container7 p-4">
-
-    </div>
-
+    <div class="row-12 content-container7 p-4"></div>
   </div>
-
-
-
-
-
-
 </body>
 
 </html>

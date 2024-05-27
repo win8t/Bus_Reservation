@@ -1,10 +1,11 @@
-<?php 
-session_start(); 
-require "dbconnect.php"; 
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
+require "dbconnect.php";
 set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
-//   set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
+//set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
 include "logger.php";
-
 ?>
 <html lang="en">
 <head>
@@ -12,7 +13,6 @@ include "logger.php";
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alps Payment</title>
-
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link href="stylez.css" rel="stylesheet" />
     <style>
@@ -28,7 +28,6 @@ include "logger.php";
 
         .table-container {
             margin-top: 20%;
-            /* Adjust as needed */
         }
 
         .table {
@@ -57,6 +56,7 @@ include "logger.php";
 </html>
 <?php
 
+// Payment Breakdown
 echo "<div class ='container-fluid bg-row w-75 p-4 rounded '>";
 
 echo "<div class='row bg-info-subtle rounded-2 mx-auto'>";
@@ -101,10 +101,9 @@ if (isset($_POST['pay'])) {
     echo   "</div>";
 }
 echo   "</div>";
-
 echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
 ?>
-
+<!-- Payment -->
 <h4 class='text-center'>Payment Method</h4>
 <hr>
 <form action="Payment.php" method="post" novalidate class="needs-validation">
@@ -113,13 +112,12 @@ echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
         <select name="method" id="" class="form-select w-50 mb-3 mx-auto mt-3" required>
             <option default disabled selected value="">Select your payment<span class="text-danger">*</span></option>
             <option value="Cash">Cash</option>
-            <option value="E-wallet">E-wallet (GCash) </option>
-            
+            <option value="E-wallet">E-wallet (GCash)</option>
         </select>
+
         <div class="invalid-feedback text-center">Select a payment method.</div>
         <div class="valid-feedback text-center">Payment method selected.</div>
       
-
         <input type="hidden" name="pay_ticket" id="" value="<?php echo $_SESSION['ticket_pay'] ?>" />
         <div class="row text-center">
             <div class="col">
@@ -127,13 +125,13 @@ echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
             </div>
         </div>
     </div>
-
 </form>
 <?php
 echo  "</div>";
 echo "</div>";
 echo "</div'>";
 
+// Choose your payment
 if (isset($_POST['paying'])) {
     $paymethod = $_POST['method'];
     $payticket = $_POST['pay_ticket'];
@@ -142,16 +140,12 @@ if (isset($_POST['paying'])) {
             $updatesql = "UPDATE tbl_reservation SET payment_method = ? WHERE ticket_number = ?";
             $stmt = $con->prepare($updatesql);
         
-            // Bind parameters and execute the statement
             $stmt->bind_param('ss', $paymethod, $payticket);
             $stmt->execute();
-
 
 ?>
             <script>
                 var cashier = Math.floor(Math.random() * 5) + 1;
-
-                // Display the SweetAlert popup
                 Swal.fire({
                     position: "center",
                     icon: "success",
@@ -170,8 +164,7 @@ if (isset($_POST['paying'])) {
         case "E-wallet":
             $updatesql = "UPDATE tbl_reservation SET payment_method = ? WHERE ticket_number = ?";
             $stmt = $con->prepare($updatesql);
-        
-            // Bind parameters and execute the statement
+
             $stmt->bind_param('ss', $paymethod, $payticket);
             $stmt->execute();
 
@@ -180,7 +173,6 @@ if (isset($_POST['paying'])) {
     }
 }
 ?>
-
 <script src="formvalidation.js"> </script>
 </body>
 

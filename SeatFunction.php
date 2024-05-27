@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Alps Seat Function</title>
 </head>
 <body>
     
@@ -11,8 +11,7 @@
 <?php
   require_once "dbconnect.php";
 function seattype($bus_type, $schedule_id, $con) {
-    
-    // Determine the number of seats based on the bus type
+
     switch ($bus_type) {
         case 'Executive':
             $num_seats = 48;
@@ -27,16 +26,12 @@ function seattype($bus_type, $schedule_id, $con) {
             $num_seats = 36;
             break;
         default:
-            $num_seats = 0; // Default to 0 if the bus type is not recognized
+            $num_seats = 0;
     }
-
-    // Database connection
 
     $query = "SELECT seat_number FROM tbl_reservation WHERE schedule_id = $schedule_id";
     $select_result = $con->query($query);
     
-
-    // Generate the HTML for the seat number dropdown
     if ($select_result == true) {
         $booked_seats = array();
         while ($row = mysqli_fetch_assoc($select_result)) {

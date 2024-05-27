@@ -1,6 +1,8 @@
 <?php
+if (!isset($_SESSION)) {
     session_start();
-    require "dbconnect.php";
+  }
+require "dbconnect.php";
 ?>
 <html lang="en">
 
@@ -15,14 +17,10 @@
 
 <body class="login-content-container7">
   
-
     <?php
     if (isset($_POST['sub'])) {
-        //userinput 
         $username = $_POST['user'];
         $password = md5($_POST['pass']);
-
-        //login based on role
 
         $loginsql = "Select * from tbl_user where username = '" . $username . "' and password ='" . $password . "' and status = 'Active'";
 
@@ -71,26 +69,19 @@
             </script>
     <?php }
     }
-
-
     ?>
-
     <div class="d-flex flex-container container-fluid ">
     
         <div class="row login-container w-75 mx-auto">
             <div class="col-7 bg-info-subtle p-5 text-center mx-auto banner-shadow rounded">
-
-
                 <div class="row">
                     <div class="col">
                     <?php
                     if (isset($_SESSION['message'])) {
                         echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
-                        // Unset the message after displaying it
                         unset($_SESSION['message']);
                     }
                     ?>
-
                         <h2 class="display-2 about-login">Login</h2>
                     </div>
                 </div>
@@ -124,13 +115,14 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- Forgot Password link -->
                     <div class="row mb-4">
                         <div class="col d-flex justify-content-center ">
                             <a href="ForgotPassword.php" class="link-text"><strong>Forgot Password?</strong></a>
                         </div>
                     </div>
 
+                    <!-- Button Function -->
                     <div class="row mb-4">
                         <div class="col text-end">
                             <input type="submit" name="sub" value="Log In" class="btn btn-primary btn-block w-50 link-text">
@@ -142,10 +134,8 @@
                         </div>
                     </div>
                 </form>
-
-
-
             </div>
+            
             <div class="col-5 banner-area h-50 d-flex flex-column justify-content-center rounded">
                 <div class="row mb-1">
                     <div class="col d-flex justify-content-center">
