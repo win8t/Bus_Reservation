@@ -13,17 +13,14 @@
   src: url(Chopin-Trial-Regular.woff);
 }
 
-
+/* Sidebar */
 .links {
   list-style-type: none;
-  /* Remove the default bullet points */
 }
 
 .links li {
   margin-left: -40px;
-  /* Adjust indentation if necessary */
 }
-
 
 body {
   height: 100vh;
@@ -33,8 +30,6 @@ body {
   background-size: cover;
   overflow-y: auto;
   overflow-x: auto;
-
-
 }
 
 .hd-text {
@@ -46,9 +41,7 @@ body {
 -webkit-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
 -moz-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
   grid-template-columns: auto 1fr;
-  /* Sidebar takes up auto width, main content takes up remaining width */
   gap: 40px;
-  /* Adjust the gap between sidebar and main content */
   margin-right: 20%;
   position: fixed;
   top: 0;
@@ -82,14 +75,11 @@ body {
 
 .logo img {
   margin: auto;
-
   width: 43px;
   border-radius: 50%;
-
 }
 
 .logo h2 {
-
   margin: auto;
   font-family: FontBold;
   color: rgb(255, 255, 255);
@@ -102,8 +92,6 @@ body {
 .logo {
   margin-top: 30px;
 }
-
-
 
 .links .sidebar {
   list-style: none;
@@ -119,7 +107,6 @@ body {
 
 .sidebar:hover .logo h2 {
   display: block;
-
 }
 
 .sidebar .links h4 {
@@ -141,21 +128,18 @@ body {
   cursor: pointer;
   border-radius: 4px;
   color: #442775;
-
 }
 .links li:hover {
   background-color: #c7dcff;
   cursor: pointer;
   border-radius: 4px;
   color: #442775;
-
 }
 
 .links li:hover i,
 .links li:hover a,
 .links li:hover button {
   color: #442775;
-  /* Change to the desired color */
 }
 
 .sidebar:hover .links h4 {
@@ -166,25 +150,17 @@ body {
   display: block;
 }
 
-
 .sidebar .links hr {
-
   border: none;
   margin: 0;
-
   border-color: #ffffff;
-  /* Set background color */
-
   align-items: center;
-
 }
 
 .links li {
   font-family: FontBold;
   display: flex;
   align-items: center;
-
-
 }
 
 .links li i {
@@ -198,8 +174,8 @@ body {
   white-space: nowrap;
   text-decoration: none;
   display: none;
-
 }
+
 .links li button {
   color: #edfaff;
   padding: 10px;
@@ -208,7 +184,6 @@ body {
   text-decoration: none;
   display: none;
   margin:10px;
-
 }
 
 .sidebar:hover .links li a {
@@ -234,21 +209,14 @@ body {
   background-color: #e2eaf8;
 }
 
-
 .sidebar:hover+.container-fluid {
   margin-left: 190px;
-  /* Adjust this value according to your sidebar width */
   transition: margin-left 0.5s;
-  /* Add transition effect for smooth animation */
 }
 
-
-/* Style for active icon */
-/* Style for active link */
 .links li.active i,
 .links li a.active {
   color: #442775;
-  /* Change the color to indicate active */
 }
 
 .links li.active {
@@ -257,34 +225,41 @@ body {
   border-radius: 4px;
 }
 
-/* Define a media query for smaller screens */
+table{
+  overflow:auto !important;
+  overflow:overlay;
+}
+tbody{
+  overflow:auto;
+  overflow:overlay;
+}
+
 @media (max-width: 768px) {
   .sidebar {
-
     width: 15%;
-    /* Make the sidebar take up full width */
     margin-right: 0;
-    /* Remove the right margin */
+  }
+  .table{
+    overflow:auto !important;
+    overflow:overlay;
+  }
+  tbody{
+    overflow:auto;
+    overflow:overlay;
   }
 
   .sidebar:hover {
-
     width: 25%;
-    /* Keep the sidebar at full width on hover */
   }
 
   .container-fluid {
-
     overflow:auto;
     margin-left: 17%;
-    /* Remove the left margin */
     width: 80%;
-    /* Make the main content take up full width */
   }
 
   .sidebar:hover+.container-fluid {
     margin-right: 20%;
-    /* Remove the margin for the main content on hover */
   }
 }
 
@@ -330,6 +305,7 @@ th {
   background-image: linear-gradient(#1717178c, #29292947), url("Sidebar.jpg");
   background-size: cover;
 }
+
 .table-striped>tbody>tr:nth-child(odd)>td:hover, 
 .table-striped>tbody>tr:nth-child(odd)>th:hover {
    background-color: #eef1ff;
@@ -337,14 +313,12 @@ th {
    font-family:FontBold;
  }
 
- 
-
  .btn-color {
   background-color: rgb(7, 44, 75) !important;
-  
   color:white;
  }
- .btn-color:hover {
+
+.btn-color:hover {
 color:rgb(255, 255, 255);
 background-color: #172685 !important;
 box-shadow: -2px 2px 30px 9px rgba(0, 0, 0, 0.179) inset;
@@ -352,19 +326,17 @@ box-shadow: -2px 2px 30px 9px rgba(0, 0, 0, 0.179) inset;
 -moz-box-shadow: -2px 2px 30px 9px rgba(0, 0, 0, 0.159) inset;
  }
 
- .bdr {
+.bdr {
   border-radius: 6px 6px 6px 6px !important;
   overflow: hidden !important;
- 
 }
 
 .modal-dialog {
-  max-height: 100vh; /* Adjust as needed */
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
 }
 
 .modal-content {
@@ -379,16 +351,15 @@ box-shadow: -2px 2px 30px 9px rgba(0, 0, 0, 0.179) inset;
   background-color: #eef1ff !important;
   overflow-y: auto;
   flex-grow: 1;
-
-  
 }
+
 .modal-header {
   background-color: #072c4b !important;
   color:white;
 }
 
 .btn-close {
-  background-color: #eef1ff; /* Ensure background is transparent */
-  opacity:1; /* Remove any border */
+  background-color: #eef1ff;
+  opacity:1;
 }
 

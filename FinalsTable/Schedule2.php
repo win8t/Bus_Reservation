@@ -11,11 +11,10 @@ include "logger.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Panel</title>
+    <title>Alps Schedule Details</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <link rel="stylesheet" href="sidebar10.css">
+    <link rel="stylesheet" href="sidebar13.css">
 
 </head>
 
@@ -208,6 +207,9 @@ include "logger.php";
                                                 ?>
 
                                             </select>
+                                            <div class="form-text">
+                                                Bus & Routes should match (ex. B1 to B1).
+                                            </div>
                                             <div class="invalid-feedback text-start">Select a Bus Number.</div>
                                             <div class="valid-feedback text-start">Bus Number selected.</div>
 
@@ -425,7 +427,8 @@ include "logger.php";
         //num_rows - will return the no of rows inside a table
         if ($result->num_rows > 0) {
             echo "<div class=' bg-row p-5 rounded'>";
-            echo "<div class='bdr table-responsive'>";
+            echo "<div class='bdr'>";
+            echo "<div class='table-responsive'>";
             echo "<table class='table table-striped text-center table-bordered w-100 border border-2  border-primary-subtle align-middle mx-auto'>";
             echo "<thead class ='table-dark'>";
             echo "<tr>";
@@ -536,6 +539,8 @@ include "logger.php";
             }
 
             echo "</table>";
+            echo "</div>";
+            echo "</div>";
             echo "</div>";
             echo "</div>";
         } else {

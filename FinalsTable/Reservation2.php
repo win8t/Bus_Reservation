@@ -10,10 +10,10 @@ include "logger.php";
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Panel</title>
+    <title>Alps Reservation Details</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="sidebar10.css">
+    <link rel="stylesheet" href="sidebar13.css">
 
 </head>
 
@@ -260,13 +260,13 @@ include "logger.php";
                             $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
                             if ($result->num_rows > 0) {
                                 echo "<div class=' p-5 rounded'>";
-                                echo "<div class = 'table-responsive'>";
-                                echo "<table class='table  table-striped bdr text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
+                                echo "<div class='bdr'>";
+                                echo "<div class='table-responsive'>";
+                                echo "<table class='table  table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
                                 echo "<tr>";
                                 echo "</tr>";
                                 echo "<thead class ='table-dark'>";
                                 echo "<tr>";
-                                /* echo "<th > Schedule ID </th>"; */
                                 echo "<th> Bus Number </th>";
                                 echo "<th> Bus Type </th>";
                                 echo "<th> Departure Date </th>";
@@ -460,6 +460,8 @@ include "logger.php";
                                     echo "</tr>";
                                 }
                                 echo "</table>";
+                                echo "</div>";
+                                echo "</div>";
                                 echo "<div class='modal-footer d-flex rounded justify-content-center'>";
                                 echo "<button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>";
                                 echo  "</div>";
@@ -520,7 +522,8 @@ include "logger.php";
 
     if ($result->num_rows > 0) {
         echo "<div class=' bg-row mt-2 p-5 rounded'>";
-        echo "<div class='bdr table-responsive'>";
+        echo "<div class='bdr'>";
+        echo "<div class='table-responsive'>";
         echo "<table class='table table-sm table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
         echo "<thead class ='table-dark'>";
         echo "<tr>";
@@ -670,6 +673,8 @@ include "logger.php";
         echo "</div>";
         echo "</div>";
         echo "</table>";
+        echo "</div>";
+        echo "</div>";
     } else {
         echo "<div class='row'>";
         echo "<div class='col'>";

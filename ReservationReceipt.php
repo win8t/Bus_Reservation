@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Alps Receipt</title>
 
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link href="stylez.css" rel="stylesheet" />
@@ -20,7 +20,6 @@
 
     .table-container {
       margin-top: 20%;
-      /* Adjust as needed */
     }
 
     .table {
