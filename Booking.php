@@ -1,6 +1,8 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
 require "dbconnect.php";
-session_start();
 ?>
 <html lang="en">
 
@@ -9,8 +11,6 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> Alps Booking</title>
     <link href=stylez.css rel="stylesheet" />
-
-
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -25,27 +25,22 @@ session_start();
     <script>
         function swapValues() {
             event.preventDefault();
-            // Get the selected values of origin and destination
             var originValue = document.getElementById('origin').value;
             var destinationValue = document.getElementById('destination').value;
 
-            // Swap the values
             document.getElementById('origin').value = destinationValue;
             document.getElementById('destination').value = originValue;
         }
     </script>
     <script>
         function setMinDate() {
-            // Get current date in Philippine time zone
             var philippineDate = new Date();
-            var philippineOffset = 8 * 60; // Philippine time zone offset in minutes (UTC+8)
+            var philippineOffset = 8 * 60; 
             var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
             var philippineTime = new Date(utc + (60000 * philippineOffset));
 
-            // Format date in yyyy-mm-dd format
             var formattedDate = philippineTime.toLocaleDateString('en-CA');
 
-            // Set the minimum date and change input type to date
             document.getElementById("tripDate3").setAttribute('type', 'date');
             document.getElementById("tripDate3").setAttribute('min', formattedDate);
         }
@@ -56,9 +51,7 @@ session_start();
         <div class="container-fluid">
             <a class="navbar-brand me-auto ml-1 pe-none" href="#" aria-disabled="true" tabindex="-1">
                 <img src="Alps.png" alt="" class="logo img-fluid">
-
             </a>
-
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
                     <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Alps</h5>
@@ -76,10 +69,6 @@ session_start();
                         <li class="nav-item">
                             <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Status</a>
                         </li>
-                        <!--
-                        <li class="nav-item">
-                            <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-shop"></i> Transit</a>
-                        </li> -->
                     </ul>
                 </div>
 
@@ -101,17 +90,15 @@ session_start();
                         <h5 class="book-text-title">Welcome to ALPS Bus Reservation</h5>
                         <p class="text-bg">
                             It is the family's vision to grow and grow in the service of the commuting public.
-
                         </p>
                         <div class="row  caro-posi">
                             <div class="col">
                                 <a href="Login.php" class="book-caro-button"> Book Now</a>
                             </div>
                         </div>
-
                     </div>
-
                 </div>
+
                 <div class="carousel-item book-carousel-item" data-bs-interval="5000">
                     <img src="Alps2.jpg" class="w-100 h-100 d-block book-carousel-image">
                     <div class="carousel-caption">
@@ -271,8 +258,6 @@ session_start();
                             <input type="radio" name="slider" id="s<?php echo $slideradio; ?>" <?php echo ($slideradio === 1) ? 'checked' : ''; ?>>
                         <?php } ?>
 
-
-
                         <div class="slidecards">
                             <?php foreach ($slides as $key => $slide) { ?>
                                 <label for="s<?php echo $key + 1; ?>" id="slide<?php echo $key + 1; ?>">
@@ -294,18 +279,11 @@ session_start();
                                     </div>
                                 </label>
                             <?php } ?>
-
                         </div>
-
                     </div>
                 </div>
-
-
             </div>
         </div>
-
-
-
 
         <!-- Terminal -->
         <div class="d content-container8">
@@ -471,13 +449,10 @@ session_start();
                     <h2 class="text-start">Bus Terminal </h2>
                     <p class="about-para text-start">Various terminals for accessibility and efficiency of travel.</p>
                 </div>
-
             </div>
         </div>
-
-
-
     </div>
+    <!-- Contact Us -->
     <div class="row-12 content-container4 pt-4 mt-5">
         <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
         <p class="text-center about-para book-content-container8 py-2">We are here to assist you!</p>
@@ -504,10 +479,10 @@ session_start();
 
                 </div>
             </div>
+
+            <!-- Contact Information -->
             <div class="col-4 content-container10 ">
                 <div class="row  text-center py-5">
-
-
                     <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
                         <tr>
                             <th colspan="2">
@@ -544,8 +519,6 @@ session_start();
 
             <div class="col-4 content-container10 ">
                 <div class="row  text-center py-5">
-
-
                     <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
                         <tr>
                             <th colspan="3">
@@ -565,20 +538,12 @@ session_start();
                             <td class="text-start"><a href="http://www.alpsthebus.com/" target=”_blank”><i class="bi bi-browser-chrome h1 text-dark chrome"></i></a></td>
                         </tr>
                     </table>
-
-
-
                 </div>
             </div>
         </div>
-
     </div>
-    <div class="row-12 content-container7 p-4">
-
+    <div class="row-12 content-container7 p-4"></div>
     </div>
-
-    </div>
-
     </div>
     <script src="formvalidation.js"> </script>
     <script src="scripts.js"></script>
@@ -586,10 +551,3 @@ session_start();
 </body>
 
 </html>
-
-
-<?php
-
-
-
-?>

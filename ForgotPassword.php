@@ -1,6 +1,8 @@
 <?php
+if (!isset($_SESSION)) {
     session_start();
-    require "dbconnect.php";
+  }
+require "dbconnect.php";
 ?>
 <html lang="en">
 
@@ -18,19 +20,13 @@
     <script src="bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-
     <div class="container-fluid d-flex flex-container">
-
 
         <div class="row login-container w-75 mx-auto">
             <div class="col-7 bg-info-subtle p-5 text-center mx-auto banner-shadow rounded">
 
-
                 <div class="row">
                     <div class="col">
-
-
-
                         <h2 class="display-2 about-login">Forgot Password?</h2>
                     </div>
                 </div>
@@ -50,13 +46,9 @@
                                 <div class="invalid-feedback text-start">Please enter your valid email address.</div>
                                 <div class="valid-feedback text-start">Entered valid email address.</div>
                             </div>
-                            
                         </div>
-
-
                     </div>
-
-
+                    <!-- Button Function -->
                     <div class="row mb-4">
                         <div class="col text-end">
                             <input type="submit" name="reset" value="Send" class="btn btn-primary btn-block w-50 link-text">
@@ -68,13 +60,8 @@
                         </div>
                     </div>
                 </form>
-
-
-
             </div>
-
         </div>
-
     </div>
     </div>
 
@@ -145,8 +132,7 @@ if (isset($_POST['reset'])) {
             });
         </script>
         <?php
-    }
-        
+    } 
 }
     
 ?>

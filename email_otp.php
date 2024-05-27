@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (!isset($_SESSION)) {
+    session_start();
+  }
 require "dbconnect.php";
 ?>
 <html lang="en">
@@ -7,17 +9,15 @@ require "dbconnect.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALPS OTP</title>
+    <title>Alps OTP</title>
 </head>
 
 <body>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <input type="hidden" name="fullname" value="<?php echo $_SESSION['fullname']; ?>">
 </body>
 
 </html>
 <?php
-$full = $_SESSION['fullname'];
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

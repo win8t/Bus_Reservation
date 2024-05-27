@@ -1,3 +1,9 @@
+<?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
+require "dbconnect.php";
+?>
 <html lang="en">
 
 <head>
@@ -12,18 +18,13 @@
 
 </html>
 <?php
-if (!isset($_SESSION)) {
-    session_start();
-  }
-require "dbconnect.php";
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 //Load Composer's autoloader
 require 'vendor/autoload.php';
 
-function send_ticket($username, $email, $ticket_id)
+function send_ticket($passenger, $email, $ticket_id)
 {
 
     $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
@@ -47,13 +48,13 @@ function send_ticket($username, $email, $ticket_id)
         
         $mail->setFrom( 'dawnandal18@gmail.com', 'Alps Bus Booking Details');
 
-        // $mail->setFrom('dawnandal18@gmail.com', 'Alps Bus Booking Details');
+        $mail->setFrom('dawnandal18@gmail.com', 'Alps Bus Booking Details');
         
         $mail->addAddress($email);     // Add a recipient
         //Content
         $mail->isHTML(true);  // Set email format to HTML
         $mail->Subject = "Bus Ticket Number";
-        $mail->Body    = "Hello, " . $username . "!" ."<br> This is your ticket number details: " . $ticket_id;
+        $mail->Body    = "Hello, " . $passenger . "!" ."<br> This is your ticket number details: " . $ticket_id;
 
         $mail->send();
 ?>

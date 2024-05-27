@@ -1,6 +1,8 @@
 <?php
+if (!isset($_SESSION)) {
     session_start();
-    require "dbconnect.php";
+  }
+require "dbconnect.php";
 ?>
 <html lang="en">
 
@@ -63,12 +65,8 @@
     ?>
 
     <div class="d-flex flex-container container-fluid ">
-
-
         <div class="row login-container w-75 mx-auto">
             <div class="col-7 bg-info-subtle p-5 text-center mx-auto banner-shadow rounded">
-
-
                 <div class="row">
                     <div class="col">
                         <h2 class="display-2 about-login">Reset Password</h2>
@@ -83,7 +81,7 @@
                 <form action="ResetPassword.php" method="post" novalidate class="needs-validation">
                     <div class="row justify-content-center">
                         <div class="col-md-6">
-                            <!-- Username input -->
+                            <!-- Password input -->
                             <div class="form-floating mb-3 link-text">
                                 <input type="hidden" name="email" value="<?php echo $_SESSION['email']; ?>">
                                 <input type="password" class="form-control" name="pass" id="floatingInput" required>
@@ -107,20 +105,10 @@
                     </div>
 
                     <div class="row mb-4">
-                        <div class="col d-flex justify-content-center ">
-                            <a href="ForgotPassword.php" class="link-text">Forgot Password?</a>
-                        </div>
-                    </div>
-
-                    <div class="row mb-4">
                             <input type="submit" name="sub" value="Reset" class="btn btn-primary mx-auto btn-block w-50 link-text">
                     </div>
                 </form>
-
-
-
             </div>
-
         </div>
     </div>
     <script src="formvalidation.js"> </script>

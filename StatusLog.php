@@ -1,9 +1,11 @@
 <?php
+if (!isset($_SESSION)) {
+    session_start();
+  }
 require "dbconnect.php";
 set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
 // set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
 include "logger.php";
-
 ?>
 <html lang="en">
 
@@ -37,7 +39,6 @@ include "logger.php";
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <body class="status-body hd-text">
-
     <?php
     date_default_timezone_set("Asia/Manila");
     ?>
@@ -91,7 +92,6 @@ include "logger.php";
             </form>
         </div>
     </nav>
-
 
 <?php
 echo "<div class ='container-fluid bg-info-subtle shadow-sm rounded-3 w-75 p-4'>";
@@ -167,7 +167,6 @@ if (isset($_POST['searchresbutton'])) {
             echo "</tbody></table>";
             echo "</div>";
 
-            // Cancellation form inside the loop
 ?>
             <form action="StatusLog.php" method="post">
                 <input type="hidden" name="ticket_number" value="<?php echo $fielddata['ticket_number']; ?>">
@@ -202,10 +201,9 @@ if (isset($_POST['searchresbutton'])) {
 <form action="StatusLog.php" method="post" class="text-center" novalidate class="needs-validation" >
     <div class="row">
         <div class="col">
-        <div class="invalid-feedback text-start">Please enter your ticket number.</div>
-                                <div class="valid-feedback text-start">Ticker number entered.</div>
+            <div class="invalid-feedback text-start">Please enter your ticket number.</div>
+            <div class="valid-feedback text-start">Ticker number entered.</div>
             <input type="text" name="search" id="" class="form-control rounded-5 p-3 w-75 mx-auto gradient-input border-0" aria-label="Input group example" aria-describedby="invalid-feedback" placeholder="Enter your Ticket Number here!" required>
-        
         </div>
     </div>
     <div class="row">
