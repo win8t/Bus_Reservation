@@ -120,7 +120,7 @@ echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
         <div class="valid-feedback text-center">Payment method selected.</div>
       
 
-        <input type="text" name="pay_ticket" id="" value="<?php echo $_SESSION['ticket_pay'] ?>" readonly />
+        <input type="hidden" name="pay_ticket" id="" value="<?php echo $_SESSION['ticket_pay'] ?>" />
         <div class="row text-center">
             <div class="col">
                 <button type="submit" name="paying" class="btn w-25 rounded-4 btn-primary mt-1">Confirm</button>
