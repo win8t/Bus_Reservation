@@ -145,7 +145,7 @@ require "dbconnect.php";
 
                 </div>
                 <div class="card-footer d-flex align-items-center bg-light justify-content-between">
-                  <a href="User1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
+                  <a href="User2.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                     View Details
                   </a>
                 </div>
@@ -173,7 +173,7 @@ require "dbconnect.php";
 
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
-                  <a href="Logs1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
+                  <a href="Logs2.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                     View Details
                   </a>
                 </div>
@@ -201,7 +201,7 @@ require "dbconnect.php";
 
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
-                  <a href="Bus1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
+                  <a href="Bus2.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                     View Details
                   </a>
                 </div>
@@ -229,7 +229,7 @@ require "dbconnect.php";
                   ?>
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
-                  <a href="Route1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
+                  <a href="Route2.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                     View Details
                   </a>
                 </div>
@@ -256,7 +256,7 @@ require "dbconnect.php";
                   ?>
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
-                  <a href="Schedule1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
+                  <a href="Schedule2.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                     View Details
                   </a>
                 </div>
@@ -283,7 +283,7 @@ require "dbconnect.php";
                   ?>
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
-                  <a href="Reservation1.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
+                  <a href="Reservation2.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
                     View Details
                   </a>
                 </div>

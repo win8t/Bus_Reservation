@@ -110,7 +110,7 @@ echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
     <div class="bg-rowPay rounded-2 p-4">
         
         <select name="method" id="" class="form-select w-50 mb-3 mx-auto mt-3" required>
-            <option default disabled selected value="">Select your payment<span class="text-danger">*</span></option>
+            <option default disabled selected value="">Select your payment</option>
             <option value="Cash">Cash</option>
             <option value="E-wallet">E-wallet (GCash)</option>
         </select>
@@ -121,7 +121,7 @@ echo  "<div class='col p-4 bg-info-subtle rounded-2 m-2'>";
         <input type="hidden" name="pay_ticket" id="" value="<?php echo $_SESSION['ticket_pay'] ?>" />
         <div class="row text-center">
             <div class="col">
-                <button type="submit" name="paying" class="btn w-25 rounded-4 btn-primary mt-1">Confirm</button>
+                <button type="submit" name="paying" class="btn w-25 rounded-pill btn-primary mt-1">Confirm</button>
             </div>
         </div>
     </div>

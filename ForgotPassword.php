@@ -51,11 +51,11 @@ require "dbconnect.php";
                     <!-- Button Function -->
                     <div class="row mb-4">
                         <div class="col text-end">
-                            <input type="submit" name="reset" value="Send" class="btn btn-primary btn-block w-50 link-text">
+                            <input type="submit" name="reset" value="Send" class="btn btn-primary btn-block w-50 link-text rounded-pill">
                         </div>
                         <div class="col text-start">
                             <a href="Login.php">
-                                <input type="button" value="Go Back" class="btn btn-secondary btn-block link-text  w-50">
+                                <input type="button" value="Go Back" class="btn btn-secondary btn-block link-text w-50 rounded-pill">
                             </a>
                         </div>
                     </div>
