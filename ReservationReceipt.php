@@ -83,7 +83,6 @@ $receipt_c_number = $_POST['c_number'];
 $receipt_seatnum = $_POST['seatnum'];
 $seatnum = $_SESSION['seatnum'] = $receipt_seatnum;
 $receipt_payment = "Undecided";
-
 $receipt_status = "Pending";
 
 if (isset($_POST['booking'])) {
