@@ -85,7 +85,7 @@
                     <div class="col">
                     <?php
                     if (isset($_SESSION['message'])) {
-                        echo '<div class="alert alert-warning" role="alert">' . $_SESSION['message'] . '</div>';
+                        echo '<div class="alert alert-success" role="alert">' . $_SESSION['message'] . '</div>';
                         // Unset the message after displaying it
                         unset($_SESSION['message']);
                     }
