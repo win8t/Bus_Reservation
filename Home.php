@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Alps Booking Reservation</title>
+  <title> Alps Home</title>
   <link href=stylez.css rel="stylesheet" />
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
@@ -33,17 +33,11 @@
               <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="Home.php"><i class="bi bi-house-fill"></i> Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto disabled-link" href="#"><i class="bi bi-journal-album"></i> Book</a>
+              <a class="nav-link mx-lg-2 mx-auto disabled-link" href="Booking.php"><i class="bi bi-journal-album"></i> Book</a>
             </li>
             <li class="nav-item">
-                            <a class="nav-link mx-lg-2 mx-auto disabled-link" href="#"><i class="bi bi-bus-front"></i> Status</a>
-                        </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-bus-front"></i> Route</a>
+                <a class="nav-link mx-lg-2 mx-auto disabled-link" href="#"><i class="bi bi-bus-front"></i> Status</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="#"><i class="bi bi-shop"></i> Transit</a>
-            </li> -->
           </ul>
         </div>
 

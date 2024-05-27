@@ -10,10 +10,10 @@ require_once 'email_registration.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Panel</title>
+  <title>Alps User Details</title>
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link rel="stylesheet" href="sidebar10.css">
+  <link rel="stylesheet" href="sidebar13.css">
 </head>
 
 <body class="hd-text">
@@ -317,7 +317,8 @@ require_once 'email_registration.php';
     if ($result->num_rows > 0) {
 
       echo "<div class=' bg-row p-5 rounded'>";
-      echo "<div class='bdr table-responsive'>";
+      echo "<div class='bdr'>";
+      echo "<div class='table-responsive'>";
       echo "<table class='table table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
       echo "<thead class ='table-dark'>";
       echo "<tr>";
@@ -330,6 +331,7 @@ require_once 'email_registration.php';
       echo "<th> Action </th>";
       echo "</tr>";
       echo "</thead>";
+
 
 
       while ($fielddata = $result->fetch_assoc()) {
@@ -423,6 +425,7 @@ require_once 'email_registration.php';
         echo "</tr>";
       }
       echo "</table>";
+      echo "</div>";
       echo "</div>";
       echo "</div>";
     } else {

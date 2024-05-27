@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alps OTP</title>
+    <title>Alps GCash</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="stylez.css" rel="stylesheet" />
@@ -19,17 +19,14 @@
         <div class="row login-container w-75 mx-auto">
             <div class="col-7 bg-info-subtle p-5 text-center mx-auto banner-shadow rounded">
 
-
                 <div class="row">
                     <div class="col">
-
-
-
-                        <h2 class="display-2 about-login">Gcash</h2>
+                        <img src="GCash_logo.png" class="w-50 img-fluid mb-3">
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
+                        <p class="h5">GCash Number: 0916 489 1581</p>
                         <p class="link-text">Please enter your reference number.</p>
                     </div>
                 </div>
@@ -44,16 +41,12 @@
                                 <div class="invalid-feedback text-start">Enter your Reference Number.</div>
                                 <div class="valid-feedback text-start">Reference Number entered.</div> 
                             </div>
-                            
                         </div>
-
-
                     </div>
 
-
-                    <div class="row mb-4">
+                    <div class="row mb-3">
                         <div class="col text-center">
-                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-25 link-text">
+                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-25 link-text rounded-5">
                         </div>
                       
                     </div>

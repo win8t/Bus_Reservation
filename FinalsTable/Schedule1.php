@@ -11,11 +11,10 @@ include "logger.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Panel</title>
+    <title>Alps Schedule Details</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <link rel="stylesheet" href="sidebar10.css">
+    <link rel="stylesheet" href="sidebar13.css">
 
 </head>
 
@@ -158,11 +157,6 @@ include "logger.php";
                             <div class="modal-body">
                                 <form action="Schedule1.php" method="post" novalidate class="needs-validation">
                                     <div class="row form-outline">
-                                        <!-- Schedule ID input -->
-                                        <!-- <div class="col">
-                          <input type="number" name="schedule_id" id="" class="form-control" />
-                          <label class="form-label" for="">Schedule ID</label>
-                        </div> -->
 
                                         <div class="col">
                                             <!-- Bus ID input -->
@@ -190,6 +184,9 @@ include "logger.php";
                                                 ?>
 
                                             </select>
+                                            <div class="form-text">
+                                                Bus & Routes should match (ex. B1 to B1).
+                                            </div>
                                             <div class="invalid-feedback text-start">Select a Bus Number.</div>
                                             <div class="valid-feedback text-start">Bus Number selected.</div>
 
@@ -398,19 +395,14 @@ include "logger.php";
             $selectsql = "Select * from sched_reserve_view ORDER BY  `Schedule ID` DESC";
         }
 
-
-
-
-
-
-
         $result = $con->query($selectsql);
 
         //check table if there is a record
         //num_rows - will return the no of rows inside a table
         if ($result->num_rows > 0) {
             echo "<div class=' bg-row p-5 rounded'>";
-            echo "<div class='bdr table-responsive'>";
+            echo "<div class='bdr'>";
+            echo "<div class='table-responsive'>";
             echo "<table class='table table-striped text-center table-bordered w-100 border border-2  border-primary-subtle align-middle mx-auto'>";
             echo "<thead class ='table-dark'>";
             echo "<tr>";
@@ -499,10 +491,6 @@ include "logger.php";
 
                     <!-- Available Seats input -->
                     <div class="row form-outline">
-                        <!--    <div class="col">
-                            <input type="number" name="update_totalSeats" value="<?php echo $fielddata['Total Seats']; ?>" class="form-control" />
-                            <label class="form-label" for="">Total Seats</label>
-                        </div> -->
                         <div class="col">
                             <input type="number" name="update_availableSeats" value="<?php echo $fielddata['Available Seats']; ?>" class="form-control" />
                             <label class="form-label" for="">Available Seats</label>
@@ -526,6 +514,8 @@ include "logger.php";
             echo "</table>";
             echo "</div>";
             echo "</div>";
+            echo "</div>";
+            echo "</div>";
         } else {
             echo "<div class='row'>";
             echo "<div class='col'>";
@@ -535,14 +525,7 @@ include "logger.php";
         }
 
 
-
-
-
-
-
         //Update Button
-
-
         if (isset($_POST['updating'])) {
             $scheduleID_update = $_POST['update_scheduleID'];
             $busID_update = $_POST['update_busID'];
@@ -551,52 +534,43 @@ include "logger.php";
             $departureDate_update = $_POST['update_departureDate'];
             $departureTime_update = date_format(date_create($_POST['update_departureTime']), 'Y-m-d H:i:s');
 
-
-
             $availableSeats_update = $_POST['update_availableSeats'];
 
             // Using prepared statements for security and reliability
             $update_schedule_query = $con->prepare("
-        UPDATE tbl_schedule 
-        SET 
-            departure_date = ?, 
-            available_seats = ?,
-            departure_time = ?
-        WHERE 
-            schedule_id = ?
-    ");
+                UPDATE tbl_schedule 
+                SET 
+                    departure_date = ?, 
+                    available_seats = ?,
+                    departure_time = ?
+                WHERE 
+                    schedule_id = ?
+            ");
             $update_schedule_query->bind_param("sisi", $departureDate_update, $availableSeats_update, $departureTime_update, $scheduleID_update);
 
 
             $result_sched = $update_schedule_query->execute();
-
-            /*   $updatesql = "UPDATE tbl_schedule SET schedule_id = $scheduleID_update, bus_id = $busID_update,
-            route_id = $routeID_update, departure_date = '$departureDate_update', departure_time = '$departureTime_update',
-            available_seats = $availableSeats_update WHERE schedule_id = $scheduleID_update";
-            $resultup = $con->query($updatesql); */
 
             //check if successfully updated
             if ($result_sched || $result_bus || $result_route == True) {
             ?>
                 <script>
                    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Update has been successful. Please refresh the page.",
-      showConfirmButton: false,
-      timer: 1500
-    });
-                </script>
-        <?php
-        $action = 'Updated Schedule';
-   logActivity($con, $userID, $action);
-            } else {
-                //if not, check query error details
-                echo $con->error;
-            }
-        }
-
-
+                    position: "center",
+                    icon: "success",
+                    title: "Update has been successful. Please refresh the page.",
+                    showConfirmButton: false,
+                    timer: 1500
+                    });
+                                </script>
+                        <?php
+                        $action = 'Updated Schedule';
+                logActivity($con, $userID, $action);
+                            } else {
+                                //if not, check query error details
+                                echo $con->error;
+                            }
+                        }
 
         ?>
     </div>

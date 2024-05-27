@@ -40,16 +40,11 @@ require "dbconnect.php";
 
                 <form action="Registration.php" method="post" novalidate class="needs-validation">
 
-
+                    <!-- Fullname input -->
                     <div class="row justify-content-center">
                         <div class="col-md-4">
-                            <!-- Fullname input -->
+                            
                             <div class="form-floating mb-3 link-text">
-                                <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
-                                <div class="invalid-feedback text-start">Enter your full name.</div>
-                                <div class="valid-feedback text-start">Entered full name.</div> -->
-
                                 <input type="text" class="form-control" name="f_name" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">First Name<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Enter your first name.</div>
@@ -58,27 +53,13 @@ require "dbconnect.php";
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <!-- Fullname input -->
                             <div class="form-floating mb-3 link-text">
-                                <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
-                                <div class="invalid-feedback text-start">Enter your full name.</div>
-                                <div class="valid-feedback text-start">Entered full name.</div> -->
-
                                 <input type="text" class="form-control" name="m_name" id="floatingInput">
                                 <label for="floatingInput" class="link-text">Middle Name</label>
-
-
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <!-- Fullname input -->
                             <div class="form-floating mb-3 link-text">
-                                <!--   <input type="text" class="form-control" name="fullname" id="floatingInput" required>
-                                <label for="floatingInput" class="link-text">Full Name (FN LN MI)<span class ="text-danger">*</span></label>
-                                <div class="invalid-feedback text-start">Enter your full name.</div>
-                                <div class="valid-feedback text-start">Entered full name.</div> -->
-
                                 <input type="text" class="form-control" name="l_name" id="floatingInput" required>
                                 <label for="floatingInput" class="link-text">Last Name<span class="text-danger">*</span></label>
                                 <div class="invalid-feedback text-start">Enter your last name.</div>

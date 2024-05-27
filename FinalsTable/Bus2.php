@@ -8,11 +8,10 @@ include "logger.php";
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Panel</title>
+  <title>Alps Bus Details</title>
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-  <link rel="stylesheet" href="sidebar10.css">
+  <link rel="stylesheet" href="sidebar13.css">
 
 </head>
 
@@ -115,9 +114,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
   </aside>
   <div class="container-fluid">
 
-
-
-
     <div class="row ">
       <div class="col pb-2 ">
         <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">BUS DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
@@ -182,8 +178,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
               <div class="modal-body">
                 <form action="Bus2.php" method="post" novalidate class="needs-validation">
 
-
-                  <!-- Bus ID input -->
+                  <!-- Bus Number input -->
                   <div class="row form-outline">
                     <div class="col">
                   
@@ -195,12 +190,11 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
                     </div>
 
-                    <!-- Bus Number input -->
+                    <!-- Bus Type input -->
                     <div class="col">
                       <label class="form-label" for="">Bus Type<span class="text-danger">*</span></label>
                       <select name="bus_type" id="bus_type" class="form-select" required>
                         <?php
-
 
                         echo '<option value="" selected disabled>Select Bus Type</option>';
 
@@ -268,8 +262,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
                       <div class="invalid-feedback text-start">Enter departure location.</div>
                       <div class="valid-feedback text-start">Departure location entered.</div>
-
-
 
                     </div>
 
@@ -366,7 +358,8 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
     //Add Button
     if (isset($_POST['add'])) {
-      $busNum = $_POST['bus_number'];
+      $nameBus = 'ALPS'.$_POST['bus_number'];
+      $busNum = $nameBus;
       $busType = $_POST['bus_type'];
       $seatCap = $_POST['seating_capacity'];
       $driverName = $_POST['driver_name'];
@@ -423,7 +416,8 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
     if ($result->num_rows > 0) {
 
       echo "<div class=' bg-row p-5 rounded'>";
-      echo "<div class='bdr table-responsive'>";
+      echo "<div class='bdr'>";
+      echo "<div class='table-responsive'>";
       echo "<table class='table table-striped text-center   table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
       echo "<thead class ='table-dark'>";
       echo "<tr>";
@@ -517,7 +511,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
             </div>
           </div>
  
-          
           <!-- Departure Location input -->
           <div class="row form-outline">
             <div class="col">
@@ -562,6 +555,8 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
       echo "</table>";
       echo "</div>";
       echo "</div>";
+      echo "</div>";
+      echo "</div>";
     } else {
       echo "<div class='row'>";
       echo "<div class='col'>";
@@ -571,8 +566,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
     }
 
     //Update Button
-
-
     if (isset($_POST['updating'])) {
       $busID_update = $_POST['update_id'];
       $busNum_update = $_POST['update_number'];
@@ -612,8 +605,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
         echo $con->error;
       }
     }
-
-
 
     ?>
   </div>
