@@ -105,7 +105,7 @@ require "dbconnect.php";
                     </div>
 
                     <div class="row mb-4">
-                            <input type="submit" name="sub" value="Reset" class="btn btn-primary mx-auto btn-block w-50 link-text">
+                            <input type="submit" name="sub" value="Reset" class="btn btn-primary mx-auto btn-block w-50 link-text rounded-pill">
                     </div>
                 </form>
             </div>

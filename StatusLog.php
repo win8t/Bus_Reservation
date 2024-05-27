@@ -175,13 +175,12 @@ if (isset($_POST['searchresbutton'])) {
                 <input type="hidden" name="status" value="<?php echo $fielddata['status']; ?>">
                 <div class="row text-center">
                     <div class="col">
-                    <?php if ($fielddata['status'] == 'Reserved' && $fielddata['payment_method'] == 'E-wallet' || $fielddata['status'] == 'Pending' && $fielddata['payment_method'] == 'Cash' || $fielddata['status'] == 'Pending' && $fielddata['payment_method'] == 'Undecided') {?>
-
+                    <?php if ($fielddata['status'] == 'Reserved' && $fielddata['payment_method'] == 'Cash' || $fielddata['status'] == 'Boarded' || $fielddata['status'] == 'Cancelled') {?>
                             <button type="button" value="PrintBooking" id="printsButton" class="shadows btn btn-success mx-2 w-25 rounded-4"> Print </button>
-                            <button type="submit" value="CancelBooking" name="cancel" class="shadows btn btn-danger w-25 rounded-4" onclick="return confirm('Are you sure you want to cancel?');"> Cancel Booking </button>
                     <?php
                         } else {?>
                             <button type="button" value="PrintBooking" id="printsButton" class="shadows btn btn-success mx-2 w-25 rounded-4"> Print </button>
+                            <button type="submit" value="CancelBooking" name="cancel" class="shadows btn btn-danger w-25 rounded-4" onclick="return confirm('Are you sure you want to cancel?');"> Cancel Booking </button>
                         <?php } ?>
                     </div>
                 </div>

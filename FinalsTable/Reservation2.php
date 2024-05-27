@@ -32,7 +32,7 @@ include "logger.php";
     </script>
     <?php
     date_default_timezone_set("Asia/Manila");
-  set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
     // set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
     require_once 'SeatFunction.php';
     require_once "BusArrays.php";
@@ -306,7 +306,7 @@ include "logger.php";
                                     echo "<div class='w-50 mx-auto text-auto'>";
 
                             ?>
-                                    <form action="\FINALS PROJECT\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');" novalidate class="needs-validation">
+                                    <form action="\FINAL_ALPS_BUS\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');" novalidate class="needs-validation">
                                         <div class="row  form-outline">
 
                                             <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
@@ -483,8 +483,6 @@ include "logger.php";
     </div>
 
     <?php
-    require_once "dbconnect.php";
-
     //Search Button
     if (isset($_POST['searchbutton'])) {
 
@@ -685,8 +683,6 @@ include "logger.php";
 
 
     //Update Button
-
-
     if (isset($_POST['updating'])) {
         $reservationID_update = $_POST['update_reservationID'];
         $scheduleID_update = $_POST['update_scheduleID'];

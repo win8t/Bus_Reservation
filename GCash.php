@@ -49,7 +49,7 @@ include "logger.php";
                         <!-- Button function -->
                     <div class="row mb-3">
                         <div class="col text-center">
-                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-25 link-text rounded-5">
+                            <input type="submit" name="ver" value="Verify" class="btn btn-primary btn-block w-25 link-text rounded-pill">
                         </div>
                     </div>
                 </form>
