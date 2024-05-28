@@ -1,7 +1,7 @@
 <?php
 require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
-  // set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
+// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+  set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
 include "logger.php";
 require_once 'email_registration.php';
 ?>
@@ -148,19 +148,19 @@ require_once 'email_registration.php';
                   <!-- Full Name input -->
                   <div class="col">
                     <label class="form-label text-secondary" for="">First Name<span class="text-danger">*</span></label>
-                    <input type="text" name="f_name" id="" class="form-control" required />
+                    <input type="text" name="f_name" id="" class="form-control" required  placeholder="Ex. Matthew"/>
                     <div class="invalid-feedback text-start">Enter your first name.</div>
                     <div class="valid-feedback text-start">Entered first name.</div>
                   </div>
 
                   <div class="col">
                     <label class="form-label text-secondary" for="">Middle Name</label>
-                    <input type="text" name="m_name" id="" class="form-control" />
+                    <input type="text" name="m_name" id="" class="form-control" placeholder="Ex. L." />
                   </div>
 
                   <div class="col">
                     <label class="form-label text-secondary" for="">Last Name<span class="text-danger">*</span></label>
-                    <input type="text" name="l_name" id="" class="form-control" required />
+                    <input type="text" name="l_name" id="" class="form-control" placeholder="Ex. Tomaneng" required />
                     <div class="invalid-feedback text-start">Enter your last name.</div>
                     <div class="valid-feedback text-start">Entered last name.</div>
                   </div>
@@ -187,7 +187,7 @@ require_once 'email_registration.php';
                 <div class="row form-outline">
                   <div class="col">
                     <label class="form-label" for="">Username<span class="text-danger">*</span></label>
-                    <input type="text" id="" name="username" class="form-control" required />
+                    <input type="text" id="" name="username" class="form-control" placeholder="Ex. Malt12324" required />
                     <div class="invalid-feedback text-start">Enter your username.</div>
                     <div class="valid-feedback text-start">Entered username.</div>
                   </div>
@@ -195,14 +195,14 @@ require_once 'email_registration.php';
                   <!-- Password input -->
                   <div class="col">
                     <label class="form-label" for="">Password<span class="text-danger">*</span></label>
-                    <input type="password" name="pass" id="" class="form-control" required />
+                    <input type="password" name="pass" id="" class="form-control" placeholder="Ex. IcS2609@" required />
                     <div class="invalid-feedback text-start">Enter your password.</div>
                     <div class="valid-feedback text-start">Entered password</div>
                   </div>
 
                   <div class="col">
                     <label class="form-label" for="">Confirm Password<span class="text-danger">*</span></label>
-                    <input type="password" name="confirmpass" id="" class="form-control" required />
+                    <input type="password" name="confirmpass" id="" class="form-control" placeholder="Ex. Reenter Pass" required />
                     <div class="invalid-feedback text-start">Reenter your password.</div>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ require_once 'email_registration.php';
                 <div class="row form-outline mt-2">
                   <div class="col">
                     <label class="form-label" for="">Email<span class="text-danger">*</span></label>
-                    <input type="email" name="email" id="" class="form-control" required />
+                    <input type="email" name="email" id="" class="form-control" placeholder="Ex. matthewabraham.tomaneng.cics@ust.edu.ph" required />
                     <div class="invalid-feedback text-start m-0 ">Enter your email.</div>
                     <div class="valid-feedback text-start">Entered email.</div>
                   </div>

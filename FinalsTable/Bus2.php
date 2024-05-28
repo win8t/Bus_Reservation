@@ -183,7 +183,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                     <div class="col">
                   
                       <label class="form-label" for="">Bus Number<span class="text-danger">*</span></label>
-                      <input type="text" name="bus_number" id="" class="form-control" min="0" required />
+                      <input type="text" name="bus_number" id="" class="form-control" min="0" required placeholder="Ex. 12422" />
                       <div class="invalid-feedback text-start">Enter its bus number.</div>
                       <div class="valid-feedback text-start">Bus number entered.</div>
                   
@@ -212,19 +212,25 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
                   <!-- Seating Capacity input -->
                   <div class="row form-outline mt-2">
-                    <div class="col">
+                                    <div class="col">
                       <label class="form-label" for="">Seating Capacity<span class="text-danger">*</span></label>
-                      <input type="number" name="seating_capacity" id="" class="form-control" min="0" required />
-                      <div class="invalid-feedback text-start">Enter its seating capacity name.</div>
-                      <div class="valid-feedback text-start">Seating capacity entered.</div>
+                      <select name="seating_capacity" id="" class="form-select" required>
+                          <option value="" selected disabled>Select Seat Capacity</option>
+                          <?php
+                          foreach ($seat_cap as $seat => $cap) {
+                              echo '<option value="' . $cap . '">'. $seat. " - " .  $cap . '</option>';
+                          }
+                          ?>
+                      </select>
+                      <div class="invalid-feedback text-start">Set seating capacity.</div>
+                      <div class="valid-feedback text-start">Seating capacity selected.</div>
+                  </div>
 
-
-                    </div>
 
                     <!-- Driver Name input -->
                     <div class="col">
                       <label class="form-label" for="">Driver Name<span class="text-danger">*</span></label>
-                      <input type="text" name="driver_name" id="" class="form-control" required />
+                      <input type="text" name="driver_name" id="" class="form-control" required placeholder="Ex. Matthew Tomaneng"  />
                       <div class="invalid-feedback text-start">Enter driver's name.</div>
                       <div class="valid-feedback text-start">Driver name entered.</div>
 
@@ -316,6 +322,19 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                     </div>
                   </div>
 
+                  <div class="row form-outline mt-2">
+                  <!-- Price input -->
+                  <div class="col">
+                    <label class="form-label" for="price">Price<span class="text-danger">*</span></label>
+                      <div class="input-group">
+                        <span class="input-group-text hd-text">₱</span>
+                        <input type="number" name="price" class="form-control" aria-label="Price" placeholder="Ex. 1200" min="0" required>
+                        <div class="invalid-feedback text-start">Set price.</div>
+                        <div class="valid-feedback text-start">Price has been set.</div>
+                      </div>
+                  </div>
+                </div>
+
                   <!-- Save button -->
 
                   <div class="modal-footer d-flex justify-content-center">
@@ -348,6 +367,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
         OR departure_location LIKE'%" . $search . "%' 
         OR destination LIKE'%" . $search . "%'
         OR departure_time LIKE'%" . $search . "%'
+        OR price LIKE'%" . $search . "%'
         OR arrival_time LIKE'%" . $search . "%'  ORDER BY bus_id DESC";
       } else {
         $selectsql = "Select * from tbl_bus ORDER BY bus_id DESC";
@@ -367,6 +387,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
       $destination = $_POST['destination'];
       $departureTime = $_POST['departure_time'];
       $arrivalTime = $_POST['arrival_time'];
+      $price = $_POST['price'];
   
       try {
           // Check if the route exists for the specified departure location and destination
@@ -378,8 +399,8 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
           }
   
           // Insert the bus details into the database
-          $insertsql = "INSERT INTO tbl_bus (bus_number, bus_type, seating_capacity, driver_name, departure_location, destination, departure_time, arrival_time)
-              VALUES ('$busNum', '$busType', $seatCap, '$driverName', '$departureLoc', '$destination', '$departureTime', '$arrivalTime')";
+          $insertsql = "INSERT INTO tbl_bus (bus_number, bus_type, seating_capacity, driver_name, departure_location, destination, departure_time, arrival_time, price)
+              VALUES ('$busNum', '$busType', $seatCap, '$driverName', '$departureLoc', '$destination', '$departureTime', '$arrivalTime', '$price')";
   
           $result = $con->query($insertsql);
   
@@ -430,6 +451,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
       echo "<th> Destination </th>";
       echo "<th> Departure Time </th>";
       echo "<th> Arrival Time </th>";
+      echo "<th> Price (₱)</th>";
       echo "<th> Action </th>";
       echo "</tr>";
       echo "</thead>";
@@ -446,6 +468,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
         echo "<td>" . $fielddata['destination'] . "</td>";
         echo "<td>" . date_format(date_create($fielddata['departure_time']), 'Y-m-d g:i A') . "</td>";
         echo "<td>" . date_format(date_create($fielddata['arrival_time']), 'Y-m-d g:i A') . "</td>";
+        echo "<td>" . number_format($fielddata['price']) . "</td>";
         echo "<td class ='pt-3 pb-0'>";
       ?>
         <form method="post" action="Bus2.php">
@@ -539,6 +562,20 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
             </div>
           </div>
 
+          <div class="row form-outline mt-2">
+                  <!-- Price input -->
+                  <div class="col">
+                   
+                      <div class="input-group">
+                        <span class="input-group-text hd-text">₱</span>
+                        <input type="number" name="update_price" class="form-control" aria-label="Price" placeholder="Price" min="0" required  value="<?php echo $fielddata['price']; ?>">
+                      </div>
+                      <label class="form-label" for="price">Price</label>
+                  </div>
+                </div>
+
+  
+
           <!-- Update button -->
           <div class="row form-outline text-center pt-1">
             <div class="col">
@@ -576,11 +613,12 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
       $destination_update = $_POST['update_destination'];
       $departureTime_update = $_POST['update_dtime'];
       $arrivalTime_update = $_POST['update_atime'];
+      $price_update = $_POST['update_price'];
 
       $updatesql = "UPDATE tbl_bus SET bus_id = $busID_update, bus_number = '$busNum_update', 
        bus_type = '$busType_update', seating_capacity = $seatCap_update, driver_name = '$driverName_update',
        departure_location = '$departureLoc_update', destination = '$destination_update', 
-       departure_time = '$departureTime_update', arrival_time = '$arrivalTime_update'
+       departure_time = '$departureTime_update', arrival_time = '$arrivalTime_update', price = '$price_update'
        WHERE bus_id = $busID_update";
 
       $resultup = $con->query($updatesql);

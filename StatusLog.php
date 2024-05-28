@@ -3,8 +3,8 @@ if (!isset($_SESSION)) {
     session_start();
   }
 require "dbconnect.php";
-set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
-// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
+// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS\FinalsTable');
+ set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT\FinalsTable');
 include "logger.php";
 ?>
 <html lang="en">
@@ -90,6 +90,10 @@ include "logger.php";
                     <i class="bi bi-person-circle"></i><?php echo " " . $_SESSION['username']; ?>
                 </button>
             </form>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+            
         </div>
     </nav>
 
@@ -141,7 +145,8 @@ if (isset($_POST['searchresbutton'])) {
 
     if ($status_result->num_rows > 0) {
 
-        echo "<div class ='table-responsive bdr m-3'>";
+        echo "<div class ='bdr'>";
+        echo "<div class ='table-responsive m-3'>";
         echo "<table class='table table-sm table-bordered border-primary-subtle table-hover mx-auto'>";
         echo "<thead class ='table-dark text-center'><tr>";
         echo "<th>Ticket Number</th>";
@@ -165,6 +170,7 @@ if (isset($_POST['searchresbutton'])) {
             echo "<td>" . $fielddata['status'] . "</td>";
             echo "</tr>";
             echo "</tbody></table>";
+            echo "</div>";
             echo "</div>";
 
 ?>

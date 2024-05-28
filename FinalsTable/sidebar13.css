@@ -292,6 +292,14 @@ tbody{
   -webkit-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
   -moz-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
 }
+.bg-row1 {
+  width:98.5%;
+  background-color: #072c4b;
+  box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
+  -webkit-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
+  -moz-box-shadow: -2px 2px 30px 9px rgba(0,0,0,0.5) inset;
+  margin: 0 auto;
+}
 
 .tble-bg {
   background-color: rgb(7, 44, 75) !important;
