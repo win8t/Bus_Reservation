@@ -30,10 +30,23 @@ include "logger.php";
             document.getElementById('destination').value = originValue;
         }
     </script>
+     <script>
+        function setMinDate() {
+            var philippineDate = new Date();
+            var philippineOffset = 8 * 60; 
+            var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
+            var philippineTime = new Date(utc + (60000 * philippineOffset));
+
+            var formattedDate = philippineTime.toLocaleDateString('en-CA');
+
+            document.getElementById("tripDate3").setAttribute('type', 'date');
+            document.getElementById("tripDate3").setAttribute('min', formattedDate);
+        }
+    </script>
     <?php
     date_default_timezone_set("Asia/Manila");
-    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
-    // set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
+    //set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+     set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
     require_once 'SeatFunction.php';
     require_once "BusArrays.php";
     ?>
@@ -306,11 +319,11 @@ include "logger.php";
                                     echo "<div class='w-50 mx-auto text-auto'>";
 
                             ?>
-                                    <form action="\FINAL_ALPS_BUS\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');" novalidate class="needs-validation">
+                                    <form action="\FINALS PROJECT\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');" novalidate class="needs-validation">
                                         <div class="row  form-outline">
 
                                             <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
-                                            <!-- Full Name input -->
+                                    
                                             <div class="col">
                                                 <input type="hidden" name="book_id" value="<?php echo $maltfielddata['Schedule ID'] ?>" class="form-control" readonly />
 
@@ -344,7 +357,7 @@ include "logger.php";
                                         </div>
 
                                         <div class="row form-outline">
-                                            <!-- Full Name input -->
+                                            <!-- Destinations input -->
                                             <div class="col">
                                                 <input type="hidden" name="book_depart" value="<?php echo $maltfielddata['Departure Area']; ?>" class="form-control" readonly />
 
@@ -356,7 +369,7 @@ include "logger.php";
                                         </div>
 
                                         <div class="row form-outline">
-                                            <!-- Full Name input -->
+                                            <!-- Price input -->
                                             <div class="col">
                                                 <input type="hidden" name="book_price" value="<?php echo number_format($maltfielddata['Price']); ?>" class="form-control" readonly />
 
@@ -364,7 +377,7 @@ include "logger.php";
                                         </div>
 
                                         <div class="row form-outline">
-                                            <!-- Full Name input -->
+                                            <!-- Seat input -->
                                             <div class="col">
                                                 <input type="hidden" name="book_tseats" value="<?php echo $maltfielddata['Total Seats']; ?>" class="form-control" readonly />
 
@@ -379,7 +392,7 @@ include "logger.php";
                                             <label class="form-label" for="">Passenger Name</label>
                                             <div class="col">
                                                 <label class="form-label text-secondary" for="">First Name<span class="text-danger">*</span></label>
-                                                <input type="text" id="" name="f_name" class="form-control" required />
+                                                <input type="text" id="" name="f_name" class="form-control" placeholder="Ex. Dawn" required />
                                                 <div class="invalid-feedback text-start">Enter your first name.</div>
                                                 <div class="valid-feedback text-start">First name entered.</div>
 
@@ -387,12 +400,12 @@ include "logger.php";
 
                                             <div class="col">
                                                 <label class="form-label text-secondary" for="">Middle Name</label>
-                                                <input type="text" id="" name="m_name" class="form-control" />
+                                                <input type="text" id="" name="m_name" class="form-control" placeholder="Ex. C." />
                                             </div>
 
                                             <div class="col">
                                                 <label class="form-label text-secondary" for="">Last Name<span class="text-danger">*</span></label>
-                                                <input type="text" id="" name="l_name" class="form-control" required />
+                                                <input type="text" id="" name="l_name" class="form-control" placeholder="Ex. Andal" required />
                                                 <div class="invalid-feedback text-start">Enter your last name.</div>
                                                 <div class="valid-feedback text-start">Last name entered.</div>
                                             </div>
@@ -421,7 +434,7 @@ include "logger.php";
 
                                             <div class="col">
                                                 <label class="form-label" for="">Contact Number<span class="text-danger">*</span></label>
-                                                <input type="number" name="c_number" id="" class="form-control" min="0" required />
+                                                <input type="number" name="c_number" id="" class="form-control" min="0" placeholder="Ex. 09177543316" required />
 
                                                 <div class="invalid-feedback text-start">Enter your contact.</div>
                                                 <div class="valid-feedback text-start">Contact information entered.</div>
@@ -519,10 +532,10 @@ include "logger.php";
 
 
     if ($result->num_rows > 0) {
-        echo "<div class=' bg-row mt-2 p-5 rounded'>";
+        echo "<div class=' bg-row1 mt-2 p-5 rounded'>";
         echo "<div class='bdr'>";
         echo "<div class='table-responsive'>";
-        echo "<table class='table table-sm table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
+        echo "<table class='table table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
         echo "<thead class ='table-dark'>";
         echo "<tr>";
         echo "<th> Reservation ID </th>";
@@ -563,7 +576,7 @@ include "logger.php";
             echo "<td>" . $fielddata['contact_information'] . "</td>";
             echo "<td>" . $fielddata['seat_number'] . "</td>";
             echo "<td>" . date_format(date_create($fielddata['reservation_date']), 'Y-m-d g:i A') . "</td>";
-            echo "<td>" . $fielddata['price'] . "</td>";
+            echo "<td>" . number_format($fielddata['price']) . "</td>";
             echo "<td>" . $fielddata['payment_method'] . "</td>";
             echo "<td>" . $fielddata['reference_num'] . "</td>";
             echo "<td>" . $fielddata['status'] . "</td>";
@@ -592,17 +605,17 @@ include "logger.php";
                     <input type="hidden" name="update_reservationID" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" readonly />
                 </div>
                 <div class="col">
-                    <!-- Reservation ID input -->
+                    <!-- Schedule ID input -->
                     <input type="hidden" name="update_scheduleID" value="<?php echo $fielddata['schedule_id']; ?>" class="form-control" readonly />
 
                 </div>
                 <div class="col">
-                    <!-- Reservation ID input -->
+                    <!-- Bus ID input -->
                     <input type="hidden" name="update_busid" value="<?php echo $fielddata['bus_id']; ?>" class="form-control" readonly />
 
                 </div>
                 <div class="col">
-                    <!-- Reservation ID input -->
+                    <!-- Route ID input -->
                     <input type="hidden" name="update_routeid" value="<?php echo $fielddata['route_id']; ?>" class="form-control" readonly />
 
                 </div>
@@ -668,9 +681,8 @@ include "logger.php";
             echo "</td>";
             echo "</tr>";
         }
-        echo "</div>";
-        echo "</div>";
         echo "</table>";
+        echo "</div>";
         echo "</div>";
         echo "</div>";
     } else {

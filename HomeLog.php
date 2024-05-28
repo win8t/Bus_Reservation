@@ -21,41 +21,51 @@ require "dbconnect.php";
   </script>
   <script src="bootstrap.min.js"></script>
 
-  <nav class="navbar navbar-expand-lg  fixed-top navbar-home">
+  <nav class="navbar navbar-expand-lg fixed-top navbar-home">
     <div class="container-fluid">
-      <a class="navbar-brand me-auto ml-1 pe-none" href="#" aria-disabled="true" tabindex="-1">
-        <img src="Alps.png" alt="" class="logo img-fluid">
+        <a class="navbar-brand me-auto ml-1 pe-none" href="#" aria-disabled="true" tabindex="-1">
+            <img src="Alps.png" alt="Logo" class="logo img-fluid">
+        </a>
 
-      </a>
+      
 
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Alps</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Alps</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-center flex-grow-1 pe-5">
+                    <li class="nav-item">
+                        <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="HomeLog.php">
+                            <i class="bi bi-house-fill"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-lg-2 mx-auto" href="BookingLog.php">
+                            <i class="bi bi-journal-album"></i> Book
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-lg-2 mx-auto" href="StatusLog.php">
+                            <i class="bi bi-bus-front"></i> Status
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
-        <div class="offcanvas-body">
-          <ul class="navbar-nav justify-content-center flex-grow-1 pe-5">
-            <li class="nav-item">
-              <a class="nav-link active mx-lg-2 mx-auto" aria-current="page" href="HomeLog.php"><i class="bi bi-house-fill"></i> Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="BookingLog.php"><i class="bi bi-journal-album"></i> Book</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link mx-lg-2 mx-auto" href="StatusLog.php"><i class="bi bi-bus-front"></i> Status</a>
-            </li>
-          </ul>
-        </div>
-
-      </div>
         <form action="Logout.php" method="post">
-          <button class="home-login-button mt-4 border-0" type="submit" name="logout" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
-            <i class="bi bi-person-circle"></i><?php echo " ".$_SESSION['username']; ?>
-          </button>
+            <button class="home-login-button mt-4 border-0" type="submit" name="logout" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+                <i class="bi bi-person-circle"></i><?php echo " " . $_SESSION['username']; ?>
+            </button>
         </form>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
     </div>
-  </nav>
+</nav>
 
   <div class="col h-75">
     <div class="carousel slide  carousel-dark" id="carouselDemo" data-bs-wrap="true" data-bs-ride="carousel">

@@ -17,10 +17,35 @@ include "logger.php";
 </head>
 
 <body class="hd-text">
+<script>
+        function swapValues() {
+            event.preventDefault();
+            // Get the selected values of origin and destination
+            var originValue = document.getElementById('origin').value;
+            var destinationValue = document.getElementById('destination').value;
+
+            // Swap the values
+            document.getElementById('origin').value = destinationValue;
+            document.getElementById('destination').value = originValue;
+        }
+    </script>
+     <script>
+        function setMinDate() {
+            var philippineDate = new Date();
+            var philippineOffset = 8 * 60; 
+            var utc = philippineDate.getTime() + (philippineDate.getTimezoneOffset() * 60000);
+            var philippineTime = new Date(utc + (60000 * philippineOffset));
+
+            var formattedDate = philippineTime.toLocaleDateString('en-CA');
+
+            document.getElementById("tripDate3").setAttribute('type', 'date');
+            document.getElementById("tripDate3").setAttribute('min', formattedDate);
+        }
+    </script>
     <?php
     date_default_timezone_set("Asia/Manila");
-   set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
-    // set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
+//    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+    set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
     require_once 'SeatFunction.php';
 
     require_once "BusArrays.php";
@@ -242,7 +267,6 @@ include "logger.php";
                                     echo "</tr>";
                                     echo "<thead class ='table-dark'>";
                                     echo "<tr>";
-                                    /* echo "<th > Schedule ID </th>"; */
                                     echo "<th> Bus Number </th>";
                                     echo "<th> Bus Type </th>";
                                     echo "<th> Departure Date </th>";
@@ -358,20 +382,20 @@ include "logger.php";
                                                 <label class="form-label" for="">Passenger Name</label>
                                                 <div class="col">
                                                     <label class="form-label text-secondary" for="">First Name<span class="text-danger">*</span></label>
-                                                    <input type="text" id="" name="f_name" class="form-control" required />
+                                                    <input type="text" id="" name="f_name" class="form-control" placeholder="Ex. Dawn" required />
                                                     <div class="invalid-feedback text-start">Enter your first name.</div>
                                                     <div class="valid-feedback text-start">First name entered.</div>
 
                                                 </div>
 
                                                 <div class="col">
-                                                    <label class="form-label text-secondary" for="">Middle Name</label>
-                                                    <input type="text" id="" name="m_name" class="form-control" />
+                                                    <label class="form-label text-secondary" for="">Middle Name </label>
+                                                    <input type="text" id="" name="m_name" class="form-control" placeholder="Ex. C."/>
                                                 </div>
 
                                                 <div class="col">
                                                     <label class="form-label text-secondary" for="">Last Name<span class="text-danger">*</span></label>
-                                                    <input type="text" id="" name="l_name" class="form-control" required />
+                                                    <input type="text" id="" name="l_name" class="form-control" placeholder="Ex. Andal" required />
                                                     <div class="invalid-feedback text-start">Enter your last name.</div>
                                                     <div class="valid-feedback text-start">Last name entered.</div>
                                                 </div>
@@ -389,7 +413,7 @@ include "logger.php";
 
                                                 <div class="col">
                                                     <label class="form-label" for="">Contact Number<span class="text-danger">*</span></label>
-                                                    <input type="number" name="c_number" id="" class="form-control" min="0" required />
+                                                    <input type="number" name="c_number" id="" class="form-control" min="0"  placeholder="Ex. 09177543316" required />
 
                                                     <div class="invalid-feedback text-start">Enter your contact.</div>
                                                     <div class="valid-feedback text-start">Contact information entered.</div>
@@ -490,10 +514,10 @@ include "logger.php";
 
 
         if ($result->num_rows > 0) {
-            echo "<div class=' bg-row mt-2 p-5 rounded'>";
+            echo "<div class=' bg-row1 mt-2 p-5 rounded'>";
             echo "<div class='bdr'>";
             echo "<div class='table-responsive'>";
-            echo "<table class='table  table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
+            echo "<table class='table table-sm table-striped text-center table-bordered w-100 border border-2 border-primary-subtle align-middle mx-auto'>";
             echo "<thead class ='table-dark'>";
             echo "<tr>";
             echo "<th> Reservation ID </th>";
@@ -533,7 +557,7 @@ include "logger.php";
                 echo "<td>" . $fielddata['contact_information'] . "</td>";
                 echo "<td>" . $fielddata['seat_number'] . "</td>";
                 echo "<td>" . date_format(date_create($fielddata['reservation_date']), 'Y-m-d g:i A') . "</td>";
-                echo "<td>" . $fielddata['price'] . "</td>";
+                echo "<td>" . number_format($fielddata['price']) . "</td>";
                 echo "<td>" . $fielddata['payment_method'] . "</td>";
                 echo "<td>" . $fielddata['reference_num'] . "</td>";
                 echo "<td>" . $fielddata['status'] . "</td>";

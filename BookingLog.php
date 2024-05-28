@@ -1,4 +1,5 @@
 <?php
+ date_default_timezone_set("Asia/Manila");
 if (!isset($_SESSION)) {
     session_start();
   }
@@ -17,7 +18,6 @@ require "dbconnect.php";
 
 <body>
     <?php
-    date_default_timezone_set("Asia/Manila");
     require_once "FinalsTable\BusArrays.php";
     require_once "SeatFunction.php";
     ?>
@@ -77,6 +77,9 @@ require "dbconnect.php";
                     <i class="bi bi-person-circle"></i><?php echo " " . $_SESSION['username']; ?>
                 </button>
             </form>
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         </div>
     </nav>
 
@@ -255,7 +258,8 @@ require "dbconnect.php";
                         $buttonDisabled = !isset($_SESSION['username']) ? 'disabled' : '';
                         if ($result->num_rows > 0) {
                             echo "<div class='bg-row-book p-5 rounded'>";
-                            echo "<div class = 'table-responsive bdr'>";
+                            echo "<div class = 'bdr'>";
+                            echo "<div class = 'table-responsive'>";
                             echo "<table class='table mt-3 table-striped text-center table-bordered w-100 border border-2 border-success-subtle align-middle mx-auto'>";
                             echo "<tr>";
                             echo "</tr>";
@@ -318,7 +322,8 @@ require "dbconnect.php";
                                         </div>
                                         <!-- Date -->
                                         <div class="col">
-                                            <input type="hidden" name="r_date" value="<?php echo date("Y-m-d h:i:s") ?>" class="form-control" readonly />
+                                            <input type="hidden" name="r_date" value="<?php echo date("Y-m-d h:i:s A") ?>" class="form-control" readonly />
+
                                         </div>
                                     </div>
 
@@ -329,7 +334,7 @@ require "dbconnect.php";
                                         </div>
                                     <!-- Departure Time -->
                                         <div class="col">
-                                            <input type="hidden" name="book_dtime" value="<?php echo date_format(date_create($maltfielddata['Departure Time']), 'H:i'); ?>" class="form-control" />
+                                            <input type="hidden" name="book_dtime" value="<?php echo date_format(date_create($maltfielddata['Departure Time']), 'g:i A'); ?>" class="form-control" />
                                         </div>
                                     </div>
 
@@ -369,19 +374,19 @@ require "dbconnect.php";
                                         <label class="form-label" for="">Passenger Name</label>
                                         <div class="col">
                                             <label class="form-label text-secondary" for="">First Name<span class="text-danger">*</span></label>
-                                            <input type="text" id="" name="f_name" class="form-control" required />
+                                            <input type="text" id="" name="f_name" class="form-control" placeholder="Ex. Dawn" required />
                                             <div class="invalid-feedback text-start">Enter your first name.</div>
                                             <div class="valid-feedback text-start">First name entered.</div>
                                         </div>
                                     
                                         <div class="col">
                                             <label class="form-label text-secondary" for="">Middle Name</label>
-                                            <input type="text" id="" name="m_name" class="form-control" />
+                                            <input type="text" id="" name="m_name" class="form-control" placeholder="Ex. C." />
                                         </div>
 
                                         <div class="col">
                                             <label class="form-label text-secondary" for="">Last Name<span class="text-danger">*</span></label>
-                                            <input type="text" id="" name="l_name" class="form-control" required />
+                                            <input type="text" id="" name="l_name" class="form-control" required placeholder="Ex. Andal" />
                                             <div class="invalid-feedback text-start">Enter your last name.</div>
                                             <div class="valid-feedback text-start">Last name entered.</div>
                                         </div>
@@ -397,7 +402,7 @@ require "dbconnect.php";
                                         <!-- Contact Number -->
                                         <div class="col">
                                             <label class="form-label" for="">Contact Number<span class="text-danger">*</span></label>
-                                            <input type="number" name="c_number" id="" class="form-control" min="0" required />
+                                            <input type="number" name="c_number" id="" class="form-control" min="0" placeholder="Ex. 09177543316" required />
                                             <div class="invalid-feedback text-start">Enter your contact.</div>
                                             <div class="valid-feedback text-start">Contact information entered.</div>
                                         </div>
@@ -426,6 +431,7 @@ require "dbconnect.php";
                                 echo "</tr>";
                             }
                             echo "</table>";
+                            echo "</div>";
                             echo "</div>";
                             echo "</div>";
                         } else {

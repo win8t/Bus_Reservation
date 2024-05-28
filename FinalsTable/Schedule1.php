@@ -166,12 +166,11 @@ include "logger.php";
                                             <select name="bus_num" class="form-select" required>
                                                 <?php
 
-                                                $sqlfk = "SELECT DISTINCT bus_number, bus_id FROM tbl_bus"; // Change routes_table to your actual table name
+                                                $sqlfk = "SELECT DISTINCT bus_number, bus_id FROM tbl_bus";
 
-                                                // Execute query
+                                               
                                                 $bus_fk = $con->query($sqlfk);
 
-                                                // Check if any results returned
                                                 if ($bus_fk->num_rows > 0) {
                                                     // Output data of each row
                                                     echo "<option selected disabled value=''>Choose a bus number</option>";
@@ -264,7 +263,7 @@ include "logger.php";
 
                                         <div class="col">
                                             <label class="form-label" for="">Available Seats<span class="text-danger">*</span></label>
-                                            <input type="number" name="available_seats" id="" class="form-control" required />
+                                            <input type="number" name="available_seats" id="" class="form-control" placeholder="Ex. 40" required />
                                             <div class="invalid-feedback text-start">Enter avaialble seats.</div>
                                             <div class="valid-feedback text-start">Available seats entered.</div>
                                         </div>
@@ -322,16 +321,16 @@ include "logger.php";
                                         throw new Exception("Departure location or destination does not exist for the specified bus number.");
                                     }
                                 } catch (Exception $e) {
-                                    // Handle the exception gracefully, e.g., log it, display a user-friendly message, etc.
+                                    // Handle the exception
                                     echo "<div class='alert alert-warning' role='alert'>" . $e->getMessage() . "</div>";
                                 }
 
                                 $sched_ins = $con->prepare("INSERT INTO tbl_schedule (bus_id, route_id, departure_date, departure_time, available_seats) VALUES (?, ?, ?, ?, ?)");
                                 $sched_ins->bind_param("iissi", $busID, $routeID, $departureDate, $departureTime, $availableSeats);
-                                $sched_res = $sched_ins->execute(); // Changed $schedres to $sched_res
+                                $sched_res = $sched_ins->execute();
 
                                 $con->commit();
-                                if ($sched_res) { // Changed to check $sched_res
+                                if ($sched_res) {
                            ?>      <script>
                                     Swal.fire({
                                         position: 'center',

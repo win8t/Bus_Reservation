@@ -126,8 +126,8 @@
                   <!-- Route Name input -->
                   <div class="row form-outline mt-2">
                     <div class="col">
-                      <label class="form-label" for="route_name">Route Name (ex. Naga to PITX)<span class="text-danger">*</span></label>
-                      <input type="text" name="route_name" class="form-control" required />
+                      <label class="form-label" for="route_name">Route Name<span class="text-danger">*</span></label>
+                      <input type="text" name="route_name" class="form-control" placeholder="Ex. Naga to PITX"  required />
                       <div class="invalid-feedback text-start">Set route.</div>
                        <div class="valid-feedback text-start">Route has been set.</div>
                     </div>
@@ -137,7 +137,7 @@
                   <div class="row form-outline mt-2">
                     <div class="col">
                       <label class="form-label" for="departure_location">Departure Location<span class="text-danger">*</span></label>
-                      <input type="text" name="departure_location" class="form-control" required/>
+                      <input type="text" name="departure_location" class="form-control" placeholder="Ex. Naga" required/>
                       <div class="invalid-feedback text-start">Set departure location.</div>
                         <div class="valid-feedback text-start">Departure location has been set.</div>                      
                     </div>
@@ -145,7 +145,7 @@
                     <!-- Destination input -->
                     <div class="col">
                     <label class="form-label" for="destination">Destination<span class="text-danger">*</span></label>
-                    <input type="text" name="destination" class="form-control" required/>
+                    <input type="text" name="destination" class="form-control" placeholder="Ex. PITX" required/>
                     <div class="invalid-feedback text-start">Set destination.</div>
                        <div class="valid-feedback text-start">Destination has been set.</div>                     
                     </div>
@@ -195,19 +195,6 @@
                     </div>
                   </div>
 
-                  <div class="row form-outline mt-2">
-                    <!-- Price input -->
-                    <div class="col">
-                    <label class="form-label" for="price">Price<span class="text-danger">*</span></label>
-                      <div class="input-group">
-                        <span class="input-group-text hd-text">₱</span>
-                        <input type="number" name="price" class="form-control" aria-label="Price" placeholder="Price" min="0" required>
-                        <div class="invalid-feedback text-start">Set price.</div>
-                       <div class="valid-feedback text-start">Price has been set.</div>
-                      </div>
-                    </div>
-                  </div>
-
                   <!-- Save button -->
                 </div>
                 <div class="modal-footer d-flex justify-content-center">
@@ -235,8 +222,7 @@
               OR departure_location LIKE'%" . $search . "%' 
               OR destination LIKE'%" . $search . "%' 
               OR distance LIKE'%" . $search . "%' 
-              OR duration LIKE'%" . $search . "%'
-              OR price LIKE'%" . $search . "%' ORDER BY route_id DESC";
+              OR duration LIKE'%" . $search . "%' ORDER BY route_id DESC";
       } else {
         $selectsql = "Select * from tbl_route ORDER BY route_id DESC";
       }
@@ -257,10 +243,10 @@
 
       $duration = $hrduration . ":" . $minduration . ":" . $secduration;
 
-      $price = $_POST['price'];
+      // $price = $_POST['price'];
 
-      $insertsql = "Insert into tbl_route (route_name,departure_location,destination,distance,duration,price)
-        values ('$routeName','$departureLoc','$destination',$distance,'$duration',$price)
+      $insertsql = "Insert into tbl_route (route_name,departure_location,destination,distance,duration)
+        values ('$routeName','$departureLoc','$destination',$distance,'$duration')
         ";
 
       $result = $con->query($insertsql);
@@ -305,7 +291,7 @@
       echo "<th> Destination </th>";
       echo "<th> Distance (km) </th>";
       echo "<th> Duration (hrs) </th>";
-      echo "<th> Price (₱)</th>";
+  
       echo "<th> Action </th>";
       echo "</tr>";
       echo "</thead>";
@@ -319,7 +305,6 @@
         echo "<td>" . $fielddata['destination'] . "</td>";
         echo "<td>" . $fielddata['distance'] . "</td>";
         echo "<td>" . $fielddata['duration'] . "</td>";
-        echo "<td>" . number_format($fielddata['price']) . "</td>";
         echo "<td class ='pt-3 pb-0'>";
       ?>
         <form method="post" action="Route1.php">
@@ -382,13 +367,13 @@
             </div>
 
             <!-- Price input -->
-            <div class="col">
+            <!-- <div class="col">
               <div class="input-group">
                 <span class="input-group-text hd-text">₱</span>
                 <input type="number" name="update_price" value="<?php echo $fielddata['price']; ?>" min="0" class="form-control" />
               </div>
               <label class="form-label" for="">Price</label>
-            </div>
+            </div> -->
           </div>
 
           <!-- Duration input -->
@@ -453,11 +438,11 @@
       $minduration_update = $_POST['update_minduration'];
       $secduration_update = $_POST['update_secduration'];
       $duration_update = $hrduration_update . ":" . $minduration_update . ":" . $secduration_update;
-      $price_update = $_POST['update_price'];
+      // $price_update = $_POST['update_price'];
 
       $updatesql = "UPDATE tbl_route SET route_id = $routeID_update, route_name = '$routeName_update',
             departure_location = '$departureLoc_update', destination = '$destination_update', distance = $distance_update,
-            duration = '$duration_update', price = $price_update WHERE route_id = $routeID_update";
+            duration = '$duration_update' WHERE route_id = $routeID_update";
 
       $resultup = $con->query($updatesql);
 

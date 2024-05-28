@@ -33,10 +33,10 @@ if (isset($_POST['logout1'])) {
         $_SESSION['message'] = "You have been logged out successfully.";
 
         // Redirect to the login page or another page
-       set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
-        // set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
-        // header("Location: /FINALS PROJECT/Login.php");
-        header("Location: /FINAL_ALPS_BUS/Login.php");
+    //   set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+        set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT');
+         header("Location: /FINALS PROJECT/Login.php");
+       // header("Location: /FINAL_ALPS_BUS/Login.php");
         exit();
     }
 }

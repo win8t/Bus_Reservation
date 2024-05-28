@@ -102,4 +102,10 @@ $slides = array(
     )
 );
 
+$seat_cap = array(
+    'Executive' => 48,
+    'Executive Solo' => 32,
+    'Executive Class' => 40,
+    'Executive Luxury' => 36
+);
 ?>
