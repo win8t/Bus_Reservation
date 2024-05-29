@@ -5,7 +5,6 @@ if (!isset($_SESSION)) {
 require "dbconnect.php";
 ?>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,7 +45,7 @@ require "dbconnect.php";
         }
     </script>
 
-
+    <!-- NavBar -->
     <nav class="navbar navbar-expand-lg fixed-top navbar-book">
         <div class="container-fluid">
             <a class="navbar-brand me-auto ml-1 pe-none" href="#" aria-disabled="true" tabindex="-1">
@@ -71,8 +70,8 @@ require "dbconnect.php";
                         </li>
                     </ul>
                 </div>
-
             </div>
+
             <a href="Login.php" class="book-login-button"><i class="bi bi-person-circle"></i> Login</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -80,10 +79,10 @@ require "dbconnect.php";
         </div>
     </nav>
 
+    <!-- Carousel -->
     <div class="col h-75">
         <div class="carousel slide  carousel-dark" id="carouselDemo" data-bs-wrap="true" data-bs-ride="carousel">
             <div class="carousel-inner">
-
                 <div class="carousel-item book-carousel-item active" data-bs-interval="5000">
                     <img src="Alps1.jpg" class="w-100 h-100 d-block book-carousel-image">
                     <div class="carousel-caption">
@@ -127,21 +126,19 @@ require "dbconnect.php";
                         </div>
                     </div>
                 </div>
-
             </div>
+
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon"></span>
             </button>
 
             <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
                 <span class="carousel-control-next-icon"></span>
-
             </button>
 
             <div class="carousel-indicators book-carousel-indicators">
                 <button type="button" class="active mx-2" data-bs-target="#carouselDemo" data-bs-slide-to="0">
                     <img src="Alps1.jpg" />
-
                 </button>
 
                 <button type="button" class="mx-2" data-bs-target="#carouselDemo " data-bs-slide-to="1">
@@ -159,11 +156,8 @@ require "dbconnect.php";
         <div class="col-12 book-content-container8 ">
             <p class="display-4 text-center border border-3 p-4 border-dark rounded"> BOOKING </p>
         </div>
-
         <div class="book-content-container1 py-3"></div>
-
         <div class="d-flex content-container8  py-4 ">
-           
     </div>
 
     <!-- Bus Types -->
@@ -174,7 +168,6 @@ require "dbconnect.php";
                 <p class="about-para">Different bus types to accomodate your every need.</p>
             </div>
             <div class="col-10 content-container8 bus-types">
-
                 <div class="card-group bus-card-group">
                     <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
                         <img src="Executive.png" class="card-img-top" alt="...">
@@ -189,8 +182,8 @@ require "dbconnect.php";
                                 ?>
                             </div>
                         </div>
-
                     </div>
+
                     <div class="card bus-card border-top-0 border-bottom-0">
                         <img src="ExecutiveSolo.png" class="card-img-top" alt="...">
                         <div class="card-body bus-card-body">
@@ -204,8 +197,8 @@ require "dbconnect.php";
                                 ?>
                             </div>
                         </div>
-
                     </div>
+
                     <div class="card bus-card border-top-0 border-bottom-0">
                         <img src="ExecutiveClass.png" class="card-img-top" alt="...">
                         <div class="card-body bus-card-body">
@@ -219,8 +212,8 @@ require "dbconnect.php";
                                 ?>
                             </div>
                         </div>
-
                     </div>
+
                     <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
                         <img src="ExecutiveLuxury1.png" class="card-img-top" alt="...">
                         <div class="card-body bus-card-body">
@@ -232,7 +225,6 @@ require "dbconnect.php";
                                     echo '<div class="row"><div class="col">' . $bustype . '</div></div>';
                                 }
                                 ?>
-
                             </div>
                         </div>
                     </div>
@@ -240,16 +232,16 @@ require "dbconnect.php";
             </div>
         </div>
 
-        <!-- Routes -->
+        <!-- Bus Routes -->
         <div class="content-container8">
             <div class="d-flex flex-row row-12">
                 <div class="col-12 book-content-container8  bus-align pt-5">
                     <h2 class="text-center">Bus Routes</h2>
                     <p class="about-para text-center ">Various bus routes for your travel experience.</p>
                 </div>
-
             </div>
         </div>
+
         <div class="book-content-container8">
             <div class="d-flex flex-row row-12">
                 <div class="col-12 book-content-container8  pb-3">
@@ -401,8 +393,8 @@ require "dbconnect.php";
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
                         <div class="card term-card border-top-0 border-bottom-0 border-right-0">
                             <img src="LEGAZPI.png" class="card-img-top" alt="...">
                             <div class="card-body term-card-body">
@@ -411,35 +403,25 @@ require "dbconnect.php";
                                 <div class="card-text term-card-text mb-3 text-center">
                                     <div class="row">
                                         <div class="col my-2"><strong>Location</strong></div>
-
                                     </div>
                                     <div class="row">
-
                                         <div class="col"> LKY Terminal beside <br>SM City Legazpi, Albay</div>
                                     </div>
                                     <div class="row">
                                         <div class="col my-2"> <strong>Contact</strong> </div>
-
                                     </div>
                                     <div class="row">
-
                                         <div class="col"> 0939-9270533 </div>
-
                                     </div>
                                     <div class="row">
-
-
                                         <div class="col"> 0923-7333076 </div>
                                     </div>
-
-
                                 </div>
                                 <div class="row text-center mb-3">
                                     <div class="col">
                                         <a href="https://goo.gl/maps/Xzt21R96kxvCocsy5" target="_blank" class="term-button">View</a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -452,6 +434,7 @@ require "dbconnect.php";
             </div>
         </div>
     </div>
+    
     <!-- Contact Us -->
     <div class="row-12 content-container4 pt-4 mt-5">
         <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
@@ -546,7 +529,6 @@ require "dbconnect.php";
     </div>
     </div>
     <script src="formvalidation.js"> </script>
-    <script src="scripts.js"></script>
     <script src="bootstrap.bundle.min.js"></script>
 </body>
 

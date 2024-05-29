@@ -422,7 +422,6 @@ require "dbconnect.php";
                                             <button type="submit" name="booking" value="Book" class="btn btn-success">Confirm Booking</button>
                                         </div>
                                     </div>
-
                     </div>
                     </form>
             <?php
@@ -458,8 +457,8 @@ require "dbconnect.php";
                 <h2>Bus Types</h2>
                 <p class="about-para">Different bus types to accomodate your every need.</p>
             </div>
-            <div class="col-10 content-container8 bus-types">
 
+            <div class="col-10 content-container8 bus-types">
                 <div class="card-group bus-card-group">
                     <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
                         <img src="Executive.png" class="card-img-top" alt="...">
@@ -474,8 +473,8 @@ require "dbconnect.php";
                                 ?>
                             </div>
                         </div>
-
                     </div>
+
                     <div class="card bus-card border-top-0 border-bottom-0">
                         <img src="ExecutiveSolo.png" class="card-img-top" alt="...">
                         <div class="card-body bus-card-body">
@@ -489,8 +488,8 @@ require "dbconnect.php";
                                 ?>
                             </div>
                         </div>
-
                     </div>
+
                     <div class="card bus-card border-top-0 border-bottom-0">
                         <img src="ExecutiveClass.png" class="card-img-top" alt="...">
                         <div class="card-body bus-card-body">
@@ -504,8 +503,8 @@ require "dbconnect.php";
                                 ?>
                             </div>
                         </div>
-
                     </div>
+
                     <div class="card bus-card border-top-0 border-bottom-0 border-right-0">
                         <img src="ExecutiveLuxury1.png" class="card-img-top" alt="...">
                         <div class="card-body bus-card-body">
@@ -517,7 +516,6 @@ require "dbconnect.php";
                                     echo '<div class="row"><div class="col">' . $bustype . '</div></div>';
                                 }
                                 ?>
-
                             </div>
                         </div>
                     </div>
@@ -621,26 +619,21 @@ require "dbconnect.php";
                                 <div class="card-text term-card-text mb-3 p-2 text-center">
                                     <div class="row">
                                         <div class="col my-2"><strong>Location</strong></div>
-
                                     </div>
                                     <div class="row">
-
                                         <div class="col"> Tambo, Parañaque, <br>Metro Manila </div>
                                     </div>
                                     <div class="row">
                                         <div class="col my-2"> <strong>Contact</strong> </div>
-
                                     </div>
                                     <div class="row">
 
                                         <div class="col">0939-9252460</div>
-
                                     </div>
                                     <div class="row">
 
                                         <div class="col">0933-8122039</div>
                                     </div>
-
                                 </div>
                                 <div class="row text-center mb-3">
                                     <div class="col">
@@ -648,8 +641,8 @@ require "dbconnect.php";
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+
                         <div class="card term-card border-top-0 border-bottom-0">
                             <img src="TABACO.png" class="card-img-top border-0" alt="...">
                             <div class="card-body term-card-body">
@@ -658,27 +651,19 @@ require "dbconnect.php";
                                 <div class="card-text term-card-text mb-3 text-center">
                                     <div class="row">
                                         <div class="col my-2"><strong>Location</strong></div>
-
                                     </div>
                                     <div class="row">
-
                                         <div class="col"> Brgy Pawa, <br>Tabaco City, Albay</div>
                                     </div>
                                     <div class="row">
                                         <div class="col my-2"> <strong>Contact</strong> </div>
-
                                     </div>
                                     <div class="row">
-
                                         <div class="col"> 0923-7333077 </div>
-
                                     </div>
                                     <div class="row">
-
-
                                         <div class="col"> 0998-5474973 </div>
                                     </div>
-
                                 </div>
                                 <div class="row text-center mb-3">
                                     <div class="col">
@@ -686,7 +671,6 @@ require "dbconnect.php";
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="card term-card border-top-0 border-bottom-0 border-right-0">
                             <img src="LEGAZPI.png" class="card-img-top" alt="...">
@@ -696,28 +680,19 @@ require "dbconnect.php";
                                 <div class="card-text term-card-text mb-3 text-center">
                                     <div class="row">
                                         <div class="col my-2"><strong>Location</strong></div>
-
                                     </div>
                                     <div class="row">
-
                                         <div class="col"> LKY Terminal beside <br>SM City Legazpi, Albay</div>
                                     </div>
                                     <div class="row">
                                         <div class="col my-2"> <strong>Contact</strong> </div>
-
                                     </div>
                                     <div class="row">
-
                                         <div class="col"> 0939-9270533 </div>
-
                                     </div>
                                     <div class="row">
-
-
                                         <div class="col"> 0923-7333076 </div>
                                     </div>
-
-
                                 </div>
                                 <div class="row text-center mb-3">
                                     <div class="col">
@@ -728,8 +703,8 @@ require "dbconnect.php";
                             </div>
                         </div>
                     </div>
-
                 </div>
+
                 <div class="col-2 content-container7 bg-info-subtle p-3 bus-align">
                     <h2 class="text-start">Bus Terminal </h2>
                     <p class="about-para text-start">Various terminals for accessibility and efficiency of travel.</p>
@@ -767,8 +742,6 @@ require "dbconnect.php";
             </div>
             <div class="col-4 content-container10 ">
                 <div class="row  text-center py-5">
-
-
                     <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
                         <tr>
                             <th colspan="2">
@@ -799,7 +772,6 @@ require "dbconnect.php";
                             <td> info@alpsthebus.com</td>
                         </tr>
                     </table>
-
                 </div>
             </div>
 
@@ -832,7 +804,6 @@ require "dbconnect.php";
     </div>
     </div>
     <script src="formvalidation.js"> </script>
-    <script src="scripts.js"></script>
     <script src="bootstrap.bundle.min.js"></script>
 </body>
 

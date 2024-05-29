@@ -60,7 +60,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
         <h4 class="">Main Menu</h4>
       </li>
 
-
       <li>
         <i class="bi bi-table"></i>
         <a href="Overview2.php">Overview</a>
@@ -109,15 +108,13 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
         </li>
       </form>
     </ul>
-
-
   </aside>
+
   <div class="container-fluid">
 
     <div class="row ">
       <div class="col pb-2 ">
         <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">BUS DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
-
         <div class="row bg-row mx-auto p-1 m-1 rounded">
 
           <form action="Bus2.php" method="post">
@@ -181,13 +178,10 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                   <!-- Bus Number input -->
                   <div class="row form-outline">
                     <div class="col">
-                  
                       <label class="form-label" for="">Bus Number<span class="text-danger">*</span></label>
                       <input type="text" name="bus_number" id="" class="form-control" min="0" required placeholder="Ex. 12422" />
                       <div class="invalid-feedback text-start">Enter its bus number.</div>
                       <div class="valid-feedback text-start">Bus number entered.</div>
-                  
-
                     </div>
 
                     <!-- Bus Type input -->
@@ -195,18 +189,14 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                       <label class="form-label" for="">Bus Type<span class="text-danger">*</span></label>
                       <select name="bus_type" id="bus_type" class="form-select" required>
                         <?php
-
                         echo '<option value="" selected disabled>Select Bus Type</option>';
-
                         foreach ($bus_types as $bus_type) {
                           echo '<option value="' . $bus_type . '">' . $bus_type . '</option>';
                         }
                         ?>
-
                       </select>
                       <div class="invalid-feedback text-start">Select its bus type.</div>
                       <div class="valid-feedback text-start">Bus type selected.</div>
-
                     </div>
                   </div>
 
@@ -250,7 +240,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                         if ($route_result->num_rows > 0) {
                           echo '<option default disabled selected value="">Choose a location</option>';
 
-                        
                           while ($loc = $route_result->fetch_assoc()) {
                             $departure_location = $loc['departure_location'];
                             $r_id = $loc['route_id'];
@@ -261,6 +250,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                           echo '<option value="" disabled>No destinations found</option>';
                         }
                         ?>
+
                       </select>
                       <div class="form-text">
                         Routes should match (ex. R1 to R1).
@@ -268,7 +258,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
                       <div class="invalid-feedback text-start">Enter departure location.</div>
                       <div class="valid-feedback text-start">Departure location entered.</div>
-
                     </div>
 
                     <!-- Destination input -->
@@ -279,7 +268,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                        $route_query = "SELECT  route_id, destination FROM tbl_route";
                        $route_result = $con->query($route_query);
 
-                  
                        if ($route_result->num_rows > 0) {
                          echo '<option default disabled selected value="">Choose a destination</option>';
 
@@ -292,9 +280,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                
                          echo '<option value="" disabled>No destinations found</option>';
                        }
-
                         ?>
-
 
                       </select>
                       <div class="invalid-feedback text-start">Enter destination .</div>
@@ -336,7 +322,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                 </div>
 
                   <!-- Save button -->
-
                   <div class="modal-footer d-flex justify-content-center">
                     <button type="submit" name="add" class="btn btn-primary">Add</button>
                     <button type='button' class='btn btn-danger' data-bs-dismiss='modal'>Close</button>
@@ -351,11 +336,9 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
     <?php
 
-
     //Search Button
     if (isset($_POST['searchbutton'])) {
 
-      //to check the search box if empty or not 
       if ($_POST['search'] != NULL) {
         $search = $_POST['search'];
         $selectsql = "Select * from tbl_bus where 
@@ -390,7 +373,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
       $price = $_POST['price'];
   
       try {
-          // Check if the route exists for the specified departure location and destination
           $routeCheckQuery = "SELECT route_id FROM tbl_route WHERE departure_location = '$departureLoc' AND destination = '$destination'";
           $routeCheckResult = $con->query($routeCheckQuery);
   
@@ -398,7 +380,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
               throw new Exception("Route does not exist. Match a route with its respective ID");
           }
   
-          // Insert the bus details into the database
           $insertsql = "INSERT INTO tbl_bus (bus_number, bus_type, seating_capacity, driver_name, departure_location, destination, departure_time, arrival_time, price)
               VALUES ('$busNum', '$busType', $seatCap, '$driverName', '$departureLoc', '$destination', '$departureTime', '$arrivalTime', '$price')";
   
@@ -425,15 +406,12 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
               </script>";
           }
       } catch (Exception $e) {
-          // Handle the exception
           echo "<div class='alert alert-warning' role='alert'>" . $e->getMessage() . "</div>";
       }
   }
 
     $result = $con->query($selectsql);
 
-    //check table if there is a record
-    //num_rows - will return the no of rows inside a table
     if ($result->num_rows > 0) {
 
       echo "<div class=' bg-row p-5 rounded'>";
@@ -484,8 +462,8 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
         echo "<td colspan='12' class ='tble-bg'>";
         echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['bus_id'] . "'>";
         ?>
-        <!-- Form for Editing-->
 
+        <!-- Form for Editing-->
         <form action="Bus2.php" method="post" novalidate class="needs-validation">
           <h5 class="hd-text text-center pb-2 fs-5" id="title">Bus Editing Form</h5>
 
@@ -502,8 +480,7 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
               <label class="form-label" for="">Bus Number</label>
             </div>
 
-            <!-- Bus Number input -->
-
+            <!-- Bus Type input -->
             <div class="col">
               <select name="update_type" id="bus_type" class="form-select" required>
 
@@ -565,7 +542,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
           <div class="row form-outline mt-2">
                   <!-- Price input -->
                   <div class="col">
-                   
                       <div class="input-group">
                         <span class="input-group-text hd-text">₱</span>
                         <input type="number" name="update_price" class="form-control" aria-label="Price" placeholder="Price" min="0" required  value="<?php echo $fielddata['price']; ?>">
@@ -573,8 +549,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
                       <label class="form-label" for="price">Price</label>
                   </div>
                 </div>
-
-  
 
           <!-- Update button -->
           <div class="row form-outline text-center pt-1">
@@ -623,7 +597,6 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
 
       $resultup = $con->query($updatesql);
 
-      //check if successfully updated
       if ($resultup == True) {
       ?>
         <script>
@@ -639,17 +612,14 @@ document.getElementById('tripDate1').addEventListener('focus', setMinDate);
     $action = 'Updated Bus';
     logActivity($con, $userID, $action);
       } else {
-        //if not, check query error details
         echo $con->error;
       }
     }
 
     ?>
   </div>
-
   </div>
-
-  <script src="../formvalidation.js"> </script>
+<script src="../formvalidation.js"> </script>
 </body>
 
 </html>

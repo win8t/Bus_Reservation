@@ -1,5 +1,5 @@
 <?php
-  session_start();
+  ssion_start();
   require "dbconnect.php";
 ?>
 <html lang="en">
@@ -78,30 +78,22 @@
       </li>
       </form>
     </ul>
-
-
   </aside>
 
     <div class="container-fluid">
-
     <div class="row ">
       <div class="col pb-2 ">
         <h1 class="hd-font bg-row text-white rounded-bottom mx-auto p-3">LOG DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
          
         <div class="row bg-row p-1 mx-auto rounded">
-          
           <div  class="col">
-            
             <div class="input-group w-50 pt-4">
               <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
               <input type="search" name="search" id="" class="form-control rounded mx-1" aria-label="Input group example" aria-describedby="btnGroupAddon2">
-
-
-              <div class="col-3 ">
-                
-                <input type="submit" value="Search" name="searchbutton" class="h-100 btn btn-primary mx-auto  hd-text" class="form-control">
+                <div class="col-3 ">
+                  <input type="submit" value="Search" name="searchbutton" class="h-100 btn btn-primary mx-auto  hd-text" class="form-control">
+                </div>
               </div>
-            </div>
             <div class="col">
               <!-- Date Time - Local -->
               <div class="row rounded pt-2 pb-0 ">
@@ -121,15 +113,11 @@
                     var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
                     document.getElementById('datetime').textContent = dateTimeString;
                   }
-                  // Update the date and time every second
                   setInterval(updateDateTime, 1000);
-
-                  // Initial update
                   updateDateTime();
                 </script>
               </div>
             </div>
-            
         </div>
         </div>
       <?php
@@ -137,7 +125,6 @@
           //Search Button
           if (isset($_POST['searchbutton'])) {
 
-            //to check the search box if empty or not 
             if ($_POST['search'] != NULL) {
               $search = $_POST['search'];
               $selectsql = "Select * from logs_view where 
@@ -154,9 +141,7 @@
           }
          
           $result = $con->query($selectsql);
-          
-          //check table if there is a record
-          //num_rows - will return the no of rows inside a table
+
           if ($result->num_rows > 0) {
             echo "<div class=' bg-row p-5 rounded mt-2'>";
             echo "<div class='bdr mt-2'>";
@@ -170,7 +155,6 @@
             echo "<th> Action </th>";
             echo "<th> DateTime </th>";
             echo "</thead>";
-   
             echo "</tr>";
 
             while ($fielddata = $result->fetch_assoc()) {
@@ -180,8 +164,6 @@
               echo "<td>" . $fielddata['role'] . "</td>";
               echo "<td>" . $fielddata['action'] . "</td>";
               echo "<td>" . date_format(date_create($fielddata['DateTime']), 'Y-m-d g:i A') . "</td>";
-
-              
             }
             echo "</table>";
             echo "</div>";
@@ -195,7 +177,6 @@
             echo "</div>";
             echo "</div>";
           }
-
       ?>
             </div>
         </div>

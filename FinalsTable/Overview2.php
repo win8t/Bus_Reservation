@@ -3,7 +3,6 @@ session_start();
 require "dbconnect.php";
 ?>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +10,6 @@ require "dbconnect.php";
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="sidebar13.css">
-
 </head>
 
 <body class="hd-text">
@@ -29,7 +27,6 @@ require "dbconnect.php";
       <li class="disabled">
         <h4 class="">Main Menu</h4>
       </li>
-
 
       <li class="active">
         <i class="bi bi-table"></i>
@@ -83,11 +80,8 @@ require "dbconnect.php";
 
     <div class="row ">
       <div class="col pb-2 ">
-
         <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">OVERVIEW | Welcome, <?php echo $_SESSION['username']; ?></h1>
-
         <div class="row bg-row mx-auto p-1 m-1 rounded">
-
 
           <div class="col">
             <!-- Date Time - Local -->
@@ -108,10 +102,7 @@ require "dbconnect.php";
                   var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
                   document.getElementById('datetime').textContent = dateTimeString;
                 }
-                // Update the date and time every second
                 setInterval(updateDateTime, 1000);
-
-                // Initial update
                 updateDateTime();
               </script>
             </div>
@@ -126,12 +117,10 @@ require "dbconnect.php";
           <div class="row">
             <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
-                <div class="card-body hd-font d-flex align-items-center mx-auto h4"> <!-- Added align-items-center -->
+                <div class="card-body hd-font d-flex align-items-center mx-auto h4">
                   <i class="bi bi-person-circle"></i>
-
                   Total Users Record:
                   <?php
-
                   $user_count_query = "select * from tbl_user where status = 'Active'";
                   $user_query = mysqli_query($con, $user_count_query);
                   if ($user_total = mysqli_num_rows($user_query)) {
@@ -139,10 +128,7 @@ require "dbconnect.php";
                   } else {
                     echo '<h3 class = "text-center mt-2 mx-3 hd-text">0</h3>';
                   }
-
                   ?>
-
-
                 </div>
                 <div class="card-footer d-flex align-items-center bg-light justify-content-between">
                   <a href="User2.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
@@ -152,11 +138,10 @@ require "dbconnect.php";
               </div>
             </div>
 
-            <div class="col-xl-3 col-md-6 mx-auto">
-
             <!-- Logs Details -->
+            <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
-                <div class="card-body hd-font d-flex align-items-center mx-auto h4"> <!-- Added align-items-center -->
+                <div class="card-body hd-font d-flex align-items-center mx-auto h4">
                   <i class="bi bi-card-list"></i>
                   Total Logs Record:
                   <?php
@@ -168,9 +153,7 @@ require "dbconnect.php";
                   } else {
                     echo '<h4 class = "text-center mt-2 mx-3 hd-text">0 </h4>';
                   }
-
                   ?>
-
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
                   <a href="Logs2.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
@@ -183,12 +166,10 @@ require "dbconnect.php";
             <!-- Bus Details -->
             <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
-                <div class="card-body hd-font d-flex align-items-center mx-auto h4"> <!-- Added align-items-center -->
+                <div class="card-body hd-font d-flex align-items-center mx-auto h4"> 
                   <i class="bi bi-bus-front"></i>
                   Total Bus Record:
-
                   <?php
-
                   $bus_count_query = "select * from tbl_bus";
                   $bus_query = mysqli_query($con, $bus_count_query);
                   if ($bus_total = mysqli_num_rows($bus_query)) {
@@ -196,9 +177,7 @@ require "dbconnect.php";
                   } else {
                     echo '<h4 class = "text-center mt-2 mx-3 hd-text">0 </h4>';
                   }
-
                   ?>
-
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
                   <a href="Bus2.php" class="small text-dark stretched-link hd-font text-decoration-none mx-auto">
@@ -217,7 +196,6 @@ require "dbconnect.php";
                   <i class="bi bi-sign-turn-right-fill"></i>
                   Total Route Record:
                   <?php
-
                   $route_count_query = "select * from tbl_route";
                   $route_query = mysqli_query($con, $route_count_query);
                   if ($route_total = mysqli_num_rows($route_query)) {
@@ -225,7 +203,6 @@ require "dbconnect.php";
                   } else {
                     echo '<h4 class = "text-center mt-2 mx-3 hd-text">0 </h4>';
                   }
-
                   ?>
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
@@ -240,11 +217,10 @@ require "dbconnect.php";
             <!-- Schedule Details -->
             <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
-                <div class="card-body hd-font d-flex align-items-center mx-auto h4"> <!-- Added align-items-center -->
+                <div class="card-body hd-font d-flex align-items-center mx-auto h4">
                   <i class="bi bi-calendar3"></i>
                   Total Schedule Record:
                   <?php
-
                   $sched_count_query = "select * from sched_reserve_view";
                   $sched_query = mysqli_query($con, $sched_count_query);
                   if ($sched_total = mysqli_num_rows($sched_query)) {
@@ -252,7 +228,6 @@ require "dbconnect.php";
                   } else {
                     echo '<h4 class = "text-center mt-2 mx-3 hd-text">0 </h4>';
                   }
-
                   ?>
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
@@ -261,17 +236,15 @@ require "dbconnect.php";
                   </a>
                 </div>
               </div>
-
             </div>
 
             <!-- Reservation Details -->
             <div class="col-xl-3 col-md-6 mx-auto">
               <div class="card bg-dark text-white mb-4 shadow">
-                <div class="card-body hd-font d-flex align-items-center mx-auto h4"> <!-- Added align-items-center -->
+                <div class="card-body hd-font d-flex align-items-center mx-auto h4">
                   <i class="bi bi-calendar-date"></i>
                   Total Reservation Details:
                   <?php
-
                   $reserve_count_query = "select * from reservation_booking_view";
                   $reserve_query = mysqli_query($con, $reserve_count_query);
                   if ($reserve_total = mysqli_num_rows($reserve_query)) {
@@ -279,7 +252,6 @@ require "dbconnect.php";
                   } else {
                     echo '<h4 class = "text-center mt-2 mx-3 hd-text">0 </h4>';
                   }
-
                   ?>
                 </div>
                 <div class="card-footer d-flex bg-light align-items-center justify-content-between">
@@ -288,16 +260,11 @@ require "dbconnect.php";
                   </a>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
-
       </div>
     </div>
-
-
-
 </body>
 
 </html>
