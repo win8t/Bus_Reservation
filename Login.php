@@ -16,6 +16,7 @@ require "dbconnect.php";
 </head>
 
 <body class="login-content-container7">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   
     <?php
     if (isset($_POST['sub'])) {
@@ -156,9 +157,7 @@ require "dbconnect.php";
 
         </div>
     </div>
-    <script src="scripts.js"></script>
     <script src="bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="formvalidation.js"> </script>
 </body>
 </html>

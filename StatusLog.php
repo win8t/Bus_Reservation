@@ -36,7 +36,8 @@ include "logger.php";
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" 
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <body class="status-body hd-text">
     <?php
@@ -55,8 +56,6 @@ include "logger.php";
             document.getElementById('destination').value = originValue;
         }
     </script>
-
-    <script src="scripts.js"></script>
     <script src="bootstrap.bundle.min.js"></script>
 
     <nav class="navbar navbar-expand-lg fixed-top navbar-book bg-info-subtle">

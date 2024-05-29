@@ -291,7 +291,7 @@ include "logger.php";
                                 $sched_res = $sched_ins->execute();
 
                                 $con->commit();
-                                if ($sched_res) {
+                                if ($sched_res == TRUE) {
                            ?>      <script>
                                     Swal.fire({
                                         position: 'center',
