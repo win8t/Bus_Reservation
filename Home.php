@@ -5,11 +5,10 @@ if (!isset($_SESSION)) {
 require "dbconnect.php";
 ?>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> Alps Home</title>
+  <title>Alps Home</title>
   <link href=stylez.css rel="stylesheet" />
 </head>
 <link href="bootstrap.min.css" rel="stylesheet" />
@@ -17,12 +16,10 @@ require "dbconnect.php";
 
 <body class="">
   <script src="bootstrap.min.js"></script>
-
   <nav class="navbar navbar-expand-lg  fixed-top navbar-home">
     <div class="container-fluid">
       <a class="navbar-brand me-auto ml-1 pe-none" href="#" aria-disabled="true" tabindex="-1">
         <img src="Alps.png" alt="" class="logo img-fluid">
-
       </a>
 
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
@@ -44,21 +41,18 @@ require "dbconnect.php";
             </li>
           </ul>
         </div>
-
       </div>
       
       <a href="Login.php" class="home-login-button"><i class="bi bi-person-circle"></i> Login</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
     </div>
   </nav>
 
   <div class="col h-75">
     <div class="carousel slide  carousel-dark" id="carouselDemo" data-bs-wrap="true" data-bs-ride="carousel">
       <div class="carousel-inner">
-
         <div class="carousel-item active  home-carousel-item" data-bs-interval="5000">
           <img src="Alps1.jpg" class="w-100 h-100 d-block home-carousel-image">
           <div class="carousel-caption">
@@ -104,7 +98,6 @@ require "dbconnect.php";
             </div>
           </div>
         </div>
-
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
         <span class="carousel-control-prev-icon"></span>
@@ -112,13 +105,11 @@ require "dbconnect.php";
 
       <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
         <span class="carousel-control-next-icon"></span>
-
       </button>
 
       <div class="carousel-indicators home-carousel-indicators">
         <button type="button" class="active mx-2" data-bs-target="#carouselDemo" data-bs-slide-to="0">
           <img src="Alps1.jpg" />
-
         </button>
 
         <button type="button" class="mx-2" data-bs-target="#carouselDemo " data-bs-slide-to="1">
@@ -133,12 +124,11 @@ require "dbconnect.php";
   </div>
 
   <div class="home-fixed-container pt-4">
-
     <div class="col-12 content-container">
       <p class="display-4 text-center border border-3 p-4 border-dark rounded"> ABOUT US </p>
     </div>
 
-    <!-- blender -->
+    <!-- Blender -->
     <div class="content-container1 py-3 "></div>
 
     <div class="d-flex flex-row content-container align-items-stretch">
@@ -146,46 +136,45 @@ require "dbconnect.php";
         <h2 class="about-text text-center pb-3 text-success"> Vision </h2>
         <div class="line w-50 mb-4 mx-auto"></div>
         <div class="rounded about-content p-5">
-          <p class="text-wrap about-para p-1">We want to be a dynamic, modern, reputable, and the safest transport company with an increasing share in the transport market, ensuring constant customer satisfaction and performance improvement with respect to our environment and safety while delivering our services. Our corporate vision is to become the best transportation company providing services of regional and domestic passenger road transport in the Philippines.</p>
+          <p class="text-wrap about-para p-1">We want to be a dynamic, modern, reputable, and the safest transport company with an increasing share in the transport market, 
+            ensuring constant customer satisfaction and performance improvement with respect to our environment and safety while delivering our services. 
+            Our corporate vision is to become the best transportation company providing services of regional and domestic passenger road transport in the Philippines.</p>
         </div>
-
       </div>
 
       <div class="col-6 content-container2  py-4">
         <h2 class="about-text text-center pb-3 text-success"> Mission </h2>
         <div class="line w-50 mb-4 mx-auto"></div>
         <div class="rounded about-content1 p-5 ">
-          <p class="text-wrap about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to be able to approach actively to the resolution of any customer needs, to face any challenges within the bus and the coach transport nationwide, as well as to increase the efficiency and effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
+          <p class="text-wrap about-para p-1">ALPS THE BUS' corporate mission is to provide services of high quality and safe transportation to the public, to be able to approach
+             actively to the resolution of any customer needs, to face any challenges within the bus and the coach transport nationwide, as well as to increase the efficiency and 
+             effectiveness of all activities performed in favor of fulfillment of common goals set by our shareholders, management, and employees. </p>
         </div>
-
       </div>
-
     </div>
 
     <div class="d-flex flex-row content-container7 align-items-stretch">
-
       <div class="content-container3 bg-danger-subtle p-4 col-2 text-start shadow-lg corp-align" id="test">
-
         <h2 class="text-wrap  cont-text text-break ">Corporate Values</h2>
         <p class="crop-para">Learn about the values that we at ALPS abide by at all times.</p>
-
       </div>
 
       <div class="content-container3 bg-warning-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
             <h5 class="card-title about-text text-center text-w">Activity</h5>
-            We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions, dealing with them actively. We improve our quality standards. We invest in new vehicles, prepare a new central bus station and implement new products and services par excellent.
+            We keep our customers well informed and work hard in order to keep them within reach. We listen to their comments and suggestions, dealing with them actively. We improve 
+            our quality standards. We invest in new vehicles, prepare a new central bus station and implement new products and services par excellent.
           </div>
         </div>
-
       </div>
-      <div class="content-container3 bg-success-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
 
+      <div class="content-container3 bg-success-subtle px-2 py-2 col-2 mx-auto shadow-lg" id="test">
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
             <h5 class="card-title about-text text-center">Performance</h5>
-            Our buses are operated by professional drivers to serve our customers. Annually, we carry around millions of passengers. Our high performance affects the reduction of our transport costs and helps us keep a favorable fare level, thus, in consonance also with our environment. We want to be efficient and effective because of you, our customers.
+            Our buses are operated by professional drivers to serve our customers. Annually, we carry around millions of passengers. Our high performance affects the reduction of our 
+            transport costs and helps us keep a favorable fare level, thus, in consonance also with our environment. We want to be efficient and effective because of you, our customers.
           </div>
         </div>
       </div>
@@ -194,7 +183,8 @@ require "dbconnect.php";
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
             <h5 class="card-title about-text text-center">Loyalty</h5>
-            The public's transport safety is our primary concern, by instilling them that our buses are operated by competent and responsible drivers, we can assure our customers that their travel with us will be safe and enjoyable. We co-exist with our customers; thus, to them, our loyalty will always dwell.
+            The public's transport safety is our primary concern, by instilling them that our buses are operated by competent and responsible drivers, we can assure our customers that 
+            their travel with us will be safe and enjoyable. We co-exist with our customers; thus, to them, our loyalty will always dwell.
           </div>
         </div>
 
@@ -203,7 +193,8 @@ require "dbconnect.php";
         <div class="card border-0">
           <div class="card-body text-wrap  about-para text-break">
             <h5 class="card-title about-text text-center">Services</h5>
-            We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending to our customers' needs. We do our best to make your traveling more comfortable, safe, and enjoyable. We want to be partners with our customers.
+            We want to care about our customers. Traveling by bus or coach is not only a transportation service but also a way of attending to our customers' needs. We do our best to 
+            make your traveling more comfortable, safe, and enjoyable. We want to be partners with our customers.
           </div>
         </div>
       </div>
@@ -218,8 +209,6 @@ require "dbconnect.php";
 
       <div class="d-flex flex-row bg-info-subtle py-5 w-75  me-auto mx-auto ">
         <div class="col-6 content-container8 p-5 rounded">
-
-
           <div class="accordion" id="accordionExample">
             <div class="accordion-item">
               <h2 class="accordion-header">
@@ -255,11 +244,11 @@ require "dbconnect.php";
                 <div class="accordion-body">
                   No, meals are not provided.
                 </div>
-
               </div>
             </div>
           </div>
         </div>
+
         <div class="col-6 content-container8 p-5 rounded">
           <div class="accordion" id="accordionFlushExample">
             <div class="accordion-item">
@@ -309,11 +298,9 @@ require "dbconnect.php";
     <div class="row-12 content-container4 pt-4">
       <h1 class="text-center pt-5 cont-text "> Contact Us </h1>
       <p class="text-center about-para bg-info-subtle py-2">We are here to assist you!</p>
-
       <div class="d-flex flex-row content-container align-items-stretch">
         <div class="col-4 content-container10 ">
           <div class="row  text-center py-5">
-
             <table class="table table-responsive w-75 mx-auto table-borderless contact-text">
               <tr>
                 <th>
@@ -329,13 +316,11 @@ require "dbconnect.php";
                 <td class="justify-content-center"><i class="bi bi-geo-fill h3"></i> ALPS The Bus, Inc. National Highway, Balagtas, Batangas City.</td>
               </tr>
             </table>
-
           </div>
         </div>
+
         <div class="col-4 content-container10 ">
           <div class="row  text-center py-5">
-
-
             <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
               <tr>
                 <th colspan="2">
@@ -372,8 +357,6 @@ require "dbconnect.php";
 
         <div class="col-4 content-container10 ">
           <div class="row  text-center py-5">
-
-
             <table class="table table-responsive w-75 mx-auto table-borderless contact-text ">
               <tr>
                 <th colspan="3">
@@ -396,7 +379,6 @@ require "dbconnect.php";
           </div>
         </div>
       </div>
-
     </div>
     <div class="row-12 content-container7 p-4"></div>
   </div>

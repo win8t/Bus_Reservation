@@ -1,13 +1,9 @@
 <?php
-
 session_start();
-
 require "dbconnect.php";
 include "logger.php";
-
 ?>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +11,6 @@ include "logger.php";
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="sidebar13.css">
-
 </head>
 
 <body class="hd-text">
@@ -40,7 +35,6 @@ include "logger.php";
             document.getElementById("editTripDate").setAttribute('min', formattedDate);
         }
     </script>
-
 
     <aside class="sidebar d-flex flex-container">
         <div class="logo">
@@ -80,32 +74,22 @@ include "logger.php";
                 </li>
             </form>
         </ul>
-
-
     </aside>
+
     <div class="container-fluid">
-
-
-
-
         <div class="row ">
             <div class="col pb-2 ">
                 <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">SCHEDULE DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
-
                 <div class="row bg-row mx-auto p-1 m-1 rounded">
-
                     <form action="Schedule1.php" method="post">
-
                         <div class="input-group w-50 pt-4">
                             <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
                             <input type="search" name="search" id="" class="form-control rounded mx-1" aria-label="Input group example" aria-describedby="btnGroupAddon2">
-
-
                             <div class="col-3 ">
-
                                 <input type="submit" value="Search" name="searchbutton" class="h-100 btn btn-primary mx-1  hd-text" class="form-control">
                             </div>
                         </div>
+
                         <div class="col">
                             <!-- Date Time - Local -->
                             <div class="row rounded pt-2 pb-0 ">
@@ -125,25 +109,18 @@ include "logger.php";
                                         var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
                                         document.getElementById('datetime').textContent = dateTimeString;
                                     }
-                                    // Update the date and time every second
                                     setInterval(updateDateTime, 1000);
-
-                                    // Initial update
                                     updateDateTime();
                                 </script>
                             </div>
                         </div>
-
-                </div>
-
-
-
+                    </div>
                 </form>
+
+                <!-- Modal Bootstrap -->
                 <button type="button" id="formDetailsBtn" class="btn btn-color mt-1 hd-text" data-bs-toggle="modal" data-bs-target="#formDetails">
                     Add Schedule Details <!-- add icon -->
                 </button>
-
-
 
                 <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
@@ -153,26 +130,19 @@ include "logger.php";
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
-
                             <div class="modal-body">
                                 <form action="Schedule1.php" method="post" novalidate class="needs-validation">
                                     <div class="row form-outline">
 
                                         <div class="col">
-                                            <!-- Bus ID input -->
+                                            <!-- Bus Number -->
                                             <label class="form-label" for="bus_num">Bus Number<span class="text-danger">*</span></label>
-
-
                                             <select name="bus_num" class="form-select" required>
                                                 <?php
-
                                                 $sqlfk = "SELECT DISTINCT bus_number, bus_id FROM tbl_bus";
-
-                                               
                                                 $bus_fk = $con->query($sqlfk);
 
                                                 if ($bus_fk->num_rows > 0) {
-                                                    // Output data of each row
                                                     echo "<option selected disabled value=''>Choose a bus number</option>";
                                                     while ($busFK = $bus_fk->fetch_assoc()) {
                                                         echo "<option value='" . $busFK['bus_number']  . "'>" .  "B" . $busFK['bus_id'] . " - " . $busFK['bus_number'] . "</option> ";
@@ -181,23 +151,21 @@ include "logger.php";
                                                     echo "<option value=''>No busses found</option>";
                                                 }
                                                 ?>
-
                                             </select>
                                             <div class="form-text">
                                                 Bus & Routes should match (ex. B1 to B1).
                                             </div>
                                             <div class="invalid-feedback text-start">Select a Bus Number.</div>
                                             <div class="valid-feedback text-start">Bus Number selected.</div>
-
                                         </div>
-
                                     </div>
+
+                                    <!-- Departure Area -->
                                     <div class="row form-outline mt-2">
                                         <div class="col">
                                             <label class="form-label" for="route_id">Departure Area<span class="text-danger">*</span></label>
                                             <select name="dep_loc" class="form-select" required>
                                                 <?php
-
                                                 $sqlfk = "SELECT bus_id, departure_location FROM tbl_bus";
                                                 $route_fk = $con->query($sqlfk);
 
@@ -210,12 +178,12 @@ include "logger.php";
                                                     echo "<option value=''>No routes found</option>";
                                                 }
                                                 ?>
-
                                             </select>
                                             <div class="invalid-feedback text-start">Select a departure area.</div>
                                             <div class="valid-feedback text-start">Departure area selected.</div>
-
                                         </div>
+
+                                        <!-- Destination -->
                                         <div class="col">
                                             <label class="form-label" for="route_id">Destination<span class="text-danger">*</span></label>
                                             <select name="desti" class="form-select" required>
@@ -232,11 +200,9 @@ include "logger.php";
                                                     echo "<option value=''>No routes found</option>";
                                                 }
                                                 ?>
-
                                             </select>
                                             <div class="invalid-feedback text-start">Select a destination.</div>
                                             <div class="valid-feedback text-start">Destination selected.</div>
-
                                         </div>
                                     </div>
 
@@ -248,6 +214,7 @@ include "logger.php";
                                             <div class="invalid-feedback text-start">Set departure date.</div>
                                             <div class="valid-feedback text-start">Departure date selected.</div>
                                         </div>
+
                                         <!-- Departure Time input -->
                                         <div class="col">
                                             <label class="form-label" for="">Departure Time<span class="text-danger">*</span></label>
@@ -259,18 +226,15 @@ include "logger.php";
 
                                     <!-- Available Seats input -->
                                     <div class="row form-outline mt-2">
-
-
                                         <div class="col">
                                             <label class="form-label" for="">Available Seats<span class="text-danger">*</span></label>
                                             <input type="number" name="available_seats" id="" class="form-control" placeholder="Ex. 40" required />
                                             <div class="invalid-feedback text-start">Enter avaialble seats.</div>
                                             <div class="valid-feedback text-start">Available seats entered.</div>
                                         </div>
-
                                     </div>
 
-                                    <!-- Save button -->
+                            <!-- Save button -->
                             </div>
                             <div class="modal-footer d-flex justify-content-center">
                                 <button type="submit" name="add" class="btn btn-primary">Add</button>
@@ -280,9 +244,8 @@ include "logger.php";
                         </div>
                     </div>
                 </div>
-
-
             </div>
+
             <div class="row">
                 <div class="col">
                     <?php
@@ -292,7 +255,6 @@ include "logger.php";
                             list($dep_route_id, $dep_loc) = explode('-', $_POST['dep_loc']);
                             list($dest_route_id, $desti) = explode('-', $_POST['desti']);
 
-                            // Check if dep_loc and desti have the same route_id
                             if ($dep_route_id === $dest_route_id) {
                                 $route_name = $dep_loc . " to " . $desti;
                                 $busNum = $_POST['bus_num'];
@@ -321,7 +283,6 @@ include "logger.php";
                                         throw new Exception("Departure location or destination does not exist for the specified bus number.");
                                     }
                                 } catch (Exception $e) {
-                                    // Handle the exception
                                     echo "<div class='alert alert-warning' role='alert'>" . $e->getMessage() . "</div>";
                                 }
 
@@ -343,7 +304,6 @@ include "logger.php";
                     $action = 'Added Schedule';
                     logActivity($con, $userID, $action);
                                 } else {
-                                    //if not inserted, check query error details
                                     echo $con->error;
                                 }
                             } else {
@@ -355,24 +315,17 @@ include "logger.php";
                                     $con->rollback();
                                     echo "Failed to add schedule: " . $e->getMessage();
                                 }
-
-                                //check if successfully added
                             }
 
-                                        ?>
+                    ?>
                 </div>
             </div>
         </div>
 
-
         <?php
-
-
-
         //Search Button
         if (isset($_POST['searchbutton'])) {
 
-            //to check the search box if empty or not 
             if ($_POST['search'] != NULL) {
                 $search = $_POST['search'];
                 $selectsql = "Select * from sched_reserve_view where 
@@ -396,8 +349,6 @@ include "logger.php";
 
         $result = $con->query($selectsql);
 
-        //check table if there is a record
-        //num_rows - will return the no of rows inside a table
         if ($result->num_rows > 0) {
             echo "<div class=' bg-row p-5 rounded'>";
             echo "<div class='bdr'>";
@@ -420,7 +371,6 @@ include "logger.php";
             echo "</tr>";
             echo "</thead>";
 
-
             while ($fielddata = $result->fetch_assoc()) {
                 echo "<tr>";
                 echo "<td>" . $fielddata['Schedule ID'] . "</td>";
@@ -442,7 +392,6 @@ include "logger.php";
                 <form method="post" action="Schedule1.php">
                     <input type="hidden" name="schel_del" value="<?php echo $fielddata['Schedule ID']; ?>" class="form-control" />
                     <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['Schedule ID']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['Schedule ID']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['Schedule ID']; ?>">Edit</button>
-
                 </form>
                 <?php
                 echo "</td>";
@@ -453,26 +402,19 @@ include "logger.php";
                 echo "<td colspan='12' class ='tble-bg'>";
                 echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['Schedule ID'] . "'>";
                 ?>
-                <!-- form-->
 
+                <!-- Form for Editing -->
                 <form action="Schedule1.php" method="post">
                     <h5 class="hd-text text-center pb-2 fs-5" id="title">Schedule Editing Form</h5>
-
-
-                    <!-- Schedule ID input -->
                     <div class="col">
                         <input type="hidden" name="update_scheduleID" value="<?php echo  $fielddata['Schedule ID']; ?>" class="form-control" readonly />
-
                     </div>
                     <div class="col">
                         <input type="hidden" name="update_busID" value="<?php echo  $fielddata['Bus ID']; ?>" class="form-control" readonly />
-
                     </div>
                     <div class="col">
                         <input type="hidden" name="update_routeID" value="<?php echo  $fielddata['Route ID']; ?>" class="form-control" readonly />
-
                     </div>
-
 
                     <!-- Departure Date input -->
                     <div class="row form-outline">
@@ -480,12 +422,12 @@ include "logger.php";
                             <input type="date" name="update_departureDate" value="<?php echo $fielddata['Departure Date']; ?>" id="tripDate" class="form-control" onfocus="setMinDate()" />
                             <label class="form-label" for="">Departure Date</label>
                         </div>
+
                         <!-- Departure Time input -->
                         <div class="col">
                             <input type="time" name="update_departureTime" value="<?php echo $fielddata['Departure Time'] ?>" class="form-control" />
                             <label class="form-label" for="">Departure Time</label>
                         </div>
-
                     </div>
 
                     <!-- Available Seats input -->
@@ -495,7 +437,6 @@ include "logger.php";
                             <label class="form-label" for="">Available Seats</label>
                         </div>
                     </div>
-
 
                     <!-- Submit -->
                     <div class="row form-outline text-center pt-1">
@@ -529,13 +470,10 @@ include "logger.php";
             $scheduleID_update = $_POST['update_scheduleID'];
             $busID_update = $_POST['update_busID'];
             $routeID_update = $_POST['update_routeID'];
-
             $departureDate_update = $_POST['update_departureDate'];
             $departureTime_update = date_format(date_create($_POST['update_departureTime']), 'Y-m-d H:i:s');
-
             $availableSeats_update = $_POST['update_availableSeats'];
 
-            // Using prepared statements for security and reliability
             $update_schedule_query = $con->prepare("
                 UPDATE tbl_schedule 
                 SET 
@@ -546,11 +484,8 @@ include "logger.php";
                     schedule_id = ?
             ");
             $update_schedule_query->bind_param("sisi", $departureDate_update, $availableSeats_update, $departureTime_update, $scheduleID_update);
-
-
             $result_sched = $update_schedule_query->execute();
 
-            //check if successfully updated
             if ($result_sched || $result_bus || $result_route == True) {
             ?>
                 <script>
@@ -573,10 +508,8 @@ include "logger.php";
 
         ?>
     </div>
-
     </div>
-
-    <script src="../formvalidation.js"> </script>
+<script src="../formvalidation.js"> </script>
 </body>
 
 </html>
