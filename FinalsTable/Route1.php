@@ -12,7 +12,6 @@
   <link href="bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" href="sidebar13.css">
-
 </head>
 
 <body class ="hd-text">
@@ -60,10 +59,9 @@
       </li>
       </form>
     </ul>
-
   </aside>
-  <div class="container-fluid">
 
+  <div class="container-fluid">
     <div class="row ">
       <div class="col pb-2 ">
         <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">ROUTE DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
@@ -97,10 +95,8 @@
                     var dateTimeString = dayOfWeek + ', ' + month + ' ' + day + ', ' + year + ', ' + time;
                     document.getElementById('datetime').textContent = dateTimeString;
                   }
-                  // Update the date and time every second
                   setInterval(updateDateTime, 1000);
 
-                  // Initial update
                   updateDateTime();
                 </script>
               </div>
@@ -110,7 +106,7 @@
 
         <!-- Modal Bootstrap -->
         <button type="button" id="formDetailsBtn" class="btn btn-color mt-1 hd-text" data-bs-toggle="modal" data-bs-target="#formDetails">
-          Add Route Details <!-- add icon -->
+          Add Route Details
         </button>
 
         <div class="modal" id="formDetails" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="title" aria-hidden="true">
@@ -212,8 +208,7 @@
 
     //Search Button
     if (isset($_POST['searchbutton'])) {
-
-      //to check the search box if empty or not 
+ 
       if ($_POST['search'] != NULL) {
         $search = $_POST['search'];
         $selectsql = "Select * from tbl_route where 
@@ -236,14 +231,11 @@
       $departureLoc = $_POST['departure_location'];
       $destination = $_POST['destination'];
       $distance = $_POST['distance'];
-
       $hrduration = $_POST['hrduration'];
       $minduration = $_POST['minduration'];
       $secduration = $_POST['secduration'];
 
       $duration = $hrduration . ":" . $minduration . ":" . $secduration;
-
-      // $price = $_POST['price'];
 
       $insertsql = "Insert into tbl_route (route_name,departure_location,destination,distance,duration)
         values ('$routeName','$departureLoc','$destination',$distance,'$duration')
@@ -251,8 +243,6 @@
 
       $result = $con->query($insertsql);
 
-
-      //check if successfully added
       if ($result == True) {
     ?>
         <script>
@@ -263,12 +253,11 @@
             showConfirmButton: false,
             timer: 1500
         });
-                    </script>
+        </script>
       <?php
       $action = 'Added Route';
       logActivity($con, $userID, $action);
       } else {
-        //if not inserted, check query error details
         echo $con->error;
       }
     }
@@ -276,8 +265,6 @@
 
     $result = $con->query($selectsql);
 
-    //check table if there is a record
-    //num_rows - will return the no of rows inside a table
     if ($result->num_rows > 0) {
       echo "<div class=' bg-row p-5 rounded'>";
       echo "<div class='bdr'>";
@@ -291,11 +278,9 @@
       echo "<th> Destination </th>";
       echo "<th> Distance (km) </th>";
       echo "<th> Duration (hrs) </th>";
-  
       echo "<th> Action </th>";
       echo "</tr>";
       echo "</thead>";
-
 
       while ($fielddata = $result->fetch_assoc()) {
         echo "<tr>";
@@ -309,7 +294,6 @@
       ?>
         <form method="post" action="Route1.php">
           <input type="hidden" name="route_del" value="<?php echo $fielddata['route_id']; ?>" class="form-control" />
-
           <button class="btn btn-success" name="edit" type="button" data-bs-toggle="collapse" href="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" data-bs-target="#updateFormCollapse<?php echo $fielddata['route_id']; ?>" aria-expanded="false" aria-controls="updateFormCollapse<?php echo $fielddata['route_id']; ?>">Edit</button>
         </form>
         <?php
@@ -365,15 +349,6 @@
               </div>
               <label class="form-label" for="">Distance (in km)</label>
             </div>
-
-            <!-- Price input -->
-            <!-- <div class="col">
-              <div class="input-group">
-                <span class="input-group-text hd-text">₱</span>
-                <input type="number" name="update_price" value="<?php echo $fielddata['price']; ?>" min="0" class="form-control" />
-              </div>
-              <label class="form-label" for="">Price</label>
-            </div> -->
           </div>
 
           <!-- Duration input -->
@@ -433,12 +408,10 @@
       $departureLoc_update = $_POST['update_departureLoc'];
       $destination_update = $_POST['update_destination'];
       $distance_update = $_POST['update_distance'];
-
       $hrduration_update = $_POST['update_hrduration'];
       $minduration_update = $_POST['update_minduration'];
       $secduration_update = $_POST['update_secduration'];
       $duration_update = $hrduration_update . ":" . $minduration_update . ":" . $secduration_update;
-      // $price_update = $_POST['update_price'];
 
       $updatesql = "UPDATE tbl_route SET route_id = $routeID_update, route_name = '$routeName_update',
             departure_location = '$departureLoc_update', destination = '$destination_update', distance = $distance_update,
@@ -446,32 +419,28 @@
 
       $resultup = $con->query($updatesql);
 
-      //check if successfully updated
       if ($resultup == True) {
       ?>
           <script>
-                   Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Update has been successful. Please refresh the page.",
-      showConfirmButton: false,
-      timer: 1500
-    });
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Update has been successful. Please refresh the page.",
+              showConfirmButton: false,
+              timer: 1500
+            });
                 </script>
     <?php
     $action = 'Updated Route';
     logActivity($con, $userID, $action);
       } else {
-        //if not, check query error details
         echo $con->error;
       }
     }
     ?>
   </div>
-
   </div>
-
-  <script src="../formvalidation.js"> </script>
+<script src="../formvalidation.js"> </script>
 </body>
 
 </html>

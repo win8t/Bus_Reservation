@@ -1,7 +1,7 @@
 <?php
 require "dbconnect.php";
-// set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
-  set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
+set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINAL_ALPS_BUS');
+  // set_include_path(get_include_path() . PATH_SEPARATOR . 'C:\xampp\htdocs\FINALS PROJECT'); 
 include "logger.php";
 require_once 'email_registration.php';
 ?>
@@ -80,7 +80,6 @@ require_once 'email_registration.php';
   </aside>
 
   <div class="container-fluid">
-
     <div class="row ">
       <div class="col pb-2 ">
         <h1 class="hd-font bg-row mx-auto text-white rounded-bottom mx-1 p-3">USER DETAILS | Welcome, <?php echo $_SESSION['username']; ?></h1>
@@ -200,6 +199,7 @@ require_once 'email_registration.php';
                     <div class="valid-feedback text-start">Entered password</div>
                   </div>
 
+                  <!-- Confirm Password -->
                   <div class="col">
                     <label class="form-label" for="">Confirm Password<span class="text-danger">*</span></label>
                     <input type="password" name="confirmpass" id="" class="form-control" placeholder="Ex. Reenter Pass" required />
@@ -312,8 +312,6 @@ require_once 'email_registration.php';
 
     $result = $con->query($selectsql);
 
-    //check table if there is a record
-    //num_rows - will return the no of rows inside a table
     if ($result->num_rows > 0) {
 
       echo "<div class=' bg-row p-5 rounded'>";
@@ -331,8 +329,6 @@ require_once 'email_registration.php';
       echo "<th> Action </th>";
       echo "</tr>";
       echo "</thead>";
-
-
 
       while ($fielddata = $result->fetch_assoc()) {
 
@@ -454,26 +450,24 @@ require_once 'email_registration.php';
 
       $resultup = $con->query($updatesql);
 
-      //check if successfully updated
       if ($resultup == True) {
-?>
-  <script>
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Update has been successful. Please refresh the page.",
-      showConfirmButton: false,
-      timer: 1500
-    });
-   
-</script>
-<?php
-        $action = 'Updated User';
-        logActivity($con, $userID, $action);
-      } else {
-        //if not, check query error details
-        echo $con->error;
-      }
+    ?>
+      <script>
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Update has been successful. Please refresh the page.",
+          showConfirmButton: false,
+          timer: 1500
+        });
+      
+    </script>
+    <?php
+            $action = 'Updated User';
+            logActivity($con, $userID, $action);
+          } else {
+            echo $con->error;
+          }
     }
 
 ?>

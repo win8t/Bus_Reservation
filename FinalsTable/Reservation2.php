@@ -2,30 +2,25 @@
 session_start();
 require "dbconnect.php";
 include "logger.php";
-
 ?>
+
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alps Reservation Details</title>
     <link href="bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="sidebar13.css">
-
 </head>
 
 <body class="hd-text">
     <script>
         function swapValues() {
             event.preventDefault();
-            // Get the selected values of origin and destination
             var originValue = document.getElementById('origin').value;
             var destinationValue = document.getElementById('destination').value;
 
-            // Swap the values
             document.getElementById('origin').value = destinationValue;
             document.getElementById('destination').value = originValue;
         }
@@ -113,9 +108,8 @@ include "logger.php";
                 </li>
             </form>
         </ul>
-
-
     </aside>
+
     <div class="container-fluid">
         <div class="row ">
             <div class="col pb-2 ">
@@ -157,9 +151,7 @@ include "logger.php";
                                 </script>
                             </div>
                         </div>
-
                 </div>
-
                 </form>
 
                 <!-- Modal Bootstrap -->
@@ -172,19 +164,15 @@ include "logger.php";
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title fs-5" id="title">Reservation Details Form</h5>
-
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
 
                             <div class="modal-body">
-
-
                                 <form action="Reservation2.php" method="post" novalidate class="needs-validation">
                                     <div class="row w-75 mx-auto">
                                         <div class="col-md-6">
                                             <label class="form-label" for="">Route</label>
                                             <div class="input-group has-validation">
-
                                                 <select id="origin" class="form-select" aria-describedby="origin-feedback" name="origin" >
                                                     <?php
                                                     $query = "SELECT DISTINCT `departure_location` FROM tbl_route";
@@ -202,7 +190,6 @@ include "logger.php";
                                                 </select>
 
                                                 <label class="input-group-text" for="origin">Origin</label>
-
                                                 <button class="input-group-text bg-dark" id="basic-addon2" onclick="swapValues()" type="button"><i class="bi bi-arrow-left-right"></i></button>
                                                 <label class="input-group-text" for="destination">Destination</label>
                                                 <select id="destination" class="form-select" aria-describedby="destination-feedback" name="destination" >
@@ -235,11 +222,8 @@ include "logger.php";
                                             <input type="submit" value="Search" name="searchresbutton" class="btn btn-success rounded-5 w-100">
                                         </div>
                                 </form>
-                                
                             </div>
                             
-
-
                             <?php
                              if (isset($_POST['searchresbutton'])) {
                                 echo '<script>
@@ -247,9 +231,8 @@ include "logger.php";
                                     var modal = new bootstrap.Modal(document.getElementById("formDetails"), {});
                                     modal.show();
                                 });
-                            </script>';
+                                </script>';
 
-                                //to check the search box if empty or not 
                                 if ($_POST['date'] != NULL && $_POST['origin'] != NULL && $_POST['destination'] != NULL) {
                                     $date = $_POST['date'];
                                     $origin = $_POST['origin'];
@@ -321,73 +304,55 @@ include "logger.php";
                             ?>
                                     <form action="\FINALS PROJECT\ReservationReceipt.php" method="post" onsubmit="return confirm('Are you sure you want to confirm this booking?');" novalidate class="needs-validation">
                                         <div class="row  form-outline">
-
                                             <h5 class="hd-text text-center pb-2 mt-4 fs-5" id="title">Bus Reservation Form</h5>
-                                    
                                             <div class="col">
                                                 <input type="hidden" name="book_id" value="<?php echo $maltfielddata['Schedule ID'] ?>" class="form-control" readonly />
-
                                             </div>
                                             <div class="col">
                                                 <input type="hidden" name="book_num" value="<?php echo $maltfielddata['Bus Number']; ?>" class="form-control" readonly />
-
                                             </div>
                                             <div class="col">
                                                 <input type="hidden" name="book_type" value="<?php echo $maltfielddata['Bus Type']; ?>" class="form-control" readonly />
-
                                             </div>
                                             <div class="col">
                                                 <input type="hidden" name="r_date" value="<?php echo date("Y-m-d H:i:s") ?>" class="form-control" readonly />
-
                                             </div>
                                         </div>
 
-                                        <!-- Role input -->
                                         <div class="row form-outline mb-2">
                                             <div class="col">
                                                 <input type="hidden" name="book_ddate" value="<?php echo $maltfielddata['Departure Date']; ?>" class="form-control" />
-
                                             </div>
-
                                             <div class="col">
                                                 <input type="hidden" name="book_dtime" value="<?php echo date_format(date_create($maltfielddata['Departure Time']), 'H:i'); ?>" class="form-control" />
                                             </div>
-
-
                                         </div>
 
                                         <div class="row form-outline">
-                                            <!-- Destinations input -->
                                             <div class="col">
                                                 <input type="hidden" name="book_depart" value="<?php echo $maltfielddata['Departure Area']; ?>" class="form-control" readonly />
-
                                             </div>
                                             <div class="col">
                                                 <input type="hidden" name="book_desti" value="<?php echo $maltfielddata['Destination']; ?>" class="form-control" readonly />
-
                                             </div>
                                         </div>
 
                                         <div class="row form-outline">
-                                            <!-- Price input -->
                                             <div class="col">
                                                 <input type="hidden" name="book_price" value="<?php echo number_format($maltfielddata['Price']); ?>" class="form-control" readonly />
-
                                             </div>
                                         </div>
 
                                         <div class="row form-outline">
-                                            <!-- Seat input -->
                                             <div class="col">
                                                 <input type="hidden" name="book_tseats" value="<?php echo $maltfielddata['Total Seats']; ?>" class="form-control" readonly />
-
                                             </div>
                                             <div class="col">
                                                 <input type="hidden" name="book_aseats" value="<?php echo $maltfielddata['Available Seats']; ?>" class="form-control" readonly />
-
                                             </div>
                                         </div>
 
+                                        <!-- Passenger Name -->
                                         <div class="row text-start form-outline mb-2">
                                             <label class="form-label" for="">Passenger Name</label>
                                             <div class="col">
@@ -395,7 +360,6 @@ include "logger.php";
                                                 <input type="text" id="" name="f_name" class="form-control" placeholder="Ex. Dawn" required />
                                                 <div class="invalid-feedback text-start">Enter your first name.</div>
                                                 <div class="valid-feedback text-start">First name entered.</div>
-
                                             </div>
 
                                             <div class="col">
@@ -409,64 +373,52 @@ include "logger.php";
                                                 <div class="invalid-feedback text-start">Enter your last name.</div>
                                                 <div class="valid-feedback text-start">Last name entered.</div>
                                             </div>
-                                           
                                         </div>
 
                                         <div class="row form-outline">
-                                            <!-- Departure Area -->
                                             <div class="col">
                                                 <input type="hidden" name="book_depart" value="<?php echo $maltfielddata['Departure Area']; ?>" class="form-control" readonly />
                                             </div>
-                                            <!-- Destination -->
                                             <div class="col">
                                                 <input type="hidden" name="book_desti" value="<?php echo $maltfielddata['Destination']; ?>" class="form-control" readonly />
                                             </div>
                                         </div>
                                        
-
-
                                         <div class="row text-start form-outline">
-                                            <!-- Password input -->
+                                            <!-- Username -->
                                             <div class="col">
                                                 <label class="form-label" for="">Username</label>
                                                 <input type="text" id="" name="usern" class="form-control"  value = <?php echo $_SESSION['username']; ?> readonly/>
                                             </div>
 
+                                            <!-- Contact Number -->
                                             <div class="col">
                                                 <label class="form-label" for="">Contact Number<span class="text-danger">*</span></label>
                                                 <input type="number" name="c_number" id="" class="form-control" min="0" placeholder="Ex. 09177543316" required />
-
                                                 <div class="invalid-feedback text-start">Enter your contact.</div>
                                                 <div class="valid-feedback text-start">Contact information entered.</div>
                                             </div>
-                                            
+
+                                            <!-- Seat -->
                                             <div class="col">
                                                 <label class="form-label" for="">Seat<span class="text-danger">*</span></label>
                                                 <?php
-
                                                 seattype($maltfielddata['Bus Type'],  $maltfielddata['Schedule ID'], $con);
                                                 ?>
                                                 <div class='invalid-feedback text-start'>Choose your seat number.</div>
                                                 <div class='valid-feedback text-start'>Seat selected.</div>
-
-                
-
-                                        </div>
+                                            </div>
                                         </div>
 
-                                
-                                        <!-- Save button -->
+                        <!-- Save button -->
                         </div>
                         <div class="row form-outline text-center pt-1 pb-4">
                             <div class="col">
                                 <button type="submit" name="booking" value="Book" class="btn btn-success">Confirm Booking</button>
                             </div>
                         </div>
-                        </form>
-
-                    </div>
-
-
+                    </form>
+                </div>
             <?php
                                     echo "</div>";
                                     echo "</td>";
@@ -499,7 +451,6 @@ include "logger.php";
     //Search Button
     if (isset($_POST['searchbutton'])) {
 
-
         if ($_POST['search'] != NULL) {
             $search = $_POST['search'];
             $selectsql = "Select * from reservation_booking_view where 
@@ -530,7 +481,6 @@ include "logger.php";
 
     $result = $con->query($selectsql);
 
-
     if ($result->num_rows > 0) {
         echo "<div class=' bg-row1 mt-2 p-5 rounded'>";
         echo "<div class='bdr'>";
@@ -546,7 +496,6 @@ include "logger.php";
         echo "<th> Departure Date </th>";
         echo "<th> Departure Time </th>";
         echo "<th> Passenger Name </th>";
-   
         echo "<th> Contact Information </th>";
         echo "<th> Seat Number </th>";
         echo "<th> Reservation Date </th>";
@@ -557,7 +506,6 @@ include "logger.php";
         echo "<th> Action </th>";
         echo "</tr>";
         echo "</thead>";
-
 
         while ($fielddata = $result->fetch_assoc()) {
             echo "<tr>";
@@ -594,12 +542,10 @@ include "logger.php";
             echo "<td colspan='17' class ='tble-bg'>";
             echo "<div class='collapse w-50 mx-auto text-start p-5 text-white' id='updateFormCollapse" . $fielddata['reservation_id'] . "'>";
             ?>
-            <!-- form-->
-
+            
+            <!-- Edit for Form -->
             <form action="Reservation2.php" method="post">
                 <h5 class="hd-text text-center pb-2 fs-5" id="title">Reservation Editing Form</h5>
-
-
                 <div class="col">
                     <!-- Reservation ID input -->
                     <input type="hidden" name="update_reservationID" value="<?php echo $fielddata['reservation_id']; ?>" class="form-control" readonly />
@@ -607,20 +553,15 @@ include "logger.php";
                 <div class="col">
                     <!-- Schedule ID input -->
                     <input type="hidden" name="update_scheduleID" value="<?php echo $fielddata['schedule_id']; ?>" class="form-control" readonly />
-
                 </div>
                 <div class="col">
                     <!-- Bus ID input -->
                     <input type="hidden" name="update_busid" value="<?php echo $fielddata['bus_id']; ?>" class="form-control" readonly />
-
                 </div>
                 <div class="col">
                     <!-- Route ID input -->
                     <input type="hidden" name="update_routeid" value="<?php echo $fielddata['route_id']; ?>" class="form-control" readonly />
-
                 </div>
-
-
                 <!-- Contact Number -->
                 <input type="hidden" name="update_contactInformation" value="<?php echo $fielddata['contact_information']; ?>" class="form-control" readonly />
 
@@ -629,8 +570,8 @@ include "logger.php";
                         <!-- Passenger Name input -->
                         <input type="text" id="" name="update_passengerName" value="<?php echo $fielddata['passenger_name']; ?>" class="form-control" readonly />
                         <label class="form-label" for="">Passenger Name</label>
-
                     </div>
+
                     <div class="col">
                         <!-- Seat Number -->
                         <input type="text" id="" name="update_seatNumber" value="<?php echo  $fielddata['seat_number']; ?>" class="form-control" readonly />
@@ -639,15 +580,12 @@ include "logger.php";
                 </div>
               
                 <div class="row form-outline">
-
-
+                    <!-- Payment Method -->
                     <div class="col">
-                        <!-- Seat Number -->
                         <select id="update_paymethod" name="update_paymethod" class="form-select">
                             <option value="E-wallet" <?php echo ($fielddata['payment_method'] == 'E-wallet') ? 'selected' : ''; ?>>E-wallet</option>
                             <option value="Cash" <?php echo ($fielddata['payment_method'] == 'Cash') ? 'selected' : ''; ?>>Cash</option>
                         </select>
-
                         <label class="form-label" for="">Pay Method</label>
                     </div>
 
@@ -656,12 +594,10 @@ include "logger.php";
                         <select name="update_status" id="status" class="form-select">
                             <?php
                             echo '<option value="" disabled>Select the status</option>';
-
                             foreach ($status as $statuses) {
                                 $selected = ($fielddata['status'] === $statuses) ? 'selected' : '';
                                 echo '<option value="' . $statuses . '" ' . $selected . '>' . $statuses . '</option>';
                             }
-
                             ?>
                         </select>
                         <label class="form-label" for="">Status</label>
@@ -693,7 +629,6 @@ include "logger.php";
         echo "</div>";
     }
 
-
     //Update Button
     if (isset($_POST['updating'])) {
         $reservationID_update = $_POST['update_reservationID'];
@@ -712,33 +647,30 @@ include "logger.php";
         $resultup = $con->query($updatesql);
         $resultup1 = $con->query($update1sql);
 
-        //check if successfully updated
         if ($resultup && $resultup1 == True) {
         ?>
             <script>
                    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "Update has been successful. Please refresh the page.",
-      showConfirmButton: false,
-      timer: 1500
-    });
-                </script>
+                    position: "center",
+                    icon: "success",
+                    title: "Update has been successful. Please refresh the page.",
+                    showConfirmButton: false,
+                    timer: 1500
+                    });
+            </script>
     <?php
             $action = 'Updated Reservation';
             logActivity($con, $userID, $action);
         } else {
-            //if not, check query error details
             echo $con->error;
         }
     }
 
     ?>
     </div>
-
     </div>
 
-    <script src="../formvalidation.js"> </script>
+<script src="../formvalidation.js"> </script>
 </body>
 
 </html>
