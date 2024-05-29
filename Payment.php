@@ -172,8 +172,6 @@ if (isset($_POST['paying'])) {
             break;
     }
 }
+ ?> <script src="formvalidation.js"> </script> <?php
 ?>
-<script src="formvalidation.js"> </script>
-</body>
 
-</html>

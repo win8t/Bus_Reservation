@@ -91,17 +91,16 @@
         <div class="row bg-row p-1 mx-auto rounded">
           
           <div  class="col">
-            
+            <form action="Logs2.php" method="post">
             <div class="input-group w-50 pt-4">
               <div class="input-group-text" id="btnGroupAddon2"><img src="search.svg" alt=""></div>
               <input type="search" name="search" id="" class="form-control rounded mx-1" aria-label="Input group example" aria-describedby="btnGroupAddon2">
-
-
               <div class="col-3 ">
-                
                 <input type="submit" value="Search" name="searchbutton" class="h-100 btn btn-primary mx-auto  hd-text" class="form-control">
               </div>
+             
             </div>
+            </form>
             <div class="col">
               <!-- Date Time - Local -->
               <div class="row rounded pt-2 pb-0 ">
@@ -147,7 +146,7 @@
                 OR DateTime LIKE'%" . $search . "%'  ORDER BY log_id DESC";
 
             } else {
-              $selectsql = "Select * from logs_view  ORDER BY log_id DESC";
+              $selectsql = "Select * from logs_view ORDER BY log_id DESC";
             }
           } else {
             $selectsql = "Select * from logs_view ORDER BY log_id DESC";

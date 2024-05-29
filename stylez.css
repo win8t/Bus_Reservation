@@ -2,7 +2,7 @@ body {
   padding:0;
   margin:0;
   width:100%;
-  max-height: 100vh; /* Set maximum height to 100% of the viewport height */
+  max-height: 100vh;
   overflow-y: auto;
 }
 @font-face {
@@ -134,7 +134,6 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  /*set overlay of carousel */
   background-image: linear-gradient(to bottom, #000000 90%, #EDE4FF);
 
 }
@@ -157,8 +156,6 @@ body {
   padding: 0;
 }
 
-
-/*Carousel Text Title*/
 .home-text-title {
   text-shadow: 2px 2px 7px black;
   font-size: 50px;
@@ -166,7 +163,6 @@ body {
   font-family: FontBold;
 }
 
-/*Carousel Text Caption*/
 .text-bg {
   text-shadow: 1px 1px 5px black;
   color: rgb(255, 255, 255);
@@ -257,7 +253,6 @@ body {
 
 .content-container7 {
   position: relative;
-  /*margin-top: 30px;*/
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
@@ -272,13 +267,9 @@ body {
   margin: 1%;
   font-weight: bold;
   color: #000000;
-
-
-
 }
 
 .content-container1 {
-
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -296,7 +287,6 @@ body {
 }
 
 .content-container5 {
-
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -325,40 +315,31 @@ body {
   overflow-y: hidden;
   z-index: 5;
   background-image: linear-gradient(rgba(255, 255, 255, 0.459), rgba(255, 255, 255, 0.459));
-
   width: 100%;
   float: left;
-
-
 }
 
 .content-container3 {
-
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
- 
   transition: all 0.5s;
   width: 100%;
   float: left;
 }
 
 .content-container8 {
-
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
   background-color: white;
-
   width: 100%;
   float: left;
-
 }
 
 .content-container6 {
-
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -367,12 +348,9 @@ body {
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 50px), calc(50% + 71.41px) calc(100% - 50px), 50% 100%, calc(50% - 71.41px) calc(100% - 50px), 0 calc(100% - 50px));
   width: 100%;
   float: left;
-
-
 }
 
 .content-container4 {
-
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -398,7 +376,6 @@ body {
   padding-left: 10px;
   padding-right: 10px;
   padding-inline-end: 55px;
-
 }
 
 .accordion {
@@ -431,8 +408,6 @@ body {
   position: relative;
 }
 
-
-
 .accordion-button:active,
 .accordion-button:focus {
   border: none !important;
@@ -452,13 +427,11 @@ svg {
 
 .accordion-button::after {
   background-image: url("plus.svg") !important;
-
   transition: .5s !important;
 }
 
 .accordion-button:not(.collapsed)::after {
   background-image: url("dash.svg") !important;
-
   transition: .5s !important;
 }
 
@@ -510,8 +483,6 @@ svg {
   font-family: FontReg;
 }
 
-
-
 .line {
   height: 1px;
   background: black;
@@ -528,7 +499,6 @@ svg {
   
 }
 
-/*Login */
 .banner-area {
   height: 100vh;
   box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
@@ -559,13 +529,10 @@ svg {
   100% {
     background-color: #d5ebf1;
   }
-
-
 }
 
 .login-content-container7 {
   position: relative;
-  /*margin-top: 30px;*/
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
@@ -591,23 +558,18 @@ svg {
 }
 
 .img-login {
-
   width: 40%;
   height: 70%;
   display: block;
   margin-left: auto;
   margin-right: auto;
-
-
 }
 
 .about-login {
-
   font-family: FontBold;
 }
 
 .link-text {
-
   font-family: FontReg;
 }
 
@@ -630,7 +592,6 @@ svg {
   -webkit-text-fill-color: transparent;
 }
 
-
 /* Booking.php */
 .navbar-book {
   font-size: 25px;
@@ -645,17 +606,14 @@ svg {
 
 .book-login-button {
   font-family: FontReg;
-
   background-color: #48a198;
   color: #ffffff;
-
   font-size: 20px;
   padding: 8px 20px;
   border-radius: 50px;
   text-decoration: none;
   transition: 0.3s background-color;
 }
-
 
 .book-login-button:hover {
   color: #000;
@@ -701,7 +659,6 @@ svg {
   bottom: 0;
   left: 0;
   right: 0;
-  /*set overlay of carousel */
   background-image: linear-gradient(to bottom, #000000 90%, #DCE7FA);
 
 }
@@ -726,13 +683,9 @@ svg {
 .booking-container {
   background-color: #e6f8f3;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
- 
-  
-  
 }
 
 .book-content-container1 {
-
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
@@ -748,8 +701,8 @@ svg {
 
 
 .bus-card, .bus-card-group {
-  border: none; /* Remove border */
-  border-radius: 0; /* Remove rounded corners */
+  border: none; 
+  border-radius: 0; 
   transition: all 0.5s;
 }
 
@@ -781,8 +734,8 @@ svg {
 }
 
 .term-card, .term-card-group {
-  border: none; /* Remove border */
-  border-radius: 0; /* Remove rounded corners */
+  border: none; 
+  border-radius: 0; 
   transition: all 0.5s;
 }
 
@@ -910,7 +863,6 @@ transform-style: preserve-3d;
 }
 
 .slidecards .slidecard {
-  
   position:relative;
   height:100%;
   background-color: #29317C ;
@@ -924,7 +876,6 @@ transform-style: preserve-3d;
 }
 
 .slidecards .imageslide img {
-  
   border-radius: 5px;
   box-shadow: 15px 15px 40px rgba(0, 0, 0, 50%);
   margin-top: 23px;
@@ -935,14 +886,12 @@ transform-style: preserve-3d;
 
 }
 
-
 .slidecards .imageslide img:hover {
   transform: scale(1.05);
 }
 
 .slidecards .imageslide .dots {
   text-align:center;
-
 }
 
 .dots div {
@@ -991,9 +940,8 @@ transform-style: preserve-3d;
 
 .slidecard {
   border:3px solid;
-display:inline-block;
+  display:inline-block;
   border-radius: 5px;
-  
   align-items: center;
   justify-content: center;
   color:#ffffff;
@@ -1005,16 +953,13 @@ display:inline-block;
 }
 
 .book-content-container8 {
-
   position: relative;
   overflow-x: hidden;
   overflow-y: hidden;
   z-index: 5;
   background-color: #DCE7FA;
-
   width: 100%;
   float: left;
-
 }
 
 .book-content-container8 p {

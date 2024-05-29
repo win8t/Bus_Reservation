@@ -17,8 +17,6 @@ require "dbconnect.php";
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
 <body class="">
-  <script src="scripts.js">
-  </script>
   <script src="bootstrap.min.js"></script>
 
   <nav class="navbar navbar-expand-lg fixed-top navbar-home">

@@ -546,7 +546,6 @@ require "dbconnect.php";
     </div>
     </div>
     <script src="formvalidation.js"> </script>
-    <script src="scripts.js"></script>
     <script src="bootstrap.bundle.min.js"></script>
 </body>
 
